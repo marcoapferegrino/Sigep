@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: PosgradoService
+        psr4_prefix: PosgradoService
+        src_path: app
