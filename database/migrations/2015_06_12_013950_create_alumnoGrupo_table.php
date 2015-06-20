@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHorariosTable extends Migration
+class CreateAlumnoGrupoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateHorariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('horarios', function (Blueprint $table) {
+        Schema::create('alumno_grupo', function (Blueprint $table) {
             $table->increments('id');
+            $table->double('calificacion');
 
-
-            $table->integer('asignatura_id')->unsigned();
-            $table->foreign('asignatura_id')->references('id')->on('asignaturas');
+            $table->integer('alumno_id')->unsigned();
+            $table->foreign('alumno_id')->references('id')->on('alumnos');
 
             $table->integer('grupo_id')->unsigned();
             $table->foreign('grupo_id')->references('id')->on('grupos');
@@ -35,6 +35,6 @@ class CreateHorariosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('horarios');
+        Schema::drop('alumno_grupo');
     }
 }

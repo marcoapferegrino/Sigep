@@ -1,9 +1,9 @@
 <?php namespace PosgradoService\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use PosgradoService\Entities\Entity;
 
-class Periodo extends Model {
+class Periodo extends Entity {
 
-	//
+
 
 }

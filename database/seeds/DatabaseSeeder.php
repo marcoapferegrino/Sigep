@@ -21,10 +21,20 @@ class DatabaseSeeder extends Seeder
             'password_resets',
             'alumnos',
             'docentes',
+            'grupos',
+            'asignaturas',
+            'periodos',
+            'programas'
+
         ));
 
 
         $this->call('UserTableSeeder');
+        $this->call('ProgramaPeriodoSeeder');
+        $this->call('AsignaturaSeeder');
+        $this->call('GrupoSeeder');
+
+
       //  Model::reguard();
     }
 
