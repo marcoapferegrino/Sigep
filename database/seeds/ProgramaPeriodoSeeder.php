@@ -12,6 +12,7 @@ use PosgradoService\Entities\Periodo;
 use PosgradoService\Entities\Programa;
 
 class ProgramaPeriodoSeeder extends Seeder {
+
     public function run()
     {
         Programa::create([

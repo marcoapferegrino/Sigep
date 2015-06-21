@@ -14,8 +14,8 @@ class CreateAsignaturasTable extends Migration
     {
         Schema::create('asignaturas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->double('creditos');
+            $table->string('nombre')->unique();
+            $table->double('creditos')->default(0);
             $table->double('horasPract');
             $table->double('horasTeoricas');
             $table->enum('tipo', ['obligatoria','seminario','optativa','estancia']);

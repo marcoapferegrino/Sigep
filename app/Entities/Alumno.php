@@ -25,4 +25,9 @@ class Alumno extends Entity {
         return $this->belongsToMany(Grupo::getClass());
     }
 
+    public function archivoAlumnos()
+    {
+        return $this->hasMany(ArchivoAlumno::getClass());
+    }
+
 }

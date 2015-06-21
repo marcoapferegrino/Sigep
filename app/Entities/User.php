@@ -36,6 +36,7 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
     public function getDocente()
     {
         return $this->hasOne(Docente::getClass());
+
     }
 
     public function getAlumno()

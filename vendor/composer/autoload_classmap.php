@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AsignaturaGrupoSeeder' => $baseDir . '/database/seeds/AsignaturaGrupoSeeder.php',
     'AsignaturaSeeder' => $baseDir . '/database/seeds/AsignaturaSeeder.php',
     'BaseSeeder' => $baseDir . '/database/seeds/BaseSeeder.php',
     'CreateAlumnoGrupoTable' => $baseDir . '/database/migrations/2015_06_12_013950_create_alumnoGrupo_table.php',
@@ -17,6 +18,7 @@ return array(
     'CreateDocentesTable' => $baseDir . '/database/migrations/2015_06_12_004554_create_docentes_table.php',
     'CreateGruposTable' => $baseDir . '/database/migrations/2015_06_12_011453_create_grupos_table.php',
     'CreateHoraDiasTable' => $baseDir . '/database/migrations/2015_06_12_014721_create_horaDias_table.php',
+    'CreateLuisModelsTable' => $baseDir . '/database/migrations/2015_06_21_034523_create_luis_models_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePeriodosTable' => $baseDir . '/database/migrations/2015_06_12_003439_create_periodos_table.php',
     'CreateProgramasTable' => $baseDir . '/database/migrations/2015_06_12_003438_create_programas_table.php',
@@ -26,6 +28,7 @@ return array(
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
     'GrupoSeeder' => $baseDir . '/database/seeds/GrupoSeeder.php',
+    'HorarioSeeder' => $baseDir . '/database/seeds/HorarioSeeder.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',

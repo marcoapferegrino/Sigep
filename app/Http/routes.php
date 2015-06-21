@@ -43,16 +43,13 @@ Route::get('docentes', function(){
 
 Route::get('alumnos', function(){
 
-
     /*Todos los docentes */
     $alumnos = DB::table('users')
         ->join('alumnos', 'users.alumno_id', '=', 'alumnos.id')
         ->select('users.*', 'alumnos.id', 'alumnos.nacionalidad', 'alumnos.edonacimiento', 'alumnos.status')
         ->get();
 
-
     dd($alumnos);
-
 
 });
 
@@ -64,43 +61,24 @@ Route::get('docentesGrupos',function() {
     $alumno = \PosgradoService\Entities\Alumno::find(1); //Jadyn Abshire
     $alumno2 = \PosgradoService\Entities\Alumno::find(2); //Hyman Glover
 
-    $grupoPHP = \PosgradoService\Entities\Grupo::find(1);
-    $grupoHTML = \PosgradoService\Entities\Grupo::find(2);
+    $grupoPHP = \PosgradoService\Entities\Grupo::find(1); //ID=1
+    $grupoHTML = \PosgradoService\Entities\Grupo::find(2); //ID=2
 
 
     $docente->grupos()->save($grupoPHP);
     $docente2->grupos()->save($grupoHTML);
 
+
+
     $alumno->grupos()->save($grupoPHP);
     $alumno2->grupos()->save($grupoHTML);
+
 
 
     return "todo good";
 
 });
 
-Route::get('asignaGrupos',function() {
-
-   $arquitectura = \PosgradoService\Entities\Asignatura::find(1);
-    $metodos = \PosgradoService\Entities\Asignatura::find(2);
-    $mobiles = \PosgradoService\Entities\Asignatura::find(3);
-
-
-
-    $grupo1 = \PosgradoService\Entities\Grupo::find(1);
-    $grupo2 = \PosgradoService\Entities\Grupo::find(2);
-
-
-
-
-    $grupo1->asignaturas()->save($arquitectura);
-    $grupo1->asignaturas()->save($metodos);
-    $grupo1->asignaturas()->save($mobiles);
-
-    $grupo2->asignaturas()->save($mobiles);
-
-    return "Todo good";
-});
 
 
 Route::get('asignaturasDegrupo', function(){
@@ -122,5 +100,48 @@ Route::get('grupoAsignaturas', function(){
     dd($asignatura->grupos->toArray());
 
 });
+
+
+Route::get('horarios',function(){
+
+    /*Regresamos el horario de una materia conforme su grupo, por eso el Modelo Asignatura grupo*/
+    $horario = \PosgradoService\Entities\AsignaturaGrupo::find(2);
+
+    dd($horario->horasDias->toArray());
+
+
+
+});
+
+Route::get('calificacion',function(){
+
+    //\PosgradoService\Entities\AlumnoGrupo::find(1)->toArray());
+
+    /*$datosAlumnogrupo = DB::table('users')
+        ->join('alumnos', 'users.alumno_id', '=', 'alumnos.id')
+        ->join('alumno_grupo', 'alumno_grupo.alumno_id', '=', 'alumnos.id')
+        ->join('grupos', 'grupos.id','=','alumno_grupo.grupo_id')
+        ->join('asignatura_grupo','asignatura_grupo.grupo_id','=','grupos.id')
+        ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+        ->select('users.id','users.name', 'alumnos.nacionalidad', 'alumno_grupo.calificacion','grupos.id', 'grupos.nombre', 'asignaturas.nombre')
+        ->get(); NO */
+
+
+
+    $datosAlumnogrupo = DB::table('users')
+        ->join('alumnos', 'users.alumno_id', '=', 'alumnos.id')
+        ->join('alumno_grupo', 'alumno_grupo.alumno_id', '=', 'alumnos.id')
+        ->join('grupos', 'grupos.id','=','alumno_grupo.grupo_id')
+        ->join('asignatura_grupo','asignatura_grupo.grupo_id','=','grupos.id')
+        ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+        ->select('users.id','users.name', 'alumnos.nacionalidad', 'alumno_grupo.calificacion','grupos.id', 'grupos.nombre', 'asignaturas.nombre')
+        ->get();
+
+
+    dd($datosAlumnogrupo);
+
+});
+
+
 
 
