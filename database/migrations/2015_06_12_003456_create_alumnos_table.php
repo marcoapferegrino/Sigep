@@ -45,7 +45,7 @@ class CreateAlumnosTable extends Migration
             $table->longText('obsconocimientos');
             //Referencias
 
-            
+
             $table->string('ref1Nombre');
             $table->string('ref1Afinidad');
             $table->string('ref1Domicilio');

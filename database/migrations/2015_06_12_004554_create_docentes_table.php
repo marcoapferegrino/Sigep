@@ -28,7 +28,6 @@ class CreateDocentesTable extends Migration
             $table->string('noIdOficial');
             $table->string('escuelaLugarIpn');
             $table->string('extensionIpn',7);
-            $table->string('tipoIdOficial');
             $table->string('email1');
             $table->string('movil');
             $table->string('email2');
@@ -53,7 +52,7 @@ class CreateDocentesTable extends Migration
             $table->string('localidadmaestria');
             $table->string('carreramaestria');
             $table->string('especialidadmaestria');
-            $table->string('situacionestudios');
+            $table->string('situacionestudiosmaestria'); //cambiar en bd
             $table->string('anioiniciaestudiosmaestria');
             $table->string('ultimoanioestudiosmaestria');
             $table->string('tesismaestria');
@@ -87,7 +86,7 @@ class CreateDocentesTable extends Migration
             $table->string('sip')->unique();
             //$table->string('email')->unique();
             //$table->string('password', 60);
-            $table->rememberToken();
+
             $table->timestamps();
         });
     }

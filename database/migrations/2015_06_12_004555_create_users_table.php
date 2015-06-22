@@ -41,10 +41,10 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
 
             $table->integer('alumno_id')->unsigned()->nullable();
-            $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade');;
+            $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade');
 
             $table->integer('docente_id')->unsigned()->nullable();
-            $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');;
+            $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');
             $table->timestamps();
 
         });

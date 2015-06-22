@@ -30,4 +30,8 @@ class Alumno extends Entity {
         return $this->hasMany(ArchivoAlumno::getClass());
     }
 
+    public function checadas()
+    {
+        return $this->hasMany(Checadas::getClass());
+    }
 }
