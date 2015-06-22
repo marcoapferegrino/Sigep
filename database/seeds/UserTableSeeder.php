@@ -32,7 +32,6 @@ class UserTableSeeder extends \Illuminate\Database\Seeder{
         $this->createAdmin();
         $this->createMultiple(10);
 
-
     }
 
     private function createAdmin (){
@@ -46,7 +45,7 @@ class UserTableSeeder extends \Illuminate\Database\Seeder{
 
     }*/
 
-    public function run()
+   /* public function run()
     {
         $faker = Faker::create();
 
@@ -101,12 +100,9 @@ class UserTableSeeder extends \Illuminate\Database\Seeder{
 
             }
 
-
-
-
         }
     }
 
 
-
+*/
 }

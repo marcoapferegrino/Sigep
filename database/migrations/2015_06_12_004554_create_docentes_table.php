@@ -14,15 +14,7 @@ class CreateDocentesTable extends Migration
     {
         Schema::create('docentes', function (Blueprint $table) {
             $table->increments('id');
-           // $table->string('name');
-            //$table->string('apellidoP');
-            //$table->string('apellidoM');
-            //$table->date('fechanac');
-            //$table->string('nacionalidad');
-            //$table->string('edonacimiento');
-            //$table->enum('genero', ['Hombre', 'Mujer']);
-            //$table->string('rfc')->unique();
-            //$table->string('curp')->unique();
+
             $table->string('status');               //es estado ?
             $table->string('tipoIdOficial');
             $table->string('noIdOficial');
@@ -84,8 +76,6 @@ class CreateDocentesTable extends Migration
             $table->string('fechahoraregistro');
             $table->string('idusuarioactualiza'); //el usuario que hizo la ultima actualizacion
             $table->string('sip')->unique();
-            //$table->string('email')->unique();
-            //$table->string('password', 60);
 
             $table->timestamps();
         });

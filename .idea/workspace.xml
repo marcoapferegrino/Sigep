@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5613415b-5388-4672-a6a5-bc09fb2c6e75" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2015_06_12_003456_create_alumnos_table.php" afterPath="$PROJECT_DIR$/database/migrations/2015_06_12_003456_create_alumnos_table.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2015_06_12_004554_create_docentes_table.php" afterPath="$PROJECT_DIR$/database/migrations/2015_06_12_004554_create_docentes_table.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2015_06_12_004555_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2015_06_12_004555_create_users_table.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Entities/Alumno.php" afterPath="$PROJECT_DIR$/app/Entities/Alumno.php" />
@@ -32,6 +31,7 @@
     <favorites_list name="posgradoService" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< Updated upstream
     <leaf>
       <file leaf-file-name="2015_06_12_003456_create_alumnos_table.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/migrations/2015_06_12_003456_create_alumnos_table.php">
@@ -114,6 +114,9 @@
         </entry>
       </file>
     </leaf>
+=======
+    <leaf />
+>>>>>>> Stashed changes
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -158,9 +161,12 @@
         <option value="$PROJECT_DIR$/database/migrations/2015_06_12_003456_create_alumnos_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_06_12_004554_create_docentes_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_06_12_004555_create_users_table.php" />
+<<<<<<< Updated upstream
         <option value="$PROJECT_DIR$/database/migrations/2015_06_22_154601_create_checadas_table.php" />
         <option value="$PROJECT_DIR$/app/Entities/Alumno.php" />
         <option value="$PROJECT_DIR$/app/Entities/Checadas.php" />
+=======
+>>>>>>> Stashed changes
       </list>
     </option>
   </component>
@@ -174,10 +180,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="y" value="30" />
-    <option name="width" value="1368" />
-    <option name="height" value="739" />
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="722" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -423,7 +428,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< Updated upstream
     <frame x="-1" y="30" width="1368" height="739" extended-state="6" />
+=======
+    <frame x="0" y="23" width="1280" height="722" extended-state="6" />
+>>>>>>> Stashed changes
     <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -434,7 +443,11 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+<<<<<<< Updated upstream
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37774524" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18046875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> Stashed changes
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -532,13 +545,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34472048" vertical-offset="48" max-vertical-offset="50730">
           <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08982036" vertical-offset="0" max-vertical-offset="668">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -640,27 +646,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Entities/ArchivoAlumno.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="255">
-          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Entities/Entity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27329192" vertical-offset="0" max-vertical-offset="644">
-          <caret line="13" column="26" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Entities/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3726708" vertical-offset="500" max-vertical-offset="1340">
-          <caret line="37" column="28" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Entities/Programa.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.04658385" vertical-offset="0" max-vertical-offset="644">
@@ -668,6 +653,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/app/Entities/Grupo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4751553" vertical-offset="0" max-vertical-offset="792">
@@ -675,6 +661,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> Stashed changes
     <entry file="file://$PROJECT_DIR$/app/Entities/HoraDia.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47826087" vertical-offset="0" max-vertical-offset="644">
@@ -714,13 +702,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23291926" vertical-offset="0" max-vertical-offset="644">
           <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0512424" vertical-offset="1516" max-vertical-offset="2160">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -768,36 +749,108 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state vertical-scroll-proportion="0.0" vertical-offset="602" max-vertical-offset="1620">
           <caret line="64" column="52" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="52" />
+=======
+        <state vertical-scroll-proportion="0.3462733" vertical-offset="602" max-vertical-offset="1620">
+          <caret line="64" column="52" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_06_12_003456_create_alumnos_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.89751554" vertical-offset="142" max-vertical-offset="1305">
+          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+>>>>>>> Stashed changes
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< Updated upstream
+    <entry file="file://$PROJECT_DIR$/app/Entities/AsignaturaGrupo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="450">
+          <caret line="0" column="40" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="40" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.1661491" vertical-offset="0" max-vertical-offset="2160">
+          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+>>>>>>> Stashed changes
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< Updated upstream
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_06_12_003456_create_alumnos_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.666667" vertical-offset="77" max-vertical-offset="1305">
+          <caret line="20" column="60" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="60" />
+=======
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08982036" vertical-offset="0" max-vertical-offset="668">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Entities/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3167702" vertical-offset="231" max-vertical-offset="930">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Entities/ArchivoAlumno.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="255">
+          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Entities/AsignaturaGrupo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="450">
-          <caret line="0" column="40" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.2795031" vertical-offset="0" max-vertical-offset="644">
+          <caret line="12" column="42" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2015_06_12_003456_create_alumnos_table.php">
+    <entry file="file://$PROJECT_DIR$/app/Entities/Entity.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.666667" vertical-offset="77" max-vertical-offset="1305">
-          <caret line="20" column="60" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.1863354" vertical-offset="0" max-vertical-offset="644">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Entities/Grupo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39596274" vertical-offset="0" max-vertical-offset="660">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2015_06_12_004555_create_users_table.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state vertical-scroll-proportion="-16.25" vertical-offset="225" max-vertical-offset="1005">
           <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="43" selection-end-column="95" />
+=======
+        <state vertical-scroll-proportion="0.58229816" vertical-offset="195" max-vertical-offset="1005">
+          <caret line="39" column="43" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/database/migrations/2015_06_22_154601_create_checadas_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.25" vertical-offset="45" max-vertical-offset="795">
@@ -810,11 +863,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="6.9583335" vertical-offset="962" max-vertical-offset="1620">
           <caret line="54" column="61" selection-start-line="54" selection-start-column="61" selection-end-line="54" selection-end-column="61" />
+=======
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_06_12_004554_create_docentes_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.49068323" vertical-offset="631" max-vertical-offset="1500">
+          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Entities/Alumno.php">
+<<<<<<< Updated upstream
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.041666" vertical-offset="77" max-vertical-offset="645">
           <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
@@ -826,6 +886,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.31690142" vertical-offset="0" max-vertical-offset="568">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+=======
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16304348" vertical-offset="0" max-vertical-offset="644">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>

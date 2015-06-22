@@ -117,17 +117,6 @@ Route::get('calificacion',function(){
 
     //\PosgradoService\Entities\AlumnoGrupo::find(1)->toArray());
 
-    /*$datosAlumnogrupo = DB::table('users')
-        ->join('alumnos', 'users.alumno_id', '=', 'alumnos.id')
-        ->join('alumno_grupo', 'alumno_grupo.alumno_id', '=', 'alumnos.id')
-        ->join('grupos', 'grupos.id','=','alumno_grupo.grupo_id')
-        ->join('asignatura_grupo','asignatura_grupo.grupo_id','=','grupos.id')
-        ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
-        ->select('users.id','users.name', 'alumnos.nacionalidad', 'alumno_grupo.calificacion','grupos.id', 'grupos.nombre', 'asignaturas.nombre')
-        ->get(); NO */
-
-
-
     $datosAlumnogrupo = DB::table('users')
         ->join('alumnos', 'users.alumno_id', '=', 'alumnos.id')
         ->join('alumno_grupo', 'alumno_grupo.alumno_id', '=', 'alumnos.id')
@@ -136,7 +125,6 @@ Route::get('calificacion',function(){
         ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
         ->select('users.id','users.name', 'alumnos.nacionalidad', 'alumno_grupo.calificacion','grupos.id', 'grupos.nombre', 'asignaturas.nombre')
         ->get();
-
 
     dd($datosAlumnogrupo);
 
