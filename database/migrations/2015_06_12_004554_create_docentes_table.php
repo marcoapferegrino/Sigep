@@ -34,47 +34,47 @@ class CreateDocentesTable extends Migration
             $table->string('especialidadLicenciatura');
             $table->string('situacionLicenciatura');
             $table->string('anioinicialLicenciatura');
-            $table->string('ultimoaniolicenciatura');
+            $table->string('ultimoAnioLicenciatura');
             $table->string('tesisLicenciatura');
-            $table->date('examenlicenciatura');
-            $table->string('cedulalicenciatura');
-            $table->string('observacioneslicenciatura',300);
+            $table->date('examenLicenciatura');
+            $table->string('cedulaLicenciatura');
+            $table->string('observacionesLicenciatura',300);
                         //maestria
-            $table->string('escuelamaestria');
-            $table->string('localidadmaestria');
-            $table->string('carreramaestria');
-            $table->string('especialidadmaestria');
-            $table->string('situacionestudiosmaestria'); //cambiar en bd
-            $table->string('anioiniciaestudiosmaestria');
-            $table->string('ultimoanioestudiosmaestria');
-            $table->string('tesismaestria');
-            $table->date('examenmaestria');
-            $table->string('cedulamaestria');
-            $table->string('observacionesmaestria',300);
+            $table->string('escuelaMaestria');
+            $table->string('localidadMaestria');
+            $table->string('carreraMaestria');
+            $table->string('especialidadMaestria');
+            $table->string('situacionEstudiosMaestria'); //cambiar en bd
+            $table->string('anioIniciaEstudiosMaestria');
+            $table->string('ultimoAnioEstudiosMaestria');
+            $table->string('tesisMaestria');
+            $table->date('examenMaestria');
+            $table->string('cedulaMaestria');
+            $table->string('observacionesMaestria',300);
 
                         //doctorado
 
-            $table->string('escueladoctorado');
-            $table->string('localidaddoctorado');
-            $table->string('carreradoctorado');
-            $table->string('especialidaddoctorado');
-            $table->string('situacionestudiosdoctorado'); //cambiar en BD por duplicidad de atributo
-            $table->string('anioiniciaestudiosdoctorado');
-            $table->string('ultimoanioestudiosdoctorado');
-            $table->string('tesisdoctorado');
-            $table->date('examendoctorado');
-            $table->string('ceduladoctorado');
-            $table->string('observacionesdoctorado',300);
+            $table->string('escuelaDoctorado');
+            $table->string('localidadDoctorado');
+            $table->string('carreraDoctorado');
+            $table->string('especialidadDoctorado');
+            $table->string('situacionEstudiosDoctorado'); //cambiar en BD por duplicidad de atributo
+            $table->string('anioiniciaestudiosDoctorado');
+            $table->string('ultimoAnioEstudiosDoctorado');
+            $table->string('tesisDoctorado');
+            $table->date('examenDoctorado');
+            $table->string('cedulaDoctorado');
+            $table->string('observacionesDoctorado',300);
 
             $table->string('categoria',10);
             $table->string('nivel',1);
-            $table->string('clavepresupuestal');
-            $table->date('ingresoipn');
-            $table->string('numempleado',8);
-            $table->string('numtarjetaescom',8);
-            $table->string('idusuarioregistra');
-            $table->string('fechahoraregistro');
-            $table->string('idusuarioactualiza'); //el usuario que hizo la ultima actualizacion
+            $table->string('clavePresupuestal');
+            $table->date('ingresoIpn');
+            $table->string('numEmpleado',8);
+            $table->string('numTarjetaEscom',8);
+            $table->string('idUsuarioRegistra');
+            $table->string('fechaHoraRegistro');
+            $table->string('idUsuarioActualiza'); //el usuario que hizo la ultima actualizacion
             $table->string('sip')->unique();
 
             $table->timestamps();

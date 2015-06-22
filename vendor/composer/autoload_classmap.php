@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AlumnosSeeder' => $baseDir . '/database/seeds/AlumnosSeeder.php',
     'AsignaturaGrupoSeeder' => $baseDir . '/database/seeds/AsignaturaGrupoSeeder.php',
     'AsignaturaSeeder' => $baseDir . '/database/seeds/AsignaturaSeeder.php',
     'BaseSeeder' => $baseDir . '/database/seeds/BaseSeeder.php',
@@ -24,6 +25,7 @@ return array(
     'CreateProgramasTable' => $baseDir . '/database/migrations/2015_06_12_003438_create_programas_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2015_06_12_004555_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
+    'DocentesSeeder' => $baseDir . '/database/seeds/DocentesSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',

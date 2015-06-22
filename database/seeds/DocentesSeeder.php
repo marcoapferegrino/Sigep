@@ -6,7 +6,7 @@
  * Time: 11:43
  */
 
-namespace database\seeds;
+
 
 
 use Illuminate\Database\Seeder;

@@ -30,8 +30,8 @@ class DatabaseSeeder extends Seeder
         ));
 
 
-        //$this->call('UserTableSeeder'); Se sustityo por alumnos y docentes seeder
-        $this->call('DocentesSeeder');
+
+        //$this->call('DocentesSeeder');
         $this->call('AlumnosSeeder');
         $this->call('ProgramaPeriodoSeeder');
         $this->call('AsignaturaSeeder');
