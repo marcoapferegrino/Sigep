@@ -28,7 +28,7 @@ return [
 	|
 	*/
 
-	'model' => 'PosgradoService\User',
+	'model' => 'PosgradoService\Entities\User',
 
 	/*
 	|--------------------------------------------------------------------------

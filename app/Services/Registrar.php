@@ -1,6 +1,6 @@
 <?php namespace PosgradoService\Services;
 
-use PosgradoService\User;
+use PosgradoService\Entities\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
