@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             'asignatura_grupo',
             'asignaturas',
             'periodos',
+            'checadas',//added by luis
             'programas'
 
         ));
@@ -33,12 +34,13 @@ class DatabaseSeeder extends Seeder
 
         //$this->call('DocentesSeeder');
         $this->call('AlumnosSeeder');
+        $this->call('DocentesSeeder');
         $this->call('ProgramaPeriodoSeeder');
         $this->call('AsignaturaSeeder');
         $this->call('GrupoSeeder');
         $this->call('AsignaturaGrupoSeeder');
         $this->call('HorarioSeeder');
-
+        $this->call('ChecadasSeeder');//added by luis
 
       //  Model::reguard();
     }
