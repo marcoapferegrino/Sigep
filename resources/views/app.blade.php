@@ -33,7 +33,41 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="/">Home</a></li>
+					<li><a href="/">
+                            @if (!Auth::guest())
+                                @if(Auth::getRol()=="admin")
+                                    Admin
+                                @elseif(Auth::getRol()=="superAdmin")
+                                    Super Admin
+                                @elseif(Auth::getRol()=="alumno")
+                                    Alumno
+                                @elseif(Auth::getRol()=="docente")
+                                    Profesor
+                                @else
+                                    Home
+                                @endif
+                            @else
+                                Home
+                            @endif
+
+						</a></li>
+
+                    @if (!Auth::guest())
+                        @if(Auth::getRol()=="admin")
+                            <li><a href="">Crear Horarios</a></li>
+                        @elseif(Auth::getRol()=="superAdmin")
+                            <li><a href="">Programas</a></li>
+                        @elseif(Auth::getRol()=="alumno")
+                            <li><a href="">Ver calificaciones</a></li>
+                            <li><a href="">Horario</a></li>
+                        @elseif(Auth::getRol()=="docente")
+                            <li><a href="">Calificar</a></li>
+                            <li><a href="">Grupos</a></li>
+                        @endif
+                    @endif
+
+
+
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

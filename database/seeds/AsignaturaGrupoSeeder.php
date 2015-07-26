@@ -22,8 +22,6 @@ class AsignaturaGrupoSeeder extends \Illuminate\Database\Seeder{
         $grupo2 = \PosgradoService\Entities\Grupo::find(2);
 
 
-
-
         $grupo1->asignaturas()->save($arquitectura);
         $grupo1->asignaturas()->save($metodos);
         $grupo1->asignaturas()->save($mobiles);

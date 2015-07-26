@@ -12,6 +12,33 @@
 |
 */
 
+
+/*
+ * Primero se veririfca que este autenticado, despues se verifica que tenga un rol de acceso a la ruta
+ * */
+
+Route::group(['middleware' => 'auth'],function(){
+
+    Route::group(['middleware' => 'role:superAdmin'],function() {
+
+        Route::get('logSuperAdmin',"SuperAdminController@index");
+    });
+
+    Route::group(['middleware' => 'role:admin'],function() {
+        Route::get('logAdmin',"AdminController@index");
+    });
+
+    Route::group(['middleware' => 'role:alumno'],function() {
+        Route::get('logAlumno',"AlumnoController@index");
+    });
+
+    Route::group(['middleware' => 'role:docente'],function() {
+        Route::get('logProfesor',"ProfesorController@index");
+    });
+
+});
+
+
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
@@ -20,7 +47,13 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
 
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::get('docentes', function(){
 
@@ -117,18 +150,20 @@ Route::get('calificacion',function(){
 
     //\PosgradoService\Entities\AlumnoGrupo::find(1)->toArray());
 
+
     $datosAlumnogrupo = DB::table('users')
         ->join('alumnos', 'users.alumno_id', '=', 'alumnos.id')
         ->join('alumno_grupo', 'alumno_grupo.alumno_id', '=', 'alumnos.id')
         ->join('grupos', 'grupos.id','=','alumno_grupo.grupo_id')
         ->join('asignatura_grupo','asignatura_grupo.grupo_id','=','grupos.id')
         ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
-        ->select('users.id','users.name', 'alumnos.nacionalidad', 'alumno_grupo.calificacion','grupos.id', 'grupos.nombre', 'asignaturas.nombre')
+        ->select('users.id','users.name', 'alumnos.nacionalidad','grupos.id', 'grupos.nombre', 'asignaturas.nombre','asignatura_grupo.calificacion')
         ->get();
 
     dd($datosAlumnogrupo);
 
 });
+
 
 
 

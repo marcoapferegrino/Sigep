@@ -90,6 +90,7 @@ class DocentesSeeder extends Seeder
                 User::create([
                     //'id' => $docente->id,  //commented by luis for testing
                     'name' => $faker->firstName($gender = null|'male'|'female'),
+                    'rol' => 'docente',
                     'apellidoP' =>  $faker->lastName,
                     'apellidoM' => $faker->lastName,
                     'fechanac' => $faker->date(),

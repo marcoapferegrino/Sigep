@@ -14,7 +14,7 @@ class CreateAlumnoGrupoTable extends Migration
     {
         Schema::create('alumno_grupo', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('calificacion');
+
 
             $table->integer('alumno_id')->unsigned();
             $table->foreign('alumno_id')->references('id')->on('alumnos');

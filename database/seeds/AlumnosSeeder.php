@@ -77,6 +77,7 @@ class AlumnosSeeder extends Seeder {
 
             User::create([
                 'alumno_id' => $alumno->id,
+                'rol' => 'alumno',
                 'name' => $faker->firstName($gender = null|'male'|'female'),
                 'apellidoP' =>  $faker->lastName,
                 'apellidoM' => $faker->lastName,

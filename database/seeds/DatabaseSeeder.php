@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
 
 
         //$this->call('DocentesSeeder');
+        $this->call('AdminsSeeder');
         $this->call('AlumnosSeeder');
         $this->call('DocentesSeeder');
         $this->call('ProgramaPeriodoSeeder');
@@ -41,6 +42,7 @@ class DatabaseSeeder extends Seeder
         $this->call('AsignaturaGrupoSeeder');
         $this->call('HorarioSeeder');
         $this->call('ChecadasSeeder');//added by luis
+
 
       //  Model::reguard();
     }

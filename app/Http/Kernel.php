@@ -4,6 +4,9 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel {
 
+
+
+
 	/**
 	 * The application's global HTTP middleware stack.
 	 *
@@ -27,6 +30,7 @@ class Kernel extends HttpKernel {
 		'auth' => 'PosgradoService\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'PosgradoService\Http\Middleware\RedirectIfAuthenticated',
+		'role' => 'PosgradoService\Http\Middleware\role'
 	];
 
 }
