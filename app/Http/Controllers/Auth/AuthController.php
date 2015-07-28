@@ -50,7 +50,7 @@ class AuthController extends Controller {
         }
         elseif($this->auth->getRol()=="superAdmin")
         {
-            return "logSuperAdmin";
+            return "homeSA";
         }
         elseif($this->auth->getRol()=="alumno")
         {

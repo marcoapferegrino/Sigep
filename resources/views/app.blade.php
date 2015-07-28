@@ -7,9 +7,9 @@
 	<title>Laravel</title>
 
 	<link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-	<!-- Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,6 +17,7 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -56,7 +57,8 @@
                         @if(Auth::getRol()=="admin")
                             <li><a href="">Crear Horarios</a></li>
                         @elseif(Auth::getRol()=="superAdmin")
-                            <li><a href="">Programas</a></li>
+                            <li><a href="{{url('homeSA')}}">Programas y periodos <i class="fa fa-calendar-o fa-lg"></i></a></li>
+							<li><a href="{{url('asignaturas')}}">Asignaturas <i class="fa fa-book fa-lg"></i></a></li>
                         @elseif(Auth::getRol()=="alumno")
                             <li><a href="">Ver calificaciones</a></li>
                             <li><a href="">Horario</a></li>

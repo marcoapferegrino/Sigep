@@ -1,7 +1,13 @@
 <?php namespace PosgradoService\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
+use PosgradoService\Entities\Asignatura;
+use PosgradoService\Entities\Periodo;
+use PosgradoService\Entities\Programa;
 use PosgradoService\Http\Requests;
 use PosgradoService\Http\Controllers\Controller;
+use PosgradoService\Http\Requests\CreatePeriodoRequest;
+use PosgradoService\Http\Requests\CreateProgramaRequest;
 
 use Illuminate\Http\Request;
 
@@ -14,71 +20,59 @@ class SuperAdminController extends Controller {
 	 */
 	public function index()
 	{
-		return view('superAdmin.homeSuperAdmin');
+		$periodos = Periodo::all();
+		$programas = Programa::all();
+
+
+		return view('homeSuperAdmin',compact('periodos','programas'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
+	public function addPeriodo(CreatePeriodoRequest $request)
 	{
-		//
+		$periodo = Periodo::create($request->all());
+
+		Session::flash('message', $periodo->nombre.' fue agregado :D');
+		return redirect()->action('SuperAdminController@index');
+	}
+	public function addPrograma(CreateProgramaRequest $request)
+	{
+
+		$programa = Programa::create($request->all());
+		Session::flash('message', $programa->nombre.' fue agregado :D');
+
+		return redirect()->action('SuperAdminController@index');
+	}
+	public function deletePeriodo($id)
+	{
+		$periodo = Periodo::findOrFail($id);
+		$periodo->delete();
+
+		Session::flash('message', $periodo->nombre.' fue eliminado :D');
+		return redirect()->action('SuperAdminController@index');
+
+	}
+	public function deletePrograma($id)
+	{
+		$programa = Programa::findOrFail($id);
+		$programa->delete();
+
+		Session::flash('message',$programa->nombre.' fue eliminado :D');
+		return redirect()->action('SuperAdminController@index');
+
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+	public function showMaterias()
 	{
-		//
+		$asignaturas = Asignatura::all();
+		$periodos = Periodo::all();
+
+		return view('superAdmin.asignaturas',compact('asignaturas','periodos'));
+	}
+	public function deleteAsignatura()
+	{
+
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
 }

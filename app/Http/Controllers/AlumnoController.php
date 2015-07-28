@@ -14,7 +14,7 @@ class AlumnoController extends Controller {
 	 */
 	public function index()
 	{
-		return view('alumno.homeAlumno');
+		return view('homeAlumno');
 	}
 
 	/**

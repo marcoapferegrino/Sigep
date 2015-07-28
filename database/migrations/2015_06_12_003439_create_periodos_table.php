@@ -20,7 +20,7 @@ class CreatePeriodosTable extends Migration
             $table->date('fin');
 
             $table->integer('programa_id')->unsigned();
-            $table->foreign('programa_id')->references('id')->on('programas');
+            $table->foreign('programa_id')->references('id')->on('programas')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -36,8 +36,24 @@ class RedirectIfAuthenticated {
 
 		if ($this->auth->check())
 		{
+			if ($this->auth->getRol()=="admin")
+			{
+				return new RedirectResponse(url("logAdmin"));
+			}
+			elseif($this->auth->getRol()=="superAdmin")
+			{
+				return new RedirectResponse(url("homeSA"));
+			}
+			elseif($this->auth->getRol()=="alumno")
+			{
+				return new RedirectResponse(url("logAlumno"));
+			}
+			elseif($this->auth->getRol()=="docente")
+			{
+				return new RedirectResponse(url("logProfesor"));
+			}
 
-			return new RedirectResponse(url('/home'));
+			//return new RedirectResponse(url('/home'));
 		}
 
 		return $next($request);
