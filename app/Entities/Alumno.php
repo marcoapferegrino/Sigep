@@ -38,4 +38,12 @@ class Alumno extends Entity {
     {
         return $this->hasMany(Checadas::getClass());
     }
+    /**
+     *  Regresa las asignaturas que cursa el alumno
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function asignaturas()
+    {
+        return $this->belongsToMany(Asignatura::getClass());
+    }
 }

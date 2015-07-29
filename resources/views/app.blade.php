@@ -29,7 +29,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Laravel</a>
+				<a class="navbar-brand" href="{{url('/')}}">Laravel</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -63,8 +63,9 @@
                             <li><a href="">Ver calificaciones</a></li>
                             <li><a href="">Horario</a></li>
                         @elseif(Auth::getRol()=="docente")
-                            <li><a href="">Calificar</a></li>
-                            <li><a href="">Grupos</a></li>
+							<li><a href="">Mis grupos <i class="fa fa-users"></i> </a></li>
+                            <li><a href="">Calificaciones <i class="fa fa-pencil"></i> </a></li>
+							<li><a href="">Expedientes <i class="fa fa-newspaper-o"></i> </a></li>
                         @endif
                     @endif
 
@@ -75,7 +76,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					@if (Auth::guest())
 						<li><a href="/auth/login">Login</a></li>
-						<li><a href="/auth/register">Register</a></li>
+						<!--<li><a href="/auth/register">Register</a></li>-->
 					@else
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
@@ -95,4 +96,5 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>

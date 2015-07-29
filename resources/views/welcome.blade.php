@@ -33,14 +33,36 @@
 			.quote {
 				font-size: 24px;
 			}
+			.btn{
+				font-size: 50px;
+				background-color: #2196F3;
+				color: #FFFFFF;
+				width: 400px;
+				margin-top: 150px;
+				margin-left: 30%;
+				border-radius: 10px 10px 10px 10px;
+				-moz-border-radius: 10px 10px 10px 10px;
+				text-decoration:none;
+				display: block;
+				
+
+			}
 		</style>
 	</head>
 	<body>
+
 		<div class="container">
 			<div class="content">
-				<div class="title">Laravel 5</div>
+				<div class="title">Departamento de  posgrado</div>
 				<div class="quote">{{ Inspiring::quote() }}</div>
+				<br><br><br>
+
 			</div>
+
+				<a class="btn" href="auth/login">Entrar</a>
+
 		</div>
+
+
 	</body>
 </html>

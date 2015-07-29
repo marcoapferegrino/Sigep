@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAsignaturaGrupoTable extends Migration
+class CreateAlumnoAsignatura extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,15 @@ class CreateAsignaturaGrupoTable extends Migration
      */
     public function up()
     {
-        Schema::create('asignatura_grupo', function (Blueprint $table) {
+        Schema::create('alumno_asignatura', function (Blueprint $table) {
             $table->increments('id');
+            $table->double('calificacion');
+
+            $table->integer('alumno_id')->unsigned();
+            $table->foreign('alumno_id')->references('id')->on('alumnos');
 
             $table->integer('asignatura_id')->unsigned();
             $table->foreign('asignatura_id')->references('id')->on('asignaturas');
-
-            $table->integer('grupo_id')->unsigned();
-            $table->foreign('grupo_id')->references('id')->on('grupos');
 
 
 
@@ -34,6 +35,6 @@ class CreateAsignaturaGrupoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('asignatura_grupo');
+        Schema::drop('alumno_asignatura');
     }
 }

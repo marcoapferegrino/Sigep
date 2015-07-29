@@ -88,7 +88,8 @@ class DocentesSeeder extends Seeder
 
                 ]);
                 User::create([
-                    //'id' => $docente->id,  //commented by luis for testing
+                   // 'id' => $docente->id,  //commented by luis for testing
+                    'docente_id'=>$docente->id,
                     'name' => $faker->firstName($gender = null|'male'|'female'),
                     'rol' => 'docente',
                     'apellidoP' =>  $faker->lastName,

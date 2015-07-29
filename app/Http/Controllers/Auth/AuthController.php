@@ -58,7 +58,7 @@ class AuthController extends Controller {
         }
         elseif($this->auth->getRol()=="docente")
         {
-            return "logProfesor";
+            return "homeP";
         }
         else{
             abort(404);

@@ -7,7 +7,7 @@
     <div class="row">
         <div class="row">
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-5 col-md-offset-3">
                     @if(Session::has('message'))
                         <div class="alert alert-success alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -27,7 +27,7 @@
                     <div class="panel-body">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAddAsignatura">
-                            Periodo <i class="fa fa-plus fa-lg"></i>
+                            Asignatura <i class="fa fa-plus fa-lg"></i>
                         </button>
                         <table class="table table-responsive table-hover ">
                             <thead>
@@ -58,7 +58,7 @@
                                             <i class="fa fa-pencil-square-o"></i>
                                         </button>
 
-                                        {!! Form::open(['route' => ['periodo.deleteAsignatura',$asignatura->id],'method' => 'DELETE']) !!}
+                                        {!! Form::open(['route' => ['asignatura.deleteAsignatura',$asignatura->id],'method' => 'DELETE']) !!}
                                         <button type="submit" onclick="return confirm('Seguro que quieres eliminar?')" class="btn btn-danger">
                                             <i class="fa fa-trash-o"></i>
                                         </button>

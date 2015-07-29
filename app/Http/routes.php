@@ -47,15 +47,15 @@ Route::group(['middleware' => 'auth'],function(){
 
         //Asignaturas
         Route::get('/asignaturas', [
-            'as' => 'materias.showMaterias',
-            'uses' => 'SuperAdminController@showMaterias'
+            'as' => 'asignatura.showAsignaturas',
+            'uses' => 'SuperAdminController@showAsignaturas'
         ]);
         Route::post('/addAsignaturas', [
-            'as' => 'materias.addMateria',
-            'uses' => 'SuperAdminController@addMateria'
+            'as' => 'asignatura.addAsignatura',
+            'uses' => 'SuperAdminController@addAsignatura'
         ]);
         Route::delete('/deleteAsignatura{id}', [
-            'as' => 'periodo.deleteAsignatura',
+            'as' => 'asignatura.deleteAsignatura',
             'uses' => 'SuperAdminController@deleteAsignatura'
         ]);
 
@@ -74,7 +74,7 @@ Route::group(['middleware' => 'auth'],function(){
     });
 
     Route::group(['middleware' => 'role:docente'],function() {
-        Route::get('logProfesor',"ProfesorController@index");
+        Route::get('homeP',"ProfesorController@index");
     });
 
 });

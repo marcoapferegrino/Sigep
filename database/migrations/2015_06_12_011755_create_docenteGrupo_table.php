@@ -14,7 +14,7 @@ class CreateDocenteGrupoTable extends Migration
     {
         Schema::create('docente_grupo', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tutor');
+
 
             $table->integer('docente_id')->unsigned();
             $table->foreign('docente_id')->references('id')->on('docentes');

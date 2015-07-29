@@ -23,5 +23,14 @@ class Docente extends Entity {
         return $this->belongsToMany(Grupo::getClass());
     }
 
+    /**
+     *  Regresa las asignaturas que imparte el docente
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function asignaturas()
+    {
+        return $this->belongsToMany(Asignatura::getClass());
+    }
+
 
 }

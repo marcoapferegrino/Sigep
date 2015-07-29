@@ -10,7 +10,7 @@
                     <div class="panel-heading">Home</div>
 
                     <div class="panel-body">
-                        Cosas del profesor!!
+                        Mis grupos
                     </div>
                 </div>
             </div>

@@ -25,8 +25,8 @@ class CreatePeriodoRequest extends Request {
     {
         return [
             'nombre' => 'required',
-            'inicio' => 'required',
-            'fin' => 'required',
+            'inicio' => 'required | date',
+            'fin' => 'required | date',
             'programa_id' => 'required | unique:periodos,programa_id' //tabla, columna
         ];
     }

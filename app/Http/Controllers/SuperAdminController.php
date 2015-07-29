@@ -8,6 +8,7 @@ use PosgradoService\Http\Requests;
 use PosgradoService\Http\Controllers\Controller;
 use PosgradoService\Http\Requests\CreatePeriodoRequest;
 use PosgradoService\Http\Requests\CreateProgramaRequest;
+use PosgradoService\Http\Requests\CreateAsignaturaRequest;
 
 use Illuminate\Http\Request;
 
@@ -26,6 +27,7 @@ class SuperAdminController extends Controller {
 
 		return view('homeSuperAdmin',compact('periodos','programas'));
 	}
+
 
 	public function addPeriodo(CreatePeriodoRequest $request)
 	{
@@ -61,16 +63,28 @@ class SuperAdminController extends Controller {
 
 	}
 
-	public function showMaterias()
+	public function showAsignaturas()
 	{
 		$asignaturas = Asignatura::all();
 		$periodos = Periodo::all();
 
 		return view('superAdmin.asignaturas',compact('asignaturas','periodos'));
 	}
-	public function deleteAsignatura()
-	{
 
+	public function addAsignatura(CreateAsignaturaRequest $request)
+	{
+		$asignatura = Asignatura::create($request->all());
+
+		Session::flash('message', $asignatura->nombre.' fue agregado :D');
+		return redirect()->action('SuperAdminController@showAsignaturas');
+	}
+	public function deleteAsignatura($id)
+	{
+		$asignatura = Asignatura::findOrFail($id);
+		$asignatura->delete();
+
+		Session::flash('message',$asignatura->nombre.' fue eliminado :D');
+		return redirect()->action('SuperAdminController@showAsignaturas');
 	}
 
 

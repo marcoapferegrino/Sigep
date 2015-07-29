@@ -50,7 +50,7 @@ class RedirectIfAuthenticated {
 			}
 			elseif($this->auth->getRol()=="docente")
 			{
-				return new RedirectResponse(url("logProfesor"));
+				return new RedirectResponse(url("homeP"));
 			}
 
 			//return new RedirectResponse(url('/home'));
