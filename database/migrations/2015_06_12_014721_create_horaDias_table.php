@@ -15,9 +15,9 @@ class CreateHoraDiasTable extends Migration
         Schema::create('horaDias', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->enum('dia',['lun','mar','mier','juev','viern']);
-            $table->time('horaInicio');
-            $table->time('horaFin');
+            $table->json('dias');
+            $table->json('horario');
+            $table->string('nombre');
 
             $table->integer('asignatura_grupo_id')->unsigned();
             $table->foreign('asignatura_grupo_id')->references('id')->on('asignatura_grupo');

@@ -22,8 +22,6 @@ class DatabaseSeeder extends Seeder
             'alumnos',
             'docentes',
             'grupos',
-            'asignatura_grupo',
-            'docente_grupo',
             'asignaturas',
             'periodos',
             'checadas',
@@ -41,8 +39,6 @@ class DatabaseSeeder extends Seeder
         $this->call('ProgramaPeriodoSeeder');
         $this->call('AsignaturaSeeder');
         $this->call('GrupoSeeder');
-        $this->call('AsignaturaGrupoSeeder');
-        $this->call('HorarioSeeder');
         $this->call('ChecadasSeeder');//added by luis
         $this->call('AdminsSeeder');
 
@@ -63,7 +59,7 @@ class DatabaseSeeder extends Seeder
 
     private function checkForeignKeys($check)
     {
-        $check = $check ? '1' : '0';
+        $check = $check ? 'css' : '0';
         DB::statement('SET FOREIGN_KEY_CHECKS ='.$check);
     }
 }

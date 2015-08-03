@@ -8,8 +8,5 @@ class Periodo extends Entity {
     /**
      * Get the programa record associated with the Periodo.
      */
-    public function programa()
-    {
-        return $this->hasOne(Programa::getClass());
-    }
+
 }

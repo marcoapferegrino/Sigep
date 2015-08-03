@@ -17,7 +17,7 @@ class AdminsSeeder extends Seeder
         $faker = Faker::create();
         User::create([
 
-            'rol' => 'admin',
+            'rol' => 'superAdmin',
             'name' =>'Marco',
             'apellidoP' =>  'Perez',
             'apellidoM' => 'Feregrino',

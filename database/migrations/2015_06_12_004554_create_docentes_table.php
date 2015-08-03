@@ -77,6 +77,10 @@ class CreateDocentesTable extends Migration
             $table->string('idUsuarioActualiza'); //el usuario que hizo la ultima actualizacion
             $table->string('sip')->unique();
 
+
+            $table->integer('tutor_id')->unsigned()->nullable();
+            $table->foreign('tutor_id')->references('id')->on('tutores')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

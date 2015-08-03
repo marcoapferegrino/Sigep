@@ -24,7 +24,8 @@ class GrupoSeeder extends \Illuminate\Database\Seeder {
             Grupo::create([
                 'nombre' => $grupos[$i],
                 'salon' => $grupos[$i],
-                'semestre' => 1
+                'semestre' => 1,
+                'periodo_id' => 1
             ]);
         }
 

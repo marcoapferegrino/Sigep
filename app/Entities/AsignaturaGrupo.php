@@ -13,12 +13,5 @@ class AsignaturaGrupo extends Entity {
     protected $table = 'asignatura_grupo';
 
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany HoraDia
-     */
-    public function horasDias()
-    {
-        return $this->hasMany(HoraDia::getClass());
-    }
 
 }

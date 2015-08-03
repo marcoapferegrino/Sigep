@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePeriodosTable extends Migration
+class CreateTutoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,12 @@ class CreatePeriodosTable extends Migration
      */
     public function up()
     {
-        Schema::create('periodos', function (Blueprint $table) {
+        Schema::create('tutores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->tinyInteger('vigente');//1 si esta vigente 0 si no
+            $table->date('fechaAsignado');
+            $table->date('fechaBaja');
 
-            $table->date('inicio');
-            $table->date('fin');
-
-            $table->integer('programa_id')->unsigned();
-            $table->foreign('programa_id')->references('id')->on('programas')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -33,6 +30,6 @@ class CreatePeriodosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('periodos');
+        Schema::drop('tutores');
     }
 }

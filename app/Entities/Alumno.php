@@ -1,5 +1,6 @@
 <?php namespace PosgradoService\Entities;
 
+
 use PosgradoService\Entities\Entity;
 
 class Alumno extends Entity {
@@ -17,16 +18,6 @@ class Alumno extends Entity {
     }
 
     /**
-     *  Regresa los grupos a los que pertenece el alumno
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function grupos()
-    {
-        return $this->belongsToMany(Grupo::getClass());
-    }
-
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function archivoAlumnos()
@@ -38,12 +29,7 @@ class Alumno extends Entity {
     {
         return $this->hasMany(Checadas::getClass());
     }
-    /**
-     *  Regresa las asignaturas que cursa el alumno
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function asignaturas()
-    {
-        return $this->belongsToMany(Asignatura::getClass());
-    }
+
+
+
 }

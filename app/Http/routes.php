@@ -17,7 +17,10 @@
  * Primero se verifica que este autenticado, despues se verifica que tenga un rol de acceso a la ruta
  * */
 
-Route::group(['middleware' => 'auth'],function(){
+Route::group(/**
+ *
+ */
+    ['middleware' => 'auth'],function(){
 
     Route::group(['middleware' => 'role:superAdmin'],function() {
 
@@ -61,6 +64,7 @@ Route::group(['middleware' => 'auth'],function(){
 
 
 
+
     });
 
 
@@ -73,8 +77,27 @@ Route::group(['middleware' => 'auth'],function(){
         Route::get('logAlumno',"AlumnoController@index");
     });
 
+
+
+
     Route::group(['middleware' => 'role:docente'],function() {
         Route::get('homeP',"ProfesorController@index");
+
+        //Calificaciones
+        Route::get('/calificaciones', [
+            'as' => 'calificaciones.showCalificaciones',
+            'uses' => 'ProfesorController@showCalificaciones'
+        ]);
+        //Calificar
+        Route::post('/addCalificacion', [
+            'as' => 'asignatura.addCalificacion',
+            'uses' => 'ProfesorController@addCalificacion'
+        ]);
+
+        Route::get('/horarioPDF', [
+            'as' => 'horario.horarioPDF',
+            'uses' => 'ProfesorController@horarioPDF'
+        ]);
     });
 
 });
@@ -96,6 +119,14 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
+
+Route::get('testingDocentes',function(){
+
+
+    $datosProfesorGrupoAsignatura = \PosgradoService\Entities\User::getAsignaturasDeAlumno(2);
+
+    dd($datosProfesorGrupoAsignatura);
+});
 
 
 

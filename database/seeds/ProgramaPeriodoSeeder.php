@@ -15,19 +15,23 @@ class ProgramaPeriodoSeeder extends Seeder {
 
     public function run()
     {
-        Programa::create([
-            'escuela' => 'Escuela superior de cómputo',
-            'nombre' => 'Programa piloto',
-
-        ]);
-
 
         Periodo::create([
             'nombre' => 'Verano',
             'inicio' => Carbon::now(),
             'fin' => Carbon::now(),
-            'programa_id' => 1,
+
 
         ]);
+
+        Programa::create([
+            'escuela' => 'Escuela superior de cómputo',
+            'nombre' => 'Programa piloto',
+            'periodo_id' => 1,
+
+        ]);
+
+
+
     }
 }

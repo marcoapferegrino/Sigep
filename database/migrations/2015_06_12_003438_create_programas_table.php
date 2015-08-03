@@ -17,6 +17,8 @@ class CreateProgramasTable extends Migration
             $table->string('escuela');
             $table->string('nombre');
 
+            $table->integer('periodo_id')->unsigned();
+            $table->foreign('periodo_id')->references('id')->on('periodos');
 
             $table->timestamps();
         });

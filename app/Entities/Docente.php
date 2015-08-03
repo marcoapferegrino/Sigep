@@ -1,5 +1,6 @@
 <?php namespace PosgradoService\Entities;
 
+use Illuminate\Support\Facades\DB;
 use PosgradoService\Entities\Entity;
 
 class Docente extends Entity {
@@ -14,22 +15,22 @@ class Docente extends Entity {
     {
         return $this->belongsTo(User::getClass());
     }
-    /**
-     *  Regresa los grupos a los que pertenece el alumno
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function grupos()
-    {
-        return $this->belongsToMany(Grupo::getClass());
-    }
+
 
     /**
-     *  Regresa las asignaturas que imparte el docente
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * Docente setea la calificacion a una alumno
+     * @param $idAlumno
+     * @param $idAsignatura
+     * @param $idGrupo
+     * @param $calificacion
      */
-    public function asignaturas()
+    public function setCalificacion($idAlumno,$idAsignatura,$idGrupo,$calificacion)
     {
-        return $this->belongsToMany(Asignatura::getClass());
+        DB::table('alumno_grupo_asignatura')
+            ->where('alumno_id', $idAlumno)
+            ->where('grupo_id',$idGrupo)
+            ->where('asignatura_id',$idAsignatura)
+            ->update(['calificacion'=>$calificacion]);
     }
 
 

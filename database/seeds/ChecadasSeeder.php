@@ -30,9 +30,9 @@ class ChecadasSeeder extends \Illuminate\Database\Seeder {
             'semana' => $faker ->numberBetween(1,52) ,
             'anio' => $faker ->numberBetween(2010,2015) ,
             'observaciones'  => $faker-> sentence($nbWords = 12),
-            'idusuarioregistra' => 1,// $faker ->numberBetween(1,100),
+            'idusuarioregistra' => 1,// $faker ->numberBetween(css,100),
             'fechahoraregistro' => \Carbon\Carbon::now(),//$faker-> datetime,
-            'idusuarioactualiza' => 1,//$faker ->numberBetween(1,100),
+            'idusuarioactualiza' => 1,//$faker ->numberBetween(css,100),
             'fechahoraultimaactualizacion' => \Carbon\Carbon::now(),//$faker->datetime,
             ]);
         }

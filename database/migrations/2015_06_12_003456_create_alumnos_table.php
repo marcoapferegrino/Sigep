@@ -66,6 +66,9 @@ class CreateAlumnosTable extends Migration
 
             $table->string('idUsuarioQueActualiza'); //el usuario que hizo la ultima actualizacion
 
+            $table->integer('tutor_id')->unsigned()->nullable();
+            $table->foreign('tutor_id')->references('id')->on('tutores');
+
             $table->timestamps();
         });
     }

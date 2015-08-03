@@ -18,6 +18,8 @@ class CreateGruposTable extends Migration
             $table->string('salon');
             $table->integer('semestre');
 
+            $table->integer('periodo_id')->unsigned();
+            $table->foreign('periodo_id')->references('id')->on('periodos');
 
             $table->timestamps();
         });

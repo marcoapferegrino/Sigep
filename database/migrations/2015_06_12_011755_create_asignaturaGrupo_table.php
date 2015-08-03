@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlumnoGrupoTable extends Migration
+class CreateAsignaturaGrupoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,19 @@ class CreateAlumnoGrupoTable extends Migration
      */
     public function up()
     {
-        Schema::create('alumno_grupo', function (Blueprint $table) {
+        Schema::create('asignatura_grupo', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->tinyInteger('acta'); //1 si esta abierta 0 si esta cerrada para calificar
 
-            $table->integer('alumno_id')->unsigned();
-            $table->foreign('alumno_id')->references('id')->on('alumnos');
+            $table->integer('docente_id')->unsigned();
+            $table->foreign('docente_id')->references('id')->on('docentes');
 
             $table->integer('grupo_id')->unsigned();
             $table->foreign('grupo_id')->references('id')->on('grupos');
 
-
+            $table->integer('asignatura_id')->unsigned();
+            $table->foreign('asignatura_id')->references('id')->on('asignaturas');
 
             $table->timestamps();
         });
@@ -35,6 +37,6 @@ class CreateAlumnoGrupoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('alumno_grupo');
+        Schema::drop('asignatura_grupo');
     }
 }

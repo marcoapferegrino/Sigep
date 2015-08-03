@@ -2,15 +2,25 @@
 
 @extends('app')
 
+
+
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Home</div>
+            <div class="col-md-12 ">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Grupos</div>
 
                     <div class="panel-body">
-                        Mis grupos
+                        @include('docente.partials.tablaHorario')
+
+
+                        {!! Form::open(['route' => ['horario.horarioPDF'],'method' => 'GET']) !!}
+                        <button type="submit"  class="btn btn-primary btn-lg">
+                            Horario PDF <i class="fa fa-file-pdf-o"></i>
+                        </button>
+                        {!! Form::close() !!}
+
                     </div>
                 </div>
             </div>

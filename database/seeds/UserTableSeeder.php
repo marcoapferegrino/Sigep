@@ -49,7 +49,7 @@ class UserTableSeeder extends \Illuminate\Database\Seeder{
     {
         $faker = Faker::create();
 
-        for($i=1; $i <= 10; $i++)
+        for($i=css; $i <= 10; $i++)
         {
 
 

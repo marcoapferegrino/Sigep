@@ -7,6 +7,7 @@
 	<title>Laravel</title>
 
 	<link href="/css/app.css" rel="stylesheet">
+
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 
@@ -29,29 +30,28 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="{{url('/')}}">Laravel</a>
+				<a class="navbar-brand" href="{{url('/')}}">
+					@if (!Auth::guest())
+						@if(Auth::getRol()=="admin")
+							Admin
+						@elseif(Auth::getRol()=="superAdmin")
+							Super Admin
+						@elseif(Auth::getRol()=="alumno")
+							Alumno
+						@elseif(Auth::getRol()=="docente")
+							Profesor
+						@else
+							Home
+						@endif
+					@else
+						Home
+					@endif
+				</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="/">
-                            @if (!Auth::guest())
-                                @if(Auth::getRol()=="admin")
-                                    Admin
-                                @elseif(Auth::getRol()=="superAdmin")
-                                    Super Admin
-                                @elseif(Auth::getRol()=="alumno")
-                                    Alumno
-                                @elseif(Auth::getRol()=="docente")
-                                    Profesor
-                                @else
-                                    Home
-                                @endif
-                            @else
-                                Home
-                            @endif
 
-						</a></li>
 
                     @if (!Auth::guest())
                         @if(Auth::getRol()=="admin")
@@ -63,8 +63,8 @@
                             <li><a href="">Ver calificaciones</a></li>
                             <li><a href="">Horario</a></li>
                         @elseif(Auth::getRol()=="docente")
-							<li><a href="">Mis grupos <i class="fa fa-users"></i> </a></li>
-                            <li><a href="">Calificaciones <i class="fa fa-pencil"></i> </a></li>
+							<li><a href="{{url('homeP')}}">Mis grupos <i class="fa fa-users"></i> </a></li>
+                            <li><a href="{{url('calificaciones')}}">Calificaciones <i class="fa fa-pencil"></i> </a></li>
 							<li><a href="">Expedientes <i class="fa fa-newspaper-o"></i> </a></li>
                         @endif
                     @endif
@@ -81,7 +81,8 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/auth/logout">Logout</a></li>
+								<li><a href="/auth/logout"><i class="fa fa-sign-out"></i> Logout </a></li>
+								<li><a href="/auth/logout"><i class="fa fa-user"></i> Perfil </a></li>
 							</ul>
 						</li>
 					@endif

@@ -73,7 +73,7 @@ class DocentesSeeder extends Seeder
 
                     //
                     'categoria'    => $faker-> sentence($nbWords = 1), //300
-                    'nivel'    => $faker->numberBetween(1,6), //,1);
+                    'nivel'    => $faker->numberBetween(1,6), //,css);
                     'clavePresupuestal'  => $faker->unique()->swiftBicNumber,
                     'ingresoIpn' => $faker->date(),
                     'numEmpleado'  =>$faker->swiftBicNumber,//8);
