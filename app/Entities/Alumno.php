@@ -17,6 +17,15 @@ class Alumno extends Entity {
         return $this->belongsTo(User::getClass());
     }
 
+
+    /**
+     * @return Tutor
+     */
+    public function tutor()
+    {
+        return $this->belongsTo(Tutor::getClass());
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -25,10 +34,26 @@ class Alumno extends Entity {
         return $this->hasMany(ArchivoAlumno::getClass());
     }
 
+    /**
+     * @return Checadas
+     */
     public function checadas()
     {
         return $this->hasMany(Checadas::getClass());
     }
+
+
+    /**
+     * @return Inscripcion
+     */
+    public function inscripciones()
+    {
+        return $this->hasMany(Inscripcion::getClass());
+    }
+
+
+
+
 
 
 

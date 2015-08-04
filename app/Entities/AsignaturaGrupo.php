@@ -1,16 +1,52 @@
 <?php namespace PosgradoService\Entities;
 
-use PosgradoService\Entities\Entity;
 
-/**
- * Asignatura en un grupo
- * Class AsignaturaGrupo
- * @package PosgradoService\Entities AsignaturaGrupo
- */
+
+
 class AsignaturaGrupo extends Entity {
 
 
     protected $table = 'asignatura_grupo';
+
+    /**
+     * @return horarios
+     */
+    public function horarios()
+    {
+        return $this->hasMany(Horario::getClass());
+    }
+
+    /**
+     * @return Docente
+     */
+    public function docente()
+    {
+        return $this->belongsTo(Docente::getClass());
+    }
+
+    /**
+     * @return Asignatura
+     */
+    public function asignatura()
+    {
+        return $this->belongsTo(Asignatura::getClass());
+    }
+
+    /**
+     * @return Grupo
+     */
+    public function grupo()
+    {
+        return $this->belongsTo(Grupo::getClass());
+    }
+
+    /**
+     * @return Inscripcion
+     */
+    public function inscripciones()
+    {
+        return $this->hasMany(Inscripcion::getClass());
+    }
 
 
 

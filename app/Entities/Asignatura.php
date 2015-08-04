@@ -1,6 +1,6 @@
 <?php namespace PosgradoService\Entities;
 
-use PosgradoService\Entities\Entity;
+
 
 
 class Asignatura extends Entity {
@@ -10,6 +10,15 @@ class Asignatura extends Entity {
      * Regresa los grupos que tienen esta asignatura
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
+
+
+    /**
+     * @return AsignaturaGrupo
+     */
+    public function asignaturasGrupo()
+    {
+        return $this->hasMany(AsignaturaGrupo::getClass());
+    }
 
 
 }

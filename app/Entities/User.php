@@ -1,7 +1,6 @@
 <?php namespace PosgradoService\Entities;
 
 use Illuminate\Support\Facades\DB;
-use PosgradoService\Entities\Entity;
 use Illuminate\Auth\Authenticatable;
 
 use Illuminate\Auth\Passwords\CanResetPassword;

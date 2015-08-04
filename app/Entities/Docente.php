@@ -1,7 +1,7 @@
 <?php namespace PosgradoService\Entities;
 
 use Illuminate\Support\Facades\DB;
-use PosgradoService\Entities\Entity;
+
 
 class Docente extends Entity {
 
@@ -14,6 +14,23 @@ class Docente extends Entity {
     public function user()
     {
         return $this->belongsTo(User::getClass());
+    }
+
+
+    /**
+     * @return Tutor
+     */
+    public function tutor(){
+
+        return $this->hasMany(Tutor::getClass());
+    }
+
+    /**
+     * @return AsignaturaGrupo
+     */
+    public function asignaturasGrupo()
+    {
+        return $this->hasMany(AsignaturaGrupo::getClass());
     }
 
 
