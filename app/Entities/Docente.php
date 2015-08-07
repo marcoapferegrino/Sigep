@@ -41,13 +41,11 @@ class Docente extends Entity {
      * @param $idGrupo
      * @param $calificacion
      */
-    public function setCalificacion($idAlumno,$idAsignatura,$idGrupo,$calificacion)
+    public function setCalificacion($inscripcionId,$calificacion)
     {
-        DB::table('alumno_grupo_asignatura')
-            ->where('alumno_id', $idAlumno)
-            ->where('grupo_id',$idGrupo)
-            ->where('asignatura_id',$idAsignatura)
-            ->update(['calificacion'=>$calificacion]);
+        DB::table('inscripciones')
+            ->where('id', $inscripcionId)
+            ->update(['calificacion' => $calificacion]);
     }
 
 

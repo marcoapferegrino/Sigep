@@ -3,7 +3,9 @@
 
 use Illuminate\Support\Facades\DB;
 use PosgradoService\Entities\Alumno;
+use PosgradoService\Entities\AsignaturaGrupo;
 use PosgradoService\Entities\Docente;
+use PosgradoService\Entities\Horario;
 use PosgradoService\Entities\User;
 use PosgradoService\Http\Requests;
 use PosgradoService\Http\Controllers\Controller;
@@ -20,61 +22,49 @@ class ProfesorController extends Controller {
 	 */
 	public function index()
 	{
-
+		$dias = array();
 		$user = auth()->user();
-		$horario = array();
+		$horarios=User::getHorario($user->docente_id);
 
-		$datos= User::getAsignaturasDeDocente($user->docente_id);
-
-		foreach($datos as $dato)
+		foreach($horarios as $horario)
 		{
-			array_push($horario,User::getHorario($dato->grupo_id,$dato->asignatura_id));
+			array_push($dias,json_decode($horario->dias));
 		}
+		//dd($dias,$horarios);
 
-
-		//dd($horario,$datos);
-
-
-		return view('homeProfesor',compact('horario','datos'));
+		return view('homeProfesor',compact('horarios','dias'));
 	}
 
 
 	public function showCalificaciones(){
 
+		$user=User::find(auth()->user()->getAuthIdentifier());
+		$idDocente =$user->docente_id;
 
-		$alumnosArray= array();
+		$gruposAsignaturas = User::getAsignaturasGruposDocente($idDocente);
+		$alumnos = User::getAlumnosdeDocente($idDocente);
 
-		$gruposMateriasDeProfesor = User::getAsignaturasDeDocente(auth()->user()->docente_id);
+		//dd($gruposAsignaturas,$alumnos);
 
-		foreach($gruposMateriasDeProfesor as $grupoMateria)
-		{
-			$alumnos = User::getAlumnosByMateriaAsignatura($grupoMateria->grupo_id,$grupoMateria->asignatura_id);
-			array_push($alumnosArray,$alumnos);
 
-		}
 
-		//dd($gruposMateriasDeProfesor,$alumnosArray);
-
-		return view('docente.calificaciones',compact('gruposMateriasDeProfesor','alumnosArray'));
+		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos'));
 	}
 
 	public function addCalificacion(Request $request)
 	{
 
-		$idAlumno 		= $request->alumno_id;
-		$idAsignatura 	= $request->asignatura_id;
-		$idGrupo 		= $request->grupo_id;
-		$calificacion 	= $request->calificacion;
+		//dd($request->calificacion,$request->inscripcion_id);
 
+		$user = auth()->user();
+		$docente = Docente::find($user->docente_id);
 
+		$calificacion=$request->calificacion;
+		$inscripcionId =$request->inscripcion_id;
 
-		$user=User::find(auth()->user()->getAuthIdentifier());
-		$docente=Docente::find($user->docente_id);
-
-		$docente->setCalificacion($idAlumno,$idAsignatura,$idGrupo,$calificacion);
+		$docente->setCalificacion($inscripcionId,$calificacion);
 
 		Session::flash('message', 'La calificación '.'ahora es '.$calificacion);
-		//dd($request->all());
 		return redirect()->action('ProfesorController@showCalificaciones');
 
 	}

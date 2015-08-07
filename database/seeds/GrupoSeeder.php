@@ -17,6 +17,9 @@ class GrupoSeeder extends \Illuminate\Database\Seeder {
             '1cv1',
             '1cv2',
             '1cv3',
+            '2cv1',
+            '2cv2',
+            '2cv3'
         );
 
         for($i=0 ; $i < count($grupos); $i++)

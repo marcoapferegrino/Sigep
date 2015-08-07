@@ -14,7 +14,7 @@ class CreateInscripcionesTable extends Migration
     {
         Schema::create('inscripciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('calificacion',['0','1','2','3','4','5','6','7','8','9','10','NP','S/C']);
+            $table->enum('calificacion',['0','1','2','3','4','5','6','7','8','9','10','NP','S/C'])->default('S/C'); //Sin calificacion
 
             $table->integer('alumno_id')->unsigned();
             $table->foreign('alumno_id')->references('id')->on('alumnos');
@@ -27,6 +27,9 @@ class CreateInscripcionesTable extends Migration
 
             $table->integer('asignatura_id')->unsigned();
             $table->foreign('asignatura_id')->references('asignatura_id')->on('asignatura_grupo');
+
+            $table->integer('asignatura_grupo_id')->unsigned();
+            $table->foreign('asignatura_grupo_id')->references('id')->on('asignatura_grupo');
 
             $table->timestamps();
         });

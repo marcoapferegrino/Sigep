@@ -12,7 +12,8 @@ return [
 	| as the size rules. Feel free to tweak each of these messages here.
 	|
 	*/
-
+	"difference_date"      => "El :attribute inicio y fin deben ser de 1:30 hrs de duración",
+	"bigger_date"			=>"El :attribute debe ser mas pequeña que la fecha Fin",
 	"accepted"             => "The :attribute must be accepted.",
 	"active_url"           => "The :attribute is not a valid URL.",
 	"after"                => "The :attribute must be a date after :date.",
@@ -29,7 +30,7 @@ return [
 	],
 	"boolean"              => "The :attribute field must be true or false.",
 	"confirmed"            => "The :attribute confirmation does not match.",
-	"date"                 => "The :attribute is not a valid date.",
+	"date"                 => "El :attribute no es una fecha valida.",
 	"date_format"          => "The :attribute does not match the format :format.",
 	"different"            => "The :attribute and :other must be different.",
 	"digits"               => "The :attribute must be :digits digits.",

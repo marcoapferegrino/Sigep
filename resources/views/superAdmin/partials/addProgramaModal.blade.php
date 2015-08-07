@@ -23,6 +23,17 @@
                     {!! Form::text('nombre',null, array('class' => 'form-control','id'=>'periodo','placeholder'=>'Nombre del Periodo'))!!}
                 </div>
 
+                <div class="form-group">
+                    {!! Form::label('periodo', 'Periodo') !!}
+                    <select class="form-control" name="periodo_id" id="periodo_id">
+                        <option value="">- - - -</option>
+                        @foreach($periodos as $periodos)
+                            <tr>
+                                <option value="{{$periodos->id}}">{{$periodos->nombre}} </option>
+                            </tr>
+                        @endforeach
+                    </select>
+                </div>
 
 
             </div>

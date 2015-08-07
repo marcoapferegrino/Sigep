@@ -4,7 +4,7 @@
 
 class Periodo extends Entity {
 
-    protected $fillable = array('nombre', 'inicio', 'fin','programa_id');
+    protected $fillable = array('nombre', 'inicioPeriodo', 'finPeriodo','inicioCalificaciones','finCalificaciones');
     /**
      * Get the programa record associated with the Periodo.
      * @return Programa

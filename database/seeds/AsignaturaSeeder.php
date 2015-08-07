@@ -15,9 +15,13 @@ class AsignaturaSeeder extends \Illuminate\Database\Seeder {
     public  function run()
     {
         $asignaturas = array(
-            'Arquitectura de mobiles',
-            'Metodos matematicos',
-            'Mobiles tecnologias'
+            'Arquitectura de moviles',
+            'Métodos matématicos',
+            'Moviles tecnologías',
+            'Seminario I',
+            'Seminario II',
+            'Redes moviles '
+
         );
 
         for($i=0 ; $i< count($asignaturas) ; $i++)
@@ -29,7 +33,7 @@ class AsignaturaSeeder extends \Illuminate\Database\Seeder {
                 'horasTeoricas' => $i*2,
                 'tipo' => 'obligatoria',
                 'fechaElabP'=>\Carbon\Carbon::now(),
-                'periodo_id'=>1
+
 
         ]);
         }

@@ -45,7 +45,7 @@ class AsignaturaGrupo extends Entity {
      */
     public function inscripciones()
     {
-        return $this->hasMany(Inscripcion::getClass());
+        return $this->belongsTo(Inscripcion::getClass());
     }
 
 

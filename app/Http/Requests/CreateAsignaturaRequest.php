@@ -26,11 +26,11 @@ class CreateAsignaturaRequest extends Request
         return [
             'nombre'        => 'required | unique:asignaturas,nombre',
             'creditos'      => 'required | integer',
-            'hrsPractica'    => 'required | integer',
+            'horasPract'    => 'required | integer',
             'horasTeoricas' => 'required | integer',
             'tipo'          => 'required | in:obligatoria,seminario,optativa,estancia',
             'fechaElabP'     => 'required | date',
-            'periodo_id'    => 'required | integer',
+
         ];
     }
 }

@@ -26,6 +26,7 @@ class CreateProgramaRequest extends Request {
         return [
             'escuela' => 'required',
             'nombre' => 'required',
+            'periodo_id' => 'required|integer'
 
         ];
     }

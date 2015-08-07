@@ -4,7 +4,7 @@
 
 class Programa extends Entity {
 
-    protected $fillable = array('escuela', 'nombre');
+    protected $fillable = array('escuela', 'nombre','periodo_id');
     /**
      * Get the Periodo that owns the Programa.
      * @return Periodo

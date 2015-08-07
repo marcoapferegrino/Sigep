@@ -19,26 +19,24 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('inicio', 'Fecha inicio') !!}
-                        <input type="date" class="form-control" id="inicio" name="inicio" placeholder="Fecha de inicio" min={!!\Carbon\Carbon::now() !!}  value={!!\Carbon\Carbon::now() !!}  >
+                        {!! Form::label('inicioPeriodo', 'Fecha inicio Periodo') !!}
+                        <input type="date" class="form-control" id="inicioPeriodo" name="inicioPeriodo" placeholder="Fecha de inicio" min={!!\Carbon\Carbon::now() !!}  value={!!\Carbon\Carbon::now() !!}  >
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('fin', 'Fecha fin') !!}
-                        <input type="date" class="form-control" id="fin"  name="fin" placeholder="Fecha de fin" min={{\Carbon\Carbon::now() }}  value={{\Carbon\Carbon::now() }}  >
+                        {!! Form::label('finPeriodo', 'Fecha fin Periodo') !!}
+                        <input type="date" class="form-control" id="finPeriodo"  name="finPeriodo" placeholder="Fecha de fin" min={{\Carbon\Carbon::now() }}  value={{\Carbon\Carbon::now() }}  >
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('inicioCalificaciones', 'Fecha inicio Calificaciones') !!}
+                        <input type="date" class="form-control" id="inicioCalificaciones" name="inicioCalificaciones" placeholder="Fecha de inicio" min={!!\Carbon\Carbon::now() !!}  value={!!\Carbon\Carbon::now() !!}  >
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('programa', 'Programa') !!}
-                        <select class="form-control" name="programa_id" id="programa_id">
-                            <option value="">- - - -</option>
-                            @foreach($programas as $programa)
-                                <tr>
-                                    <option value="{{$programa->id}}">{{$programa->nombre}} </option>
-                                </tr>
-                            @endforeach
-                        </select>
+                        {!! Form::label('finCalificaciones', 'Fecha fin Calificaciones') !!}
+                        <input type="date" class="form-control" id="finCalificaciones"  name="finCalificaciones" placeholder="Fecha de fin" min={{\Carbon\Carbon::now() }}  value={{\Carbon\Carbon::now() }}  >
                     </div>
+
 
             </div>
             <div class="modal-footer">

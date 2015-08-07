@@ -25,8 +25,8 @@
                     {!! Form::number('creditos',null, array('class' => 'form-control','id'=>'creditos','placeholder'=>'Créditos equivalentes'))!!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('hrsPractica', 'Horas de práctica') !!}
-                    {!! Form::number('hrsPractica',null, array('class' => 'form-control','id'=>'hrsPractica','placeholder'=>'Horas de Práctica'))!!}
+                    {!! Form::label('horasPract', 'Horas de práctica') !!}
+                    {!! Form::number('horasPract',null, array('class' => 'form-control','id'=>'horasPract','placeholder'=>'Horas de Práctica'))!!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('horasTeoricas', 'Horas de teoría') !!}
@@ -49,17 +49,7 @@
                     <input type="date" class="form-control" id="fechaElabP"  name="fechaElabP" placeholder="Fecha de Elaboración de materia"  value={{\Carbon\Carbon::now() }}  >
                 </div>
 
-                <div class="form-group">
-                    {!! Form::label('periodo', 'Periodo') !!}
-                    <select class="form-control" name="periodo_id" id="periodo_id">
-                        <option value="">- - - -</option>
-                        @foreach($periodos as $periodo)
-                            <tr>
-                                <option value="{{$periodo->id}}">{{$periodo->nombre}} </option>
-                            </tr>
-                        @endforeach
-                    </select>
-                </div>
+
 
             </div>
             <div class="modal-footer">

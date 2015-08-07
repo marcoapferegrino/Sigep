@@ -12,7 +12,7 @@ class Horario extends Entity
      */
     public function asignaturaGrupo()
     {
-        return $this->belongsTo(AsignaturaGrupo::getClass());
+        return $this->hasMany(AsignaturaGrupo::getClass());
     }
 
 

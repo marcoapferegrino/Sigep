@@ -12,48 +12,28 @@
     </tr>
     </thead>
     <tbody>
-    @for($i=0;$i<count($datos);$i++)
+    @for($i=0;$i<count($horarios);$i++)
         <tr>
             <td>
-                {{$datos[$i]->salon}}
+                {{$horarios[$i]->nombre}}
             </td>
             <td>
-                {{$datos[$i]->nombre}}
+                {{$horarios[$i]->salon}}
             </td>
             <td>
-                @foreach($horario[$i] as $hora)
-                    @if($hora->dia === 'lun' )
-                        {{$hora->horaInicio.'-'.$hora->horaFin}}
-                    @endif
-                @endforeach
+                {{$dias[$i]->dias->Lunes}}
             </td>
             <td>
-                @foreach($horario[$i] as $hora)
-                    @if($hora->dia === 'mar' )
-                        {{$hora->horaInicio.'-'.$hora->horaFin}}
-                    @endif
-                @endforeach
+                {{$dias[$i]->dias->Martes}}
             </td>
             <td>
-                @foreach($horario[$i] as $hora)
-                    @if($hora->dia === 'mier' )
-                        {{$hora->horaInicio.'-'.$hora->horaFin}}
-                    @endif
-                @endforeach
+                {{$dias[$i]->dias->Miercoles}}
             </td>
             <td>
-                @foreach($horario[$i] as $hora)
-                    @if($hora->dia === 'juev' )
-                        {{$hora->horaInicio.'-'.$hora->horaFin}}
-                    @endif
-                @endforeach
+                {{$dias[$i]->dias->Jueves}}
             </td>
             <td>
-                @foreach($horario[$i] as $hora)
-                    @if($hora->dia === 'viern' )
-                        {{$hora->horaInicio.'-'.$hora->horaFin}}
-                    @endif
-                @endforeach
+                {{$dias[$i]->dias->Viernes}}
             </td>
 
         </tr>

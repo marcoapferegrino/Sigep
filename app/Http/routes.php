@@ -62,6 +62,16 @@ Route::group(/**
             'uses' => 'SuperAdminController@deleteAsignatura'
         ]);
 
+        Route::get('/horarios', [
+            'as' => 'horarios.showHorarios',
+            'uses' => 'SuperAdminController@showHorarios'
+        ]);
+
+        Route::post('/horarios', [
+            'as' => 'horarios.addHorario',
+            'uses' => 'SuperAdminController@addHorario'
+        ]);
+
 
 
 
@@ -127,6 +137,9 @@ Route::get('testingDocentes',function(){
 
     dd($datosProfesorGrupoAsignatura);
 });
+
+
+
 
 
 

@@ -59,6 +59,7 @@
                         @elseif(Auth::getRol()=="superAdmin")
                             <li><a href="{{url('homeSA')}}">Programas y periodos <i class="fa fa-calendar-o fa-lg"></i></a></li>
 							<li><a href="{{url('asignaturas')}}">Asignaturas <i class="fa fa-book fa-lg"></i></a></li>
+							<li><a href="{{url('horarios')}}">Horarios <i class="fa fa-table fa-lg"></i></a></li>
                         @elseif(Auth::getRol()=="alumno")
                             <li><a href="">Ver calificaciones</a></li>
                             <li><a href="">Horario</a></li>

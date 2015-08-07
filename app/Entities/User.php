@@ -52,25 +52,7 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         return $this->hasOne(Alumno::getClass());
     }
 
-    /**
-     * Regresa grupos y materias que imparte el profesor
-     * @param $idDocente
-     * @return Grupo nombre, Asignatura nombre, Asignatura id, Grupo id
-     */
-    public static function getAsignaturasDeDocente($idDocente)
-    {
 
-        $gruposMateriasDeProfesor = DB::table('users')
-            ->join('docentes', 'users.docente_id', '=', 'docentes.id')
-            ->join('docente_grupo_asignatura', 'docente_grupo_asignatura.docente_id', '=', 'docentes.id')
-            ->join('grupos', 'grupos.id','=','docente_grupo_asignatura.grupo_id')
-            ->join('asignaturas','asignaturas.id','=','docente_grupo_asignatura.asignatura_id')
-            ->select('grupos.salon', 'asignaturas.nombre','docente_grupo_asignatura.asignatura_id','docente_grupo_asignatura.grupo_id')
-            ->where('docentes.id','=',$idDocente)
-            ->get();
-
-        return $gruposMateriasDeProfesor;
-    }
 
 
     /**
@@ -79,53 +61,74 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
      * @param $idAsignatura
      * @return DiaHora dia ,DiaHora horaInicio, DiaHora horaFin
      */
-    public static function getHorario($idGrupo,$idAsignatura)
+    public static function getHorario($idDocente)
     {
 
-        $horario = DB::table('horaDias')
-            ->select('dia','horaInicio','horaFin')
-            ->where('asignatura_grupo_grupo','=',$idGrupo)
-            ->where('asignatura_grupo_asignatura','=',$idAsignatura)
+        $horario = DB::table('asignatura_grupo')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('horaDias','asignatura_grupo.horaDias_id','=','horaDias.id')
+            ->select('asignaturas.nombre','grupos.salon','horaDias.dias')
+            ->where('asignatura_grupo.docente_id','=',$idDocente)
             ->get();
+
 
         return $horario;
     }
 
-    public static function getAlumnosByMateriaAsignatura($idGrupo,$idAsignatura)
+    public static function getGruposDocente($docenteId)
     {
-
-
-        $alumnos = DB::table('users')
-            ->join('alumnos', 'users.alumno_id', '=', 'alumnos.id')
-            ->join('alumno_grupo_asignatura','alumno_grupo_asignatura.alumno_id','=','alumnos.id')
-            ->join('grupos','alumno_grupo_asignatura.grupo_id','=','grupos.id')
-            ->select('alumnos.id','users.name','users.apellidoP','users.apellidoM','users.email','grupos.nombre','alumno_grupo_asignatura.calificacion')
-            ->where('alumno_grupo_asignatura.grupo_id' ,'=',$idGrupo)
-            ->where('alumno_grupo_asignatura.asignatura_id','=',$idAsignatura)
+        $grupos = DB::table('asignatura_grupo')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->select('grupos.nombre')
+            ->where('asignatura_grupo.docente_id','=',$docenteId)
             ->get();
 
-        return $alumnos;
+        return $grupos;
+    }
 
+    public static function getAsignaturasDocente($docenteId)
+    {
+        $asignaturas = DB::table('asignatura_grupo')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->select('asignaturas.nombre')
+            ->where('asignatura_grupo.docente_id','=',$docenteId)
+            ->get();
+        return $asignaturas;
+    }
+
+    public static function getAsignaturasGruposDocente($docenteId)
+    {
+        $asignaturasGrupos = DB::table('asignatura_grupo')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->select('asignatura_grupo.id','grupos.salon','asignaturas.nombre','asignatura_grupo.acta')
+            ->where('asignatura_grupo.docente_id','=',$docenteId)
+            ->get();
+        return $asignaturasGrupos;
     }
 
     /**
-     * Regresa grupos y materias que toma el alumno
-     * @param $idAlumno
-     * @return Grupo nombre, Asignatura nombre, calificacione
+     * @param $docenteId
+     * @return mixed
      */
-    public static function getAsignaturasDeAlumno($idAlumno){
-
-        $datosAlumnoGrupoAsignatura = DB::table('users')
-            ->join('alumnos', 'users.docente_id', '=', 'alumnos.id')
-            ->join('alumno_grupo_asignatura', 'alumno_grupo_asignatura.alumno_id', '=', 'alumnos.id')
-            ->join('grupos', 'grupos.id','=','alumno_grupo_asignatura.grupo_id')
-            ->join('asignaturas','asignaturas.id','=','alumno_grupo_asignatura.asignatura_id')
-            ->select('grupos.salon', 'asignaturas.nombre','alumno_grupo_asignatura.calificacion')
-            ->where('alumnos.id','=',$idAlumno)
+    public static function getAlumnosdeDocente($docenteId)
+    {
+        $alumnos = DB::table('inscripciones')
+            ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('alumnos','alumnos.id','=','inscripciones.alumno_id')
+            ->join('users','users.alumno_id','=','alumnos.id')
+            ->select('grupos.id AS grupo_id','users.name','asignaturas.id AS asignatura_id','users.apellidoP','users.apellidoM','users.email', 'inscripciones.calificacion','inscripciones.id AS inscripcion_id ','asignatura_grupo.id AS asignatura_grupo_id')
+            ->where('inscripciones.docente_id','=',$docenteId)
             ->get();
 
-        return $datosAlumnoGrupoAsignatura;
+        return $alumnos;
     }
+
+
+
 
 
 

@@ -9,7 +9,7 @@
             @include('partials.messages')
 
             <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="col-xs-12 col-sm-6 col-md-7">
 
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -31,7 +31,9 @@
                                     <th>Nombre</th>
                                     <th>Inicio</th>
                                     <th>Fin</th>
-                                    <th>#Programa</th>
+                                    <th>Inicio p/ calificar</th>
+                                    <th>Fin p/ calificar</th>
+
                                     <th>Operaciones</th>
                                 </tr>
                                 </thead>
@@ -40,9 +42,10 @@
                                     <tr>
                                         <td>{{$periodo->id}} </td>
                                         <td>{{$periodo->nombre}}</td>
-                                        <td>{{$periodo->inicio}}</td>
-                                        <td>{{$periodo->fin}}</td>
-                                        <td class="text-center">{{$periodo->programa_id}} </td>
+                                        <td>{{$periodo->inicioPeriodo}}</td>
+                                        <td>{{$periodo->finPeriodo}}</td>
+                                        <td>{{$periodo->inicioCalificaciones}}</td>
+                                        <td>{{$periodo->finCalificaciones}}</td>
                                         <td>
 
                                             <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditPeriodo">
@@ -71,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-6 col-md-6">
+                <div class="col-xs-6 col-md-5">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">Programas</h3>
@@ -86,7 +89,9 @@
                                     <th>#</th>
                                     <th>Nombre</th>
                                     <th>Escuela</th>
+                                    <th>#periodo</th>
                                     <th>Operaciones</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -95,6 +100,7 @@
                                         <td>{{$programa->id}}</td>
                                         <td>{{$programa->nombre}}</td>
                                         <td>{{$programa->escuela}}</td>
+                                        <td>{{$programa->periodo_id}}</td>
                                         <td>
 
                                             <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditPrograma">
@@ -128,6 +134,7 @@
     @include('superAdmin.partials.addProgramaModal')
     @include('superAdmin.partials.editPeriodoModal')
     @include('superAdmin.partials.editProgramaModal')
+
 
 @endsection
 

@@ -1,6 +1,8 @@
 <?php namespace PosgradoService\Providers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -11,7 +13,28 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
+		Validator::extend('differenceDate', function($field,$value,$parameters){
+			$total = strtotime($parameters[0]) - strtotime($value);
+			//dd($field,$value,$parameters);
+			//dd($total);
+			if($total == 5400)
+			{
+				return true;
+			}
+			else return false;
+		});
+
+		Validator::extend('biggerDate', function($field,$value,$parameters){
+			$horaFin      = strtotime($parameters[0]);
+			$horaInicial  = strtotime($value);
+			//dd($field,$value,$parameters);
+			//dd($total);
+			if($horaInicial<$horaFin)
+			{
+				return true;
+			}
+			else return false;
+		});
 	}
 
 	/**

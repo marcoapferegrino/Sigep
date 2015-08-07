@@ -12,11 +12,11 @@
             <div class="col-xs-12 col-md-8">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Asignaturas <i class="fa fa-book fa-lg"></i> </h3>
+                        <h2 class="panel-title">Asignaturas <i class="fa fa-book fa-lg"></i> </h2>
                     </div>
                     <div class="panel-body">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAddAsignatura">
+                        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalAddAsignatura">
                             Asignatura <i class="fa fa-plus fa-lg"></i>
                         </button>
                         <table class="table table-responsive table-hover ">
@@ -28,7 +28,6 @@
                                 <th>Tipo</th>
                                 <th>Hrs Práctica</th>
                                 <th>Hrs Teoría</th>
-                                <th>#Periodo</th>
                                 <th>Operaciones</th>
 
                             </tr>
@@ -42,7 +41,7 @@
                                     <td> {{$asignatura->tipo}} </td>
                                     <td class="text-center"> {{$asignatura->horasPract}} </td>
                                     <td class="text-center"> {{$asignatura->horasTeoricas}} </td>
-                                    <td class="text-center"> {{$asignatura->periodo_id}} </td>
+
                                     <td>
                                         <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditMateria">
                                             <i class="fa fa-pencil-square-o"></i>

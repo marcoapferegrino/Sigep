@@ -19,8 +19,7 @@ class CreateHoraDiasTable extends Migration
             $table->json('horario');
             $table->string('nombre');
 
-            $table->integer('asignatura_grupo_id')->unsigned();
-            $table->foreign('asignatura_grupo_id')->references('id')->on('asignatura_grupo');
+
 
             $table->timestamps();
         });

@@ -17,7 +17,7 @@ class CreateAsignaturaGrupoTable extends Migration
 
             $table->tinyInteger('acta'); //1 si esta abierta 0 si esta cerrada para calificar
 
-            $table->integer('docente_id')->unsigned();
+            $table->integer('docente_id')->unsigned()->nullable();
             $table->foreign('docente_id')->references('id')->on('docentes');
 
             $table->integer('grupo_id')->unsigned();
@@ -25,6 +25,9 @@ class CreateAsignaturaGrupoTable extends Migration
 
             $table->integer('asignatura_id')->unsigned();
             $table->foreign('asignatura_id')->references('id')->on('asignaturas');
+
+            $table->integer('horaDias_id')->unsigned()->nullable();
+            $table->foreign('horaDias_id')->references('id')->on('horaDias');
 
             $table->timestamps();
         });
