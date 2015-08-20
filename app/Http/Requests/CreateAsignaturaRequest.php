@@ -29,7 +29,7 @@ class CreateAsignaturaRequest extends Request
             'horasPract'    => 'required | integer',
             'horasTeoricas' => 'required | integer',
             'tipo'          => 'required | in:obligatoria,seminario,optativa,estancia',
-            'fechaElabP'     => 'required | date',
+            'fechaElabP'    => 'required | date',
 
         ];
     }

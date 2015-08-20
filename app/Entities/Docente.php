@@ -1,4 +1,4 @@
-<?php namespace PosgradoService\Entities;
+x<?php namespace PosgradoService\Entities;
 
 use Illuminate\Support\Facades\DB;
 

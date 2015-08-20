@@ -18,7 +18,7 @@ class CreateAlumnosTable extends Migration
 
             $table->string('dependEconomic');//de quien depende economicmente
             $table->string('viveCon'); //con quien vive
-            $table->enum('gradoDeEstudios',['Maestria','Doctorado','Licencitura']);
+            $table->enum('gradoDeEstudios',['Maestria','Doctorado','Licenciatura']);
             $table->string('situacionEstudios');
             $table->double('califEstudios');
             $table->string('localidadEstudios');

@@ -1,17 +1,13 @@
 <?php namespace PosgradoService\Http\Controllers;
 
 
-use Illuminate\Support\Facades\DB;
-use PosgradoService\Entities\Alumno;
-use PosgradoService\Entities\AsignaturaGrupo;
+
 use PosgradoService\Entities\Docente;
-use PosgradoService\Entities\Horario;
 use PosgradoService\Entities\User;
 use PosgradoService\Http\Requests;
-use PosgradoService\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use PosgradoService\Http\Requests\AddCalificacionRequest;
 
 class ProfesorController extends Controller {
 
@@ -44,27 +40,86 @@ class ProfesorController extends Controller {
 		$gruposAsignaturas = User::getAsignaturasGruposDocente($idDocente);
 		$alumnos = User::getAlumnosdeDocente($idDocente);
 
-		//dd($gruposAsignaturas,$alumnos);
-
-
-
 		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos'));
 	}
 
-	public function addCalificacion(Request $request)
+	public function showAlumnos()
 	{
 
-		//dd($request->calificacion,$request->inscripcion_id);
+
+		$user=User::find(auth()->user()->getAuthIdentifier());
+		$idDocente =$user->docente_id;
+
+		$alumnos = User::getAlumnosdeDocentePagination($idDocente);
+
+		//array_unique($alumnos);
+		//dd($alumnos);
+		return view('docente.showAlumnos',compact('alumnos'));
+	}
+
+	public function findAlumnos(Request $request)
+	{
+		//dd($request->get('name'));
+
+
+		$user=User::find(auth()->user()->getAuthIdentifier());
+		$idDocente =$user->docente_id;
+
+		$alumnos = User::getAlumnosdeDocenteBusqueda($idDocente,$request->get('name'));
+
+
+		return view('docente.showAlumnos',compact('alumnos'));
+	}
+
+
+
+	public function showExpediente($id)
+	{
+		$user=User::find(auth()->user()->getAuthIdentifier());
+		$idDocente =$user->docente_id;
+		$estado = false;
+
+		//Obtenemos alumnos del docente
+		$alumnos =  User::getAlumnosdeDocente($idDocente);
+
+		//buscamos entre los alumnos del docente el ID del alumno solicitado
+		foreach ($alumnos as $alumno) {
+			if($alumno->userId == $id)
+			{
+				$estado = true;
+			}
+
+		}
+		//si si esta lo buscamos en la BD
+		if($estado == true)
+		{
+			$userFind= User::find($id);
+			dd($userFind->toArray(),$alumnos);
+		}
+		else abort(404); //si no esta dentro de los alumnos del docente not found
+
+	}
+
+	public function addCalificacion(AddCalificacionRequest $request)
+	{
 
 		$user = auth()->user();
 		$docente = Docente::find($user->docente_id);
 
-		$calificacion=$request->calificacion;
-		$inscripcionId =$request->inscripcion_id;
+		//array de calificaciones e id de inscripciones, del mismo tamaño
+		$calificaciones = $request->calificaciones;
+		$inscripcionesId = $request->inscripcion_ids;
 
-		$docente->setCalificacion($inscripcionId,$calificacion);
+		//iteramos ambos arrays y vamos seteando las calificaciones a las inscripciones correspondientes
+		for($i=0 ; $i<count($calificaciones);$i++)
+		{
+			if ($calificaciones[$i]!="")
+			{
+				$docente->setCalificacion($inscripcionesId[$i],$calificaciones[$i]);
+			}
 
-		Session::flash('message', 'La calificación '.'ahora es '.$calificacion);
+		}
+		Session::flash('message', 'Ya se registraron las calificaciones :D');
 		return redirect()->action('ProfesorController@showCalificaciones');
 
 	}

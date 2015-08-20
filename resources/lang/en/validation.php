@@ -39,7 +39,7 @@ return [
 	"filled"               => "The :attribute field is required.",
 	"exists"               => "The selected :attribute is invalid.",
 	"image"                => "The :attribute must be an image.",
-	"in"                   => "The selected :attribute is invalid.",
+	"in"                   => "La opción :attribute es inválida.",
 	"integer"              => "The :attribute must be an integer.",
 	"ip"                   => "The :attribute must be a valid IP address.",
 	"max"                  => [

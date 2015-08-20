@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 
+
 class User extends Entity implements AuthenticatableContract, CanResetPasswordContract {
 
     use Authenticatable, CanResetPassword;
@@ -24,7 +25,8 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name','apellidoP','apellidoM','fechanac','nacionalidad','edoNacimiento','genero','rfc','curp','tipoIdOficial','noIdOficial','direccion','colonia','ciudad' ,'estado','cp' ,'telefono','telMovil','edoCivil' ,'numHijos','email','alumno_id','docente_id'
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -120,12 +122,55 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
             ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
             ->join('alumnos','alumnos.id','=','inscripciones.alumno_id')
             ->join('users','users.alumno_id','=','alumnos.id')
-            ->select('grupos.id AS grupo_id','users.name','asignaturas.id AS asignatura_id','users.apellidoP','users.apellidoM','users.email', 'inscripciones.calificacion','inscripciones.id AS inscripcion_id ','asignatura_grupo.id AS asignatura_grupo_id')
+            ->select('grupos.id AS grupo_id','users.name','users.id as userId','asignaturas.id AS asignatura_id','users.apellidoP','users.apellidoM','users.email', 'inscripciones.calificacion','inscripciones.id AS inscripcion_id ','asignatura_grupo.id AS asignatura_grupo_id')
             ->where('inscripciones.docente_id','=',$docenteId)
             ->get();
 
         return $alumnos;
     }
+
+    public static function getAlumnosdeDocentePagination($docenteId)
+    {
+        $alumnos = DB::table('inscripciones')
+            ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('alumnos','alumnos.id','=','inscripciones.alumno_id')
+            ->join('users','users.alumno_id','=','alumnos.id')
+            ->select('users.id','users.name','users.apellidoP','users.apellidoM','users.email','users.telefono','asignaturas.nombre as nombreAsignatura','grupos.nombre as nombreGrupo')
+            ->where('inscripciones.docente_id','=',$docenteId)
+            ->paginate(10);
+
+
+        return $alumnos;
+    }
+
+    public function getNombreCompleto()
+    {
+        return $this->name." ".$this->apellidoP." ".$this->apellidoM;
+    }
+
+    public static function getAlumnosdeDocenteBusqueda($docenteId,$name="")
+    {
+
+
+            $alumnos = DB::table('inscripciones')
+                ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
+                ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+                ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+                ->join('alumnos','alumnos.id','=','inscripciones.alumno_id')
+                ->join('users','users.alumno_id','=','alumnos.id')
+                ->select('users.id','users.name','users.apellidoP','users.apellidoM','users.email','users.telefono','asignaturas.nombre as nombreAsignatura','grupos.nombre as nombreGrupo')
+                ->where('inscripciones.docente_id','=',$docenteId)->where(DB::raw("CONCAT(name,' ',apellidoP,' ',apellidoM)"),"LIKE","%$name%")
+                ->paginate(10);
+
+
+
+        return $alumnos;
+    }
+
+
+
 
 
 

@@ -43,7 +43,6 @@ class AuthController extends Controller {
 	public function redirectPath()
 	{
 
-
         if ($this->auth->getRol()=="admin")
         {
             return "logAdmin";

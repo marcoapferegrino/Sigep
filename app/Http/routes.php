@@ -72,15 +72,23 @@ Route::group(/**
             'uses' => 'SuperAdminController@addHorario'
         ]);
 
-
-
-
     });
 
 
 
     Route::group(['middleware' => 'role:admin'],function() {
         Route::get('logAdmin',"AdminController@index");
+
+        Route::get('/getAddAlumno', [
+            'as' => 'alumno.getAddAlumno',
+            'uses' => 'AdminController@getAddAlumno'
+        ]);
+
+        Route::post('/addAlumno', [
+            'as' => 'alumno.addAlumno',
+            'uses' => 'AdminController@addAlumno'
+        ]);
+
     });
 
     Route::group(['middleware' => 'role:alumno'],function() {
@@ -103,6 +111,20 @@ Route::group(/**
             'as' => 'asignatura.addCalificacion',
             'uses' => 'ProfesorController@addCalificacion'
         ]);
+        Route::get('/misAlumnos', [
+            'as' => 'alumnos.showAlumnos',
+            'uses' => 'ProfesorController@showAlumnos'
+        ]);
+        Route::get('/alumnosEncontrados', [
+            'as' => 'alumnos.findAlumnos',
+            'uses' => 'ProfesorController@findAlumnos'
+        ]);
+
+        Route::get('/expediente/{id}', [
+            'as' => 'alumnos.showExpediente',
+            'uses' => 'ProfesorController@showExpediente'
+        ]);
+
 
         Route::get('/horarioPDF', [
             'as' => 'horario.horarioPDF',

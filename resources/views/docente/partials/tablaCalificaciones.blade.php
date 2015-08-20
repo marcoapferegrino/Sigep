@@ -26,6 +26,8 @@
                             @endif
                         </tr>
                         </thead>
+                        {!! Form::open(['route' => ['asignatura.addCalificacion'],'method' => 'POST']) !!}
+                        <input type="hidden" name="acta" value="{{$grupoAsignatura->acta}}">
                         <tbody>
                         @foreach($alumnos as $alumno)
                             @if($alumno->asignatura_grupo_id == $grupoAsignatura->id)
@@ -42,7 +44,7 @@
 
                                 <tr class="{{$classCalificacion}}">
                                     <td>{{$alumno->name . " " .$alumno->apellidoP." ". $alumno->apellidoM}}</td>
-                                    <td>{{$alumno->email}}{{$alumno->inscripcion_id}}</td>
+                                    <td>{{$alumno->email}}</td>
                                     <td>
                                         @if($alumno->calificacion == 'S/C')
                                             Sin calificar
@@ -53,29 +55,38 @@
                                     <td>
 
                                     @if($grupoAsignatura->acta == 1)
-                                        {!! Form::open(['route' => ['asignatura.addCalificacion'],'method' => 'POST']) !!}
+
                                         <div class="row">
                                             <div class="col-md-6">
 
-                                                <input type="hidden" name="inscripcion_id" value="{{$alumno->inscripcion_id}}">
-                                                {!!Form::select('calificacion', config('optionsCalifications.calificaciones'),null,['class'=>'form-control'])!!}
+
+                                                <input type="hidden" name="inscripcion_ids[]" value="{{$alumno->inscripcion_id}}">
+                                                {!!Form::select('calificaciones[]', config('optionsCalifications.calificaciones'),null,['class'=>'form-control'])!!}
 
                                             </div>
-                                            <div class="col-md-6">
-                                                <button type="submit" onclick="return confirm('Seguro que se merece esta calificación?')" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Enviar calificación">
-                                                    <i class="fa fa-send"></i>
-                                                </button>
-                                            </div>
-                                        </div>
 
-                                    {!! Form::close() !!}
                                     @endif
                                 </tr>
                             @endif
                         @endforeach
                         </tbody>
                     </table>
+                    @if($grupoAsignatura->acta == 1)
+                    <div class="col-md-8 col-lg-offset-2">
+                        <button type="submit" onclick="return confirm('Seguro que se merecen estas calificaciones ?')" class="btn btn-info btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="Enviar calificación">
+                            Enviar Calificaciones  <i class="fa fa-send"></i>
+                        </button>
+                    </div>
+                    <div class="col-md-8 col-lg-offset-2">
+                        <button type="submit" onclick="return confirm('Ya no podrás modificar calificaciones.Seguro?')" class="btn btn-warning btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="Cerrar Acta">
+                            Cerrar acta para calificar  <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                    @endif
 
+                </div>
+
+                {!! Form::close() !!}
                 </div>
             </div>
         </div>

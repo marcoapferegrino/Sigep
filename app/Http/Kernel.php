@@ -31,6 +31,7 @@ class Kernel extends HttpKernel {
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'PosgradoService\Http\Middleware\RedirectIfAuthenticated',
 		'role' => 'PosgradoService\Http\Middleware\role'
+
 	];
 
 }
