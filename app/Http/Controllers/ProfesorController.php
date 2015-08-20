@@ -2,6 +2,7 @@
 
 
 
+use PosgradoService\Entities\Alumno;
 use PosgradoService\Entities\Docente;
 use PosgradoService\Entities\User;
 use PosgradoService\Http\Requests;
@@ -93,8 +94,10 @@ class ProfesorController extends Controller {
 		//si si esta lo buscamos en la BD
 		if($estado == true)
 		{
-			$userFind= User::find($id);
-			dd($userFind->toArray(),$alumnos);
+			$user= User::find($id);
+			$alumno = Alumno::find($user->alumno_id);
+			//dd($user->toArray(),$alumno->toArray());
+			return view('docente.expediente',compact('user','alumno'));
 		}
 		else abort(404); //si no esta dentro de los alumnos del docente not found
 
