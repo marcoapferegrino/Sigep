@@ -10,6 +10,12 @@
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$grupoAsignatura->id}}" aria-expanded="true" aria-controls="collapse{{$grupoAsignatura->id}}">
                         {{$grupoAsignatura->nombre}} <small>en el salón</small> {{$grupoAsignatura->salon}}
                     </a>
+                    @if($grupoAsignatura->acta == 0)
+                        <div class="pull-right text-danger">¡ Esta acta esta cerrada !</div>
+
+                    @else
+                        <div class="pull-right ">Acta abierta</div>
+                    @endif
                 </h4>
             </div>
             <div id="collapse{{$grupoAsignatura->id}}" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading{{$grupoAsignatura->id}}">
@@ -27,7 +33,7 @@
                         </tr>
                         </thead>
                         {!! Form::open(['route' => ['asignatura.addCalificacion'],'method' => 'POST']) !!}
-                        <input type="hidden" name="acta" value="{{$grupoAsignatura->acta}}">
+                             <input type="hidden" name="acta" value="{{$grupoAsignatura->acta}}">
                         <tbody>
                         @foreach($alumnos as $alumno)
                             @if($alumno->asignatura_grupo_id == $grupoAsignatura->id)
@@ -59,7 +65,6 @@
                                         <div class="row">
                                             <div class="col-md-6">
 
-
                                                 <input type="hidden" name="inscripcion_ids[]" value="{{$alumno->inscripcion_id}}">
                                                 {!!Form::select('calificaciones[]', config('optionsCalifications.calificaciones'),null,['class'=>'form-control'])!!}
 
@@ -77,16 +82,23 @@
                             Enviar Calificaciones  <i class="fa fa-send"></i>
                         </button>
                     </div>
-                    <div class="col-md-8 col-lg-offset-2">
-                        <button type="submit" onclick="return confirm('Ya no podrás modificar calificaciones.Seguro?')" class="btn btn-warning btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="Cerrar Acta">
-                            Cerrar acta para calificar  <i class="fa fa-close"></i>
-                        </button>
-                    </div>
-                    @endif
 
+
+                    @endif
+                    @if($grupoAsignatura->acta == 1)
+                        {!! Form::close() !!}
+                        {!! Form::open(['route' => ['calificaciones.cerrarActa'],'method' => 'POST']) !!}
+                        <div class="col-md-8 col-lg-offset-2">
+                            <input type="hidden" name="id" value="{{$grupoAsignatura->id}}">
+                            <button type="submit" onclick="return confirm('Ya no podrás modificar calificaciones.Seguro?')" class="btn btn-warning btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="Cerrar Acta">
+                                Cerrar acta para calificar  <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                        {!! Form::close() !!}
+                    @endif
                 </div>
 
-                {!! Form::close() !!}
+
                 </div>
             </div>
         </div>

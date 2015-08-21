@@ -138,6 +138,16 @@ class SuperAdminController extends Controller {
 
 	}
 
+	public function deleteHorario($id)
+	{
+		$horario = Horario::findOrFail($id);
+		$horario->delete();
+
+		Session::flash('message', "El horario : ". $horario->nombre.' fue eliminado :D');
+
+		return redirect()->action('SuperAdminController@showHorarios');
+	}
+
 	private function diasJson($dias)
 	{
 			//dd($dias['lunesI']);

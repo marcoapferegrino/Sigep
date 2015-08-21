@@ -3,7 +3,9 @@
 
 
 use PosgradoService\Entities\Alumno;
+use PosgradoService\Entities\AsignaturaGrupo;
 use PosgradoService\Entities\Docente;
+use PosgradoService\Entities\Inscripcion;
 use PosgradoService\Entities\User;
 use PosgradoService\Http\Requests;
 use Illuminate\Http\Request;
@@ -40,7 +42,7 @@ class ProfesorController extends Controller {
 
 		$gruposAsignaturas = User::getAsignaturasGruposDocente($idDocente);
 		$alumnos = User::getAlumnosdeDocente($idDocente);
-
+		//dd($gruposAsignaturas);
 		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos'));
 	}
 
@@ -108,21 +110,27 @@ class ProfesorController extends Controller {
 
 		$user = auth()->user();
 		$docente = Docente::find($user->docente_id);
-
+		$idDocente = $docente->id;
 		//array de calificaciones e id de inscripciones, del mismo tamaño
 		$calificaciones = $request->calificaciones;
 		$inscripcionesId = $request->inscripcion_ids;
+		$inscripciones = Inscripcion::find($inscripcionesId);
+
+
+
 
 		//iteramos ambos arrays y vamos seteando las calificaciones a las inscripciones correspondientes
 		for($i=0 ; $i<count($calificaciones);$i++)
 		{
-			if ($calificaciones[$i]!="")
+
+			if ($calificaciones[$i]!="" && $inscripciones[$i]->docente_id == $idDocente)
 			{
 				$docente->setCalificacion($inscripcionesId[$i],$calificaciones[$i]);
 			}
-
 		}
+
 		Session::flash('message', 'Ya se registraron las calificaciones :D');
+
 		return redirect()->action('ProfesorController@showCalificaciones');
 
 	}
@@ -159,6 +167,31 @@ class ProfesorController extends Controller {
 
 		$pdf = \PDF::loadView('docente/partials/horarioPDF',array('horario'=>$horario,'datos'=>$datos))->setOrientation('landscape')->setWarnings(false);
 		return $pdf->stream();
+
+	}
+
+	public function closeActa(Request $request){
+
+		$user = auth()->user();
+		$docente = Docente::find($user->docente_id);
+		$idGrupoAsignatura = $request->id;
+		$grupoAsignatura = AsignaturaGrupo::find($idGrupoAsignatura);
+
+
+        //validamos que el acta originalmente este en 1 para cerrar ,
+        // se valida que el acta que se cierra pertenezca al docente en sesión
+		if ($grupoAsignatura->acta == 1 && $grupoAsignatura->docente_id==$docente->id) {
+			$grupoAsignatura->acta=0;
+			$grupoAsignatura->save();
+
+			Session::flash('message', 'El acta se cerro correctamente no podrás cambiar calificaciones :D');
+		}
+		else
+		{
+			Session::flash('error', 'Esta acta no te pertenece o ya se habia cerrado previamente');
+		}
+
+		return redirect()->action('ProfesorController@showCalificaciones');
 
 	}
 

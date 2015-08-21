@@ -33,9 +33,10 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <?php $index=0; ?>
                             @foreach($asignaturas as $asignatura)
                                 <tr>
-                                    <td> {{$asignatura->id}}  </td>
+                                    <td> {{++$index}}  </td>
                                     <td> {{$asignatura->nombre}} </td>
                                     <td class="text-center"> {{$asignatura->creditos}} </td>
                                     <td> {{$asignatura->tipo}} </td>

@@ -1,4 +1,4 @@
-x<?php namespace PosgradoService\Entities;
+<?php namespace PosgradoService\Entities;
 
 use Illuminate\Support\Facades\DB;
 
@@ -43,6 +43,7 @@ class Docente extends Entity {
      */
     public function setCalificacion($inscripcionId,$calificacion)
     {
+
         DB::table('inscripciones')
             ->where('id', $inscripcionId)
             ->update(['calificacion' => $calificacion]);

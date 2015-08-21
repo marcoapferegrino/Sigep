@@ -39,7 +39,7 @@ Route::group(/**
 
         //Borrar periodo y programa
 
-        Route::delete('deletePeriodo/{id}', [
+        Route::delete('/deletePeriodo/{id}', [
             'as' => 'periodo.deletePeriodo',
             'uses' => 'SuperAdminController@deletePeriodo'
         ]);
@@ -65,6 +65,11 @@ Route::group(/**
         Route::get('/horarios', [
             'as' => 'horarios.showHorarios',
             'uses' => 'SuperAdminController@showHorarios'
+        ]);
+
+        Route::delete('/deleteHorarios/{id}', [
+            'as' => 'horarios.deleteHorario',
+            'uses' => 'SuperAdminController@deleteHorario'
         ]);
 
         Route::post('/horarios', [
@@ -111,6 +116,11 @@ Route::group(/**
             'as' => 'asignatura.addCalificacion',
             'uses' => 'ProfesorController@addCalificacion'
         ]);
+
+        Route::post('/cerrarActa', [
+            'as' => 'calificaciones.cerrarActa',
+            'uses' => 'ProfesorController@closeActa'
+        ]);
         Route::get('/misAlumnos', [
             'as' => 'alumnos.showAlumnos',
             'uses' => 'ProfesorController@showAlumnos'
@@ -124,7 +134,6 @@ Route::group(/**
             'as' => 'alumnos.showExpediente',
             'uses' => 'ProfesorController@showExpediente'
         ]);
-
 
         Route::get('/horarioPDF', [
             'as' => 'horario.horarioPDF',
