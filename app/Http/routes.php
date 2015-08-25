@@ -48,6 +48,16 @@ Route::group(/**
             'uses' => 'SuperAdminController@deletePrograma'
         ]);
 
+        Route::post('/updatePeriodo', [
+            'as' => 'periodo.updatePeriodo',
+            'uses' => 'SuperAdminController@updatePeriodo'
+        ]);
+
+        Route::post('/updatePrograma', [
+            'as' => 'programa.updatePrograma',
+            'uses' => 'SuperAdminController@updatePrograma'
+        ]);
+
         //Asignaturas
         Route::get('/asignaturas', [
             'as' => 'asignatura.showAsignaturas',
@@ -60,6 +70,11 @@ Route::group(/**
         Route::delete('/deleteAsignatura{id}', [
             'as' => 'asignatura.deleteAsignatura',
             'uses' => 'SuperAdminController@deleteAsignatura'
+        ]);
+
+        Route::post('/updateAsignatura', [
+            'as' => 'asignatura.updateAsignatura',
+            'uses' => 'SuperAdminController@updateAsignatura'
         ]);
 
         Route::get('/horarios', [

@@ -44,7 +44,7 @@
                                     <td class="text-center"> {{$asignatura->horasTeoricas}} </td>
 
                                     <td>
-                                        <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditMateria">
+                                        <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditMateria{{$asignatura->id}}">
                                             <i class="fa fa-pencil-square-o"></i>
                                         </button>
 
@@ -54,7 +54,7 @@
                                         </button>
                                         {!! Form::close() !!}
                                     </td>
-
+                                    @include('superAdmin.partials.updateAsignatura')
                                 </tr>
 
                             @endforeach

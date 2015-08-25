@@ -1,7 +1,6 @@
 <?php namespace PosgradoService\Http\Controllers;
 
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
 use PosgradoService\Entities\Asignatura;
 use PosgradoService\Entities\Horario;
 use PosgradoService\Entities\Periodo;
@@ -11,6 +10,12 @@ use PosgradoService\Http\Requests\CreatePeriodoRequest;
 use PosgradoService\Http\Requests\CreateProgramaRequest;
 use PosgradoService\Http\Requests\CreateAsignaturaRequest;
 use PosgradoService\Http\Requests\CreateHorarioRequest;
+use PosgradoService\Http\Requests\UpdatePeriodoRequest;
+use PosgradoService\Http\Requests\UpdateProgramaRequest;
+use PosgradoService\Http\Requests\UpdateAsignaturaRequest;
+
+
+
 
 use Illuminate\Http\Request;
 
@@ -49,11 +54,66 @@ class SuperAdminController extends Controller {
 	public function deletePeriodo($id)
 	{
 		$periodo = Periodo::findOrFail($id);
-		$periodo->delete();
 
-		Session::flash('message', $periodo->nombre.' fue eliminado :D');
+		$programas = Programa::all();
+		$mensajeError = "";
+		$mensajeSuccess =$periodo->nombre.' fue eliminado :D';
+		$estado = false;
+
+		foreach($programas as $programa)
+		{
+			if($programa->periodo_id == $periodo->id)
+			{
+				$mensajeError = "No podemos borrar por qué hay un programa que tiene este periodo";
+				$estado = true;
+			}
+
+		}
+		if ($estado==false) {
+			$periodo->delete();
+			Session::flash('message',$mensajeSuccess );
+		}
+		else
+		{
+			Session::flash('error',$mensajeError );
+		}
+
+
 		return redirect()->action('SuperAdminController@index');
 
+	}
+
+	public function updatePeriodo(UpdatePeriodoRequest $request)
+	{
+		$periodo = Periodo::find($request->id);
+
+		$periodo->nombre= $request->nombre;
+		$periodo->inicioPeriodo= $request->inicioPeriodo;
+		$periodo->finPeriodo = $request->finPeriodo;
+		$periodo->inicioCalificaciones= $request->inicioCalificaciones;
+		$periodo->finCalificaciones= $request->finCalificaciones;
+
+		$periodo->save();
+
+		Session::flash('message',$periodo->nombre.' fue Actualizado :D');
+		return redirect()->action('SuperAdminController@index');
+	}
+
+	public function updatePrograma(UpdateProgramaRequest $request)
+	{
+
+		//dd($request->all());
+		$programa = Programa::find($request->id);
+
+		$programa->nombre= $request->nombre;
+		$programa->escuela= $request->escuela;
+		$programa->periodo_id = $request->periodo_id;
+
+
+		$programa->save();
+
+		Session::flash('message',$programa->nombre.' fue Actualizado :D');
+		return redirect()->action('SuperAdminController@index');
 	}
 	public function deletePrograma($id)
 	{
@@ -87,6 +147,28 @@ class SuperAdminController extends Controller {
 
 		Session::flash('message',$asignatura->nombre.' fue eliminado :D');
 		return redirect()->action('SuperAdminController@showAsignaturas');
+	}
+
+	public function updateAsignatura(UpdateAsignaturaRequest $request)
+	{
+		//dd($request->all());
+		$asignatura = Asignatura::find($request->id);
+
+		$asignatura->nombre = $request->nombre;
+		$asignatura->creditos = $request->creditos;
+		$asignatura->horasPract = $request->horasPract;
+		$asignatura->horasTeoricas = $request->horasTeoricas;
+		$asignatura->tipo = $request->tipo;
+		$asignatura->fechaElabP = $request->fechaElabP;
+
+		$asignatura->save();
+
+
+		Session::flash('message',$asignatura->nombre.' fue Actualizada :D');
+
+		return redirect()->action('SuperAdminController@showAsignaturas');
+
+
 	}
 	public function showHorarios()
 	{

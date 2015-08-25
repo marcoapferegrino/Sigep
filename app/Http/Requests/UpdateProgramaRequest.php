@@ -3,7 +3,7 @@
 
 use PosgradoService\Http\Requests\Request;
 
-class CreatePeriodoRequest extends Request {
+class UpdateProgramaRequest extends Request {
 
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,11 @@ class CreatePeriodoRequest extends Request {
     public function rules()
     {
         return [
+            'id'=>'required',
+            'escuela' => 'required',
             'nombre' => 'required',
-            'inicioPeriodo' => 'required | date',
-            'finPeriodo' => 'required | date',
-            'inicioCalificaciones'=>'required|date',
-            'finCalificaciones'=>'required|date',
+            'periodo_id' => 'required|integer'
+
         ];
     }
 

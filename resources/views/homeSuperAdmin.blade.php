@@ -48,7 +48,7 @@
                                         <td>{{$periodo->finCalificaciones}}</td>
                                         <td>
 
-                                            <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditPeriodo">
+                                            <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditPeriodo{{$periodo->id}}">
                                                 <i class="fa fa-pencil-square-o"></i>
                                             </button>
 
@@ -61,6 +61,7 @@
 
 
                                         </td>
+                                        @include('superAdmin.partials.editPeriodoModal')
 
                                     </tr>
 
@@ -103,7 +104,7 @@
                                         <td>{{$programa->periodo_id}}</td>
                                         <td>
 
-                                            <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditPrograma">
+                                            <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditPrograma{{$programa->id}}">
                                                 <i class="fa fa-pencil-square-o"></i>
                                             </button>
 
@@ -116,6 +117,7 @@
                                         </td>
 
                                     </tr>
+                                    @include('superAdmin.partials.editProgramaModal')
                                 @endforeach
                                 </tbody>
                             </table>
@@ -132,8 +134,7 @@
 
     @include('superAdmin.partials.addPeriodoModal')
     @include('superAdmin.partials.addProgramaModal')
-    @include('superAdmin.partials.editPeriodoModal')
-    @include('superAdmin.partials.editProgramaModal')
+
 
 
 @endsection

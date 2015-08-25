@@ -15,26 +15,26 @@
 
                     <div class="form-group">
                         {!! Form::label('nombre', 'Nombre') !!}
-                        {!! Form::text('nombre',null, array('class' => 'form-control','id'=>'nombre','placeholder'=>'Nombre del Periodo'))!!}
+                        {!! Form::text('nombre',null, array('class' => 'form-control','id'=>'nombre','placeholder'=>'Nombre del Periodo','required'))!!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('inicioPeriodo', 'Fecha inicio Periodo') !!}
-                        <input type="date" class="form-control" id="inicioPeriodo" name="inicioPeriodo" placeholder="Fecha de inicio" min={!!\Carbon\Carbon::now() !!}  value={!!\Carbon\Carbon::now() !!}  >
+                        <input type="date" class="form-control" id="inicioPeriodo" name="inicioPeriodo" placeholder="Fecha de inicio" min={!!\Carbon\Carbon::now() !!}  value={!!\Carbon\Carbon::now() !!} required  >
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('finPeriodo', 'Fecha fin Periodo') !!}
-                        <input type="date" class="form-control" id="finPeriodo"  name="finPeriodo" placeholder="Fecha de fin" min={{\Carbon\Carbon::now() }}  value={{\Carbon\Carbon::now() }}  >
+                        <input type="date" class="form-control" id="finPeriodo"  name="finPeriodo" placeholder="Fecha de fin" min={{\Carbon\Carbon::now() }}  value={{\Carbon\Carbon::now() }}  required>
                     </div>
                     <div class="form-group">
                         {!! Form::label('inicioCalificaciones', 'Fecha inicio Calificaciones') !!}
-                        <input type="date" class="form-control" id="inicioCalificaciones" name="inicioCalificaciones" placeholder="Fecha de inicio" min={!!\Carbon\Carbon::now() !!}  value={!!\Carbon\Carbon::now() !!}  >
+                        <input type="date" class="form-control" id="inicioCalificaciones" name="inicioCalificaciones" placeholder="Fecha de inicio" min={!!\Carbon\Carbon::now() !!}  value={!!\Carbon\Carbon::now() !!} required  >
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('finCalificaciones', 'Fecha fin Calificaciones') !!}
-                        <input type="date" class="form-control" id="finCalificaciones"  name="finCalificaciones" placeholder="Fecha de fin" min={{\Carbon\Carbon::now() }}  value={{\Carbon\Carbon::now() }}  >
+                        <input type="date" class="form-control" id="finCalificaciones"  name="finCalificaciones" placeholder="Fecha de fin" min={{\Carbon\Carbon::now() }}  value={{\Carbon\Carbon::now() }} required >
                     </div>
 
 
