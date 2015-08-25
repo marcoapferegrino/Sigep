@@ -28,6 +28,17 @@ Route::group(/**
 
         //agregar periodo y programa
 
+
+        Route::get('/showUsuarios', [
+            'as' => 'usuarios.showUsers',
+            'uses' => 'SuperAdminController@showUsers'
+        ]);
+        Route::get('/findUsuario', [
+            'as' => 'usuarios.findUsuario',
+            'uses' => 'SuperAdminController@findUsuario'
+        ]);
+
+
         Route::post('/addPeriodo', [
             'as' => 'periodo.addPeriodo',
             'uses' => 'SuperAdminController@addPeriodo'

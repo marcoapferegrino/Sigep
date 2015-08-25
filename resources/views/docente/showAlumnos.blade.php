@@ -19,7 +19,7 @@
                                     {!! Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre del alumno...','required']) !!}
                                 </div>
                                 <button type="submit" class="btn btn-info"> <i class="fa fa-search"></i> </button>
-                            </form>
+                        {!! Form::close() !!}
 
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <table class="table table-hover">

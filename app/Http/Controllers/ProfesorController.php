@@ -94,7 +94,7 @@ class ProfesorController extends Controller {
 
 		}
 		//si si esta lo buscamos en la BD
-		if($estado == true)
+		if($estado == true || $user->rol = 'superAdmin')
 		{
 			$user= User::find($id);
 			$alumno = Alumno::find($user->alumno_id);

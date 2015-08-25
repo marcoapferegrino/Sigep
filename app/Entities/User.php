@@ -169,6 +169,24 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         return $alumnos;
     }
 
+    public function scopeName($query,$name)
+    {
+        if(trim($name)!="")
+        {
+            $query->where(DB::raw("CONCAT(name,' ',apellidoP,' ',apellidoM)"),"LIKE","%$name%");
+        }
+
+    }
+    public function scopeRol($query, $rol)
+    {
+        $roles = config('roles.roles');
+
+        if($rol != "" && isset($roles[$rol]))
+        {
+            $query->where('rol',$rol);
+        }
+    }
+
 
 
 

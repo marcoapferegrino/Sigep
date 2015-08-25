@@ -5,6 +5,7 @@ use PosgradoService\Entities\Asignatura;
 use PosgradoService\Entities\Horario;
 use PosgradoService\Entities\Periodo;
 use PosgradoService\Entities\Programa;
+use PosgradoService\Entities\User;
 use PosgradoService\Http\Requests;
 use PosgradoService\Http\Requests\CreatePeriodoRequest;
 use PosgradoService\Http\Requests\CreateProgramaRequest;
@@ -33,6 +34,26 @@ class SuperAdminController extends Controller {
 
 
 		return view('homeSuperAdmin',compact('periodos','programas'));
+	}
+
+	public function showUsers()
+	{
+		$usuarios = User::paginate();
+
+		return view ('superAdmin.showUsuarios',compact('usuarios'));
+	}
+	public function findUsuario(Request $request)
+	{
+		//dd($request->all());
+
+		$name = $request->get('name');
+		$rol = $request->get('rol');
+
+		$usuarios = User::name($name)->rol($rol)->orderBy('id','DESC')->paginate();
+
+
+
+		return view ('superAdmin.showUsuarios',compact('usuarios'));
 	}
 
 
