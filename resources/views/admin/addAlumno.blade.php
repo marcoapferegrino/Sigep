@@ -202,15 +202,15 @@
                                     {!! Form::text('especialidadCarrera',null, array('class' => 'form-control text-capitalize','id'=>'especialidadCarrera','placeholder'=>'¿Qué especialidad?','required'))!!}
                                 </div>
                                 <br><br>
-                                <div class="form-group">
-                                    {!! Form::label('retomarEstudios', 'Retomar estudios ?') !!}
-                                    <select class="form-control" name="retomarEstudios" id="retomarEstudios">
-                                        <option value="">- - - -</option>
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                        <option value="Tal vez">Tal vez</option>
-                                    </select>
-                                </div>
+                                {{--<div class="form-group">--}}
+                                    {{--{!! Form::label('retomarEstudios', 'Retomar estudios ?') !!}--}}
+                                    {{--<select class="form-control" name="retomarEstudios" id="retomarEstudios">--}}
+                                        {{--<option value="">- - - -</option>--}}
+                                        {{--<option value="Si">Si</option>--}}
+                                        {{--<option value="No">No</option>--}}
+                                        {{--<option value="Tal vez">Tal vez</option>--}}
+                                    {{--</select>--}}
+                                {{--</div>--}}
                                 <br><br>
                                 <div class="form-group">
                                     {!! Form::label('observacionEstudios', 'Observaciones de estudios') !!}
@@ -267,10 +267,10 @@
 
 
                                 <br><br>
-                                <div class="form-group">
-                                    {!! Form::label('tiempoEnRamoConstruccion', 'Tiempo en ramo contrucción ?') !!}
-                                    {!! Form::text('tiempoEnRamoConstruccion',null, array('class' => 'form-control','id'=>'tiempoEnRamoConstruccion','placeholder'=>'¿?'))!!}
-                                </div>
+                                {{--<div class="form-group">--}}
+                                    {{--{!! Form::label('tiempoEnRamoConstruccion', 'Tiempo en ramo contrucción ?') !!}--}}
+                                    {{--{!! Form::text('tiempoEnRamoConstruccion',null, array('class' => 'form-control','id'=>'tiempoEnRamoConstruccion','placeholder'=>'¿?'))!!}--}}
+                                {{--</div>--}}
                                 <br><br>
 
                             </div>
@@ -286,15 +286,15 @@
                                     {!! Form::textarea('actividadesQueConoce',null, array('class' => 'form-control','required','id'=>'actividadesQueConoce','placeholder'=>'FrontEnd,BackEnd, Criptografía, DBA'))!!}
                                 </div>
 
-                                <div class="form-group">
-                                    {!! Form::label('conocimientoHerramientasConstru', 'Herramientas de desarrollo*') !!}
-                                    {!! Form::textarea('conocimientoHerramientasConstru',null, array('class' => 'form-control','required','id'=>'conocimientoHerramientasConstru','placeholder'=>'Xcode,NetBeans, Blender...'))!!}
-                                </div>
+                                {{--<div class="form-group">--}}
+                                    {{--{!! Form::label('conocimientoHerramientasConstru', 'Herramientas de desarrollo*') !!}--}}
+                                    {{--{!! Form::textarea('conocimientoHerramientasConstru',null, array('class' => 'form-control','required','id'=>'conocimientoHerramientasConstru','placeholder'=>'Xcode,NetBeans, Blender...'))!!}--}}
+                                {{--</div>--}}
 
-                                <div class="form-group">
-                                    {!! Form::label('conocimientoherramientasadmin', 'Herramientas de administración*') !!}
-                                    {!! Form::textarea('conocimientoherramientasadmin',null, array('class' => 'form-control','required','id'=>'conocimientoherramientasadmin','placeholder'=>'¿Qué herramientas usas para administrar?'))!!}
-                                </div>
+                                {{--<div class="form-group">--}}
+                                    {{--{!! Form::label('conocimientoherramientasadmin', 'Herramientas de administración*') !!}--}}
+                                    {{--{!! Form::textarea('conocimientoherramientasadmin',null, array('class' => 'form-control','required','id'=>'conocimientoherramientasadmin','placeholder'=>'¿Qué herramientas usas para administrar?'))!!}--}}
+                                {{--</div>--}}
 
                                 <div class="form-group">
                                     {!! Form::label('conocimientoSoftware', 'Conocimientos de software*') !!}
@@ -362,31 +362,6 @@
                             <div class="form-group">
                                 {!! Form::label('ref2Telefono', 'Teléfono*') !!}
                                 {!! Form::text('ref2Telefono',null, array('class' => 'form-control','id'=>'ref2Telefono','placeholder'=>'Teléfono de la referencia'))!!}
-                            </div>
-                            {{--Referencia 3--}}
-                            <br><br>
-                            <div class="form-group">
-                                {!! Form::label('ref3Nombre', 'Nombre 3 *') !!}
-                                {!! Form::text('ref3Nombre',null, array('class' => 'form-control text-capitalize','id'=>'ref3Nombre','placeholder'=>'Nombre '))!!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('ref3Afinidad', 'Afinidad *') !!}
-                                {!! Form::text('ref3Afinidad',null, array('class' => 'form-control text-capitalize','id'=>'ref3Afinidad','placeholder'=>'¿que parentezco tienes? '))!!}
-                            </div>
-
-                            <div class="form-group">
-                                {!! Form::label('ref3Tiempoconocerlo', 'Tiempo de conocerlo*') !!}
-                                {!! Form::text('ref3Tiempoconocerlo',null, array('class' => 'form-control','id'=>'ref3Tiempoconocerlo','placeholder'=>'Tiempo de conocerlo'))!!}
-                            </div>
-                            <br><br>
-                            <div class="form-group">
-                                {!! Form::label('ref3Domicilio', 'Domicilio *') !!}
-                                {!! Form::text('ref3Domicilio',null, array('class' => 'form-control text-capitalize','id'=>'ref3Domicilio','placeholder'=>'Domicilio de la referencia'))!!}
-                            </div>
-
-                            <div class="form-group">
-                                {!! Form::label('ref3Telefono', 'Teléfono*') !!}
-                                {!! Form::text('ref3Telefono',null, array('class' => 'form-control','id'=>'ref3Telefono','placeholder'=>'Teléfono de la referencia'))!!}
                             </div>
                         </div>
 

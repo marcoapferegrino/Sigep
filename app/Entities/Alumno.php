@@ -7,13 +7,12 @@ class Alumno extends Entity {
 
     protected $table = 'alumnos';
     protected $fillable = [  'status','dependEconomic','viveCon','gradoDeEstudios','situacionEstudios' ,
-        'califEstudios','localidadEstudios','aniosEstudios' ,'escuela' ,'especialidadCarrera' ,'retomarEstudios',
+        'califEstudios','localidadEstudios','aniosEstudios' ,'escuela' ,'especialidadCarrera',
         'observacionEstudios','empresaUltimoEmpleo' ,'puestoCategUltimoEmpleo','jefeInmediatoUltimoEmpleo','telefonoUltimoEmpleo',
         'fechaIngresoUltimoEmpleo','fechaTerminoUltimoEmpleo','actividadesUltimoEmpleo'  ,'motivosSeparacionUltimoEmpleo',
-        'tiempoEnRamoConstruccion','actividadesQueConoce','conocimientoHerramientasConstru','conocimientoherramientasadmin',
-        'conocimientoSoftware' ,'obsconocimientos','ref1Nombre','ref1Afinidad' ,'ref1Domicilio','ref1Telefono','ref1Tiempoconocerlo',
-        'ref2Nombre','ref2Afinidad','ref2Domicilio','ref2Telefono' ,'ref2Tiempoconocerlo','ref3Nombre' ,'ref3Afinidad','ref3Domicilio',
-        'ref3Telefono','ref3Tiempoconocerlo','idUsuarioQueActualiza','tutor_id'];
+        'actividadesQueConoce','conocimientoSoftware' ,'obsconocimientos','ref1Nombre','ref1Afinidad' ,'ref1Domicilio','ref1Telefono',
+        'ref1Tiempoconocerlo','ref2Nombre','ref2Afinidad','ref2Domicilio','ref2Telefono' ,'ref2Tiempoconocerlo','ref3Nombre'
+        ,'ref3Afinidad','ref3Domicilio', 'ref3Telefono','ref3Tiempoconocerlo','idUsuarioQueActualiza','tutor_id'];
 
     /**
      * Regresa el usuario principal

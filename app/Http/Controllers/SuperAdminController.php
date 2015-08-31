@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Session;
 use PosgradoService\Entities\Asignatura;
+use PosgradoService\Entities\Docente;
 use PosgradoService\Entities\Horario;
 use PosgradoService\Entities\Periodo;
 use PosgradoService\Entities\Programa;
@@ -251,12 +252,24 @@ class SuperAdminController extends Controller {
 		return redirect()->action('SuperAdminController@showHorarios');
 	}
 
+	public function showExpedienteDocente($id)
+	{
+		$user = User::find($id);
+		$docente = Docente::find($user->docente_id);
+
+		//dd($user->toArray(),$docente->toArray());
+
+
+		return view('superAdmin.expedienteDocente',compact('user','docente'));
+	}
+
 	private function diasJson($dias)
 	{
-			//dd($dias['lunesI']);
+		//dd($dias['lunesI']);
 		$json = '{"dias":{"Lunes":"'.$dias["lunesI"].' - '.$dias["lunesF"].'","Martes": "'.$dias["martesI"].' - '.$dias["martesF"].'","Miercoles":"'.$dias["miercolesI"].' - '.$dias["miercolesF"].'","Jueves": "'.$dias["juevesI"].' - '.$dias["juevesF"].'","Viernes": "'.$dias["viernesI"].' - '.$dias["viernesF"].'"}}';
 		return $json;
 	}
+
 
 
 

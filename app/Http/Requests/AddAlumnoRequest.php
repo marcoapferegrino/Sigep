@@ -66,7 +66,7 @@ class AddAlumnoRequest extends Request
           'aniosEstudios'=>'required|',
           'escuela'=>'required|',
           'especialidadCarrera'=>'required|',
-          'retomarEstudios'=>'required|',
+          //'retomarEstudios'=>'required|',
           'observacionEstudios'=>'required|',
           'empresaUltimoEmpleo'=>'required|',
           'puestoCategUltimoEmpleo'=>'required|',
@@ -76,10 +76,10 @@ class AddAlumnoRequest extends Request
           'fechaTerminoUltimoEmpleo'=>'required|date',
           'actividadesUltimoEmpleo'=>'required|',
           'motivosSeparacionUltimoEmpleo' =>'required|',
-          'tiempoEnRamoConstruccion'=>'required|',
+          //'tiempoEnRamoConstruccion'=>'required|',
           'actividadesQueConoce'=>'required|',
-          'conocimientoHerramientasConstru'=>'required|',
-          'conocimientoherramientasadmin'=>'required|',
+//          'conocimientoHerramientasConstru'=>'required|',
+//          'conocimientoherramientasadmin'=>'required|',
           'conocimientoSoftware'=>'required|',
           'obsconocimientos'=>'required|',
           'ref1Nombre'=>'required|',
@@ -92,11 +92,7 @@ class AddAlumnoRequest extends Request
           'ref2Domicilio'=>'required|',
           'ref2Telefono'=>'required|',
           'ref2Tiempoconocerlo'=>'required|',
-          'ref3Nombre'=>'required|',
-          'ref3Afinidad'=>'required|',
-          'ref3Domicilio'=>'required|',
-          'ref3Telefono' =>'required|',
-          'ref3Tiempoconocerlo'=>'required|',
+
         ];
     }
 }

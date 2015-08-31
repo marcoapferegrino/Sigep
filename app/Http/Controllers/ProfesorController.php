@@ -78,6 +78,7 @@ class ProfesorController extends Controller {
 
 	public function showExpediente($id)
 	{
+
 		$user=User::find(auth()->user()->getAuthIdentifier());
 		$idDocente =$user->docente_id;
 		$estado = false;

@@ -14,14 +14,14 @@ class CreateDocentesTable extends Migration
     {
         Schema::create('docentes', function (Blueprint $table) {
             $table->increments('id');
-
+            $table->string('sip')->unique();
             $table->string('status');               //es estado ?
             $table->string('escuelaLugarIpn');
             $table->string('extensionIpn',7);
             $table->string('email2');
             $table->string('web',200);
 
-            $table->string('viveCon');              //duda
+            //$table->string('viveCon');              //duda
 
                         //licenciatura
             $table->string('escuelaLicenciatura');
@@ -62,8 +62,8 @@ class CreateDocentesTable extends Migration
             $table->string('cedulaDoctorado');
             $table->string('observacionesDoctorado',300);
 
-            $table->string('categoria',10);
-            $table->string('nivel',1);
+            $table->enum('categoria',['asociado','titular']);//asociado,titular
+            $table->enum('nivel',['A','B','C']);//ABC
             $table->string('clavePresupuestal');
             $table->date('ingresoIpn');
             $table->string('numEmpleado',8);
@@ -71,7 +71,7 @@ class CreateDocentesTable extends Migration
             $table->string('idUsuarioRegistra');
             $table->string('fechaHoraRegistro');
             $table->string('idUsuarioActualiza'); //el usuario que hizo la ultima actualizacion
-            $table->string('sip')->unique();
+
 
 
             $table->integer('tutor_id')->unsigned()->nullable();

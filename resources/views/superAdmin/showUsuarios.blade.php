@@ -63,7 +63,17 @@
                                                     @endif
                                                 </td>
 
-                                                <td><a href="{{route('alumnos.showExpediente',$usuario->id)}}">Ver</a></td>
+                                                <td>
+                                                    @if($usuario->rol == "alumno")
+                                                        <a href="{{route('alumnos.showExpediente',$usuario->id)}}">Ver</a>
+                                                        <a href="{{route('alumnos.showExpediente',$usuario->id)}}">Editar Pendiente</a>
+                                                    @elseif($usuario->rol == "docente")
+                                                        <a href="{{route('docentes.showExpediente',$usuario->id)}}">Ver</a>
+                                                        <a href="{{route('alumnos.showExpediente',$usuario->id)}}">Editar Pendiente</a>
+                                                    @else
+                                                        Sin expediente
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

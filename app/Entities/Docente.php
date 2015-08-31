@@ -7,7 +7,7 @@ class Docente extends Entity {
 
 
 
-    protected $fillable = array('escuelaLugarIpn','extensionIpn','email2','web','viveCon'
+    protected $fillable = array('escuelaLugarIpn','extensionIpn','email2','web'
     ,'escuelaLicenciatura','localidadLicenciatura'
     ,'carreraLicenciatura','especialidadLicenciatura','situacionLicenciatura','anioinicialLicenciatura','ultimoanioLicenciatura'
     ,'tesisLicenciatura','examenLicenciatura','cedulaLicenciatura','observacionesLicenciatura'

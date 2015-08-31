@@ -48,6 +48,11 @@ Route::group(/**
             'uses' => 'SuperAdminController@addPrograma'
         ]);
 
+        Route::get('/expedienteDocente/{id}', [
+            'as' => 'docentes.showExpediente',
+            'uses' => 'SuperAdminController@showExpedienteDocente'
+        ]);
+
         //Borrar periodo y programa
 
         Route::delete('/deletePeriodo/{id}', [

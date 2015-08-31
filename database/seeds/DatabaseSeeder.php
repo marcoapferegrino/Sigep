@@ -34,9 +34,6 @@ class DatabaseSeeder extends Seeder
         ));
 
 
-
-        //$this->call('DocentesSeeder');
-
         $this->call('AlumnosSeeder');
         $this->call('DocentesSeeder');
         $this->call('ProgramaPeriodoSeeder');

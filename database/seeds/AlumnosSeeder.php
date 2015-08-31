@@ -34,7 +34,7 @@ class AlumnosSeeder extends Seeder {
                 'aniosEstudios'=> $faker->numberBetween(1,6),
                 'escuela'=> 'Escuela Superior de Cómputo',
                 'especialidadCarrera'=> 'Sistemas Computacionales',
-                'retomarEstudios'=> 'Si',
+                //'retomarEstudios'=> 'Si',
                 'observacionEstudios'=> 'El usuario parece querer entrar',
 
                 'empresaUltimoEmpleo'=> $faker->company.$faker->companySuffix,
@@ -45,10 +45,10 @@ class AlumnosSeeder extends Seeder {
                 'fechaTerminoUltimoEmpleo'=>$faker->date(),
                 'actividadesUltimoEmpleo'=> $faker->randomElement(['Admin BD','Admin NetWork','Web','FrontEnd','BackEnd','WebServices']),
                 'motivosSeparacionUltimoEmpleo'=> 'No hay oportunidad de crecimiento',
-                'tiempoEnRamoConstruccion' => $faker->time(),
+                //'tiempoEnRamoConstruccion' => $faker->time(),
                 'actividadesQueConoce'=> $faker->randomElement(['Admin BD','Admin NetWork','Web','FrontEnd','BackEnd','WebServices']),
-                'conocimientoHerramientasConstru'=> $faker->randomElement(['MySQL Workbench','Visual Paradigm','.NET','Xcode','PHPStorm']),
-                'conocimientoherramientasadmin'=> $faker->randomElement(['MySQL Workbench','Visual Paradigm','.NET','Xcode','PHPStorm']),
+                //'conocimientoHerramientasConstru'=> $faker->randomElement(['MySQL Workbench','Visual Paradigm','.NET','Xcode','PHPStorm']),
+                //'conocimientoherramientasadmin'=> $faker->randomElement(['MySQL Workbench','Visual Paradigm','.NET','Xcode','PHPStorm']),
                 'conocimientoSoftware'=> $faker->randomElement(['Admin BD','Admin NetWork','Web','FrontEnd','BackEnd','WebServices']),
                 'obsconocimientos'=>$faker->randomElement(['Admin BD','Admin NetWork','Web','FrontEnd','BackEnd','WebServices']),
 
@@ -64,11 +64,6 @@ class AlumnosSeeder extends Seeder {
                 'ref2Telefono'=>$faker->phoneNumber,
                 'ref2Tiempoconocerlo'=>$faker->numberBetween(1,6),
 
-                'ref3Nombre'=>$faker->name.$faker->lastName,
-                'ref3Afinidad'=>$faker->randomElement(['Jefe Inmediato','Jefe','Personal','Director']),
-                'ref3Domicilio'=>$faker->streetAddress,
-                'ref3Telefono'=>$faker->phoneNumber,
-                'ref3Tiempoconocerlo'=>$faker->numberBetween(1,6),
 
                 'idUsuarioQueActualiza'=>$faker->numberBetween(1,6),
 

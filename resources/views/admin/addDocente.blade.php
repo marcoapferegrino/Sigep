@@ -135,10 +135,10 @@
                                             {!! Form::number('numHijos',null, array('class' => 'form-control','id'=>'numHijos','placeholder'=>'¿Cuántos hijos tienes?','required','min'=>0))!!}
                                         </div>
                                         <br><br>
-                                        <div class="form-group">
-                                            {!! Form::label('viveCon', '¿Con quién vive?*') !!}
-                                            {!! Form::text('viveCon',null, array('class' => 'form-control text-capitalize','id'=>'viveCon','placeholder'=>'¿Vive con alguien?','required'))!!}
-                                        </div>
+                                        {{--<div class="form-group">--}}
+                                            {{--{!! Form::label('viveCon', '¿Con quién vive?*') !!}--}}
+                                            {{--{!! Form::text('viveCon',null, array('class' => 'form-control text-capitalize','id'=>'viveCon','placeholder'=>'¿Vive con alguien?','required'))!!}--}}
+                                        {{--</div>--}}
 
                                         <div class="form-group">
                                             {!! Form::label('status', 'Estado del docente*') !!}

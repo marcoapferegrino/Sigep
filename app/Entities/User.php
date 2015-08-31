@@ -81,6 +81,8 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         return $horario;
     }
 
+
+
     public static function getGruposDocente($docenteId)
     {
         $grupos = DB::table('asignatura_grupo')

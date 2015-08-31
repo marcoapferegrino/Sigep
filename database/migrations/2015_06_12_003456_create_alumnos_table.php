@@ -15,7 +15,7 @@ class CreateAlumnosTable extends Migration
         Schema::create('alumnos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('status'); //egresado, activo, reprobado dicatamen...
-
+            $table->string('boleta');
             $table->string('dependEconomic');//de quien depende economicmente
             $table->string('viveCon'); //con quien vive
             $table->enum('gradoDeEstudios',['Maestria','Doctorado','Licenciatura']);
@@ -25,7 +25,7 @@ class CreateAlumnosTable extends Migration
             $table->double('aniosEstudios');
             $table->string('escuela',70);
             $table->string('especialidadCarrera',70);
-            $table->string('retomarEstudios');
+            //$table->string('retomarEstudios');
             $table->mediumText('observacionEstudios');//¿?
             //ultimoempleo
             $table->string('empresaUltimoEmpleo');
@@ -37,10 +37,10 @@ class CreateAlumnosTable extends Migration
             //conocimientos
             $table->mediumText('actividadesUltimoEmpleo');
             $table->mediumText('motivosSeparacionUltimoEmpleo');
-            $table->string('tiempoEnRamoConstruccion'); //¿?
+//            $table->string('tiempoEnRamoConstruccion'); //¿?
             $table->longText('actividadesQueConoce');
-            $table->longText('conocimientoHerramientasConstru');
-            $table->longText('conocimientoherramientasadmin');
+  //          $table->longText('conocimientoHerramientasConstru');
+    //        $table->longText('conocimientoherramientasadmin');
             $table->longText('conocimientoSoftware');
             $table->longText('obsconocimientos');
             //Referencias
@@ -58,11 +58,6 @@ class CreateAlumnosTable extends Migration
             $table->string('ref2Telefono');
             $table->string('ref2Tiempoconocerlo');
 
-            $table->string('ref3Nombre');
-            $table->string('ref3Afinidad');
-            $table->string('ref3Domicilio');
-            $table->string('ref3Telefono');
-            $table->string('ref3Tiempoconocerlo');
 
             $table->string('idUsuarioQueActualiza'); //el usuario que hizo la ultima actualizacion
 

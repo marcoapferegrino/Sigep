@@ -25,13 +25,10 @@ class DocentesSeeder extends Seeder
             $docente = Docente::create([
 
                     'status' =>  $faker->randomElement(['Activo','Sabatico','De baja']),
-                    'viveCon' => $faker->randomElement(['Padres','Solo','Pareja']),
                     'sip' => $faker->unique()->swiftBicNumber,
                     'escuelaLugarIpn' => 'ESCOM',
                     'extensionIpn' => $faker ->numberBetween(1111111,9999999),   //7
-                    'email1'  => $faker->unique()-> email,
-                    'movil'  => $faker->unique()->phoneNumber,
-                    'email2' => $faker->unique()->email,
+                    'email2'  => $faker->unique()-> email,
                     'web'  => $faker->url,
                     ///licenciatura
 
@@ -57,23 +54,21 @@ class DocentesSeeder extends Seeder
                     'tesisMaestria'  => $faker-> sentence($nbWords = 6),
                     'examenMaestria' =>  $faker->date(),
                     'cedulaMaestria'  => $faker->unique()->swiftBicNumber,
-                    'observacionesMaestria'  => $faker-> sentence($nbWords = 10), //300
+                    'observacionesMaestria'  => $faker->sentence($nbWords = 10), //300
                     //
-                    'escuelaDoctorado'  => $faker->  randomElement(['ESCOM','ESIME','UPIITA','UNAM']),
+                    'escuelaDoctorado'  => $faker->randomElement(['ESCOM','ESIME','UPIITA','UNAM']),
                     'localidadDoctorado'   => $faker->randomElement(['MEXICO','DF','GUADALAJARA','EXTRANJERO']),
                     'carreraDoctorado'   => $faker-> randomElement(['ISC','QUIMICA','MECANICA','PSICOLOGIA']),
                     'especialidadDoctorado'  => $faker-> randomElement(['BD','REDES','MATERIALES','CONDUCTIVISTA']),
-                    'situacionEstudiosDoctorado'  => $faker-> randomElement(['Terminada','Trunca','En progreso']),
-                    'anioiniciaestudiosDoctorado'  => $faker-> randomElement(['Terminada','Trunca','En progreso']),
+                    'situacionEstudiosDoctorado'  => $faker->randomElement(['Terminada','Trunca','En progreso']),
+                    'anioiniciaestudiosDoctorado'  => $faker->randomElement(['Terminada','Trunca','En progreso']),
                     'ultimoAnioEstudiosDoctorado'  =>  $faker->numberBetween(1970,2014),
                     'tesisDoctorado'  => $faker->numberBetween(1970,2014),
                     'examenDoctorado'  => $faker->date(),
                     'cedulaDoctorado'  => $faker->unique()->swiftBicNumber,
-                    'observacionesDoctorado'  =>$faker-> sentence($nbWords = 10), //300
-
-                    //
-                    'categoria'    => $faker-> sentence($nbWords = 1), //300
-                    'nivel'    => $faker->numberBetween(1,6), //,css);
+                    'observacionesDoctorado'  =>$faker->sentence($nbWords = 10), //300
+                    'categoria'    => $faker->randomElement(['asociado','titular']),
+                    'nivel'    => $faker->randomElement(['A','B','C']),
                     'clavePresupuestal'  => $faker->unique()->swiftBicNumber,
                     'ingresoIpn' => $faker->date(),
                     'numEmpleado'  =>$faker->swiftBicNumber,//8);
