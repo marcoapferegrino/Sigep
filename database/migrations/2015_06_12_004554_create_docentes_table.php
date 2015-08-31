@@ -16,12 +16,8 @@ class CreateDocentesTable extends Migration
             $table->increments('id');
 
             $table->string('status');               //es estado ?
-            $table->string('tipoIdOficial');
-            $table->string('noIdOficial');
             $table->string('escuelaLugarIpn');
             $table->string('extensionIpn',7);
-            $table->string('email1');
-            $table->string('movil');
             $table->string('email2');
             $table->string('web',200);
 

@@ -5,11 +5,7 @@ namespace PosgradoService\Entities;
 
 
 class Inscripcion extends Entity
-
-
 {
-
-    protected $fillable = array('calificacion');
     protected $table='inscripciones';
 
 

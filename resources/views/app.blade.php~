@@ -56,9 +56,7 @@
                     @if (!Auth::guest())
                         @if(Auth::getRol()=="admin")
                             <li><a href="">Crear Horarios</a></li>
-							<li><a href="{{url('getAddAlumno')}}">Registrar alumno<i class="fa fa-pencil fa-lg"></i></a></li>
-							<li><a href="{{url('getAddDocente')}}">Registro de docente <i class="fa fa-pencil fa-lg"></i></a></li>
-
+							<li><a href="{{url('getAddAlumno')}}">Registrar alumno</a></li>
 
                         @elseif(Auth::getRol()=="superAdmin")
                             <li><a href="{{url('homeSA')}}">Programas y periodos <i class="fa fa-calendar-o fa-lg"></i></a></li>
@@ -67,7 +65,7 @@
 							<li><a href="{{url('showUsuarios')}}">Usuarios <i class="fa fa-users fa-lg"></i></a></li>
 
                         @elseif(Auth::getRol()=="alumno")
-                            <li><a href="{{url('calificacionesAlumno')}}">Ver calificaciones</a></li>
+                            <li><a href="">Ver calificaciones</a></li>
                             <li><a href="">Horario</a></li>
 
                         @elseif(Auth::getRol()=="docente")

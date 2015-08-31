@@ -144,11 +144,6 @@ Route::group(/**
 
     Route::group(['middleware' => 'role:alumno'],function() {
         Route::get('logAlumno',"AlumnoController@index");
-
-	Route::get('/calificacionesAlumno', [ //get calif
-            'as' => 'alumno.getCalificaciones',
-            'uses' => 'AlumnoController@getCalificaciones'
-        ]);
     });
 
 

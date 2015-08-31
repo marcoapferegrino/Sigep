@@ -5,21 +5,6 @@ use Illuminate\Support\Facades\DB;
 
 class Docente extends Entity {
 
-
-
-    protected $fillable = array('escuelaLugarIpn','extensionIpn','email2','web','viveCon'
-    ,'escuelaLicenciatura','localidadLicenciatura'
-    ,'carreraLicenciatura','especialidadLicenciatura','situacionLicenciatura','anioinicialLicenciatura','ultimoanioLicenciatura'
-    ,'tesisLicenciatura','examenLicenciatura','cedulaLicenciatura','observacionesLicenciatura'
-    ,'escuelaMaestria','localidadMaestria'
-    ,'carreraMaestria','especialidadMaestria','situacionMaestria','anioinicialMaestria','ultimoanioMaestria'
-    ,'tesisMaestria','examenMaestria','cedulaMaestria','observacionesMaestria'
-    ,'escuelaDoctorado','localidadDoctorado'
-    ,'carreraDoctorado','especialidadDoctorado','situacionDoctorado','anioinicialDoctorado','ultimoanioDoctorado'
-    ,'tesisDoctorado','examenDoctorado','cedulaDoctorado','observacionesDoctorado'
-    ,'categoria','nivel','clavepresupuestal','ingresoIpn','numEmpleadoipn','numtarjetaescom','sip'
-    ,'idUsuarioActualiza','tutor_id'
-    );
     protected $table = 'docentes';
 
     /**
@@ -58,6 +43,7 @@ class Docente extends Entity {
      */
     public function setCalificacion($inscripcionId,$calificacion)
     {
+
         DB::table('inscripciones')
             ->where('id', $inscripcionId)
             ->update(['calificacion' => $calificacion]);
