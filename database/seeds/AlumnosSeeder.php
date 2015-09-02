@@ -82,7 +82,7 @@ class AlumnosSeeder extends Seeder {
                 'genero' => $faker->randomElement(['Hombre','Mujer']),
                 'rfc'=> $faker->swiftBicNumber,
                 'curp'=> $faker->swiftBicNumber,
-                'tipoIdOficial'=>$faker->randomElement(['ife','licenciaManejo','pasaporte','cartilla']),
+                'tipoIdOficial'=>$faker->randomElement(['ife','licenciaManejo','pasaporte','cartilla','cedula','docMigrat','certMatriConsul']),
                 'noIdOficial' => $faker->swiftBicNumber,
                 'direccion' => $faker->streetAddress,
                 'colonia'=> $faker->citySuffix,

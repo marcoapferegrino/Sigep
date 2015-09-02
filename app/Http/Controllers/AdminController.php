@@ -42,7 +42,10 @@ class AdminController extends Controller {
         $docente = Docente::create($request->all());   //instancia de modelo docente con los datos recibidos
         $user = User::create($request->all());         //instancia de modelo user con datos recibidos
         User::where('id',$user->id)                    //asignacion de user -> docente
-            ->update(['rol'=>'docente','docente_id'=>$docente->id,'password'=>$password]);
+            ->update([
+            'rol'=>'docente',
+            'docente_id'=>$docente->id,
+            'password'=>$password]);
 
         Session::flash('message', $docente->nombre.' fue agregado exitosamente');
         return redirect()->action('AdminController@getAddDocente');
@@ -75,6 +78,36 @@ class AdminController extends Controller {
         //dd($user->toArray(),$alumno->toArray());
         return redirect()->action('AdminController@getAddAlumno');
 
+    }
+    public function getAlumnosCalificar()
+    {
+
+        $gruposAsignaturas = User::getAsignaturasGrupos();
+        $alumnos = User::getAlumnos();
+
+        //dd($grupoAsignatura,$alumnos);
+
+        return view('docente.calificaciones',compact('gruposAsignaturas','alumnos'));
+    }
+    public function calificar(Request $request)
+    {
+        $user = auth()->user();
+        $calificaciones = $request->calificaciones;
+        $inscripcionesId = $request->inscripcion_ids;
+
+
+        for($i=0 ; $i<count($calificaciones);$i++)
+        {
+            if ($calificaciones[$i]!="")
+            {
+                $user->setCalificacion($inscripcionesId[$i],$calificaciones[$i]);
+            }
+
+        }
+
+        Session::flash('message', 'Ya se registraron las calificaciones :D');
+
+        return redirect()->action('AdminController@getAlumnosCalificar');
     }
 
 

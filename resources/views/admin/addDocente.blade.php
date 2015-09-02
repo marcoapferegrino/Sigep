@@ -21,7 +21,7 @@
                                     <div class="panel-body">
 
                                         <div class="form-group">
-                                            {!! Form::label('name', 'Nombre completo del Docente*',array('for'=>'name')) !!}
+                                            {!! Form::label('name', 'Nombre completo*',array('for'=>'name')) !!}
                                             {!! Form::text('name',null, array('class' => 'form-control text-capitalize','id'=>'name','placeholder'=>'Nombre(s)','required','autofocus'))!!}
                                         </div>
 
@@ -63,12 +63,12 @@
                                         <br><br>
                                         <div class="form-group">
                                             {!! Form::label('rfc', 'RFC') !!}
-                                            {!! Form::text('rfc',null, array('class' => 'form-control','id'=>'rfc','placeholder'=>'RFC del Docente'))!!}
+                                            {!! Form::text('rfc',null, array('class' => 'form-control','id'=>'rfc','placeholder'=>'RFC'))!!}
                                         </div>
 
                                         <div class="form-group">
                                             {!! Form::label('curp', 'CURP*') !!}
-                                            {!! Form::text('curp',null, array('class' => 'form-control','id'=>'curp','placeholder'=>'CURP del Docente','required'))!!}
+                                            {!! Form::text('curp',null, array('class' => 'form-control','id'=>'curp','placeholder'=>'CURP','required'))!!}
                                         </div>
                                         <br><br>
                                         <div class="form-group">
@@ -82,7 +82,7 @@
                                         </div>
                                         <br><br>
                                         <div class="form-group">
-                                            {!! Form::label('direccion', 'Dirección del Docente*') !!}
+                                            {!! Form::label('direccion', 'Dirección*') !!}
                                             {!! Form::text('direccion',null, array('class' => 'form-control text-capitalize','id'=>'direccion','placeholder'=>'Dirección','required'))!!}
                                         </div>
                                         <div class="form-group">
@@ -112,14 +112,13 @@
                                             {!! Form::text('telMovil',null, array('class' => 'form-control','id'=>'telMovil','placeholder'=>'Celular','required'))!!}
                                         </div>
                                         <br><br>
-                                        <div class="form-group">
-                                            {!! Form::label('email', 'Email1*') !!}
-                                            {!! Form::email('email',null, array('class' => 'form-control','id'=>'email','placeholder'=>'Email de docente','required'))!!}
-                                        </div>
+
                                         <div class="form-group">
                                             {!! Form::label('email2', 'Email2') !!}
                                             {!! Form::email('email2',null, array('class' => 'form-control','id'=>'email2','placeholder'=>'Email adicional'))!!}
+                                            <a href="#cuenta"><p class="help-block">El email principal va en la seccion de cuenta hasta abajo</p></a>
                                         </div>
+                                        <br><br>
 
                                         <div class="form-group">
                                             {!! Form::label('web', 'Página web') !!}
@@ -400,10 +399,28 @@
                                     </div>
                                 </div><!-- Fin datos empleado -->
                                 <br><br>
-                                <div class="form-group">
-                                    {!! Form::label('password', 'Contraseña') !!}
-                                    {!! Form::text('password',null, array('class' => 'form-control ','id'=>'password','placeholder'=>'Password del docente'))!!}
-                                </div>
+
+                                <a name="cuenta">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Cuenta</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                {!! Form::label('email', 'Email*') !!}
+                                                {!! Form::email('email',null, array('class' => 'form-control','id'=>'email','placeholder'=>'Email','required'))!!}
+                                            </div>
+
+                                            <div class="form-group">
+                                                {!! Form::label('password', 'Contraseña*') !!}
+                                                {!! Form::text('password',null, array('class' => 'form-control','id'=>'password','placeholder'=>'Pon una contraseña','required'))!!}
+                                            </div>
+
+                                            <button class="btn btn-primary" id="buttonCurp" type="button">Ayuda generar contraseña <i class="fa fa-cogs"></i></button>
+                                        </div>
+                                    </div>
+                                </a>
+
 
                                 {!! Form::submit('Guardar',array('class'=>'btn btn-success btn-block')) !!}
                                 {!! Form::close() !!}
@@ -415,4 +432,7 @@
         </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script src="/js/genPassword.js"></script>
 @endsection

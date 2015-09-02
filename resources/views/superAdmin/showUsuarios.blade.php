@@ -12,6 +12,12 @@
             <div class="col-md-12 ">
                 <div class="panel panel-success">
                     <div class="panel-heading"><h4>Usuarios</h4></div>
+                    <div class="text-center">
+                        <a class="btn btn-info btn-lg" href="{{url('getAddAlumno')}}" role="button">Alumno <i class="fa fa-plus fa-lg"></i></a>
+                        <a class="btn btn-primary btn-lg" href="{{url('getAddDocente')}}" role="button">Docente<i class="fa fa-plus fa-lg"></i></a>
+
+                    </div>
+
 
                     <div class="panel-body">
                         {!! Form::model(Request::all(),['route' => 'usuarios.findUsuario','method' => 'GET','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
@@ -36,6 +42,7 @@
                                             <th>Teléfono</th>
                                             <th>CURP</th>
                                             <th>Rol</th>
+
                                             <th>Operaciones</th>
                                         </tr>
                                     </thead>

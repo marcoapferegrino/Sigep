@@ -27,13 +27,22 @@
                             <th>Nombre</th>
                             <th>Email</th>
                             <th>Calificación</th>
-                            @if($grupoAsignatura->acta == 1)
+                            @if($grupoAsignatura->acta == 1 || Auth::getRol()=='superAdmin')
                             <th>Calificar</th>
                             @endif
                         </tr>
                         </thead>
-                        {!! Form::open(['route' => ['asignatura.addCalificacion'],'method' => 'POST']) !!}
-                             <input type="hidden" name="acta" value="{{$grupoAsignatura->acta}}">
+
+                        @if(Auth::getRol()=='superAdmin')
+                            {!! Form::open(['route' => ['alumnos.calificar'],'method' => 'POST']) !!}
+                        @endif
+
+                        @if(Auth::getRol()=='docente')
+                            {!! Form::open(['route' => ['asignatura.addCalificacion'],'method' => 'POST']) !!}
+                        @endif
+
+
+                        <input type="hidden" name="acta" value="{{$grupoAsignatura->acta}}">
                         <tbody>
                         @foreach($alumnos as $alumno)
                             @if($alumno->asignatura_grupo_id == $grupoAsignatura->id)
@@ -60,7 +69,7 @@
                                     </td>
                                     <td>
 
-                                    @if($grupoAsignatura->acta == 1)
+                                    @if($grupoAsignatura->acta == 1|| Auth::getRol()=='superAdmin')
 
                                         <div class="row">
                                             <div class="col-md-6">
@@ -69,24 +78,24 @@
                                                 {!!Form::select('calificaciones[]', config('optionsCalifications.calificaciones'),null,['class'=>'form-control'])!!}
 
                                             </div>
-
+                                        </div>
                                     @endif
                                 </tr>
                             @endif
                         @endforeach
                         </tbody>
                     </table>
-                    @if($grupoAsignatura->acta == 1)
-                    <div class="col-md-8 col-lg-offset-2">
-                        <button type="submit" onclick="return confirm('Seguro que se merecen estas calificaciones ?')" class="btn btn-info btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="Enviar calificación">
-                            Enviar Calificaciones  <i class="fa fa-send"></i>
-                        </button>
-                    </div>
 
 
-                    @endif
-                    @if($grupoAsignatura->acta == 1)
-                        {!! Form::close() !!}
+                        @if(($grupoAsignatura->acta == 1 && Auth::getRol()=='docente')|| Auth::getRol()=='superAdmin')
+                            <div class="col-md-8 col-lg-offset-2">
+                                <button type="submit" onclick="return confirm('Seguro que se merecen estas calificaciones ?')" class="btn btn-info btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="Enviar calificación">
+                                    Enviar Calificaciones  <i class="fa fa-send"></i>
+                                </button>
+                            </div>
+                            {!! Form::close() !!}
+                        @endif
+                        @if($grupoAsignatura->acta == 1)
                         {!! Form::open(['route' => ['calificaciones.cerrarActa'],'method' => 'POST']) !!}
                         <div class="col-md-8 col-lg-offset-2">
                             <input type="hidden" name="id" value="{{$grupoAsignatura->id}}">
@@ -95,12 +104,14 @@
                             </button>
                         </div>
                         {!! Form::close() !!}
-                    @endif
+                         @endif
+
+
                 </div>
 
 
                 </div>
             </div>
-        </div>
+
     @endforeach
 </div>

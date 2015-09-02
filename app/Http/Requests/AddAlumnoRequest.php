@@ -42,7 +42,7 @@ class AddAlumnoRequest extends Request
             'genero' =>'required|in:Hombre,Mujer',
             'rfc' =>'required|unique:users,rfc',
             'curp' =>'required|unique:users,curp',
-            'tipoIdOficial'=>'required|in:ife,cartilla,pasaporte,licenciaManejo',
+            'tipoIdOficial'=>'required|in:ife,licenciaManejo,pasaporte,cartilla,cedula,docMigrat,certMatriConsul',
             'noIdOficial' =>'required|unique:users,noIdOficial',
             'direccion'=>'required|',
             'colonia' =>'required|',

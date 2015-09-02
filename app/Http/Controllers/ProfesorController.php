@@ -22,8 +22,8 @@ class ProfesorController extends Controller {
 	public function index()
 	{
 		$dias = array();
-		$user = auth()->user();
-		$horarios=User::getHorario($user->docente_id);
+		;
+		$horarios=User::getHorario();
 
 		foreach($horarios as $horario)
 		{
@@ -37,39 +37,37 @@ class ProfesorController extends Controller {
 
 	public function showCalificaciones(){
 
-		$user=User::find(auth()->user()->getAuthIdentifier());
-		$idDocente =$user->docente_id;
 
-		$gruposAsignaturas = User::getAsignaturasGruposDocente($idDocente);
-		$alumnos = User::getAlumnosdeDocente($idDocente);
-		//dd($gruposAsignaturas);
+		$gruposAsignaturas = User::getAsignaturasGruposDocenteActually();
+		$alumnos = User::getAlumnosdeDocenteActually();
+
+		//dd($alumnos,$gruposAsignaturas);
 		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos'));
+	}
+	public function recordGroups(){
+		$idDocente =auth()->user()->docente_id;
+
+		$gruposAsignaturas = User::getAsignaturasGruposDocenteRecord($idDocente);
+		$alumnos = User::getAlumnosdeDocenteRecord($idDocente);
+
+
+		//dd($alumnos,$gruposAsignaturas);
+		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos'));
+
 	}
 
 	public function showAlumnos()
 	{
-
-
-		$user=User::find(auth()->user()->getAuthIdentifier());
-		$idDocente =$user->docente_id;
-
+		$idDocente =auth()->user()->docente_id;
 		$alumnos = User::getAlumnosdeDocentePagination($idDocente);
 
-		//array_unique($alumnos);
-		//dd($alumnos);
 		return view('docente.showAlumnos',compact('alumnos'));
 	}
 
 	public function findAlumnos(Request $request)
 	{
-		//dd($request->get('name'));
-
-
-		$user=User::find(auth()->user()->getAuthIdentifier());
-		$idDocente =$user->docente_id;
-
+		$idDocente =auth()->user()->docente_id;
 		$alumnos = User::getAlumnosdeDocenteBusqueda($idDocente,$request->get('name'));
-
 
 		return view('docente.showAlumnos',compact('alumnos'));
 	}
@@ -78,13 +76,12 @@ class ProfesorController extends Controller {
 
 	public function showExpediente($id)
 	{
-
-		$user=User::find(auth()->user()->getAuthIdentifier());
+		$user =auth()->user();
 		$idDocente =$user->docente_id;
 		$estado = false;
 
 		//Obtenemos alumnos del docente
-		$alumnos =  User::getAlumnosdeDocente($idDocente);
+		$alumnos =  User::getAlumnosdeDocenteActually($idDocente);
 
 		//buscamos entre los alumnos del docente el ID del alumno solicitado
 		foreach ($alumnos as $alumno) {
@@ -110,14 +107,12 @@ class ProfesorController extends Controller {
 	{
 
 		$user = auth()->user();
-		$docente = Docente::find($user->docente_id);
-		$idDocente = $docente->id;
+
+		$idDocente = $idDocente =auth()->user()->docente_id;
 		//array de calificaciones e id de inscripciones, del mismo tamaño
 		$calificaciones = $request->calificaciones;
 		$inscripcionesId = $request->inscripcion_ids;
 		$inscripciones = Inscripcion::find($inscripcionesId);
-
-
 
 
 		//iteramos ambos arrays y vamos seteando las calificaciones a las inscripciones correspondientes
@@ -126,7 +121,7 @@ class ProfesorController extends Controller {
 
 			if ($calificaciones[$i]!="" && $inscripciones[$i]->docente_id == $idDocente)
 			{
-				$docente->setCalificacion($inscripcionesId[$i],$calificaciones[$i]);
+				$user->setCalificacion($inscripcionesId[$i],$calificaciones[$i]);
 			}
 		}
 
@@ -173,15 +168,14 @@ class ProfesorController extends Controller {
 
 	public function closeActa(Request $request){
 
-		$user = auth()->user();
-		$docente = Docente::find($user->docente_id);
+		$idDocente =auth()->user()->docente_id;
 		$idGrupoAsignatura = $request->id;
 		$grupoAsignatura = AsignaturaGrupo::find($idGrupoAsignatura);
 
 
         //validamos que el acta originalmente este en 1 para cerrar ,
         // se valida que el acta que se cierra pertenezca al docente en sesión
-		if ($grupoAsignatura->acta == 1 && $grupoAsignatura->docente_id==$docente->id) {
+		if ($grupoAsignatura->acta == 1 && $grupoAsignatura->docente_id==$idDocente) {
 			$grupoAsignatura->acta=0;
 			$grupoAsignatura->save();
 

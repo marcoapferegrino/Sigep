@@ -65,7 +65,7 @@
 							<li><a href="{{url('showUsuarios')}}">Usuarios <i class="fa fa-users fa-lg"></i></a></li>
 							<li><a href="{{url('asignaturas')}}">Asignaturas <i class="fa fa-book fa-lg"></i></a></li>
 							<li><a href="{{url('horarios')}}">Horarios <i class="fa fa-table fa-lg"></i></a></li>
-
+							<li><a href="{{url('getAlumnosCalificar')}}">Calificar <i class="fa fa-pencil-square-o"></i></a></li>
 
                         @elseif(Auth::getRol()=="alumno")
                             <li><a href="{{url('calificacionesAlumno')}}">Ver calificaciones</a></li>
@@ -105,6 +105,8 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	@yield('scripts')
 </body>
+
 
 </html>

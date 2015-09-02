@@ -15,7 +15,10 @@
                         <small>
                             <a href="mailto:{{$user->email}}">{{$user->email}}</a>
                         </small>
+                        <br>
+
                     </h1>
+                    <small>SIP:{{$docente->sip}}</small>
                 </div>
 
                 @include('docente.partials.datosGeneralesUsuario')
@@ -174,8 +177,7 @@
                             <dt>Número de tarjeta</dt>
                             <dd>{{$docente->numTarjetaEscom}}</dd>
 
-                            <dt>SIP</dt>
-                            <dd>{{$docente->sip}}</dd>
+
                         </dl>
                     </div>
                 </div>

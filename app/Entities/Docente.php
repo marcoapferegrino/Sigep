@@ -49,19 +49,7 @@ class Docente extends Entity {
     }
 
 
-    /**
-     * Docente setea la calificacion a una alumno
-     * @param $idAlumno
-     * @param $idAsignatura
-     * @param $idGrupo
-     * @param $calificacion
-     */
-    public function setCalificacion($inscripcionId,$calificacion)
-    {
-        DB::table('inscripciones')
-            ->where('id', $inscripcionId)
-            ->update(['calificacion' => $calificacion]);
-    }
+
 
 
 }

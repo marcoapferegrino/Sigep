@@ -52,11 +52,8 @@ class SuperAdminController extends Controller {
 
 		$usuarios = User::name($name)->rol($rol)->orderBy('id','DESC')->paginate();
 
-
-
 		return view ('superAdmin.showUsuarios',compact('usuarios'));
 	}
-
 
 	public function addPeriodo(CreatePeriodoRequest $request)
 	{
@@ -150,9 +147,7 @@ class SuperAdminController extends Controller {
 	public function showAsignaturas()
 	{
 		$asignaturas = Asignatura::all();
-		$periodos = Periodo::all();
-
-		return view('superAdmin.asignaturas',compact('asignaturas','periodos'));
+		return view('superAdmin.asignaturas',compact('asignaturas'));
 	}
 
 	public function addAsignatura(CreateAsignaturaRequest $request)

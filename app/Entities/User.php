@@ -1,5 +1,6 @@
 <?php namespace PosgradoService\Entities;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\Authenticatable;
 
@@ -66,15 +67,18 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
      * @param $idAsignatura
      * @return DiaHora dia ,DiaHora horaInicio, DiaHora horaFin
      */
-    public static function getHorario($idDocente)
+    public static function getHorario()
     {
-
+        $hoy=Carbon::now()->toDateString();
         $horario = DB::table('asignatura_grupo')
             ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
             ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
             ->join('horaDias','asignatura_grupo.horaDias_id','=','horaDias.id')
             ->select('asignaturas.nombre','grupos.salon','horaDias.dias')
-            ->where('asignatura_grupo.docente_id','=',$idDocente)
+            ->where('periodos.inicioPeriodo','<=',$hoy)
+            ->where('periodos.finPeriodo','>=',$hoy)
+            ->where('asignatura_grupo.docente_id','=',auth()->user()->docente_id)
             ->get();
 
 
@@ -104,12 +108,17 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         return $asignaturas;
     }
 
-    public static function getAsignaturasGruposDocente($docenteId)
+    public static function getAsignaturasGruposDocenteActually($docenteId)
     {
+        $hoy=Carbon::now()->toDateString();
+        //dd($hoy);
         $asignaturasGrupos = DB::table('asignatura_grupo')
             ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
             ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
-            ->select('asignatura_grupo.id','grupos.salon','asignaturas.nombre','asignatura_grupo.acta')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
+            ->select('asignatura_grupo.id','grupos.salon','asignaturas.nombre','asignatura_grupo.acta','periodos.nombre as nombrePeriodo','periodos.finPeriodo')
+            ->where('periodos.inicioPeriodo','<=',$hoy)
+            ->where('periodos.finPeriodo','>=',$hoy)
             ->where('asignatura_grupo.docente_id','=',$docenteId)
             ->get();
         return $asignaturasGrupos;
@@ -119,20 +128,62 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
      * @param $docenteId
      * @return mixed
      */
-    public static function getAlumnosdeDocente($docenteId)
+    public static function getAlumnosdeDocenteActually($docenteId)
     {
+        $hoy=Carbon::now()->toDateString();
         $alumnos = DB::table('inscripciones')
             ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
             ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
             ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
             ->join('alumnos','alumnos.id','=','inscripciones.alumno_id')
             ->join('users','users.alumno_id','=','alumnos.id')
             ->select('grupos.id AS grupo_id','users.name','users.id as userId','asignaturas.id AS asignatura_id','users.apellidoP','users.apellidoM','users.email', 'inscripciones.calificacion','inscripciones.id AS inscripcion_id ','asignatura_grupo.id AS asignatura_grupo_id')
+            ->where('periodos.inicioPeriodo','<=',$hoy)
+            ->where('periodos.finPeriodo','>=',$hoy)
             ->where('inscripciones.docente_id','=',$docenteId)
             ->get();
 
         return $alumnos;
     }
+
+    public static function getAsignaturasGruposDocenteRecord($docenteId)
+    {
+        $hoy=Carbon::now()->toDateString();
+
+        $asignaturasGrupos = DB::table('asignatura_grupo')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
+            ->select('asignatura_grupo.id','grupos.salon','asignaturas.nombre','asignatura_grupo.acta','periodos.nombre as nombrePeriodo','periodos.finPeriodo')
+            ->where('periodos.finPeriodo','<',$hoy)
+            ->where('asignatura_grupo.docente_id','=',$docenteId)
+            ->get();
+        return $asignaturasGrupos;
+    }
+
+    /**
+     * @param $docenteId
+     * @return mixed
+     */
+    public static function getAlumnosdeDocenteRecord($docenteId)
+    {
+        $hoy=Carbon::now()->toDateString();
+        $alumnos = DB::table('inscripciones')
+            ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
+            ->join('alumnos','alumnos.id','=','inscripciones.alumno_id')
+            ->join('users','users.alumno_id','=','alumnos.id')
+            ->select('grupos.id AS grupo_id','users.name','users.id as userId','asignaturas.id AS asignatura_id','users.apellidoP','users.apellidoM','users.email', 'inscripciones.calificacion','inscripciones.id AS inscripcion_id ','asignatura_grupo.id AS asignatura_grupo_id')
+            ->where('periodos.finPeriodo','<',$hoy)
+            ->where('inscripciones.docente_id','=',$docenteId)
+            ->get();
+
+        return $alumnos;
+    }
+
 
     public static function getAlumnosdeDocentePagination($docenteId)
     {
@@ -158,8 +209,6 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
 
     public static function getAlumnosdeDocenteBusqueda($docenteId,$name="")
     {
-
-
         $alumnos = DB::table('inscripciones')
             ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
             ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
@@ -169,11 +218,62 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
             ->select('users.id','users.name','users.apellidoP','users.apellidoM','users.email','users.telefono','asignaturas.nombre as nombreAsignatura','grupos.nombre as nombreGrupo')
             ->where('inscripciones.docente_id','=',$docenteId)->where(DB::raw("CONCAT(name,' ',apellidoP,' ',apellidoM)"),"LIKE","%$name%")
             ->paginate(10);
+        return $alumnos;
+    }
 
 
+    public static function getAsignaturasGrupos()
+    {
+        $hoy=Carbon::now()->toDateString();
+        //dd($hoy);
+        $asignaturasGrupos = DB::table('asignatura_grupo')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
+            ->select('asignatura_grupo.id','grupos.salon','asignaturas.nombre','asignatura_grupo.acta','periodos.nombre as nombrePeriodo','periodos.finPeriodo')
+            ->where('periodos.inicioPeriodo','<=',$hoy)
+            ->where('periodos.finPeriodo','>=',$hoy)
+
+            ->get();
+        return $asignaturasGrupos;
+    }
+
+    /**
+     * @param $docenteId
+     * @return mixed
+     */
+    public static function getAlumnos()
+    {
+        $hoy=Carbon::now()->toDateString();
+        $alumnos = DB::table('inscripciones')
+            ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
+            ->join('alumnos','alumnos.id','=','inscripciones.alumno_id')
+            ->join('users','users.alumno_id','=','alumnos.id')
+            ->select('grupos.id AS grupo_id','users.name','users.id as userId','asignaturas.id AS asignatura_id','users.apellidoP','users.apellidoM','users.email', 'inscripciones.calificacion','inscripciones.id AS inscripcion_id ','asignatura_grupo.id AS asignatura_grupo_id')
+            ->where('periodos.inicioPeriodo','<=',$hoy)
+            ->where('periodos.finPeriodo','>=',$hoy)
+
+            ->get();
 
         return $alumnos;
     }
+    /**
+     * Docente setea la calificacion a una alumno
+     * @param $inscripcionId
+     * @param $calificacion
+     */
+    public function setCalificacion($inscripcionId,$calificacion)
+    {
+        DB::table('inscripciones')
+            ->where('id', $inscripcionId)
+            ->update(['calificacion' => $calificacion]);
+    }
+
+
+
 
     public function scopeName($query,$name)
     {

@@ -108,6 +108,7 @@ Route::group(/**
             'uses' => 'SuperAdminController@addHorario'
         ]);
 
+
     });
 
 
@@ -140,7 +141,14 @@ Route::group(/**
             'as' => 'alumno.addAlumno',
             'uses' => 'AdminController@addAlumno'
         ]);
-
+        Route::get('/getAlumnosCalificar', [
+            'as' => 'alumnos.getAlumnosCalificar',
+            'uses' => 'AdminController@getAlumnosCalificar'
+        ]);
+        Route::post('/calificar', [
+            'as' => 'alumnos.calificar',
+            'uses' => 'AdminController@calificar'
+        ]);
 
 
 
@@ -180,6 +188,11 @@ Route::group(/**
         Route::get('/misAlumnos', [
             'as' => 'alumnos.showAlumnos',
             'uses' => 'ProfesorController@showAlumnos'
+        ]);
+
+        Route::post('/historyGroups', [
+            'as' => 'alumnos.recordGroups',
+            'uses' => 'ProfesorController@recordGroups'
         ]);
         Route::get('/alumnosEncontrados', [
             'as' => 'alumnos.findAlumnos',

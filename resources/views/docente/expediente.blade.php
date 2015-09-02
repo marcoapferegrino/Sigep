@@ -9,10 +9,19 @@
             <div class="col-md-12 ">
 
                 <div class="page-header">
-                    <h1><i class="fa fa-user"></i> Alumno: {{$user->getNombreCompleto()}} <small><a href="mailto:{{$user->email}}">{{$user->email}}</a></small></h1>
+                    <h1>
+                        <i class="fa fa-user"></i>
+                        Alumno: {{$user->getNombreCompleto()}}
+                        <small>
+                            <a href="mailto:{{$user->email}}">{{$user->email}} </a>
+                            <br>Boleta:{{$alumno->boleta}}
+                        </small>
+                        <br>
+                    </h1>
+
                 </div>
 
-               @include('docente.partials.datosGeneralesUsuario')
+                @include('docente.partials.datosGeneralesUsuario')
 
                 <div class="panel panel-success">
                     <div class="panel-heading">
@@ -27,7 +36,7 @@
                             <dd> {{$alumno->situacionEstudios}}  </dd>
 
                             <dt> Calificación </dt>
-                            <dd> {{$alumno->calificacion}}  </dd>
+                            <dd> {{$alumno->califEstudios}}  </dd>
 
                             <dt> Localidad de estudios </dt>
                             <dd> {{$alumno->localidadEstudios }}  </dd>
@@ -40,9 +49,6 @@
 
                             <dt> Especialidad </dt>
                             <dd> {{$alumno->especialidadCarrera }}  </dd>
-
-                            <dt> Retomar Estudios </dt>
-                            <dd> {{$alumno->retomarEstudios }}  </dd>
 
                             <dt> Observaciones </dt>
                             <dd> {{$alumno->observacionEstudios }}  </dd>
@@ -80,8 +86,7 @@
                             <dt> Motivos de separación de la empresa </dt>
                             <dd> {{$alumno->motivosSeparacionUltimoEmpleo }}  </dd>
 
-                            <dt> Tiempo en el ramo </dt>
-                            <dd> {{$alumno->tiempoEnRamoConstruccion }}  </dd>
+
                         </dl>
                     </div>
                 </div>
@@ -95,12 +100,6 @@
 
                             <dt> Actividades que conozco </dt>
                             <dd> {{$alumno->actividadesQueConoce}} </dd>
-
-                            <dt> Herramientas de desarrollo </dt>
-                            <dd> {{$alumno->conocimientoHerramientasConstru}}  </dd>
-
-                            <dt> Herramientas de administración </dt>
-                            <dd> {{$alumno->conocimientoherramientasadmin}}  </dd>
 
                             <dt> Conocimientos Software </dt>
                             <dd> {{$alumno->conocimientoSoftware }}  </dd>
@@ -157,26 +156,6 @@
                                     <dd> {{$alumno->ref2Tiempoconocerlo }}  </dd>
                                 </div>
                             </div>
-
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <dt> Nombre 3 </dt>
-                                    <dd> {{$alumno->ref3Nombre}} </dd>
-
-                                    <dt> Afinidad </dt>
-                                    <dd> {{$alumno->ref3Afinidad}}  </dd>
-
-                                    <dt> Domicilio </dt>
-                                    <dd> {{$alumno->ref3Domicilio}}  </dd>
-
-                                    <dt> Teléfono </dt>
-                                    <dd> {{$alumno->ref3Telefono }}  </dd>
-
-                                    <dt> Tiempo de conocerlo </dt>
-                                    <dd> {{$alumno->ref3Tiempoconocerlo }}  </dd>
-                                </div>
-                            </div>
-
 
                         </dl>
                     </div>

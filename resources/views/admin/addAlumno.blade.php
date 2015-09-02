@@ -76,10 +76,11 @@
                                     {!! Form::label('curp', 'CURP*') !!}
                                     {!! Form::text('curp',null, array('class' => 'form-control','id'=>'curp','placeholder'=>'CURP del alumno','required'))!!}
                                 </div>
+
                                 <br><br>
                                 <div class="form-group">
                                     {!! Form::label('tipoIdOficial', 'Tipo de identificación oficial*') !!}
-                                    {!! Form::text('tipoIdOficial',null, array('class' => 'form-control','id'=>'tipoIdOficial','placeholder'=>'¿Qué identificación es?','required'))!!}
+                                    {!! Form::select('tipoIdOficial', config('optionsIdentificaciones.identificaciones'),null,['class'=>'form-control','id'=>'tipoIdOficial','placeholder'=>'¿Qué identificación es?','required'])!!}
                                 </div>
 
                                 <div class="form-group">
@@ -213,7 +214,7 @@
                                 {{--</div>--}}
                                 <br><br>
                                 <div class="form-group">
-                                    {!! Form::label('observacionEstudios', 'Observaciones de estudios') !!}
+                                    {!! Form::label('observacionEstudios', 'Observaciones de estudios') !!} <br><br>
                                     {!! Form::textarea('observacionEstudios',null, array('class' => 'form-control','id'=>'observacionEstudios','placeholder'=>'¿Obervaciones de los estudios del alumno?'))!!}
                                 </div>
                                 <br><br>
@@ -257,11 +258,12 @@
 
                                     <div class="form-group">
                                         {!! Form::label('actividadesUltimoEmpleo', 'Actividades del último empleo') !!}
+                                        <br>
                                         {!! Form::textarea('actividadesUltimoEmpleo',null, array('class' => 'form-control','id'=>'actividadesUltimoEmpleo','placeholder'=>'¿Qué hacias en tu último empleo?'))!!}
                                     </div>
-
+                                <br><br>
                                     <div class="form-group">
-                                        {!! Form::label('motivosSeparacionUltimoEmpleo', 'Motivos de separación de la empresa') !!}
+                                        {!! Form::label('motivosSeparacionUltimoEmpleo', 'Motivos de separación de la empresa') !!}<br>
                                         {!! Form::textarea('motivosSeparacionUltimoEmpleo',null, array('class' => 'form-control','id'=>'motivosSeparacionUltimoEmpleo','placeholder'=>'¿Por qué te separaste de la empresa?'))!!}
                                     </div>
 
@@ -282,10 +284,10 @@
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                    {!! Form::label('actividadesQueConoce', 'Actividades que sabe*') !!}
+                                    {!! Form::label('actividadesQueConoce', 'Actividades que sabe*') !!} <br>
                                     {!! Form::textarea('actividadesQueConoce',null, array('class' => 'form-control','required','id'=>'actividadesQueConoce','placeholder'=>'FrontEnd,BackEnd, Criptografía, DBA'))!!}
                                 </div>
-
+                                <br><br>
                                 {{--<div class="form-group">--}}
                                     {{--{!! Form::label('conocimientoHerramientasConstru', 'Herramientas de desarrollo*') !!}--}}
                                     {{--{!! Form::textarea('conocimientoHerramientasConstru',null, array('class' => 'form-control','required','id'=>'conocimientoHerramientasConstru','placeholder'=>'Xcode,NetBeans, Blender...'))!!}--}}
@@ -297,12 +299,13 @@
                                 {{--</div>--}}
 
                                 <div class="form-group">
-                                    {!! Form::label('conocimientoSoftware', 'Conocimientos de software*') !!}
+                                    {!! Form::label('conocimientoSoftware', 'Conocimientos de software*') !!}<br>
                                     {!! Form::textarea('conocimientoSoftware',null, array('class' => 'form-control','required','id'=>'conocimientoSoftware','placeholder'=>'Software que conoce'))!!}
                                 </div>
+                                <br><br>
 
                                 <div class="form-group">
-                                    {!! Form::label('obsconocimientos', 'Otros conocimientos*') !!}
+                                    {!! Form::label('obsconocimientos', 'Otros conocimientos*') !!}<br>
                                     {!! Form::textarea('obsconocimientos',null, array('class' => 'form-control','required','id'=>'obsconocimientos','placeholder'=>'Otros conocimientos'))!!}
                                 </div>
                             </div>
@@ -313,6 +316,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Referencias</h3>
                             </div>
+                            <br><br>
                             {{--Referencia 1--}}
                             <div class="form-group">
                                 {!! Form::label('ref1Nombre', 'Nombre 1 * ') !!}
@@ -381,8 +385,9 @@
 
                                 <div class="form-group">
                                     {!! Form::label('password', 'Contraseña*') !!}
-                                    {!! Form::password('password', array('class' => 'form-control','id'=>'password','placeholder'=>'Pon una contraseña','required'))!!}
+                                    {!! Form::text('password',null, array('class' => 'form-control','id'=>'password','placeholder'=>'Pon una contraseña','required'))!!}
                                 </div>
+                                <button class="btn btn-primary" id="buttonCurp" type="button">Ayuda generar contraseña <i class="fa fa-cogs"></i></button>
                             </div>
                         </div>
 
@@ -395,4 +400,10 @@
             </div>
         </div>
     </div>
+
+
+
+@endsection
+@section('scripts')
+    <script src="/js/genPassword.js"></script>
 @endsection

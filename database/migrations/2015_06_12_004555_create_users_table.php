@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->enum('genero', ['Hombre', 'Mujer']);;
             $table->string('rfc',14)->unique();
             $table->string('curp',18)->unique();
-            $table->enum('tipoIdOficial',['ife','licenciaManejo','pasaporte','cartilla']);
+            $table->enum('tipoIdOficial',['ife','licenciaManejo','pasaporte','cartilla','cedula','docMigrat','certMatriConsul']); // documento de migracionCertificado de Matricula Consular
             $table->string('noIdOficial',20);//numero del Id de identificacion
             $table->string('direccion',60);
             $table->string('colonia',20);

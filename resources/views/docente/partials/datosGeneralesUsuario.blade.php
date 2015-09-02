@@ -31,7 +31,13 @@
                     <dt>Identificación</dt>
                     <dd>
                         <ul class="list-inline">
-                            <li class="text-capitalize">{{$user->tipoIdOficial}}</li>
+                            <li class="text-capitalize">
+                                @foreach(config('optionsIdentificaciones.identificaciones') as $k => $v)
+                                    @if($k == $user->tipoIdOficial)
+                                        {{$v}}
+                                    @endif
+                                @endforeach
+                            </li>
                             <li><strong>No Id:</strong> {{$user->noIdOficial}}</li>
                         </ul>
                     </dd>
@@ -43,8 +49,6 @@
                     <dd>{{$user->numHijos}}</dd>
 
                     @if(isset($docente))
-                        <dt>Vive Con</dt>
-                        <dd>{{$docente->viveCon}}</dd>
 
                         <dt>Status</dt>
                         <dd>{{$docente->status}}</dd>

@@ -9,7 +9,7 @@
 
             @include('partials.messages')
 
-            <div class="col-xs-12 col-md-8">
+            <div class="col-xs-12 col-md-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h2 class="panel-title">Asignaturas <i class="fa fa-book fa-lg"></i> </h2>
@@ -67,34 +67,7 @@
 
 
             </div>
-            <div class="col-xs-6 col-md-4">
 
-
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Periodos</h3>
-                    </div>
-                    <div class="panel-body">
-                        <table class="table table-responsive table-hover ">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($periodos as $periodo)
-                                <tr>
-                                    <td>{{$periodo->id}}</td>
-                                    <td>{{$periodo->nombre}}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
 </div>
