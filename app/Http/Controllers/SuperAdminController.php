@@ -173,10 +173,11 @@ class SuperAdminController extends Controller {
 
 		$asignatura->nombre = $request->nombre;
 		$asignatura->creditos = $request->creditos;
-		$asignatura->horasPract = $request->horasPract;
-		$asignatura->horasTeoricas = $request->horasTeoricas;
+		$asignatura->claveAsignatura = $request->claveAsignatura;
+		$asignatura->horas = $request->horas;
+		$asignatura->curso = $request->curso;
 		$asignatura->tipo = $request->tipo;
-		$asignatura->fechaElabP = $request->fechaElabP;
+		$asignatura->fechaVigencia = $request->fechaVigencia;
 
 		$asignatura->save();
 
@@ -206,16 +207,16 @@ class SuperAdminController extends Controller {
 	{
 
 		$rules = array(
-			'lunesI'        => 'required_if:lunesF,any | differenceDate:'.$request->lunesF.'|biggerDate:'.$request->lunesF,
-			'lunesF'        => 'required_if:lunesI,any | ',
-			'martesI'       => 'required_if:martesF,any | differenceDate:'.$request->martesF.'|biggerDate:'.$request->martesF,
-			'martesF'       => 'required_if:martesI,any | ',
-			'miercolesI'    => 'required_if:miercolesF,any  | differenceDate:'.$request->miercolesF.'|biggerDate:'.$request->miercolesF,
-			'miercolesF'    => 'required_if:miercolesI,any  |' ,
-			'juevesI'       => 'required_if:juevesF,any | differenceDate:'.$request->juevesF.'|biggerDate:'.$request->juevesF,
-			'juevesF'       => 'required_if:juevesI,any  |' ,
-			'viernesI'      => 'required_if:viernesF,any | differenceDate:'.$request->viernesF.'|biggerDate:'.$request->viernesF,
-			'viernesF'      => 'required_if:viernesI,any  |' ,
+			'lunesI'        => 'required_with:lunesF |biggerDate:'.$request->lunesF,
+			'lunesF'        => 'required_with:lunesI ',
+			'martesI'       => 'required_with:martesF |biggerDate:'.$request->martesF,
+			'martesF'       => 'required_with:martesI | ',
+			'miercolesI'    => 'required_with:miercolesF |biggerDate:'.$request->miercolesF,
+			'miercolesF'    => 'required_with:miercolesI |' ,
+			'juevesI'       => 'required_with:juevesF | biggerDate:'.$request->juevesF,
+			'juevesF'       => 'required_with:juevesI ' ,
+			'viernesI'      => 'required_with:viernesF biggerDate:'.$request->viernesF,
+			'viernesF'      => 'required_with:viernesI |' ,
 			'nombre'  		=> 'required'
 		);
 

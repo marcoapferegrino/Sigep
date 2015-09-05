@@ -15,13 +15,13 @@ class CreateAsignaturasTable extends Migration
         Schema::create('asignaturas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre')->unique();
+            $table->string('claveAsignatura');
             $table->double('creditos')->default(0);
-            $table->double('horasPract');
-            $table->double('horasTeoricas');
-            $table->enum('tipo', ['obligatoria','seminario','optativa','estancia']);
-            $table->date('fechaElabP');
-
-
+            $table->double('horas'); //suma de teoricas y practicas
+            $table->enum('curso',['Teórico','Práctico','T/P']);
+            $table->enum('tipo', ['obligatoria','seminario','optativa','movilidad']);
+            $table->string('escuelaMovilidad');
+            $table->date('fechaVigencia');
 
             $table->timestamps();
         });

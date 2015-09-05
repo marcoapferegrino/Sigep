@@ -21,23 +21,24 @@ class DocentesSeeder extends Seeder
     {
 
         $faker = Faker::create();
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             $docente = Docente::create([
 
-                    'status' =>  $faker->randomElement(['Activo','Sabatico','De baja']),
+                    'status' =>  $faker->randomElement(['Activo' , 'Licencia','Con goce de sueldo', 'Licencia sin goce de sueldo', 'Cambios de adscripción', 'Semestre sabático', 'Año sabático', 'Otro(observaciones profesor)']),
                     'sip' => $faker->unique()->swiftBicNumber,
                     'escuelaLugarIpn' => 'ESCOM',
                     'extensionIpn' => $faker ->numberBetween(1111111,9999999),   //7
                     'email2'  => $faker->unique()-> email,
                     'web'  => $faker->url,
+                    'observacionesDocente'=> $faker->text(),
                     ///licenciatura
 
                     'escuelaLicenciatura' => $faker->  randomElement(['ESCOM','ESIME','UPIITA','UNAM']),
                     'localidadLicenciatura'  => $faker->randomElement(['MEXICO','DF','GUADALAJARA','EXTRANJERO']),
                     'carreraLicenciatura'  => $faker-> randomElement(['ISC','QUIMICA','MECANICA','PSICOLOGIA']),
                     'especialidadLicenciatura'  => $faker-> randomElement(['BD','REDES','MATERIALES','CONDUCTIVISTA']),
-                    'situacionLicenciatura'  => $faker-> randomElement(['Terminada','Trunca','En progreso']),
-                    'anioinicialLicenciatura' => $faker-> randomElement(['ESCOM','ESIME','UPIITA','UNAM']),
+                    'situacionLicenciatura'  => $faker-> randomElement(['S/E'=>'S/E','Titulado'=>'Titulado','Pasante'=>'Pasante','Créditos'=>'Créditos','Finalizado'=>'Finalizado']),
+                    'anioinicialLicenciatura' => $faker->numberBetween(1970,2014),
                     'ultimoAnioLicenciatura'  => $faker->numberBetween(1970,2014),
                     'tesisLicenciatura'   => $faker-> sentence($nbWords = 6),
                     'examenLicenciatura' =>  $faker->date(),
@@ -67,14 +68,14 @@ class DocentesSeeder extends Seeder
                     'examenDoctorado'  => $faker->date(),
                     'cedulaDoctorado'  => $faker->unique()->swiftBicNumber,
                     'observacionesDoctorado'  =>$faker->sentence($nbWords = 10), //300
-                    'categoria'    => $faker->randomElement(['asociado','titular']),
+                    'categoria'    => $faker->randomElement(['Asociado','Titular']),
                     'nivel'    => $faker->randomElement(['A','B','C']),
                     'clavePresupuestal'  => $faker->unique()->swiftBicNumber,
                     'ingresoIpn' => $faker->date(),
                     'numEmpleado'  =>$faker->swiftBicNumber,//8);
                     'numTarjetaEscom' => $faker->swiftBicNumber,//8
                     'idUsuarioRegistra'  => $faker->numberBetween(1,100),
-                    'fechaHoraRegistro'  => $faker->numberBetween(1,100),
+                    'fechaHoraRegistro'  => $faker->dateTime($max = 'now'),
                     'idUsuarioActualiza'  =>$faker->numberBetween(1,100),
 
 

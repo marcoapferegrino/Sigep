@@ -20,18 +20,19 @@ class AlumnosSeeder extends Seeder {
     {
         $faker = Faker::create();
 
-        for($i = 1; $i <= 10; $i++)
+        for($i = 1; $i <= 70; $i++)
         {
             $alumno = Alumno::create([
 
-                'status' => $faker->randomElement(['Activo','Egresado','De baja']),
                 'dependEconomic' => $faker->randomElement(['Papá','Mamá','Padres','No']),
                 'viveCon' => $faker->randomElement(['Padres','Solo']),
+                'boleta'=>$faker->unique()->randomNumber(8,true),
                 'gradoDeEstudios'=> $faker->randomElement(['Maestria','Doctorado','Licencitura']),
                 'situacionEstudios'=> $faker->randomElement(['Activo','Egresado','De baja']),
                 'califEstudios'=> $faker->numberBetween(6,10),
                 'localidadEstudios'=> $faker->city,
                 'aniosEstudios'=> $faker->numberBetween(1,6),
+                'carrera'=>$faker->randomElement(['Ing Sistemas computacionales','Ing informatica','Lic ciencias computacionales','Mecatronica']),
                 'escuela'=> 'Escuela Superior de Cómputo',
                 'especialidadCarrera'=> 'Sistemas Computacionales',
                 //'retomarEstudios'=> 'Si',

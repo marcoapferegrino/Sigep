@@ -17,7 +17,11 @@
 
                 <div class="form-group">
                     {!! Form::label('nombre', 'Nombre') !!}
-                    {!! Form::text('nombre',null, array('class' => 'form-control','id'=>'periodo','placeholder'=>'Nombre de la asignatura'))!!}
+                    {!! Form::text('nombre',null, array('class' => 'form-control','id'=>'nombre','placeholder'=>'Nombre de la asignatura'))!!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('claveAsignatura', 'Clave de Asignatura') !!}
+                    {!! Form::text('claveAsignatura',null, array('class' => 'form-control','id'=>'claveAsignatura','placeholder'=>'Clave de la asignatura'))!!}
                 </div>
 
                 <div class="form-group">
@@ -25,12 +29,17 @@
                     {!! Form::number('creditos',null, array('class' => 'form-control','id'=>'creditos','placeholder'=>'Créditos equivalentes'))!!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('horasPract', 'Horas de práctica') !!}
-                    {!! Form::number('horasPract',null, array('class' => 'form-control','id'=>'horasPract','placeholder'=>'Horas de Práctica'))!!}
+                    {!! Form::label('horas', 'Horas') !!}
+                    {!! Form::number('horas',null, array('class' => 'form-control','id'=>'horas','placeholder'=>'Horas de clase'))!!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('horasTeoricas', 'Horas de teoría') !!}
-                    {!! Form::number('horasTeoricas',null, array('class' => 'form-control','id'=>'horasTeoricas','placeholder'=>'Horas de Teoría'))!!}
+                    {!! Form::label('curso', 'Tipo de curso') !!}
+                    <select class="form-control" name="curso" id="curso">
+                        <option value="">- - - -</option>
+                        <option value="Teórico">Teórico</option>
+                        <option value="Práctico">Práctico</option>
+                        <option value="T/P">T/P</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -40,13 +49,13 @@
                         <option value="obligatoria">Obligatoria</option>
                         <option value="seminario">Seminario</option>
                         <option value="optativa">Optativa</option>
-                        <option value="estancia">Estancia</option>
+                        <option value="movilidad">Movilidad</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('fechaElabP', 'Fecha Elaboración') !!}
-                    <input type="date" class="form-control" id="fechaElabP"  name="fechaElabP" placeholder="Fecha de Elaboración de materia"  value={{\Carbon\Carbon::now() }}  >
+                    {!! Form::label('fechaVigencia', 'Fecha de vigencia') !!}
+                    <input type="date" class="form-control" id="fechaVigencia"  name="fechaVigencia" placeholder="Fecha de Elaboración de materia"  value={{\Carbon\Carbon::now() }}  >
                 </div>
 
 

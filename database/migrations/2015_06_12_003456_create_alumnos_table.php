@@ -14,16 +14,16 @@ class CreateAlumnosTable extends Migration
     {
         Schema::create('alumnos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('status'); //egresado, activo, reprobado dicatamen...
             $table->string('boleta');
             $table->string('dependEconomic');//de quien depende economicmente
             $table->string('viveCon'); //con quien vive
-            $table->enum('gradoDeEstudios',['Maestria','Doctorado','Licenciatura']);
-            $table->string('situacionEstudios');
+            $table->enum('gradoDeEstudios',['Licenciatura','Maestria','Doctorado']);
+            $table->enum('situacionEstudios',['Titulado','Pasante','Créditos','Finalizado']);
             $table->double('califEstudios');
             $table->string('localidadEstudios');
             $table->double('aniosEstudios');
             $table->string('escuela',70);
+            $table->string('carrera');
             $table->string('especialidadCarrera',70);
             //$table->string('retomarEstudios');
             $table->mediumText('observacionEstudios');//¿?

@@ -15,11 +15,12 @@ class CreateDocentesTable extends Migration
         Schema::create('docentes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('sip')->unique();
-            $table->string('status');               //es estado ?
+            $table->enum('status',['Activo' , 'Licencia','Con goce de sueldo', 'Licencia sin goce de sueldo', 'Cambios de adscripción', 'Semestre sabático', 'Año sabático', 'Otro(observaciones profesor)']);
             $table->string('escuelaLugarIpn');
-            $table->string('extensionIpn',7);
+            $table->string('extensionIpn',20);
             $table->string('email2');
             $table->string('web',200);
+            $table->string('observacionesDocente',300);
 
             //$table->string('viveCon');              //duda
 
@@ -28,7 +29,7 @@ class CreateDocentesTable extends Migration
             $table->string('localidadLicenciatura');
             $table->string('carreraLicenciatura');
             $table->string('especialidadLicenciatura');
-            $table->string('situacionLicenciatura');
+            $table->enum('situacionLicenciatura',['S/E'=>'S/E','Titulado'=>'Titulado','Pasante'=>'Pasante','Créditos'=>'Créditos','Finalizado'=>'Finalizado']);
             $table->string('anioinicialLicenciatura');
             $table->string('ultimoAnioLicenciatura');
             $table->string('tesisLicenciatura');
@@ -40,7 +41,7 @@ class CreateDocentesTable extends Migration
             $table->string('localidadMaestria');
             $table->string('carreraMaestria');
             $table->string('especialidadMaestria');
-            $table->string('situacionEstudiosMaestria'); //cambiar en bd
+            $table->enum('situacionEstudiosMaestria',['S/E'=>'S/E','Titulado'=>'Titulado','Pasante'=>'Pasante','Créditos'=>'Créditos','Finalizado'=>'Finalizado']); //cambiar en bd
             $table->string('anioIniciaEstudiosMaestria');
             $table->string('ultimoAnioEstudiosMaestria');
             $table->string('tesisMaestria');
@@ -54,7 +55,7 @@ class CreateDocentesTable extends Migration
             $table->string('localidadDoctorado');
             $table->string('carreraDoctorado');
             $table->string('especialidadDoctorado');
-            $table->string('situacionEstudiosDoctorado'); //cambiar en BD por duplicidad de atributo
+            $table->enum('situacionEstudiosDoctorado',['S/E'=>'S/E','Titulado'=>'Titulado','Pasante'=>'Pasante','Créditos'=>'Créditos','Finalizado'=>'Finalizado']); //cambiar en BD por duplicidad de atributo
             $table->string('anioiniciaestudiosDoctorado');
             $table->string('ultimoAnioEstudiosDoctorado');
             $table->string('tesisDoctorado');
@@ -62,14 +63,14 @@ class CreateDocentesTable extends Migration
             $table->string('cedulaDoctorado');
             $table->string('observacionesDoctorado',300);
 
-            $table->enum('categoria',['asociado','titular']);//asociado,titular
+            $table->enum('categoria',['Asociado','Titular']);//asociado,titular
             $table->enum('nivel',['A','B','C']);//ABC
             $table->string('clavePresupuestal');
             $table->date('ingresoIpn');
             $table->string('numEmpleado',8);
             $table->string('numTarjetaEscom',8);
             $table->string('idUsuarioRegistra');
-            $table->string('fechaHoraRegistro');
+            $table->dateTime('fechaHoraRegistro');
             $table->string('idUsuarioActualiza'); //el usuario que hizo la ultima actualizacion
 
 

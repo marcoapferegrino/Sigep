@@ -13,7 +13,9 @@
                 <div class="panel panel-success">
                     <div class="panel-heading"><strong>Calificar</strong></div>
                     <div class="panel-body">
-
+                        <div class="pull-left">
+                            <h2>Grupos actuales</h2>
+                        </div>
                         @if(Request::url() != 'http://posgrado.service/historyGroups')
                             <div class="pull-right">
                                 {!! Form::open(['route' => ['alumnos.recordGroups'],'method' => 'post']) !!}

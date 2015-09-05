@@ -47,7 +47,7 @@ class AdminController extends Controller {
             'docente_id'=>$docente->id,
             'password'=>$password]);
 
-        Session::flash('message', $docente->nombre.' fue agregado exitosamente');
+        Session::flash('message', $user->getNombreCompleto().' fue agregado exitosamente');
         return redirect()->action('AdminController@getAddDocente');
 
     }
@@ -57,10 +57,6 @@ class AdminController extends Controller {
         return view('admin.addAlumno');
     }
 
-    public function getTestC()   //formulario simple
-    {
-        return view('testi');
-    }
 
     public function addAlumno(AddAlumnoRequest $request)  //peticion post para addAlumno
     {
@@ -73,7 +69,7 @@ class AdminController extends Controller {
         User::where('id',$user->id)
             ->update(['rol'=>'alumno','alumno_id'=>$alumno->id,'password'=>$password]);
 
-        Session::flash('message', 'El alumno '.$user->name.' '.$user->apellidoP.' '.$user->apellidoM.' fue agregado que empiece el juego !');
+        Session::flash('message', 'El alumno '.$user->getNombreCompleto().' fue agregado que empiece el juego !');
 
         //dd($user->toArray(),$alumno->toArray());
         return redirect()->action('AdminController@getAddAlumno');

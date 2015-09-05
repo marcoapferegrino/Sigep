@@ -22,7 +22,7 @@ class ProfesorController extends Controller {
 	public function index()
 	{
 		$dias = array();
-		;
+		
 		$horarios=User::getHorario();
 
 		foreach($horarios as $horario)
@@ -36,10 +36,10 @@ class ProfesorController extends Controller {
 
 
 	public function showCalificaciones(){
+		$idDocente =auth()->user()->docente_id;
 
-
-		$gruposAsignaturas = User::getAsignaturasGruposDocenteActually();
-		$alumnos = User::getAlumnosdeDocenteActually();
+		$gruposAsignaturas = User::getAsignaturasGruposDocenteActually($idDocente);
+		$alumnos = User::getAlumnosdeDocenteActually($idDocente);
 
 		//dd($alumnos,$gruposAsignaturas);
 		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos'));
@@ -167,15 +167,15 @@ class ProfesorController extends Controller {
 	}
 
 	public function closeActa(Request $request){
-
-		$idDocente =auth()->user()->docente_id;
+		$user = auth()->user();
+		$idDocente =$user->docente_id;
 		$idGrupoAsignatura = $request->id;
 		$grupoAsignatura = AsignaturaGrupo::find($idGrupoAsignatura);
 
 
         //validamos que el acta originalmente este en 1 para cerrar ,
         // se valida que el acta que se cierra pertenezca al docente en sesión
-		if ($grupoAsignatura->acta == 1 && $grupoAsignatura->docente_id==$idDocente) {
+		if (($grupoAsignatura->acta == 1 && $grupoAsignatura->docente_id==$idDocente) || $user->rol == "superAdmin") {
 			$grupoAsignatura->acta=0;
 			$grupoAsignatura->save();
 
@@ -186,7 +186,7 @@ class ProfesorController extends Controller {
 			Session::flash('error', 'Esta acta no te pertenece o ya se habia cerrado previamente');
 		}
 
-		return redirect()->action('ProfesorController@showCalificaciones');
+		return redirect()->action('AdminController@getAlumnosCalificar');
 
 	}
 

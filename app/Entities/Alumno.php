@@ -6,7 +6,7 @@ use PosgradoService\Entities\Entity;
 class Alumno extends Entity {
 
     protected $table = 'alumnos';
-    protected $fillable = [  'status','dependEconomic','viveCon','gradoDeEstudios','situacionEstudios' ,
+    protected $fillable = [  'status','dependEconomic','viveCon','gradoDeEstudios','situacionEstudios' ,'boleta','carrera',
         'califEstudios','localidadEstudios','aniosEstudios' ,'escuela' ,'especialidadCarrera',
         'observacionEstudios','empresaUltimoEmpleo' ,'puestoCategUltimoEmpleo','jefeInmediatoUltimoEmpleo','telefonoUltimoEmpleo',
         'fechaIngresoUltimoEmpleo','fechaTerminoUltimoEmpleo','actividadesUltimoEmpleo'  ,'motivosSeparacionUltimoEmpleo',

@@ -10,17 +10,14 @@ $(document).ready(function(){
     }
     function getRandomChar() {
         var numCaracts = "0123456789";
-        var minus = "abcdefghijklmnopqrstuvwxyz!/&%$·?=)(";
-        var mayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!/&%$·?=)(";
+        var minus = "abcdefghijklmnopqrstuvwxyz!/&%$#?=";
+        var mayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!/&%$?#=";
         var token = "";
         token += numCaracts;    token += minus;    token += mayus;
         caracter = token.charAt(getRandomNumber(0, token.length));
         return caracter;
     }
-
-    $('#buttonCurp').click(function(){
-        var tok = "";
-        var rfc = "";
+    function getRFCandCURP(){
         var name = $('#name').val();
         var apellidoP = $('#apellidoP').val();
         var apellidoM = $('#apellidoM').val();
@@ -40,16 +37,32 @@ $(document).ready(function(){
                 break;
             }
         }
+        var aux =apellidoP1l+vocalApellidoP+apellidoM1l+nombre1l+fechaNac+genero;
+        console.log('func:'+aux);
+        return aux ;
+    }
+
+
+
+    $('#buttonCurp').click(function(){
+        var tok = "";
+        var rfc = "";
+
         for(var j=0; j<6;j++) {
             tok += getRandomChar();
         }
-        rfc += apellidoP1l+vocalApellidoP+apellidoM1l+nombre1l+fechaNac+genero+tok;
+
+        var aux = getRFCandCURP();
+        rfc += aux+tok;
         $('#password').val(rfc);
 
-
-
     });
+    $('#helpCurp').click(function(){
 
+        var aux = getRFCandCURP();
+        $('#curp').val(aux);
+        $('#rfc').val(aux);
+    })
 
 
 });

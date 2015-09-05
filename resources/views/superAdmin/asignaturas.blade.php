@@ -24,10 +24,12 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
+                                <th>Clave</th>
                                 <th>Créditos</th>
                                 <th>Tipo</th>
-                                <th>Hrs Práctica</th>
-                                <th>Hrs Teoría</th>
+                                <th>Horas</th>
+                                <th>Curso</th>
+                                <th>Fecha de vigencia</th>
                                 <th>Operaciones</th>
 
                             </tr>
@@ -38,10 +40,12 @@
                                 <tr>
                                     <td> {{++$index}}  </td>
                                     <td> {{$asignatura->nombre}} </td>
-                                    <td class="text-center"> {{$asignatura->creditos}} </td>
+                                    <td>{{$asignatura->claveAsignatura}}</td>
+                                    <td> {{$asignatura->creditos}} </td>
                                     <td> {{$asignatura->tipo}} </td>
-                                    <td class="text-center"> {{$asignatura->horasPract}} </td>
-                                    <td class="text-center"> {{$asignatura->horasTeoricas}} </td>
+                                    <td> {{$asignatura->horas}} </td>
+                                    <td> {{$asignatura->curso}} </td>
+                                    <td>{{$asignatura->fechaVigencia}}</td>
 
                                     <td>
                                         <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditMateria{{$asignatura->id}}">

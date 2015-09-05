@@ -8,19 +8,23 @@
 
 
 use \PosgradoService\Entities\Asignatura;
+use Faker\Factory as Faker;
+use Faker\Provider;
 
 class AsignaturaSeeder extends \Illuminate\Database\Seeder {
 
 
     public  function run()
     {
+        $faker = Faker::create();
         $asignaturas = array(
             'Arquitectura de moviles',
             'Métodos matématicos',
             'Moviles tecnologías',
             'Seminario I',
             'Seminario II',
-            'Redes moviles '
+            'Redes moviles ',
+            'Seminario III',
 
         );
 
@@ -28,11 +32,12 @@ class AsignaturaSeeder extends \Illuminate\Database\Seeder {
         {
             Asignatura::create([
                 'nombre' => $asignaturas[$i],
+                'claveAsignatura'=>'clv'.$i,
                 'creditos' => $i*10,
-                'horasPract' => $i,
-                'horasTeoricas' => $i*2,
-                'tipo' => 'obligatoria',
-                'fechaElabP'=>\Carbon\Carbon::now(),
+                'horas' => $i*2,
+                'curso'=> $faker->randomElement(['Teórico','Práctico','T/P']),
+                'tipo' => $faker->randomElement(['obligatoria','seminario','optativa','movilidad']),
+                'fechaVigencia'=>\Carbon\Carbon::now(),
 
 
         ]);

@@ -24,12 +24,13 @@ class CreateAsignaturaRequest extends Request
     public function rules()
     {
         return [
-            'nombre'        => 'required | unique:asignaturas,nombre',
-            'creditos'      => 'required | integer',
-            'horasPract'    => 'required | integer',
-            'horasTeoricas' => 'required | integer',
-            'tipo'          => 'required | in:obligatoria,seminario,optativa,estancia',
-            'fechaElabP'    => 'required | date',
+            'nombre'            => 'required | unique:asignaturas,nombre',
+            'creditos'          => 'required | integer',
+            'claveAsignatura'   =>'required| unique:asignaturas,claveAsignatura',
+            'curso'             => 'required| in:Teórico,Práctico,T/P',
+            'horas'             => 'required | integer',
+            'tipo'              => 'required | in:obligatoria,seminario,optativa,movilidad',
+            'fechaVigencia'        => 'required | date',
 
         ];
     }

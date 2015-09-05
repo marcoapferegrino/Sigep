@@ -5,7 +5,7 @@
 
 class Asignatura extends Entity {
 
-    protected $fillable = array('nombre','creditos','horasPract','horasTeoricas','fechaElabP');
+    protected $fillable = array('nombre','creditos','horas','fechaVigencia','claveAsignatura','curso','tipo');
     /**
      * Regresa los grupos que tienen esta asignatura
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

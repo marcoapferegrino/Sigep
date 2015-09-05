@@ -33,10 +33,11 @@ class UpdateAsignaturaRequest extends Request
 
             'nombre'        => 'required | unique:asignaturas,nombre,'.$request->id,
             'creditos'      => 'required | integer',
-            'horasPract'    => 'required | integer',
-            'horasTeoricas' => 'required | integer',
+            'horas'             => 'required | integer',
+            'claveAsignatura'   =>'required| unique:asignaturas,claveAsignatura,'.$request->id,
+            'curso'             => 'required| in:Teórico,Práctico,T/P',
             'tipo'          => 'required | in:obligatoria,seminario,optativa,estancia',
-            'fechaElabP'    => 'required | date',
+            'fechaVigencia'        => 'required | date',
 
         ];
     }
