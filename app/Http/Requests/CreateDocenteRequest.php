@@ -33,8 +33,8 @@ class CreateDocenteRequest extends Request {
 
 
         return [
-            'status'                   => 'required | in:Activo,Sabatico,De baja', //>> luis
-            'name'                   => 'required | ',
+            'status'                   => 'required | in:activo,licencia,con goce de sueldo,cambios de adscripción,semestre sabatico,año sabático,otro', //>> luis
+            'name'                     => 'required | ',
             'apellidoP'                => 'required | ',
             'apellidoM'                => 'required | ',
             'fechanac'                 => 'required|date|after:'.$fechaMinCumple.'|before:'.$fechaMaxCumple,
@@ -63,7 +63,7 @@ class CreateDocenteRequest extends Request {
             'escuelaLicenciatura'      => 'required | string  ',
             'localidadLicenciatura'    => 'required | string ',
             'carreraLicenciatura'      => 'required | string ',
-            'situacionLicenciatura'    => 'required | string ',
+            'situacionLicenciatura'    => 'required | in:titulado,pasante,creditos finalizados ',
 
             'anioinicialLicenciatura'  => 'required | string ',
             'ultimoAnioLicenciatura'   => 'required | string ',
@@ -71,11 +71,39 @@ class CreateDocenteRequest extends Request {
             'examenLicenciatura'       => 'required | string ',
             'cedulaLicenciatura'       => 'required | string ',
 
+
+
+            'escuelaMaestria'          => 'required | string ',
+            'localidadMaestria'        => 'required | string ',
+            'carreraMaestria'          => 'required | string ',
+            'especialidadMaestria'     => 'required | string ',
+            'situacionMaestria'        => 'required | in:titulado,pasante,creditos finalizados  ',
+            'anioinicialMaestria'      => 'required | string ',
+            'ultimoanioMaestria'       => 'required | string ',
+            'tesisMaestria'            => 'required | string ',
+            'examenMaestria'           => 'required | string ',
+            'cedulaMaestria'           => 'required | string ',
+            'observacionesMaestria'    => 'required | string ',
+
+
+            'escuelaDoctorado'         => 'required | string ',
+            'localidadDoctorado'       => 'required | string ',
+            'carreraDoctorado'         => 'required | string ',
+            'especialidadDoctorado'    => 'required | string ',
+            'situacionDoctorado'       => 'required | in:titulado,pasante,creditos finalizados  ',
+            'anioinicialDoctorado'     => 'required | string ',
+            'ultimoanioDoctorado'      => 'required | string ',
+            'tesisDoctorado'           => 'required | string ',
+            'examenDoctorado'          => 'required | string ',
+            'cedulaDoctorado'          => 'required | string ',
+            'observacionesDoctorado'   => 'required | string ',
+
+
             'nivel'                    => 'required | string ',
             'clavePresupuestal'        => 'required | string ',
             'ingresoIpn'               => 'required |',
             'numEmpleado'              => 'required | ',
-            'sip'                      => 'required | integer',
+            'sip'                      => 'required | ',
 
         ];
     }

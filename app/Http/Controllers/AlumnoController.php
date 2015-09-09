@@ -1,6 +1,9 @@
 <?php namespace PosgradoService\Http\Controllers;
 
 use PosgradoService\Http\Requests;
+
+use Illuminate\Support\Facades\DB;
+use PosgradoService\Entities\Alumno;
 use PosgradoService\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -82,36 +85,11 @@ class AlumnoController extends Controller {
     }
     public function getCalificaciones()
     {
-        $Asignatura1 = array(
-            "id"     => "1",
-            "nombre" => "AAA",
-            "grupo" =>"5CV5",
-            "calif"  => "10",
 
-    );
-        $Asignatura2 = array(
-            "id"    => "3",
-            "nombre" => "BBB",
-            "grupo" =>"1CV1",
-            "calif"  => "9",
+        $idAlumno =auth()->user()->alumno_id;
 
-    );
-        $Asignatura3 = array(
-            "id"     => "4",
-            "nombre" => "CCC",
-            "grupo" =>"7CM5",
-            "calif"  => "5",
+        $gruposAsignaturas = Alumno::getCalificaciones($idAlumno);
 
-    );
-        $Asignatura4 = array(
-            "id"     => "5",
-            "nombre" => "DDD",
-            "grupo" =>"1CM5",
-            "calif"  => "9",
-
-        );
-
-        $gruposAsignaturas = array($Asignatura1,$Asignatura2,$Asignatura3,$Asignatura4);
         return view('alumno.calificacionesAlumno', compact('gruposAsignaturas') );
 
 

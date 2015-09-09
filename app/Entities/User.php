@@ -201,6 +201,17 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         return $alumnos;
     }
 
+    public static function getAlumnosAllPagination()
+    {
+        $alumnos = DB::table('users')
+            ->select('*')
+            ->where('rol','=','alumno')
+            ->paginate(10);
+
+
+        return $alumnos;
+    }
+
     public function getNombreCompleto()
     {
         return $this->name." ".$this->apellidoP." ".$this->apellidoM;
@@ -220,6 +231,18 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
             ->paginate(10);
         return $alumnos;
     }
+
+    public static function getAlumnosBoletaBusqueda($alumnoId)//en construccion
+    {
+        $alumnos = DB::table('users')
+            ->join('alumnos','alumnos.id','=','users.alumno_id')
+            ->where('boleta','=',$alumnoId)
+            ->paginate(10);
+        //dd($alumnos);
+       // $alumnos = Alumno::all()->where('boleta',$alumnoId)->;
+        return $alumnos;
+    }
+
 
 
     public static function getAsignaturasGrupos()
@@ -292,6 +315,7 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
             $query->where('rol',$rol);
         }
     }
+
 
 
 

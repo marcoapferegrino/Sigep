@@ -3,6 +3,8 @@
 
 use PosgradoService\Entities\Entity;
 
+use Illuminate\Support\Facades\DB;
+
 class Alumno extends Entity {
 
     protected $table = 'alumnos';
@@ -56,6 +58,36 @@ class Alumno extends Entity {
     {
         return $this->hasMany(Inscripcion::getClass());
     }
+
+	
+    public static function getCalificaciones($idAlumno) // obtiene las calificaciones
+    {
+        $idAlumno=6;
+
+        $boleta = DB::table('inscripciones')
+            ->join('asignatura_grupo','asignatura_grupo.asignatura_id','=','inscripciones.id')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->select('asignaturas.nombre','grupos.nombre as grupoNombre','inscripciones.calificacion')
+            ->where('inscripciones.alumno_id','=',$idAlumno)
+            ->get();
+
+        //$boleta = array(2,3,4);
+        return $boleta;
+    }
+
+    public static function getHorarioAlumno($idAlumno)
+    {
+        $horario = DB::table('inscripciones')
+            ->join('asignatura_grupo','asignatura_grupo.asignatura_id','=','inscripciones.id')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('horaDias','asignatura_grupo.horaDias_id','=','horaDias.id')
+            ->select('asignaturas.nombre','grupos.nombre as grupoNombre','asignatura_grupo.')
+            ->where('asignatura_grupo.docente_id','=',$idAlumno)
+            ->get();
+    }
+
 
 
 

@@ -6,6 +6,9 @@
 class AsignaturaGrupo extends Entity {
 
 
+
+    protected $fillable = array('docente_id','grupo_id','acta','asignatura_id','horaDias_id');
+
     protected $table = 'asignatura_grupo';
 
     /**

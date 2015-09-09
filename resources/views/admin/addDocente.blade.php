@@ -14,6 +14,26 @@
                         <div class="form-body">
 
                             {!! Form::open(['route' => 'docente.addDocente','method' => 'post', 'class'=>'form-inline']) !!}
+                            <a name="cuenta">
+                                <div class="panel panel-success">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Cuenta</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            {!! Form::label('email', 'Email*') !!}
+                                            {!! Form::email('email',null, array('class' => 'form-control','id'=>'email','placeholder'=>'Email','required'))!!}
+                                        </div>
+
+                                        <div class="form-group">
+                                            {!! Form::label('password', 'Contraseña*') !!}
+                                            {!! Form::text('password',null, array('class' => 'form-control','id'=>'password','placeholder'=>'Pon una contraseña','required'))!!}
+                                        </div>
+
+                                        <button class="btn btn-primary" id="buttonCurp" type="button">Ayuda generar contraseña <i class="fa fa-cogs"></i></button>
+                                    </div>
+                                </div>
+                            </a>
                                 <div class="panel panel-info">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Datos personales</h3>
@@ -45,6 +65,8 @@
                                             {!! Form::label('nacionalidad', 'Nacionalidad*') !!}
                                             {!! Form::text('nacionalidad',null, array('class' => 'form-control text-capitalize','id'=>'nacionalidad','placeholder'=>'Nacionalidad','required'))!!}
                                         </div>
+
+                                        <br><br>
 
                                         <div class="form-group">
                                             {!! Form::label('edoNacimiento', 'Estado*') !!}
@@ -92,7 +114,7 @@
                                         <div class="form-group">
 
                                             {!! Form::text('ciudad',null, array('class' => 'form-control text-capitalize','id'=>'ciudad','placeholder'=>'Ciudad','required'))!!}
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
 
                                             {!! Form::text('estado',null, array('class' => 'form-control text-capitalize','id'=>'estado','placeholder'=>'Estado','required'))!!}
@@ -116,7 +138,6 @@
                                         <div class="form-group">
                                             {!! Form::label('email2', 'Email2') !!}
                                             {!! Form::email('email2',null, array('class' => 'form-control','id'=>'email2','placeholder'=>'Email adicional'))!!}
-                                            <a href="#cuenta"><p class="help-block">El email principal va en la seccion de cuenta hasta abajo</p></a>
                                         </div>
                                         <br><br>
 
@@ -138,14 +159,17 @@
                                             {{--{!! Form::label('viveCon', '¿Con quién vive?*') !!}--}}
                                             {{--{!! Form::text('viveCon',null, array('class' => 'form-control text-capitalize','id'=>'viveCon','placeholder'=>'¿Vive con alguien?','required'))!!}--}}
                                         {{--</div>--}}
-
                                         <div class="form-group">
                                             {!! Form::label('status', 'Estado del docente*') !!}
                                             <select class="form-control" name="status" id="status" required>
                                                 <option value="">- - - -</option>
-                                                <option value="Activo">Activo</option>
-                                                <option value="Sabatico">En año sabático</option>
-                                                <option value="De baja">Dado de baja</option>
+                                                <option value="activo">Activo</option>
+                                                <option value="licencia">Licencia</option>
+                                                <option value="cambios de adscripción">Cambio de adscripción</option>
+                                                <option value="semestre sabatico">Semestre sabático</option>
+                                                <option value="año sabático">Año sabático</option>
+                                                <option value="con goce de sueldo">Con goce de sueldo</option>
+                                                <option value="otro">Otro(Especificar en observaciones)</option>
                                             </select>
                                         </div>
 
@@ -194,23 +218,23 @@
                                 </div>
 
                                 <div class="form-group">
-                                    {!! Form::label('situacionLicenciatura', 'Situacion licenciatura*') !!}
+                                    {!! Form::label('situacionLicenciatura', 'Situación licenciatura*') !!}
                                     <select class="form-control" name="situacionLicenciatura" id="situacionLicenciatura" required>
                                         <option value="">- - - -</option>
-                                        <option value="Terminada">Terminada</option>
-                                        <option value="Trunca">Trunca</option>
-                                        <option value="En progreso">En progreso</option>
+                                        <option value="titulado">Titulado</option>
+                                        <option value="pasante">Pasante</option>
+                                        <option value="creditos finalizados">Creditos finalizados</option>
                                     </select>
                                 </div>
 
 
                                 <div class="form-group">
                                     {!! Form::label('anioinicialLicenciatura', 'Año inicio licenciatura*') !!}
-                                    {!! Form::text('anioinicialLicenciatura',null, array('class' => 'form-control ','id'=>'anioinicialLicenciatura','placeholder'=>'Año en que inició la licenciatura','required'))!!}
+                                    {!! Form::number('anioinicialLicenciatura',null, array('class' => 'form-control ','id'=>'anioinicialLicenciatura','placeholder'=>'Año en que inició la licenciatura','required'))!!}
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('ultimoAnioLicenciatura', 'Año fin licenciatura*') !!}
-                                    {!! Form::text('ultimoAnioLicenciatura',null, array('class' => 'form-control ','id'=>'ultimoAnioLicenciatura','placeholder'=>'Año en que terminó la licenciatura','required'))!!}
+                                    {!! Form::number('ultimoAnioLicenciatura',null, array('class' => 'form-control ','id'=>'ultimoAnioLicenciatura','placeholder'=>'Año en que terminó la licenciatura','required'))!!}
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('tesisLicenciatura', 'Tesis licenciatura*') !!}
@@ -256,23 +280,23 @@
                                         </div>
 
                                         <div class="form-group">
-                                            {!! Form::label('situacionEstudiosMaestria', 'Situacion maestria') !!}
+                                            {!! Form::label('situacionEstudiosMaestria', 'Situación maestria') !!}
                                             <select class="form-control" name="situacionEstudiosMaestria" id="situacionEstudiosMaestria" >
                                                 <option value="">- - - -</option>
-                                                <option value="Terminada">Terminada</option>
-                                                <option value="Trunca">Trunca</option>
-                                                <option value="En progreso">En progreso</option>
+                                                <option value="titulado">Titulado</option>
+                                                <option value="pasante">Pasante</option>
+                                                <option value="creditos finalizados">Creditos finalizados</option>
                                             </select>
                                         </div>
 
 
                                         <div class="form-group">
                                             {!! Form::label('anioIniciaEstudiosMaestria', 'Año inicio maestría') !!}
-                                            {!! Form::text('anioIniciaEstudiosMaestria',null, array('class' => 'form-control ','id'=>'anioIniciaEstudiosMaestria','placeholder'=>'Año en que inició la maestría'))!!}
+                                            {!! Form::number('anioIniciaEstudiosMaestria',null, array('class' => 'form-control ','id'=>'anioIniciaEstudiosMaestria','placeholder'=>'Año en que inició la maestría'))!!}
                                         </div>
                                         <div class="form-group">
                                             {!! Form::label('ultimoAnioEstudiosMaestria', 'Año fin maestría') !!}
-                                            {!! Form::text('ultimoAnioEstudiosMaestria',null, array('class' => 'form-control ','id'=>'ultimoAnioEstudiosMaestria','placeholder'=>'Año en que terminó la maestría'))!!}
+                                            {!! Form::number('ultimoAnioEstudiosMaestria',null, array('class' => 'form-control ','id'=>'ultimoAnioEstudiosMaestria','placeholder'=>'Año en que terminó la maestría'))!!}
                                         </div>
                                         <div class="form-group">
                                             {!! Form::label('tesisMaestria', 'Tesis maestría') !!}
@@ -318,23 +342,23 @@
                                         </div>
 
                                         <div class="form-group">
-                                            {!! Form::label('situacionEstudiosDoctorado', 'Situacion Doctorado') !!}
+                                            {!! Form::label('situacionEstudiosDoctorado', 'Situación Doctorado') !!}
                                             <select class="form-control" name="situacionEstudiosDoctorado" id="situacionEstudiosDoctorado" >
                                                 <option value="">- - - -</option>
-                                                <option value="Terminada">Terminada</option>
-                                                <option value="Trunca">Trunca</option>
-                                                <option value="En progreso">En progreso</option>
+                                                <option value="titulado">Titulado</option>
+                                                <option value="pasante">Pasante</option>
+                                                <option value="creditos finalizados">Creditos finalizados</option>
                                             </select>
                                         </div>
 
 
                                         <div class="form-group">
                                             {!! Form::label('anioIniciaEstudiosDoctorado', 'Año inicio Doctorado') !!}
-                                            {!! Form::text('anioIniciaEstudiosDoctorado',null, array('class' => 'form-control ','id'=>'anioIniciaEstudiosDoctorado','placeholder'=>'Año en que inició doctorado'))!!}
+                                            {!! Form::number('anioIniciaEstudiosDoctorado',null, array('class' => 'form-control ','id'=>'anioIniciaEstudiosDoctorado','placeholder'=>'Año en que inició doctorado'))!!}
                                         </div>
                                         <div class="form-group">
                                             {!! Form::label('ultimoAnioEstudiosDoctorado', 'Año fin doctorado') !!}
-                                            {!! Form::text('ultimoAnioEstudiosDoctorado',null, array('class' => 'form-control ','id'=>'ultimoAnioEstudiosDoctorado','placeholder'=>'Año en que terminó doctorado'))!!}
+                                            {!! Form::number('ultimoAnioEstudiosDoctorado',null, array('class' => 'form-control ','id'=>'ultimoAnioEstudiosDoctorado','placeholder'=>'Año en que terminó doctorado'))!!}
                                         </div>
                                         <div class="form-group">
                                             {!! Form::label('tesisDoctorado', 'Tesis doctorado') !!}
@@ -400,26 +424,7 @@
                                 </div><!-- Fin datos empleado -->
                                 <br><br>
 
-                                <a name="cuenta">
-                                    <div class="panel panel-success">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">Cuenta</h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            <div class="form-group">
-                                                {!! Form::label('email', 'Email*') !!}
-                                                {!! Form::email('email',null, array('class' => 'form-control','id'=>'email','placeholder'=>'Email','required'))!!}
-                                            </div>
 
-                                            <div class="form-group">
-                                                {!! Form::label('password', 'Contraseña*') !!}
-                                                {!! Form::text('password',null, array('class' => 'form-control','id'=>'password','placeholder'=>'Pon una contraseña','required'))!!}
-                                            </div>
-
-                                            <button class="btn btn-primary" id="buttonCurp" type="button">Ayuda generar contraseña <i class="fa fa-cogs"></i></button>
-                                        </div>
-                                    </div>
-                                </a>
 
 
                                 {!! Form::submit('Guardar',array('class'=>'btn btn-success btn-block')) !!}
