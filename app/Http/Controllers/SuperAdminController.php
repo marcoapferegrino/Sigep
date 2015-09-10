@@ -152,6 +152,8 @@ class SuperAdminController extends Controller {
 
 	public function addAsignatura(CreateAsignaturaRequest $request)
 	{
+		//dd($request->all());
+
 		$asignatura = Asignatura::create($request->all());
 
 		Session::flash('message', $asignatura->nombre.' fue agregado :D');

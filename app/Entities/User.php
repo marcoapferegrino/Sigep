@@ -191,9 +191,10 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
             ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
             ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
             ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
             ->join('alumnos','alumnos.id','=','inscripciones.alumno_id')
             ->join('users','users.alumno_id','=','alumnos.id')
-            ->select('users.id','users.name','users.apellidoP','users.apellidoM','users.email','users.telefono','asignaturas.nombre as nombreAsignatura','grupos.nombre as nombreGrupo')
+            ->select('users.id','users.name','users.apellidoP','users.apellidoM','users.email','users.telefono','asignaturas.nombre as nombreAsignatura','grupos.nombre as nombreGrupo','periodos.finPeriodo')
             ->where('inscripciones.docente_id','=',$docenteId)
             ->paginate(10);
 
@@ -213,9 +214,10 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
             ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
             ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
             ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
             ->join('alumnos','alumnos.id','=','inscripciones.alumno_id')
             ->join('users','users.alumno_id','=','alumnos.id')
-            ->select('users.id','users.name','users.apellidoP','users.apellidoM','users.email','users.telefono','asignaturas.nombre as nombreAsignatura','grupos.nombre as nombreGrupo')
+            ->select('users.id','users.name','users.apellidoP','users.apellidoM','users.email','users.telefono','asignaturas.nombre as nombreAsignatura','grupos.nombre as nombreGrupo','periodos.finPeriodo')
             ->where('inscripciones.docente_id','=',$docenteId)->where(DB::raw("CONCAT(name,' ',apellidoP,' ',apellidoM)"),"LIKE","%$name%")
             ->paginate(10);
         return $alumnos;

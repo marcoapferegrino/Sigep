@@ -30,6 +30,7 @@
                                             <th>Teléfono</th>
                                             <th>Asignatura</th>
                                             <th>Grupo</th>
+                                            <th>Status</th>
                                             <th>Operaciones</th>
                                         </tr>
                                     </thead>
@@ -41,6 +42,12 @@
                                                 <td>{{$alumno->telefono}}</td>
                                                 <td>{{$alumno->nombreAsignatura}}</td>
                                                 <td>{{$alumno->nombreGrupo}}</td>
+                                                @if($alumno->finPeriodo >= \Carbon\Carbon::now())
+                                                    <td class="success">Alumno actual</td>
+                                                @else
+                                                    <td class="danger">Alumno anterior</td>
+                                                @endif
+
                                                 <td><a href="{{route('alumnos.showExpediente',$alumno->id)}}">Ver</a></td>
                                             </tr>
                                         @endforeach

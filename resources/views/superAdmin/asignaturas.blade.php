@@ -42,7 +42,7 @@
                                     <td> {{$asignatura->nombre}} </td>
                                     <td>{{$asignatura->claveAsignatura}}</td>
                                     <td> {{$asignatura->creditos}} </td>
-                                    <td> {{$asignatura->tipo}} </td>
+                                    <td> {{$asignatura->tipo}} <br><ins>{{$asignatura->escuelaMovilidad}}</ins> </td>
                                     <td> {{$asignatura->horas}} </td>
                                     <td> {{$asignatura->curso}} </td>
                                     <td>{{$asignatura->fechaVigencia}}</td>
@@ -76,6 +76,12 @@
     </div>
 </div>
 
+
+
     @include('superAdmin.partials.addAsignaturaModal')
 
+@endsection
+
+@section('scripts')
+    <script src="/js/inputMovilidad.js"></script>
 @endsection

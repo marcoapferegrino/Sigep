@@ -8,11 +8,10 @@
             <div class="panel-heading" role="tab" id="heading{{$grupoAsignatura->id}}">
                 <h4 class="panel-title">
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$grupoAsignatura->id}}" aria-expanded="true" aria-controls="collapse{{$grupoAsignatura->id}}">
-                        {{$grupoAsignatura->nombre}} <small>en el salón</small> {{$grupoAsignatura->salon}}
+                        {{$grupoAsignatura->nombre}} <small>en el salón</small> {{$grupoAsignatura->salon}} <small>Fin de Periodo</small> {{$grupoAsignatura->finPeriodo}}
                     </a>
                     @if($grupoAsignatura->acta == 0)
                         <div class="pull-right text-danger">¡ Esta acta esta cerrada !</div>
-
                     @else
                         <div class="pull-right ">Acta abierta</div>
                     @endif
@@ -26,7 +25,7 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Email</th>
-                            <th>Calificación</th>
+                            @if($grupoAsignatura->finPeriodo>\Carbon\Carbon::now())<th>Calificación</th>@endif
                             @if($grupoAsignatura->acta == 1 || Auth::getRol()=='superAdmin')
                             <th>Calificar</th>
                             @endif
@@ -68,25 +67,24 @@
                                         @endif
                                     </td>
                                     <td>
+                                        @if($grupoAsignatura->finPeriodo>\Carbon\Carbon::now())
+                                            @if($grupoAsignatura->acta == 1|| Auth::getRol()=='superAdmin')
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <input type="hidden" name="inscripcion_ids[]" value="{{$alumno->inscripcion_id}}">
+                                                        {!!Form::select('calificaciones[]', config('optionsCalifications.calificaciones'),null,['class'=>'form-control'])!!}
 
-                                    @if($grupoAsignatura->acta == 1|| Auth::getRol()=='superAdmin')
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-
-                                                <input type="hidden" name="inscripcion_ids[]" value="{{$alumno->inscripcion_id}}">
-                                                {!!Form::select('calificaciones[]', config('optionsCalifications.calificaciones'),null,['class'=>'form-control'])!!}
-
-                                            </div>
-                                        </div>
-                                    @endif
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endif
                                 </tr>
                             @endif
                         @endforeach
                         </tbody>
                     </table>
 
-
+                   @if($grupoAsignatura->finPeriodo>\Carbon\Carbon::now())
                         @if(($grupoAsignatura->acta == 1 && Auth::getRol()=='docente')|| Auth::getRol()=='superAdmin')
                             <div class="col-md-8 col-lg-offset-2">
                                 <button type="submit" onclick="return confirm('Seguro que se merecen estas calificaciones ?')" class="btn btn-info btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="Enviar calificación">
@@ -105,6 +103,7 @@
                         </div>
                         {!! Form::close() !!}
                          @endif
+                    @endif
 
 
                 </div>

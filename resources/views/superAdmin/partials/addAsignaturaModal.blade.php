@@ -42,17 +42,19 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="tipoOption">
                      {!! Form::label('tipo', 'Tipo de Asignatura') !!}
                     <select class="form-control" name="tipo" id="tipo">
-                        <option value="">- - - -</option>
+                        {{--<option value="">- - - -</option>--}}
                         <option value="obligatoria">Obligatoria</option>
                         <option value="seminario">Seminario</option>
                         <option value="optativa">Optativa</option>
                         <option value="movilidad">Movilidad</option>
                     </select>
                 </div>
+                <div class="form-group" id="inputEscuelaMovilidad">
 
+                </div>
                 <div class="form-group">
                     {!! Form::label('fechaVigencia', 'Fecha de vigencia') !!}
                     <input type="date" class="form-control" id="fechaVigencia"  name="fechaVigencia" placeholder="Fecha de Elaboración de materia"  value={{\Carbon\Carbon::now() }}  >
@@ -69,3 +71,4 @@
         </div>
     </div>
 </div>
+

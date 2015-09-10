@@ -26,11 +26,11 @@ class CreateAsignaturaRequest extends Request
         return [
             'nombre'            => 'required | unique:asignaturas,nombre',
             'creditos'          => 'required | integer',
-            'claveAsignatura'   =>'required| unique:asignaturas,claveAsignatura',
-            'curso'             => 'required| in:Teórico,Práctico,T/P',
+            'claveAsignatura'   =>'required  | unique:asignaturas,claveAsignatura',
+            'curso'             => 'required | in:Teórico,Práctico,T/P',
             'horas'             => 'required | integer',
             'tipo'              => 'required | in:obligatoria,seminario,optativa,movilidad',
-            'fechaVigencia'        => 'required | date',
+            'fechaVigencia'     => 'required | date',
 
         ];
     }

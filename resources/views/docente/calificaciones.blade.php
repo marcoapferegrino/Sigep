@@ -14,9 +14,15 @@
                     <div class="panel-heading"><strong>Calificar</strong></div>
                     <div class="panel-body">
                         <div class="pull-left">
-                            <h2>Grupos actuales</h2>
+                            @if(Request::url() == 'http://posgrado.service/calificaciones')
+                                <h2>Grupos actuales</h2>
+                            @endif
+                                @if(Request::url() == 'http://posgrado.service/historyGroups')
+                                    <h2>Grupos anteriores</h2>
+                                @endif
                         </div>
                         @if(Request::url() != 'http://posgrado.service/historyGroups')
+
                             <div class="pull-right">
                                 {!! Form::open(['route' => ['alumnos.recordGroups'],'method' => 'post']) !!}
                                 <div class="col-md-12">

@@ -47,7 +47,6 @@
                                         <td>{{$periodo->inicioCalificaciones}}</td>
                                         <td>{{$periodo->finCalificaciones}}</td>
                                         <td>
-
                                             <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditPeriodo{{$periodo->id}}">
                                                 <i class="fa fa-pencil-square-o"></i>
                                             </button>
@@ -57,21 +56,12 @@
                                                 <i class="fa fa-trash-o"></i>
                                             </button>
                                             {!! Form::close() !!}
-
-
-
                                         </td>
                                         @include('superAdmin.partials.editPeriodoModal')
-
                                     </tr>
-
-
                                 @endforeach
                                 </tbody>
                             </table>
-
-
-
                         </div>
                     </div>
                 </div>

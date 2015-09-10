@@ -2,6 +2,9 @@
 
 
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
 class Grupo extends Entity {
 
     protected $table = 'grupos';
@@ -15,13 +18,7 @@ class Grupo extends Entity {
         return $this->belongsTo(Periodo::getClass());
     }
 
-    /**
-     * @return AsignaturaGrupo
-     */
-    public function asignaturasGrupo()
-    {
-        return $this->hasMany(AsignaturaGrupo::getClass());
-    }
+
 
 
 

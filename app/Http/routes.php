@@ -230,15 +230,6 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
-Route::get('testingDocentes',function(){
-
-
-    $datosProfesorGrupoAsignatura = \PosgradoService\Entities\User::getAsignaturasDeAlumno(2);
-
-    dd($datosProfesorGrupoAsignatura);
-});
-
-
 
 
 

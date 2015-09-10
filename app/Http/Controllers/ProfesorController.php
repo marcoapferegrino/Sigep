@@ -60,7 +60,7 @@ class ProfesorController extends Controller {
 	{
 		$idDocente =auth()->user()->docente_id;
 		$alumnos = User::getAlumnosdeDocentePagination($idDocente);
-
+		//dd($alumnos->toArray());
 		return view('docente.showAlumnos',compact('alumnos'));
 	}
 
