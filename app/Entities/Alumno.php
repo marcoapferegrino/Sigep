@@ -2,6 +2,8 @@
 
 
 use PosgradoService\Entities\Entity;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Alumno extends Entity {
 
@@ -55,6 +57,48 @@ class Alumno extends Entity {
     public function inscripciones()
     {
         return $this->hasMany(Inscripcion::getClass());
+    }
+
+	
+    public static function getCalificaciones() // obtiene las calificaciones
+    {
+        $boleta =DB::table('inscripciones')
+            ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
+            ->join('horaDias','asignatura_grupo.horaDias_id','=','horaDias.id')
+            ->select('asignaturas.nombre as nombre','grupos.nombre as grupoNombre','inscripciones.calificacion')
+            //->where('periodos.inicioPeriodo','<=',$hoy)
+            //->where('periodos.finPeriodo','>=',$hoy)
+            ->where('inscripciones.alumno_id','=',auth()->user()->alumno_id)
+            ->get();;
+
+
+        return $boleta;
+    }
+
+
+
+    public static function getHorarioDeAlumno()
+    {
+        $hoy=Carbon::now()->toDateString();
+
+        //$horario = DB::table('asignatura_grupo')
+        $horario = DB::table('inscripciones')
+            ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
+            ->join('horaDias','asignatura_grupo.horaDias_id','=','horaDias.id')
+            ->select('asignaturas.nombre','grupos.salon','horaDias.dias')
+            //->where('periodos.inicioPeriodo','<=',$hoy)
+            //->where('periodos.finPeriodo','>=',$hoy)
+            ->where('inscripciones.alumno_id','=',auth()->user()->alumno_id)
+            ->get();
+       // dd($horario);
+
+        return $horario;
     }
 
 

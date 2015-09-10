@@ -9,7 +9,7 @@
                     <div class="panel-heading">Home</div>
 
                     <div class="panel-body">
-                        Cosas del alumno!!
+                        Bienvenido alumno
                     </div>
                 </div>
             </div>

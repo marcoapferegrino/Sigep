@@ -10,6 +10,22 @@
 
                     <div class="panel-body">
                         Bienvenido admin!!
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Listas</div>
+
+                            <div class="panel-body">
+
+                                <i class="fa fa-list-ol fa-lg"></i>
+                                <a href="{{url('getGrupos')}}">Lista de grupos</a>
+                                <br>
+                                <i class="fa fa-list-ol fa-lg"></i>
+                                <a href="{{url('getInscritos')}}">Lista de alumnos inscritos</a>
+                                <br>
+
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

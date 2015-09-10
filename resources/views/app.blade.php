@@ -4,7 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Posgrado</title>
+
+	<title>SIGEP IPN</title>
+
 
 	<link href="/css/app.css" rel="stylesheet">
 
@@ -55,9 +57,12 @@
 
                     @if (!Auth::guest())
                         @if(Auth::getRol()=="admin")
-                            <li><a href="">Crear Horarios</a></li>
 							<li><a href="{{url('getAddAlumno')}}">Registrar alumno<i class="fa fa-pencil fa-lg"></i></a></li>
-							<li><a href="{{url('getAddDocente')}}">Registro de docente <i class="fa fa-pencil fa-lg"></i></a></li>
+                            <li><a href="{{url('getAddDocente')}}">Registro de docente <i class="fa fa-pencil fa-lg"></i></a></li>
+                            <li><a href="{{url('getAddSalon')}}">Registro de grupos  <i class="fa fa-pencil fa-lg"></i></a></li>
+                            <li><a href="{{url('getAddGrupo')}}">Registro de materias a grupos <i class="fa fa-pencil fa-lg"></i></a></li>
+
+                            <li><a href="{{url('getAddInscripcion')}}">Inscripciones <i class="fa fa-pencil fa-lg"></i></a></li>
 
 
                         @elseif(Auth::getRol()=="superAdmin")
@@ -68,8 +73,8 @@
 							<li><a href="{{url('getAlumnosCalificar')}}">Calificar <i class="fa fa-pencil-square-o"></i></a></li>
 
                         @elseif(Auth::getRol()=="alumno")
-                            <li><a href="{{url('calificacionesAlumno')}}">Ver calificaciones</a></li>
-                            <li><a href="">Horario</a></li>
+                            <li><a href="{{url('calificacionesAlumno')}}">Ver calificaciones  <i class="fa fa-file-text-o fa-lg"></i></a></li>
+                            <li><a href="{{url('getHorarioAlumno')}}">Horario <i class="fa fa-calendar fa-lg"></i></a></li>
 
                         @elseif(Auth::getRol()=="docente")
 							<li><a href="{{url('homeP')}}">Mis grupos <i class="fa fa-users"></i> </a></li>

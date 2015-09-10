@@ -53,7 +53,7 @@
 
 		<div class="container">
 			<div class="content">
-				<div class="title">Departamento de  posgrado</div>
+				<div class="title">SIGEP Departamento de  posgrado</div>
 				<div class="quote">{{ Inspiring::quote() }}</div>
 				<br><br><br>
 

@@ -33,7 +33,9 @@ class CreateDocenteRequest extends Request {
 
 
         return [
+
             'status'                   => 'required | in:Activo,Licencia,Con goce de sueldo,Licencia sin goce de sueldo,Cambios de adscripción,Semestre sabático,Año sabático,Otro(observaciones profesor)',
+
             'name'                     => 'required | ',
             'apellidoP'                => 'required | ',
             'apellidoM'                => 'required | ',
@@ -42,12 +44,13 @@ class CreateDocenteRequest extends Request {
             'nacionalidad'             => 'required | ',
             'edoNacimiento'            => 'required | ',
             'genero'                   => 'required | in:Hombre,Mujer ',
-            'rfc' =>'required|unique:users,rfc',
-            'curp' =>'required|unique:users,curp',
+            'rfc'                      =>'required|unique:users,rfc',
+            'curp'                     =>'required|unique:users,curp',
             'extensionIpn'             => '',
             'categoria'                => 'required|in:Asociado,Titular',
             'noIdOficial'              => 'unique:users,noIdOficial',
             'escuelaLugarIpn'          => 'required | ',
+
             'tipoIdOficial'            =>'required|in:ife,licenciaManejo,pasaporte,cartilla,cedula,docMigrat,certMatriConsul',
             'email'                    => 'required|email|unique:users,email',
             'email2'                   => 'email',
@@ -79,6 +82,7 @@ class CreateDocenteRequest extends Request {
             'anioiniciaestudiosDoctorado'  => 'integer|digits:4,'.Carbon::now()->year,
             'ultimoAnioEstudiosDoctorado'   => 'integer|digits:4,'.Carbon::now()->year,
             'situacionEstudiosDoctorado'=>'in:Titulado,Pasante,Créditos,Finalizado,S/E',
+
 
         ];
     }

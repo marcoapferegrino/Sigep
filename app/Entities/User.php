@@ -87,6 +87,7 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
 
 
 
+
     public static function getGruposDocente($docenteId)
     {
         $grupos = DB::table('asignatura_grupo')
@@ -142,10 +143,32 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
             ->where('periodos.inicioPeriodo','<=',$hoy)
             ->where('periodos.finPeriodo','>=',$hoy)
             ->where('inscripciones.docente_id','=',$docenteId)
+            ->orderBy('grupo_id')
             ->get();
 
         return $alumnos;
     }
+
+    public static function getAlumnosInscritos()
+    {
+        $alumnos = DB::table('inscripciones')
+            ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
+            ->join('alumnos','alumnos.id','=','inscripciones.alumno_id')
+            ->join('users','users.alumno_id','=','alumnos.id')
+            ->select('grupos.id AS grupo_id','alumnos.boleta','users.name','users.id as userId','asignaturas.id AS asignatura_id','users.apellidoP','users.apellidoM','users.email', 'inscripciones.calificacion','inscripciones.id AS inscripcion_id ','asignatura_grupo.id AS asignatura_grupo_id')
+            // ->where('periodos.inicioPeriodo','<=',$hoy)
+            // ->where('periodos.finPeriodo','>=',$hoy)
+            ->paginate(10);
+
+
+
+        //dd($alumnos);
+        return $alumnos;
+    }
+
 
     public static function getAsignaturasGruposDocenteRecord($docenteId)
     {
@@ -202,6 +225,17 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         return $alumnos;
     }
 
+    public static function getAlumnosAllPagination()
+    {
+        $alumnos = DB::table('users')
+            ->select('*')
+            ->where('rol','=','alumno')
+            ->paginate(10);
+
+
+        return $alumnos;
+    }
+
     public function getNombreCompleto()
     {
         return $this->name." ".$this->apellidoP." ".$this->apellidoM;
@@ -223,6 +257,18 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         return $alumnos;
     }
 
+    public static function getAlumnosBoletaBusqueda($alumnoId)//en construccion
+    {
+        $alumnos = DB::table('users')
+            ->join('alumnos','alumnos.id','=','users.alumno_id')
+            ->where('boleta','=',$alumnoId)
+            ->paginate(10);
+        //dd($alumnos);
+       // $alumnos = Alumno::all()->where('boleta',$alumnoId)->;
+        return $alumnos;
+    }
+
+
 
     public static function getAsignaturasGrupos()
     {
@@ -236,6 +282,18 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
             ->where('periodos.inicioPeriodo','<=',$hoy)
             ->where('periodos.finPeriodo','>=',$hoy)
 
+            ->get();
+        return $asignaturasGrupos;
+    }
+    public static function getAsignaturasGruposSin()
+    {
+        $hoy=Carbon::now()->toDateString();
+        //dd($hoy);
+        $asignaturasGrupos = DB::table('asignatura_grupo')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
+            ->select('asignatura_grupo.id','grupos.salon','asignaturas.nombre','asignatura_grupo.acta','periodos.nombre as nombrePeriodo','periodos.finPeriodo','asignatura_grupo.asignatura_id' )
             ->get();
         return $asignaturasGrupos;
     }
@@ -254,10 +312,10 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
             ->join('periodos','periodos.id','=','grupos.periodo_id')
             ->join('alumnos','alumnos.id','=','inscripciones.alumno_id')
             ->join('users','users.alumno_id','=','alumnos.id')
-            ->select('grupos.id AS grupo_id','users.name','users.id as userId','asignaturas.id AS asignatura_id','users.apellidoP','users.apellidoM','users.email', 'inscripciones.calificacion','inscripciones.id AS inscripcion_id ','asignatura_grupo.id AS asignatura_grupo_id')
-            ->where('periodos.inicioPeriodo','<=',$hoy)
-            ->where('periodos.finPeriodo','>=',$hoy)
-
+            ->select('grupos.id AS grupo_id','alumnos.boleta','alumnos.id as alumnoId','users.name','users.id as userId','asignaturas.id AS asignatura_id','users.apellidoP','users.apellidoM','users.email', 'inscripciones.calificacion','inscripciones.id AS inscripcion_id ','asignatura_grupo.id AS asignatura_grupo_id')
+           // ->where('periodos.inicioPeriodo','<=',$hoy)
+           // ->where('periodos.finPeriodo','>=',$hoy)
+            ->orderBy('boleta')
             ->get();
 
         return $alumnos;
@@ -294,6 +352,7 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
             $query->where('rol',$rol);
         }
     }
+
 
 
 

@@ -17,10 +17,10 @@ class AdminsSeeder extends Seeder
         $faker = Faker::create();
         User::create([
 
-            'rol' => 'superAdmin',
-            'name' =>'Marco',
-            'apellidoP' =>  'Perez',
-            'apellidoM' => 'Feregrino',
+            'rol' => 'admin',
+            'name' =>'Luis',
+            'apellidoP' =>  'Rodriguez',
+            'apellidoM' => 'Rodriguez',
             'fechanac' => $faker->date(),
             'nacionalidad'=> $faker->country,
             'edoNacimiento'=> $faker->state,
@@ -38,7 +38,7 @@ class AdminsSeeder extends Seeder
             'telMovil' => $faker->phoneNumber,
             'edoCivil' => 'soltero',
             'numHijos'=> 0,
-            'email' => 'ferefuc@gmail.com',
+            'email' => 'acbd@gmail.com',
             'password' => bcrypt('secret'),
         ]);
 

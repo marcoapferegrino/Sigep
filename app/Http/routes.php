@@ -39,6 +39,8 @@ Route::group(/**
         ]);
 
 
+
+
         Route::post('/addPeriodo', [
             'as' => 'periodo.addPeriodo',
             'uses' => 'SuperAdminController@addPeriodo'
@@ -120,6 +122,11 @@ Route::group(/**
 
         Route::get('testC',"AdminController@getTestC");
 
+        Route::get('/alumnosBoletaEncontrados', [
+            'as' => 'alumnos.boletaFindAlumnos',
+            'uses' => 'AdminController@findAlumnos'
+        ]);
+
 
         Route::get('/getAddDocente', [ //form
             'as' => 'docente.getAddDocente',
@@ -130,6 +137,43 @@ Route::group(/**
             'as' => 'docente.addDocente',
             'uses' => 'AdminController@addDocente'
         ]);
+
+        Route::get('/getAddGrupo', [ //form
+            'as' => 'grupo.getAddGrupo',
+            'uses' => 'AdminController@getAddGrupo'
+        ]);
+
+        Route::post('/addGrupo', [ //registro
+            'as' => 'grupo.addGrupo',
+            'uses' => 'AdminController@addGrupo'
+        ]);
+
+        Route::get('/getAddSalon', [ //form
+            'as' => 'salon.getAddSalon',
+            'uses' => 'AdminController@getAddSalon'
+        ]);
+
+        Route::post('/addSalon', [ //registro
+            'as' => 'salon.addSalon',
+            'uses' => 'AdminController@addSalon'
+        ]);
+
+        Route::get('/getAddInscripcion', [ //form
+            'as' => 'inscripcion.getAddInscripcion',
+            'uses' => 'AdminController@getAddInscripcion'
+        ]);
+
+        Route::post('/addInscripcion', [ //registro
+            'as' => 'inscripcion.addInscripcion',
+            'uses' => 'AdminController@addInscripcion'
+        ]);;
+
+
+        Route::post('/updateGrupo', [
+            'as' => 'grupo.updateGrupo',
+            'uses' => 'AdminController@updateGrupo'
+        ]);
+
 
 
         Route::get('/getAddAlumno', [ //llama al formulario
@@ -150,6 +194,23 @@ Route::group(/**
             'uses' => 'AdminController@calificar'
         ]);
 
+        Route::get('/getGrupos', [
+            'as' => 'grupos.getGrupos',
+            'uses' => 'AdminController@getGrupos'
+        ]);
+
+        Route::delete('/deleteGrupo/{id}', [
+            'as' => 'grupo.deleteGrupo',
+            'uses' => 'AdminController@deleteGrupo'
+        ]);
+
+
+        Route::get('/getInscritos', [
+            'as' => 'inscritos.getInscritos',
+            'uses' => 'AdminController@getInscritos'
+        ]);
+
+
 
 
     });
@@ -158,9 +219,13 @@ Route::group(/**
     Route::group(['middleware' => 'role:alumno'],function() {
         Route::get('logAlumno',"AlumnoController@index");
 
-	Route::get('/calificacionesAlumno', [ //get calif
+        Route::get('/calificacionesAlumno', [ //get calif
             'as' => 'alumno.getCalificaciones',
             'uses' => 'AlumnoController@getCalificaciones'
+        ]);
+        Route::get('/getHorarioAlumno', [ //get calif
+            'as' => 'alumno.getHorarioAlumno',
+            'uses' => 'AlumnoController@getHorarioAlumno'
         ]);
     });
 
@@ -169,6 +234,9 @@ Route::group(/**
 
     Route::group(['middleware' => 'role:docente'],function() {
         Route::get('homeP',"ProfesorController@index");
+
+
+
 
         //Calificaciones
         Route::get('/calificaciones', [

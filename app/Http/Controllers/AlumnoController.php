@@ -1,6 +1,11 @@
 <?php namespace PosgradoService\Http\Controllers;
 
 use PosgradoService\Http\Requests;
+
+use Illuminate\Support\Facades\DB;
+
+use PosgradoService\Entities\User;
+use PosgradoService\Entities\Alumno;
 use PosgradoService\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -82,37 +87,30 @@ class AlumnoController extends Controller {
     }
     public function getCalificaciones()
     {
-        $Asignatura1 = array(
-            "id"     => "1",
-            "nombre" => "AAA",
-            "grupo" =>"5CV5",
-            "calif"  => "10",
 
-    );
-        $Asignatura2 = array(
-            "id"    => "3",
-            "nombre" => "BBB",
-            "grupo" =>"1CV1",
-            "calif"  => "9",
 
-    );
-        $Asignatura3 = array(
-            "id"     => "4",
-            "nombre" => "CCC",
-            "grupo" =>"7CM5",
-            "calif"  => "5",
-
-    );
-        $Asignatura4 = array(
-            "id"     => "5",
-            "nombre" => "DDD",
-            "grupo" =>"1CM5",
-            "calif"  => "9",
-
-        );
-
-        $gruposAsignaturas = array($Asignatura1,$Asignatura2,$Asignatura3,$Asignatura4);
+        $gruposAsignaturas = Alumno::getCalificaciones();
+      //  dd($gruposAsignaturas);
         return view('alumno.calificacionesAlumno', compact('gruposAsignaturas') );
+
+
+        //
+    }
+
+    public function getHorarioAlumno()
+    {
+
+        $dias = array();
+
+        $horarios=Alumno::getHorarioDeAlumno();
+
+        foreach($horarios as $horario)
+        {
+            array_push($dias,json_decode($horario->dias));
+        }
+        //dd($dias,$horarios);
+
+        return view('alumno.alumnoHorario', compact('horarios','dias') );
 
 
         //

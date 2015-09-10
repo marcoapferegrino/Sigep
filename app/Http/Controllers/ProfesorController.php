@@ -22,7 +22,7 @@ class ProfesorController extends Controller {
 	public function index()
 	{
 		$dias = array();
-		
+
 		$horarios=User::getHorario();
 
 		foreach($horarios as $horario)
@@ -33,11 +33,9 @@ class ProfesorController extends Controller {
 
 		return view('homeProfesor',compact('horarios','dias'));
 	}
-
-
 	public function showCalificaciones(){
 		$idDocente =auth()->user()->docente_id;
-
+  
 		$gruposAsignaturas = User::getAsignaturasGruposDocenteActually($idDocente);
 		$alumnos = User::getAlumnosdeDocenteActually($idDocente);
 

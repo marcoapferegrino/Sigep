@@ -1,0 +1,64 @@
+
+
+
+@extends('app')
+
+@section('content')
+    <div class="container">
+        <div class="row">
+
+            @include('partials.messages')
+
+            <div class="col-md-12 ">
+                <div class="panel panel-success">
+                    <div class="panel-heading">Alumnos</div>
+
+                    <div class="panel-body">
+                        {!! Form::open(['route' => 'alumnos.boletaFindAlumnos','method' => 'GET','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
+                                <div class="form-group">
+                                    {!! Form::text('boleta',null,['class'=>'form-control','placeholder'=>'Boleta del alumno','required']) !!}
+                                </div>
+                                <button type="submit" class="btn btn-info"> <i class="fa fa-search"></i> </button>
+                        {!! Form::close() !!}
+
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Boleta</th>
+
+                                            <th>Operaciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($alumnos as $alumno)
+                                            <tr>
+                                                <td>{{$alumno->name." ".$alumno->apellidoP." ".$alumno->apellidoM}}</td>
+                                                @foreach($alumnosDatos as $alumnoDato)
+                                                    @if($alumno->alumno_id == $alumnoDato->id)
+                                                <td>{{$alumnoDato->boleta}}</td>
+                                                    @endif
+
+                                                @endforeach
+
+                                                <td>
+                                                    <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalInscribir{{$alumno->alumno_id}}">
+                                                        Inscribir materias
+                                                    </button>
+
+                                                </td>
+                                            </tr>
+                                            @include('admin.partials.inscribirModal')
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            {!! $alumnos->render() !!}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

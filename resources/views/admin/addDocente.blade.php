@@ -66,10 +66,12 @@
                                         {!! Form::text('nacionalidad',null, array('class' => 'form-control text-capitalize','id'=>'nacionalidad','placeholder'=>'Nacionalidad','required'))!!}
                                     </div>
 
+
                                     <div class="form-group">
                                         {!! Form::label('edoNacimiento', 'Estado*') !!}
                                         {!! Form::text('edoNacimiento',null, array('class' => 'form-control text-capitalize','id'=>'edoNacimiento','placeholder'=>'Estado donde nació','required'))!!}
                                     </div>
+
 
                                     <br><br>
                                     <div class="form-group">
@@ -198,18 +200,24 @@
                                     {!! Form::text('sip',null, array('class' => 'form-control text-capitalize','id'=>'sip','required','placeholder'=>'SIP del docente'))!!}
                                 </div>
                                 <div class="form-group">
+
                                     {!! Form::label('numEmpleado', 'Número de empleado*') !!}
                                     {!! Form::text('numEmpleado',null, array('class' => 'form-control ','id'=>'numEmpleado','placeholder'=>'Número de empleado del docente','required'))!!}
+
                                 </div>
                                 <br><br>
                                 <div class="form-group">
+
                                     {!! Form::label('numTarjetaEscom', 'Número de tarjeta*') !!}
                                     {!! Form::text('numTarjetaEscom',null, array('class' => 'form-control ','required','id'=>'numTarjetaEscom','placeholder'=>'Número de tarjeta ESCOM del docente'))!!}
                                 </div>
                                 <br><br>
                                 <div class="form-group">
+
                                     {!! Form::label('ingresoIpn', 'Fecha ingreso al IPN*') !!}
                                     <input type="date" class="form-control" id="ingresoIpn"  name="ingresoIpn" required max="{{Carbon\Carbon::now()}}">
+
+
                                 </div>
                                 <br><br>
                                 <div class="form-group">
@@ -233,7 +241,7 @@
                                     {!! Form::text('localidadLicenciatura',null, array('class' => 'form-control text-capitalize','id'=>'localidadLicenciatura','placeholder'=>'Localidad escuela licenciatura'))!!}
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::label('localidadLicenciatura', 'Carrera') !!}
+                                    {!! Form::label('carreraLicenciatura', 'Carrera') !!}
                                     {!! Form::text('carreraLicenciatura',null, array('class' => 'form-control ','id'=>'carreraLicenciatura','placeholder'=>'Carrera cursada en escuela licenciatura'))!!}
                                 </div>
                                 <br><br>
@@ -241,6 +249,7 @@
                                     {!! Form::label('especialidadLicenciatura', 'Especialidad') !!}
                                     {!! Form::text('especialidadLicenciatura',null, array('class' => 'form-control ','id'=>'carreraLicenciatura','placeholder'=>'Especialidad cursada en escuela licenciatura'))!!}
                                 </div>
+
                                 <br><br>
                                 <div class="form-group">
                                     {!! Form::label('situacionLicenciatura', 'Situacion') !!}
