@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Laravel</title>
+	<title>SIGEP IPN</title>
 
 	<link href="/css/app.css" rel="stylesheet">
 
@@ -72,7 +72,7 @@
 
                         @elseif(Auth::getRol()=="alumno")
                             <li><a href="{{url('calificacionesAlumno')}}">Ver calificaciones  <i class="fa fa-file-text-o fa-lg"></i></a></li>
-                            <li><a href="">Horario <i class="fa fa-calendar fa-lg"></i></a></li>
+                            <li><a href="{{url('getHorarioAlumno')}}">Horario <i class="fa fa-calendar fa-lg"></i></a></li>
 
                         @elseif(Auth::getRol()=="docente")
 							<li><a href="{{url('homeP')}}">Mis grupos <i class="fa fa-users"></i> </a></li>

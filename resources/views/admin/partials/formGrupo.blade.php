@@ -5,17 +5,19 @@
 
 <div class="panel-heading" role="tab">
 
-
+    @foreach($grupos as $grupo)
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
-            @foreach($grupos as $grupo)
+            <div class="panel panel-default">
+
+
                 <div class="panel-heading" role="tab" id="heading{{$grupo->grupoId}}">
-                    <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$grupo->grupoId}}" aria-expanded="true" aria-controls="collapse{{$grupo->grupoId}}">
-                            {{$grupo->grupoNombre}} <small></small>
+                    <h3 class="panel-title" align="center">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$grupo->grupoId}}"  aria-expanded="true" aria-controls="collapse{{$grupo->grupoId}}">
+                            <b class="text-danger"> {{$grupo->grupoNombre}} <i class="fa fa-angle-double-down"></i> </b>
                         </a>
 
-                    </h4>
+                    </h3>
                 </div>
 
 
@@ -36,9 +38,6 @@
 
 
                             @foreach ($asignaturasGrupo as $asignaturaG)
-
-
-
                                     @for($i=0;$i<count($asignaturaG);$i++)
                                     @if($asignaturaG[$i]->grupo_id==$grupo->grupoId )
 
@@ -59,8 +58,8 @@
 
 
                 </div>
-            @endforeach
         </div>
+        </div>@endforeach
 
 
     </div>
@@ -121,7 +120,7 @@
 
             <br>
 
-            <div class="form-group navbar-default col-lg-5 ">
+            <div class="form-group navbar-default nav-justified col-lg-5  " >
             {!! Form::submit('Registrar',array('class'=>'btn btn-success btn-block')) !!}
             {!! Form::close() !!}
                 </div>

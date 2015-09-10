@@ -2,7 +2,7 @@
 
 
 use PosgradoService\Entities\Entity;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class Alumno extends Entity {
@@ -60,34 +60,46 @@ class Alumno extends Entity {
     }
 
 	
-    public static function getCalificaciones($idAlumno) // obtiene las calificaciones
+    public static function getCalificaciones() // obtiene las calificaciones
     {
-        $idAlumno=6;
-
-        $boleta = DB::table('inscripciones')
-            ->join('asignatura_grupo','asignatura_grupo.asignatura_id','=','inscripciones.id')
+        $boleta =DB::table('inscripciones')
+            ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
             ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
             ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
-            ->select('asignaturas.nombre','grupos.nombre as grupoNombre','inscripciones.calificacion')
-            ->where('inscripciones.alumno_id','=',$idAlumno)
-            ->get();
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
+            ->join('horaDias','asignatura_grupo.horaDias_id','=','horaDias.id')
+            ->select('asignaturas.nombre as nombre','grupos.nombre as grupoNombre','inscripciones.calificacion')
+            //->where('periodos.inicioPeriodo','<=',$hoy)
+            //->where('periodos.finPeriodo','>=',$hoy)
+            ->where('inscripciones.alumno_id','=',auth()->user()->alumno_id)
+            ->get();;
 
-        //$boleta = array(2,3,4);
+
         return $boleta;
     }
 
-    public static function getHorarioAlumno($idAlumno)
+
+
+    public static function getHorarioDeAlumno()
     {
+        $hoy=Carbon::now()->toDateString();
+
+        //$horario = DB::table('asignatura_grupo')
         $horario = DB::table('inscripciones')
-            ->join('asignatura_grupo','asignatura_grupo.asignatura_id','=','inscripciones.id')
+            ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
             ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
             ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
             ->join('horaDias','asignatura_grupo.horaDias_id','=','horaDias.id')
-            ->select('asignaturas.nombre','grupos.nombre as grupoNombre','asignatura_grupo.')
-            ->where('asignatura_grupo.docente_id','=',$idAlumno)
+            ->select('asignaturas.nombre','grupos.salon','horaDias.dias')
+            //->where('periodos.inicioPeriodo','<=',$hoy)
+            //->where('periodos.finPeriodo','>=',$hoy)
+            ->where('inscripciones.alumno_id','=',auth()->user()->alumno_id)
             ->get();
-    }
+       // dd($horario);
 
+        return $horario;
+    }
 
 
 

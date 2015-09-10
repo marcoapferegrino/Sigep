@@ -3,6 +3,8 @@
 use PosgradoService\Http\Requests;
 
 use Illuminate\Support\Facades\DB;
+
+use PosgradoService\Entities\User;
 use PosgradoService\Entities\Alumno;
 use PosgradoService\Http\Controllers\Controller;
 
@@ -86,11 +88,29 @@ class AlumnoController extends Controller {
     public function getCalificaciones()
     {
 
-        $idAlumno =auth()->user()->alumno_id;
 
-        $gruposAsignaturas = Alumno::getCalificaciones($idAlumno);
-
+        $gruposAsignaturas = Alumno::getCalificaciones();
+      //  dd($gruposAsignaturas);
         return view('alumno.calificacionesAlumno', compact('gruposAsignaturas') );
+
+
+        //
+    }
+
+    public function getHorarioAlumno()
+    {
+
+        $dias = array();
+
+        $horarios=Alumno::getHorarioDeAlumno();
+
+        foreach($horarios as $horario)
+        {
+            array_push($dias,json_decode($horario->dias));
+        }
+        //dd($dias,$horarios);
+
+        return view('alumno.alumnoHorario', compact('horarios','dias') );
 
 
         //

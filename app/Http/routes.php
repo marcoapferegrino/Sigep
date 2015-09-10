@@ -205,6 +205,13 @@ Route::group(/**
         ]);
 
 
+        Route::get('/getInscritos', [
+            'as' => 'inscritos.getInscritos',
+            'uses' => 'AdminController@getInscritos'
+        ]);
+
+
+
 
     });
 
@@ -212,9 +219,13 @@ Route::group(/**
     Route::group(['middleware' => 'role:alumno'],function() {
         Route::get('logAlumno',"AlumnoController@index");
 
-	Route::get('/calificacionesAlumno', [ //get calif
+        Route::get('/calificacionesAlumno', [ //get calif
             'as' => 'alumno.getCalificaciones',
             'uses' => 'AlumnoController@getCalificaciones'
+        ]);
+        Route::get('/getHorarioAlumno', [ //get calif
+            'as' => 'alumno.getHorarioAlumno',
+            'uses' => 'AlumnoController@getHorarioAlumno'
         ]);
     });
 
@@ -223,6 +234,9 @@ Route::group(/**
 
     Route::group(['middleware' => 'role:docente'],function() {
         Route::get('homeP',"ProfesorController@index");
+
+
+
 
         //Calificaciones
         Route::get('/calificaciones', [

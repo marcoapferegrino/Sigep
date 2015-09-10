@@ -9,8 +9,8 @@
 
             @include('partials.messages')
 
-            <div class="col-md-12 ">
-                <div class="panel panel-info">
+            <div class="col-md-10 ">
+                <div class="panel panel-primary">
                     <div class="panel-heading">Grupos</div>
 
                     <div class="panel-body">

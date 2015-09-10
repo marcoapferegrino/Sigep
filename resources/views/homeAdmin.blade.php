@@ -15,8 +15,11 @@
 
                             <div class="panel-body">
 
-
-                                <a href="{{url('getGrupos')}}">Lista de grupos<i class="fa fa-pencil fa-lg"></i></a>
+                                <i class="fa fa-list-ol fa-lg"></i>
+                                <a href="{{url('getGrupos')}}">Lista de grupos</a>
+                                <br>
+                                <i class="fa fa-list-ol fa-lg"></i>
+                                <a href="{{url('getInscritos')}}">Lista de alumnos inscritos</a>
                                 <br>
 
 

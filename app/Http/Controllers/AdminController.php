@@ -233,12 +233,26 @@ class AdminController extends Controller {
     {
 
         $gruposAsignaturas = User::getAsignaturasGrupos();
-        $alumnos = User::getAlumnos();
+        $alumnos = User::getAlumnosInscritos();
 
         //dd($grupoAsignatura,$alumnos);
 
         return view('docente.calificaciones',compact('gruposAsignaturas','alumnos'));
     }
+
+    public function getInscritos()
+    {
+
+        $gruposAsignaturas = User::getAsignaturasGruposSin();
+        //$alumnos = User::getAlumnos();
+        $alumnos = User::getAlumnosInscritos();
+        //dd($alumnos);
+
+        //dd($gruposAsignaturas);
+
+        return view('admin.listInscritos',compact('gruposAsignaturas','alumnos'));
+    }
+
     public function calificar(Request $request)
     {
         $user = auth()->user();
