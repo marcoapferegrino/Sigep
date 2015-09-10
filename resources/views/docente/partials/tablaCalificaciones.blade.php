@@ -93,16 +93,29 @@
                             </div>
                             {!! Form::close() !!}
                         @endif
+                        {{--@if($grupoAsignatura->acta == 0 && Auth::getRol()=='superAdmin')--}}
+                                {{--{!! Form::open(['route' => ['calificaciones.abrirActa'],'method' => 'POST']) !!}--}}
+                                    {{--<div class="col-md-8 col-lg-offset-2">--}}
+                                        {{--<input type="hidden" name="id" value="{{$grupoAsignatura->id}}">--}}
+                                        {{--<button type="submit" onclick="return confirm('Seguro?')" class="btn btn-warning btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="Abrir acta">--}}
+                                            {{--Abrir acta <i class="fa fa-folder-open"></i>--}}
+                                        {{--</button>--}}
+                                    {{--</div>--}}
+                                {{--{!! Form::close() !!}--}}
+
+                        {{--@endif--}}
                         @if($grupoAsignatura->acta == 1)
                         {!! Form::open(['route' => ['calificaciones.cerrarActa'],'method' => 'POST']) !!}
                         <div class="col-md-8 col-lg-offset-2">
                             <input type="hidden" name="id" value="{{$grupoAsignatura->id}}">
-                            <button type="submit" onclick="return confirm('Ya no podrás modificar calificaciones.Seguro?')" class="btn btn-warning btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="Cerrar Acta">
+                            <button type="submit" onclick="return confirm('Ya no podrás modificar calificaciones.Seguro?')" class="btn btn-danger btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="Cerrar Acta">
                                 Cerrar acta para calificar  <i class="fa fa-close"></i>
                             </button>
                         </div>
                         {!! Form::close() !!}
                          @endif
+
+
                     @endif
 
 

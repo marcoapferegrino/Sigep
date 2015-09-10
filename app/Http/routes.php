@@ -109,6 +109,10 @@ Route::group(/**
             'as' => 'horarios.addHorario',
             'uses' => 'SuperAdminController@addHorario'
         ]);
+//        Route::post('/abrirActa', [
+//            'as' => 'calificaciones.abrirActa',
+//            'uses' => 'SuperAdminController@abrirActa'
+//        ]);
 
 
     });

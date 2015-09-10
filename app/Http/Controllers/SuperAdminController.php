@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Session;
 use PosgradoService\Entities\Asignatura;
+use PosgradoService\Entities\AsignaturaGrupo;
 use PosgradoService\Entities\Docente;
 use PosgradoService\Entities\Horario;
 use PosgradoService\Entities\Periodo;
@@ -249,6 +250,25 @@ class SuperAdminController extends Controller {
 
 		return redirect()->action('SuperAdminController@showHorarios');
 	}
+//	public function abrirActa(Request $request)
+//	{
+//
+//		$grupoAsignatura = AsignaturaGrupo::find($request->id);
+//		//dd($request->all(),$grupoAsignatura->toArray());
+//		if($grupoAsignatura->acta==0)
+//		{
+//			$grupoAsignatura->acta=1;
+//			$grupoAsignatura->save();
+//			Session::flash('message', 'El acta se abrio correctamente ahora pueden calificar');
+//		}
+//		else
+//		{
+//			Session::flash('error', 'Hubo un error en el acta lo sentimos');
+//		}
+//
+//		return redirect()->action('AdminController@getAlumnosCalificar');
+//
+//	}
 
 	public function showExpedienteDocente($id)
 	{
