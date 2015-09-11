@@ -90,7 +90,6 @@ class AlumnoController extends Controller {
 
 
         $gruposAsignaturas = Alumno::getCalificaciones();
-      //  dd($gruposAsignaturas);
         return view('alumno.calificacionesAlumno', compact('gruposAsignaturas') );
 
 

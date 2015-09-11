@@ -20,20 +20,18 @@
                     <tbody>
                     <div class="panel panel-info">
                     @foreach($gruposAsignaturas as $grupoAsignatura)
-                            <!--  <div class="panel-heading" role="tab" id="heading{#{$grupoAsignatura->id}}"> -->
-                            <!-- <div id="collapse{#{$grupoAsignatura->id}}" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading{#{$grupoAsignatura->id}}"> -->
                             <tr>
                                     <th>{{$grupoAsignatura->nombre}}</th>
                                     <th>{{$grupoAsignatura->grupoNombre}}</th>
 
-                                @if($grupoAsignatura->calificacion='S/C')
-                                    <th >{{$grupoAsignatura->calificacion}}</th>
-                                    @elseif($grupoAsignatura->calificacion<6)
+
+                                    @if($grupoAsignatura->calificacion<6)
 
                                     <th style="background-color: #ce8483">{{$grupoAsignatura->calificacion}}</th>
-                                    @else
+                                    @elseif($grupoAsignatura->calificacion>=6)
                                     <th style="background-color:#65C400">{{$grupoAsignatura->calificacion}}</th>
-
+                                    @else
+                                    <th >{{$grupoAsignatura->calificacion}}</th>
                                  @endif
                                 </tr>
                         </div>

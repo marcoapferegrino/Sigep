@@ -73,7 +73,7 @@
 
         <br>
         <div class="panel-body">
-        <input type="hidden" name="acta" value="0">
+        <input type="hidden" name="acta" value="1">
         <div class="form-group">
 
         {!! Form::label('materia', 'Materia*') !!}

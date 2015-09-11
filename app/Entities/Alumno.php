@@ -72,9 +72,9 @@ class Alumno extends Entity {
             //->where('periodos.inicioPeriodo','<=',$hoy)
             //->where('periodos.finPeriodo','>=',$hoy)
             ->where('inscripciones.alumno_id','=',auth()->user()->alumno_id)
-            ->get();;
+            ->get();
 
-
+        //dd($boleta);
         return $boleta;
     }
 
