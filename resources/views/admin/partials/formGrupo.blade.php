@@ -103,7 +103,8 @@
             <select class="form-control" name="docente_id" id="docente_id" required>
                 <option value="">- - - -</option>
                 @foreach($docentes as $docente )
-                    <option value="{{$docente['docente_id']}}"> {{$docente['name']}}  </option>
+
+                    <option value="{{$docente['docente_id']}}"> {{$docente['apellidoP']}} {{$docente['apellidoM']}} {{$docente['name']}}  </option>
                 @endforeach
 
             </select>

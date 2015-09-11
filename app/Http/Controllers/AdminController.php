@@ -159,12 +159,19 @@ class AdminController extends Controller {
         $alumnos = User::getAlumnosBoletaBusqueda($request->get('boleta'));
 
 
+        $grupos = Grupo::gruposActuales();
         $alumnosDatos = Alumno::all();
         $gruposAsignaturas = AsignaturaGrupo::all();
         $docentes = User::all()->where('rol','docente');
         $materias = Asignatura::all();
+        $asignaturasGrupo = array();
+        $grupos = Grupo::gruposActuales();
 
-        return view('admin.addInscripcion',compact('alumnos','gruposAsignaturas','docentes','materias','alumnosDatos'));
+        foreach($grupos as $grupo)
+        {
+            array_push($asignaturasGrupo,Grupo::grupoBien($grupo->grupoId));
+        }
+        return view('admin.addInscripcion',compact('asignaturasGrupo','grupos','alumnos','gruposAsignaturas','docentes','materias','alumnosDatos'));
     }
 
     public function addInscripcion(Request $request)  // inscripcion
@@ -247,6 +254,7 @@ class AdminController extends Controller {
         $gruposAsignaturas = User::getAsignaturasGruposSin();
         //$alumnos = User::getAlumnos();
         $alumnos = User::getAlumnosInscritos();
+
         //dd($alumnos);
 
         //dd($gruposAsignaturas);

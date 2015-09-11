@@ -16,6 +16,7 @@
                     <div class="panel-body">
 
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
                             @include('admin.listAlumnos')
                             @include('admin.partials.formInscripcion')
                         </div>
