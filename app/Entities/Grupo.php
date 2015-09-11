@@ -29,7 +29,7 @@ class Grupo extends Entity {
         $grupos = DB::table('grupos')
             ->join('periodos','periodos.id','=','grupos.periodo_id')
             ->select('grupos.id as grupoId','grupos.nombre as grupoNombre','periodos.nombre as periodoNombre')
-            ->where('periodos.finPeriodo','<',$hoy)
+            ->where('periodos.finPeriodo','>',$hoy)
             ->get();
 
         return $grupos;

@@ -122,7 +122,7 @@ class AdminController extends Controller {
 
         $grupos = Grupo::gruposActuales();
 
-
+        //dd($grupos);
         foreach($grupos as $grupo)
         {
             array_push($asignaturasGrupo,Grupo::grupoBien($grupo->grupoId));
