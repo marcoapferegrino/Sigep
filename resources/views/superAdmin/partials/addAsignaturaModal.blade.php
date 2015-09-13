@@ -44,7 +44,7 @@
 
                 <div class="form-group" id="tipoOption">
                      {!! Form::label('tipo', 'Tipo de Asignatura') !!}
-                    <select class="form-control" name="tipo" id="tipo">
+                    <select class="form-control" name="tipo" id="tipo" data-tipoData="{{$asignatura->id}}">
                         {{--<option value="">- - - -</option>--}}
                         <option value="obligatoria">Obligatoria</option>
                         <option value="seminario">Seminario</option>
@@ -52,7 +52,7 @@
                         <option value="movilidad">Movilidad</option>
                     </select>
                 </div>
-                <div class="form-group" id="inputEscuelaMovilidad">
+                <div class="form-group" id="inputEscuelaMovilidad" >
 
                 </div>
                 <div class="form-group">

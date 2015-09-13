@@ -109,10 +109,10 @@ Route::group(/**
             'as' => 'horarios.addHorario',
             'uses' => 'SuperAdminController@addHorario'
         ]);
-//        Route::post('/abrirActa', [
-//            'as' => 'calificaciones.abrirActa',
-//            'uses' => 'SuperAdminController@abrirActa'
-//        ]);
+        Route::post('/abrirActa', [
+            'as' => 'calificaciones.abrirActa',
+            'uses' => 'SuperAdminController@abrirActa'
+        ]);
 
 
     });
@@ -213,13 +213,7 @@ Route::group(/**
             'as' => 'inscritos.getInscritos',
             'uses' => 'AdminController@getInscritos'
         ]);
-
-
-
-
     });
-
-
     Route::group(['middleware' => 'role:alumno'],function() {
         Route::get('logAlumno',"AlumnoController@index");
 

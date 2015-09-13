@@ -1,5 +1,4 @@
 
-
 <!-- Modal -->
 <div class="modal fade" id="modalEditMateria{{$asignatura->id}}" tabindex="-1" role="dialog" aria-labelledby="modalEditMateria{{$asignatura->id}}">
     <div class="modal-dialog" role="document">
@@ -46,19 +45,32 @@
 
                 <div class="form-group">
                     {!! Form::label('tipo', 'Tipo de Asignatura') !!}
-                    <select class="form-control" name="tipo" id="tipo">
+                    @if($asignatura->tipo!="movilidad")
+                    <select class="form-control" name="tipo" id="tipoEdit" data-idasignatura="{{$asignatura->id}}">
                         <option selected="{{$asignatura->tipo}}">{{$asignatura->tipo}}</option>
                         <option value="obligatoria">Obligatoria</option>
                         <option value="seminario">Seminario</option>
                         <option value="optativa">Optativa</option>
-                        <option value="movilidad">Movilidad</option>
+
                     </select>
+                        @elseif($asignatura->tipo=="movilidad")
+                        <p>Movilidad</p>
+                        <p class="text-danger">No puedes cambiar Movilidad</p>
+                        @endif
                 </div>
+                @if($asignatura->tipo=="movilidad")
+                    <div class="form-group">
+                        {!! Form::label('escuelaMovilidad', 'Escuela de movilidad') !!}
+                        {!! Form::text('escuelaMovilidad',$asignatura->escuelaMovilidad, array('class' => 'form-control','id'=>'escuelaMovilidad','placeholder'=>'Nombre de la escuela','required'))!!}
+
+                    </div>
+                @endif
 
                 <div class="form-group">
                     {!! Form::label('fechaVigencia', 'Fecha de vigencia') !!}
                     <input type="date" class="form-control" id="fechaVigencia"  name="fechaVigencia" placeholder="Fecha de Elaboración de materia"  value={{$asignatura->fechaVigencia}}  >
                 </div>
+
 
 
 

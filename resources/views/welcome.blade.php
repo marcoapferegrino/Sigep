@@ -39,12 +39,12 @@
 				color: #FFFFFF;
 				width: 400px;
 				margin-top: 150px;
-				margin-left: 30%;
+				margin-left: 35%;
 				border-radius: 10px 10px 10px 10px;
 				-moz-border-radius: 10px 10px 10px 10px;
 				text-decoration:none;
 				display: block;
-				
+
 
 			}
 		</style>

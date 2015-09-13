@@ -20,12 +20,12 @@
                     </h1>
 
                 </div>
-
-                @include('docente.partials.datosGeneralesUsuario')
-
+                @if(Auth::getRol()=="superAdmin")
+                     @include('docente.partials.datosGeneralesUsuario')
+                @endif
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Estudios</h3>
+                        <h3 class="panel-title">Último grado académico</h3>
                     </div>
                     <div class="panel-body">
                         <dl class="dl-horizontal">
@@ -51,7 +51,8 @@
                             <dd> {{$alumno->especialidadCarrera }}  </dd>
 
                             <dt> Observaciones </dt>
-                            <dd> {{$alumno->observacionEstudios }}  </dd>
+
+                            <dd> <p class="text-justify">{{$alumno->observacionEstudios }} </p> </dd>
                         </dl>
                     </div>
                 </div>
@@ -81,10 +82,10 @@
                             <dd> {{$alumno->fechaTerminoUltimoEmpleo }}  </dd>
 
                             <dt> Actividades </dt>
-                            <dd> {{$alumno->actividadesUltimoEmpleo }}  </dd>
+                            <dd><p class="text-justify">{{$alumno->actividadesUltimoEmpleo }} </p>  </dd>
 
                             <dt> Motivos de separación de la empresa </dt>
-                            <dd> {{$alumno->motivosSeparacionUltimoEmpleo }}  </dd>
+                            <dd> <p class="text-justify">{{$alumno->motivosSeparacionUltimoEmpleo }} </p> </dd>
 
 
                         </dl>
@@ -93,19 +94,19 @@
 
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Curriculum</h3>
+                        <h3 class="panel-title">Conocimientos profesionales</h3>
                     </div>
                     <div class="panel-body">
                         <dl class="dl-horizontal">
 
                             <dt> Actividades que conozco </dt>
-                            <dd> {{$alumno->actividadesQueConoce}} </dd>
+                            <dd> <p class="text-justify">{{$alumno->actividadesQueConoce}}</p> </dd>
 
                             <dt> Conocimientos Software </dt>
-                            <dd> {{$alumno->conocimientoSoftware }}  </dd>
+                            <dd><p class="text-justify">{{$alumno->conocimientoSoftware }} </p>  </dd>
 
                             <dt> Otros conocimientos </dt>
-                            <dd> {{$alumno->obsconocimientos }}  </dd>
+                            <dd> <p class="text-justify">{{$alumno->obsconocimientos }}</p></dd>
 
 
                         </dl>
@@ -134,7 +135,7 @@
                                     <dd> {{$alumno->ref1Telefono }}  </dd>
 
                                     <dt> Tiempo de conocerlo </dt>
-                                    <dd> {{$alumno->ref1Tiempoconocerlo }}  </dd>
+                                    <dd> {{$alumno->ref1Tiempoconocerlo }} años  </dd>
                                 </div>
                             </div>
 
@@ -153,7 +154,7 @@
                                     <dd> {{$alumno->ref2Telefono }}  </dd>
 
                                     <dt> Tiempo de conocerlo </dt>
-                                    <dd> {{$alumno->ref2Tiempoconocerlo }}  </dd>
+                                    <dd> {{$alumno->ref2Tiempoconocerlo }} años  </dd>
                                 </div>
                             </div>
 

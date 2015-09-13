@@ -78,6 +78,7 @@ class ProfesorController extends Controller {
 		$idDocente =$user->docente_id;
 		$estado = false;
 
+
 		//Obtenemos alumnos del docente
 		$alumnos =  User::getAlumnosdeDocenteActually($idDocente);
 

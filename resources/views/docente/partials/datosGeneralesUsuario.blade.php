@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-6">
                 <dl class="dl-horizontal">
-                    <dt>Nombre Completo</dt>
+                    <dt>Nombre(s) Completo</dt>
                     <dd>{{$user->getNombreCompleto()}}</dd>
 
                     <dt>Fecha de Nacimiento</dt>
@@ -16,7 +16,7 @@
                     <dt>Nacionalidad</dt>
                     <dd>{{$user->nacionalidad}}</dd>
 
-                    <dt>Estado</dt>
+                    <dt>Estado/Lugar</dt>
                     <dd>{{$user->edoNacimiento}}</dd>
 
                     <dt>Género</dt>
@@ -43,8 +43,9 @@
                     </dd>
 
                     <dt>Estado Civil</dt>
-                    <dd>{{$user->edoCivil}}</dd>
-
+                    <div class="text-capitalize">
+                        <dd>{{$user->edoCivil}}</dd>
+                    </div>
                     <dt>Hijos</dt>
                     <dd>{{$user->numHijos}}</dd>
 

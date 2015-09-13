@@ -3,16 +3,9 @@
 
 
 @section('content')
-    <style>
-        label{
-            font: bold 14px 'Roboto';
-        }
-    </style>
     <div class="container">
         <div class="row">
-
             @include('partials.messages')
-
             <div class="col-md-12 ">
                 <div class="panel panel-success">
                     <div class="panel-heading"> <h3 class="panel-title">Registro Salon</h3> </div>
@@ -42,7 +35,7 @@
                                     {!! Form::text('semestre',null, array('class' => 'form-control ','id'=>'semestre','placeholder'=>'Semestre del grupo ','required'))!!}
                                 </div>
 
-                                <br>
+                                <br><br>
                                 {!! Form::label('periodo', 'Periodo al que pertenece*') !!}
                                 <select class="form-control" name="periodo_id" id="periodo_id" required>
                                     <option value="">- - - -</option>
@@ -51,10 +44,7 @@
                                     @endforeach
 
                                 </select>
-
-
-
-
+                                <br><br>
 
                         {!! Form::submit('Guardar',array('class'=>'btn btn-success btn-block')) !!}
                         {!! Form::close() !!}

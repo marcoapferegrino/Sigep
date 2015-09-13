@@ -1,7 +1,9 @@
 <?php namespace PosgradoService\Exceptions;
 
 use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Session;
 
 class Handler extends ExceptionHandler {
 
@@ -43,6 +45,18 @@ class Handler extends ExceptionHandler {
 		else
 		{
 			return parent::render($request, $e);
+		}
+	}
+	//by Marco
+	public static function checkQueryError(QueryException $e)
+	{
+		$errorCode = $e->errorInfo[1];
+		if($errorCode == 1451){
+			Session::flash('error',"No puedes borrarlo. Está asociado a otras registros.");
+		}
+		else
+		{
+			Session::flash('error',"Paso algo extraño lo sentimos");
 		}
 	}
 

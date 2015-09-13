@@ -33,7 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('cp',15);
             $table->string('telefono',15);
             $table->string('telMovil',15);
-            $table->enum('edoCivil',['casado','soltero','viudo','divorciado'])->nullable();
+            $table->enum('edoCivil',['S/E','Casado','Soltero','Viudo','Divorciado'])->nullable();
             $table->integer('numHijos')->nullable();
 
 

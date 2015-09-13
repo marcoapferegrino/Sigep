@@ -12,7 +12,12 @@
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
+	<style>
+		label{
+			font-weight:bold ;
+		}
 
+	</style>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +28,10 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
-	<nav class="navbar navbar-default">
+<div class="page-header">
+	<h1>Buenos días  <small>ESCOM</small></h1>
+</div>
+	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -41,7 +49,7 @@
 						@elseif(Auth::getRol()=="alumno")
 							Alumno
 						@elseif(Auth::getRol()=="docente")
-							Profesor
+							Docente
 						@else
 							Home
 						@endif
@@ -57,27 +65,53 @@
 
                     @if (!Auth::guest())
                         @if(Auth::getRol()=="admin")
-							<li><a href="{{url('getAddAlumno')}}">Registrar alumno<i class="fa fa-pencil fa-lg"></i></a></li>
-                            <li><a href="{{url('getAddDocente')}}">Registro de docente <i class="fa fa-pencil fa-lg"></i></a></li>
-                            <li><a href="{{url('getAddSalon')}}">Registro de grupos  <i class="fa fa-pencil fa-lg"></i></a></li>
-                            <li><a href="{{url('getAddGrupo')}}">Registro de materias a grupos <i class="fa fa-pencil fa-lg"></i></a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registrar <i class="fa fa-user"></i> <span class="caret"></span></a>
+								<ul class="dropdown-menu">
 
+								</ul>
+							</li>
+                            <li><a href="{{url('getAddSalon')}}">Registro de grupos  <i class="fa fa-pencil fa-lg"></i></a></li>
+                            <li><a href="{{url('getAddGrupo')}}">Registro de asignaturas a grupos <i class="fa fa-pencil fa-lg"></i></a></li>
                             <li><a href="{{url('getAddInscripcion')}}">Inscripciones <i class="fa fa-pencil fa-lg"></i></a></li>
 
 
                         @elseif(Auth::getRol()=="superAdmin")
-                            <li><a href="{{url('homeSA')}}">Programas y periodos <i class="fa fa-calendar-o fa-lg"></i></a></li>
-							<li><a href="{{url('showUsuarios')}}">Usuarios <i class="fa fa-users fa-lg"></i></a></li>
-							<li><a href="{{url('asignaturas')}}">Asignaturas <i class="fa fa-book fa-lg"></i></a></li>
-							<li><a href="{{url('horarios')}}">Horarios <i class="fa fa-table fa-lg"></i></a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cátalogos <i class="fa fa-list"></i> <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="{{url('homeSA')}}"><i class="fa fa-calendar-o fa-lg"></i> Periodos </a></li>
+									<li><a href="{{url('asignaturas')}}"><i class="fa fa-book fa-lg"></i> Asignaturas </a></li>
+									<li><a href="{{url('horarios')}}"><i class="fa fa-table fa-lg"></i> Horarios </a></li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <i class="fa fa-users fa-lg"></i><span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="{{url('showUsuarios')}}"><i class="fa fa-search"></i> Lista usuarios </a></li>
+									<li><a href="{{url('getAddAlumno')}}"><i class="fa fa-user"></i> Registrar alumno </a></li>
+									<li><a href="{{url('getAddDocente')}}"><i class="fa fa-user-secret"></i> Registrar docente </a></li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estructura académica <i class="fa fa-list"></i> <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="{{url('getAddSalon')}}"> <i class="fa fa-pencil fa-users"></i> Grupos  </a></li>
+									<li><a href="{{url('getAddGrupo')}}"><i class="fa fa-pencil fa-lg"></i>  Asignaturas a grupos </a></li>
+								</ul>
+							</li>
+
 							<li><a href="{{url('getAlumnosCalificar')}}">Calificar <i class="fa fa-pencil-square-o"></i></a></li>
+							<li><a href="{{url('getAddInscripcion')}}">Inscripciones <i class="fa fa-pencil fa-lg"></i></a></li>
+							<li><a href="{{url('getInscritos')}}">Alumnos inscritos  <i class="fa fa-th-list"></i></a></li>
+
 
                         @elseif(Auth::getRol()=="alumno")
                             <li><a href="{{url('calificacionesAlumno')}}">Ver calificaciones  <i class="fa fa-file-text-o fa-lg"></i></a></li>
                             <li><a href="{{url('getHorarioAlumno')}}">Horario <i class="fa fa-calendar fa-lg"></i></a></li>
 
                         @elseif(Auth::getRol()=="docente")
-							<li><a href="{{url('homeP')}}">Mis grupos <i class="fa fa-users"></i> </a></li>
+							<li><a href="{{url('homeP')}}">Horario <i class="fa fa-users"></i> </a></li>
                             <li><a href="{{url('calificaciones')}}">Calificaciones <i class="fa fa-pencil"></i> </a></li>
 							<li><a href="{{url('misAlumnos')}}">Expedientes <i class="fa fa-newspaper-o"></i> </a></li>
                         @endif
@@ -96,7 +130,6 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="/auth/logout"><i class="fa fa-sign-out"></i> Logout </a></li>
-								<li><a href="/auth/logout"><i class="fa fa-user"></i> Perfil </a></li>
 							</ul>
 						</li>
 					@endif

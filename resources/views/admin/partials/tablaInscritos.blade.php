@@ -1,65 +1,58 @@
 
+<div class="panel panel-info">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Alumnos inscritos</div>
 
-<div class="panel-group"  >
+    <!-- Table -->
+    <table class="table table-hover">
+        <thead>
+        <tr>
 
-    <div class="panel panel-default">
+            <th>Alumno</th>
+            <th>Boleta</th>
+            <th>Materia</th>
+            <th>Periodo</th>
+            <th>Grupo</th>
+            <th>Calificación</th>
+            <th>Operaciones</th>
 
-        <!--  <div class="panel-heading" role="tab" id="heading{#{$grupoAsignatura->id}}"> -->
+        </tr>
+        </thead>
+        <tbody>
 
+
+        @foreach($alumnos as $i=>$alumno)
+        @foreach($gruposAsignaturas as  $grupoAsignatura)
+                <!--  <div class="panel-heading" role="tab" id="heading{#{$grupoAsignatura->id}}"> -->
         <!-- <div id="collapse{#{$grupoAsignatura->id}}" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading{#{$grupoAsignatura->id}}"> -->
-    <div class="panel-heading" role="tab">
-            <h2 class="panel-title">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
+        @if($alumno->asignatura_grupo_id==$grupoAsignatura->id)
+            <tr>
 
-                        <th>No#</th>
-                        <th>Alumno</th>
-                        <th>Boleta</th>
-                        <th>Materia</th>
-                        <th>Periodo</th>
-                        <th>Grupo</th>
-                        <th>Calificación</th>
+                <td>{{$alumno->name}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</td>
+                <td>{{$alumno->boleta}}</td>
+                <td>{{$grupoAsignatura->nombre}}</td>
+                <td>{{$grupoAsignatura->nombrePeriodo}}</td>
+                <td>{{$grupoAsignatura->salon}}</td>
+                @if($grupoAsignatura->calificacion='S/C')
+                    <td >{{$grupoAsignatura->calificacion}}</td>
+                @elseif($grupoAsignatura->calificacion<6)
 
-                    </tr>
-                    </thead>
-                    <tbody>
+                    <td style="background-color: #ce8483">{{$grupoAsignatura->calificacion}}</td>
+                @else
+                    <td style="background-color:#65C400">{{$grupoAsignatura->calificacion}}</td>
 
-                    <div class="panel panel-info">
+                @endif
+                <td>
 
-                    @foreach($alumnos as $i=>$alumno)
-                    @foreach($gruposAsignaturas as  $grupoAsignatura)
-                            <!--  <div class="panel-heading" role="tab" id="heading{#{$grupoAsignatura->id}}"> -->
-                            <!-- <div id="collapse{#{$grupoAsignatura->id}}" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading{#{$grupoAsignatura->id}}"> -->
-                            @if($alumno->asignatura_grupo_id==$grupoAsignatura->id)
-                                <tr>
-                                    <th>{{$i+1}}</th>
-                                    <th>{{$alumno->name}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</th>
-                                    <th>{{$alumno->boleta}}</th>
-                                    <th>{{$grupoAsignatura->nombre}}</th>
-                                    <th>{{$grupoAsignatura->nombrePeriodo}}</th>
-                                    <th>{{$grupoAsignatura->salon}}</th>
-                                @if($grupoAsignatura->calificacion='S/C')
-                                    <th >{{$grupoAsignatura->calificacion}}</th>
-                                    @elseif($grupoAsignatura->calificacion<6)
+                </td>
+            </tr>
+        @endif
 
-                                    <th style="background-color: #ce8483">{{$grupoAsignatura->calificacion}}</th>
-                                    @else
-                                    <th style="background-color:#65C400">{{$grupoAsignatura->calificacion}}</th>
-
-                                 @endif
-                                    <th>    </th>
-                                </tr>@endif
-                        </div>
-                    @endforeach
-                    @endforeach
-                    </tbody>
-                </table>{!! $alumnos->render() !!}
-
-
-            </h2>
-    </div>
-    </div>
-
-
+        @endforeach
+        @endforeach
+        </tbody>
+    </table>{!! $alumnos->render() !!}
 </div>
+
+
+

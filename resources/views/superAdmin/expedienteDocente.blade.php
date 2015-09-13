@@ -16,9 +16,9 @@
                             <a href="mailto:{{$user->email}}">{{$user->email}}</a>
                         </small>
                         <br>
-
+                        <small>SIP:{{$docente->sip}}</small>
                     </h1>
-                    <small>SIP:{{$docente->sip}}</small>
+
                 </div>
 
                 @include('docente.partials.datosGeneralesUsuario')
@@ -61,7 +61,8 @@
                             <dd>{{$docente->cedulaLicenciatura}}</dd>
 
                             <dt>Observaciónes</dt>
-                            <dd>{{$docente->observacionesLicenciatura}}</dd>
+                            <dd><p class="text-justify">{{$docente->observacionesLicenciatura}}</p></dd>
+
 
                         </dl>
                     </div>
@@ -104,7 +105,8 @@
                             <dd>{{$docente->cedulaMaestria}}</dd>
 
                             <dt>Observaciónes</dt>
-                            <dd>{{$docente->observacionesMaestria}}</dd>
+                            <dd><p class="text-justify">{{$docente->observacionesMaestria}}</p></dd>
+
 
                         </dl>
                     </div>
@@ -147,7 +149,7 @@
                             <dd>{{$docente->cedulaDoctorado}}</dd>
 
                             <dt>Observaciónes</dt>
-                            <dd>{{$docente->observacionesDoctorado}}</dd>
+                            <dd><p class="text-justify">{{$docente->observacionesDoctorado}}</p></dd>
 
                         </dl>
                     </div>
@@ -158,7 +160,7 @@
                         <h3 class="panel-title">Datos Laborales</h3>
                     </div>
                     <div class="panel-body">
-                        <dl>
+                        <dl class="dl-horizontal">
                             <dt>Categoría</dt>
                             <dd>{{$docente->categoria}}</dd>
 

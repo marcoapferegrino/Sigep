@@ -1,5 +1,6 @@
 <?php namespace PosgradoService\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
 use PosgradoService\Entities\Asignatura;
 use PosgradoService\Entities\AsignaturaGrupo;
@@ -8,9 +9,9 @@ use PosgradoService\Entities\Horario;
 use PosgradoService\Entities\Periodo;
 use PosgradoService\Entities\Programa;
 use PosgradoService\Entities\User;
+use PosgradoService\Exceptions\Handler;
 use PosgradoService\Http\Requests;
 use PosgradoService\Http\Requests\CreatePeriodoRequest;
-use PosgradoService\Http\Requests\CreateProgramaRequest;
 use PosgradoService\Http\Requests\CreateAsignaturaRequest;
 use PosgradoService\Http\Requests\CreateHorarioRequest;
 use PosgradoService\Http\Requests\UpdatePeriodoRequest;
@@ -42,7 +43,9 @@ class SuperAdminController extends Controller {
 	{
 		$usuarios = User::paginate();
 
-		return view ('superAdmin.showUsuarios',compact('usuarios'));
+		$numUsers = count(User::all());
+
+		return view ('superAdmin.showUsuarios',compact('usuarios','numUsers'));
 	}
 	public function findUsuario(Request $request)
 	{
@@ -50,10 +53,10 @@ class SuperAdminController extends Controller {
 
 		$name = $request->get('name');
 		$rol = $request->get('rol');
-
+		$numUsers = count(User::all());
 		$usuarios = User::name($name)->rol($rol)->orderBy('id','DESC')->paginate();
 
-		return view ('superAdmin.showUsuarios',compact('usuarios'));
+		return view ('superAdmin.showUsuarios',compact('usuarios','numUsers'));
 	}
 
 	public function addPeriodo(CreatePeriodoRequest $request)
@@ -63,41 +66,27 @@ class SuperAdminController extends Controller {
 		Session::flash('message', $periodo->nombre.' fue agregado :D');
 		return redirect()->action('SuperAdminController@index');
 	}
-	public function addPrograma(CreateProgramaRequest $request)
-	{
-
-		$programa = Programa::create($request->all());
-		Session::flash('message', $programa->nombre.' fue agregado :D');
-
-		return redirect()->action('SuperAdminController@index');
-	}
+//	public function addPrograma(CreateProgramaRequest $request)
+//	{
+//
+//		$programa = Programa::create($request->all());
+//		Session::flash('message', $programa->nombre.' fue agregado :D');
+//
+//		return redirect()->action('SuperAdminController@index');
+//	}
 	public function deletePeriodo($id)
 	{
 		$periodo = Periodo::findOrFail($id);
-
-		$programas = Programa::all();
-		$mensajeError = "";
 		$mensajeSuccess =$periodo->nombre.' fue eliminado :D';
-		$estado = false;
-
-		foreach($programas as $programa)
+		try
 		{
-			if($programa->periodo_id == $periodo->id)
-			{
-				$mensajeError = "No podemos borrar por qué hay un programa que tiene este periodo";
-				$estado = true;
-			}
-
-		}
-		if ($estado==false) {
 			$periodo->delete();
 			Session::flash('message',$mensajeSuccess );
 		}
-		else
+		catch(QueryException $e)
 		{
-			Session::flash('error',$mensajeError );
+			Handler::checkQueryError($e);
 		}
-
 
 		return redirect()->action('SuperAdminController@index');
 
@@ -135,15 +124,15 @@ class SuperAdminController extends Controller {
 		Session::flash('message',$programa->nombre.' fue Actualizado :D');
 		return redirect()->action('SuperAdminController@index');
 	}
-	public function deletePrograma($id)
-	{
-		$programa = Programa::findOrFail($id);
-		$programa->delete();
-
-		Session::flash('message',$programa->nombre.' fue eliminado :D');
-		return redirect()->action('SuperAdminController@index');
-
-	}
+//	public function deletePrograma($id)
+//	{
+//		$programa = Programa::findOrFail($id);
+//		$programa->delete();
+//
+//		Session::flash('message',$programa->nombre.' fue eliminado :D');
+//		return redirect()->action('SuperAdminController@index');
+//
+//	}
 
 	public function showAsignaturas()
 	{
@@ -163,9 +152,17 @@ class SuperAdminController extends Controller {
 	public function deleteAsignatura($id)
 	{
 		$asignatura = Asignatura::findOrFail($id);
-		$asignatura->delete();
+		try
+		{
+			$asignatura->delete();
+			Session::flash('message',$asignatura->nombre.' fue eliminado :D');
+		}
+		catch(QueryException $e)
+		{
+			Handler::checkQueryError($e);
 
-		Session::flash('message',$asignatura->nombre.' fue eliminado :D');
+		}
+
 		return redirect()->action('SuperAdminController@showAsignaturas');
 	}
 
@@ -244,41 +241,51 @@ class SuperAdminController extends Controller {
 	public function deleteHorario($id)
 	{
 		$horario = Horario::findOrFail($id);
-		$horario->delete();
 
-		Session::flash('message', "El horario : ". $horario->nombre.' fue eliminado :D');
+		try
+		{
+			$horario->delete();
+			Session::flash('message', "El horario : ". $horario->nombre.' fue eliminado :D');
+		}
+		catch(QueryException $e)
+		{
+			Handler::checkQueryError($e);
+
+		}
+
+
+
+
 
 		return redirect()->action('SuperAdminController@showHorarios');
 	}
-//	public function abrirActa(Request $request)
-//	{
-//
-//		$grupoAsignatura = AsignaturaGrupo::find($request->id);
-//		//dd($request->all(),$grupoAsignatura->toArray());
-//		if($grupoAsignatura->acta==0)
-//		{
-//			$grupoAsignatura->acta=1;
-//			$grupoAsignatura->save();
-//			Session::flash('message', 'El acta se abrio correctamente ahora pueden calificar');
-//		}
-//		else
-//		{
-//			Session::flash('error', 'Hubo un error en el acta lo sentimos');
-//		}
-//
-//		return redirect()->action('AdminController@getAlumnosCalificar');
-//
-//	}
+	public function abrirActa(Request $request)
+	{
+
+		$grupoAsignatura = AsignaturaGrupo::find($request->id);
+		//dd($request->all(),$grupoAsignatura->toArray());
+		if($grupoAsignatura->acta==0)
+		{
+			$grupoAsignatura->acta=1;
+			$grupoAsignatura->save();
+			Session::flash('message', 'El acta se abrio correctamente ahora pueden calificar');
+		}
+		else
+		{
+			Session::flash('error', 'Hubo un error en el acta lo sentimos');
+		}
+
+		return redirect()->action('AdminController@getAlumnosCalificar');
+
+	}
 
 	public function showExpedienteDocente($id)
 	{
 		$user = User::find($id);
 		$docente = Docente::find($user->docente_id);
 
-		//dd($user->toArray(),$docente->toArray());
-
-
 		return view('superAdmin.expedienteDocente',compact('user','docente'));
+
 	}
 
 	private function diasJson($dias)

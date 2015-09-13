@@ -11,10 +11,10 @@
 
             <div class="col-md-12 ">
                 <div class="panel panel-success">
-                    <div class="panel-heading"><h4>Usuarios</h4></div>
+                    <div class="panel-heading"><h4>Usuarios : {{$numUsers}}</h4></div>
                     <div class="text-center">
-                        <a class="btn btn-info btn-lg" href="{{url('getAddAlumno')}}" role="button">Alumno <i class="fa fa-plus fa-lg"></i></a>
-                        <a class="btn btn-primary btn-lg" href="{{url('getAddDocente')}}" role="button">Docente<i class="fa fa-plus fa-lg"></i></a>
+                        {{--<a class="btn btn-info btn-lg" href="{{url('getAddAlumno')}}" role="button">Alumno <i class="fa fa-plus fa-lg"></i></a>--}}
+                        {{--<a class="btn btn-primary btn-lg" href="{{url('getAddDocente')}}" role="button">Docente<i class="fa fa-plus fa-lg"></i></a>--}}
 
                     </div>
 
@@ -36,7 +36,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+
                                             <th>Nombre</th>
                                             <th>Email</th>
                                             <th>Teléfono</th>
@@ -51,7 +51,7 @@
                                         @foreach($usuarios as $usuario)
 
                                             <tr>
-                                                <td>{{$index++}}</td>
+
                                                 <td>{{$usuario->name." ".$usuario->apellidoP." ".$usuario->apellidoM}}</td>
                                                 <td>{{$usuario->email}}</td>
                                                 <td>{{$usuario->telefono}}</td>

@@ -93,17 +93,17 @@
                             </div>
                             {!! Form::close() !!}
                         @endif
-                        {{--@if($grupoAsignatura->acta == 0 && Auth::getRol()=='superAdmin')--}}
-                                {{--{!! Form::open(['route' => ['calificaciones.abrirActa'],'method' => 'POST']) !!}--}}
-                                    {{--<div class="col-md-8 col-lg-offset-2">--}}
-                                        {{--<input type="hidden" name="id" value="{{$grupoAsignatura->id}}">--}}
-                                        {{--<button type="submit" onclick="return confirm('Seguro?')" class="btn btn-warning btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="Abrir acta">--}}
-                                            {{--Abrir acta <i class="fa fa-folder-open"></i>--}}
-                                        {{--</button>--}}
-                                    {{--</div>--}}
-                                {{--{!! Form::close() !!}--}}
+                        @if($grupoAsignatura->acta == 0 && Auth::getRol()=='superAdmin')
+                                {!! Form::open(['route' => ['calificaciones.abrirActa'],'method' => 'POST']) !!}
+                                    <div class="col-md-8 col-lg-offset-2">
+                                        <input type="hidden" name="id" value="{{$grupoAsignatura->id}}">
+                                        <button type="submit" onclick="return confirm('Seguro?')" class="btn btn-warning btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="Abrir acta">
+                                            Abrir acta <i class="fa fa-folder-open"></i>
+                                        </button>
+                                    </div>
+                                {!! Form::close() !!}
 
-                        {{--@endif--}}
+                        @endif
                         @if($grupoAsignatura->acta == 1)
                         {!! Form::open(['route' => ['calificaciones.cerrarActa'],'method' => 'POST']) !!}
                         <div class="col-md-8 col-lg-offset-2">
