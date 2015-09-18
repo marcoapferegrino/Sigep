@@ -117,7 +117,6 @@ class AdminController extends Controller {
         }
         //dd($dias,$horarios);
 
-
         $asignaturasGrupo = array();
 
         $grupos = Grupo::gruposActuales();
@@ -239,28 +238,42 @@ class AdminController extends Controller {
     }
     public function getAlumnosCalificar()
     {
+        $periodos = Periodo::all('id','nombre');
+        $asignaturas = Asignatura::all('id','nombre');
 
         $gruposAsignaturas = User::getAsignaturasGrupos();
         $alumnos = User::getAlumnosInscritos();
 
-        //dd($grupoAsignatura,$alumnos);
+//       dd($asignaturas->toArray(),$periodos->toArray());
 
-        return view('docente.calificaciones',compact('gruposAsignaturas','alumnos'));
+        return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','periodos','asignaturas'));
+    }
+
+    public function asignaturaGrupoPeriodo(Request $request)
+    {
+        $idPeriodo=$request->periodo;
+        $idAsignatura = $request->asignatura;
+        //dd($idAsignatura,$idPeriodo);
+        $periodos = Periodo::all('id','nombre');
+        $asignaturas = Asignatura::all('id','nombre');
+
+
+        $gruposAsignaturas = User::getAsignaturasGruposbyPeriodo($idPeriodo,$idAsignatura);
+        $alumnos = User::getAlumnosInscritosbyPeriodo($idPeriodo,$idAsignatura);
+
+       //dd($gruposAsignaturas,$alumnos);
+
+        return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','periodos','asignaturas'));
     }
 
     public function getInscritos()
     {
 
         $gruposAsignaturas = User::getAsignaturasGruposSin();
-        //$alumnos = User::getAlumnos();
         $alumnos = User::getAlumnosInscritos();
-
-        //dd($alumnos);
-
-        //dd($gruposAsignaturas);
-
         return view('admin.listInscritos',compact('gruposAsignaturas','alumnos'));
     }
+
 
     public function calificar(Request $request)
     {

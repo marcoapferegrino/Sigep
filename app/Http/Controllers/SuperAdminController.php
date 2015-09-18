@@ -252,11 +252,6 @@ class SuperAdminController extends Controller {
 			Handler::checkQueryError($e);
 
 		}
-
-
-
-
-
 		return redirect()->action('SuperAdminController@showHorarios');
 	}
 	public function abrirActa(Request $request)

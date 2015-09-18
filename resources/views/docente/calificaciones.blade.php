@@ -11,28 +11,69 @@
 
             <div class="col-md-12 ">
                 <div class="panel panel-success">
-                    <div class="panel-heading"><strong>Calificar</strong></div>
-                    <div class="panel-body">
-                        <div class="pull-left">
-                            @if(Request::url() == 'http://posgrado.service/calificaciones')
-                                <h2>Grupos actuales</h2>
-                            @endif
-                                @if(Request::url() == 'http://posgrado.service/historyGroups')
-                                    <h2>Grupos anteriores</h2>
+                    <div class="panel-heading">
+                        <h3>
+                            <strong>Calificar</strong>
+                            <div class="pull-right">
+                                @if(Auth::getRol() == "superAdmin" || Auth::getRol() == "admin")
+                                    <a class="btn btn-success" href="{{url('getAlumnosCalificar')}}" role="button"><i class="fa fa-refresh"></i></a>
+                                @elseif(Auth::getRol() == "docente")
+                                    <a class="btn btn-success" href="{{url('calificaciones')}}" role="button"><i class="fa fa-refresh"></i></a>
                                 @endif
-                        </div>
-                        @if(Request::url() != 'http://posgrado.service/historyGroups')
+                            </div>
+                        </h3>
+
+                    </div>
+                    <div class="panel-body">
+                        {{--<div class="pull-left">--}}
+                            {{--@if(Request::url() == 'http://posgrado.service/calificaciones')--}}
+                                {{--<h2>Grupos actuales</h2>--}}
+                            {{--@endif--}}
+                                {{--@if(Request::url() == 'http://posgrado.service/historyGroups')--}}
+                                    {{--<h2>Grupos anteriores</h2>--}}
+                                {{--@endif--}}
+                        {{--</div>--}}
+                        {{--@if(Request::url() != 'http://posgrado.service/historyGroups')--}}
+
+                            {{--<div class="pull-right">--}}
+                                {{--{!! Form::open(['route' => ['alumnos.recordGroups'],'method' => 'post']) !!}--}}
+                                {{--<div class="col-md-12">--}}
+                                    {{--<button type="submit"  class="btn btn-info btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="grupos anteriores">--}}
+                                        {{--Historial--}}
+                                    {{--</button>--}}
+                                {{--</div>--}}
+                                {{--{!! Form::close() !!}--}}
+                            {{--</div>--}}
+                        {{--@endif--}}
 
                             <div class="pull-right">
-                                {!! Form::open(['route' => ['alumnos.recordGroups'],'method' => 'post']) !!}
-                                <div class="col-md-12">
-                                    <button type="submit"  class="btn btn-info btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="grupos anteriores">
-                                        Historial
-                                    </button>
-                                </div>
+                                @if(Auth::getRol() == "superAdmin" || Auth::getRol() == "admin")
+                                    {!! Form::open(['route' => ['asignaturaGrupoPeriodo.periodos'],'method' => 'get','class'=>'form-inline']) !!}
+                                @elseif(Auth::getRol() == "docente")
+                                    {!! Form::open(['route' => ['asignaturaGrupoPeriodoDocente.periodos'],'method' => 'get','class'=>'form-inline']) !!}
+                                @endif
+                                <select class="form-control" id ="periodo" name="periodo" placeholder="Periodo">
+                                    <option  value="">Selecciona periodo</option>
+
+                                    @foreach($periodos as $periodo)
+                                        <option value="{{$periodo->id}}">{{$periodo->nombre}}</option>
+                                    @endforeach
+                                </select>
+                                <select class="form-control" id ="asignatura" name="asignatura" placeholder ="Asignatura">
+                                    <option value="">Selecciona asignatura</option>
+                                    @foreach($asignaturas as $asignatura)
+                                        <option value="{{$asignatura->id}}">{{$asignatura->nombre}}</option>
+                                    @endforeach
+                                </select>
+
+                                <button type="submit" class="btn btn-info">
+                                    <i class="fa fa-filter"></i> Filtrar
+                                </button>
+
+
                                 {!! Form::close() !!}
                             </div>
-                        @endif
+
 
 
                         <br><br>

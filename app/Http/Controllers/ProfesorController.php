@@ -3,9 +3,11 @@
 
 
 use PosgradoService\Entities\Alumno;
+use PosgradoService\Entities\Asignatura;
 use PosgradoService\Entities\AsignaturaGrupo;
 use PosgradoService\Entities\Docente;
 use PosgradoService\Entities\Inscripcion;
+use PosgradoService\Entities\Periodo;
 use PosgradoService\Entities\User;
 use PosgradoService\Http\Requests;
 use Illuminate\Http\Request;
@@ -35,24 +37,41 @@ class ProfesorController extends Controller {
 	}
 	public function showCalificaciones(){
 		$idDocente =auth()->user()->docente_id;
-  
+  		$asignaturas = Asignatura::all('id','nombre');
+		$periodos = Periodo::all('id','nombre');
+
 		$gruposAsignaturas = User::getAsignaturasGruposDocenteActually($idDocente);
 		$alumnos = User::getAlumnosdeDocenteActually($idDocente);
 
 		//dd($alumnos,$gruposAsignaturas);
-		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos'));
+		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','asignaturas','periodos'));
 	}
-	public function recordGroups(){
+	public function asignaturaGrupoPeriodoDocente(Request $request)
+	{
 		$idDocente =auth()->user()->docente_id;
+		$idAsignatura = $request->asignatura;
+		$idPeriodo = $request->periodo;
 
-		$gruposAsignaturas = User::getAsignaturasGruposDocenteRecord($idDocente);
-		$alumnos = User::getAlumnosdeDocenteRecord($idDocente);
+		$asignaturas = Asignatura::all('id','nombre');
+		$periodos = Periodo::all('id','nombre');
 
+		$gruposAsignaturas = User::getAsignaturasGruposDocentePeriodo($idDocente,$idAsignatura,$idPeriodo);
+		$alumnos = User::getAlumnosdeDocentePeriodo($idDocente,$idAsignatura,$idPeriodo);
 
 		//dd($alumnos,$gruposAsignaturas);
-		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos'));
-
+		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','asignaturas','periodos'));
 	}
+//	public function recordGroups(){
+//		$idDocente =auth()->user()->docente_id;
+//
+//		$gruposAsignaturas = User::getAsignaturasGruposDocenteRecord($idDocente);
+//		$alumnos = User::getAlumnosdeDocenteRecord($idDocente);
+//
+//
+//		//dd($alumnos,$gruposAsignaturas);
+//		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos'));
+//
+//	}
 
 	public function showAlumnos()
 	{

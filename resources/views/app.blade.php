@@ -29,7 +29,26 @@
 </head>
 <body>
 <div class="page-header">
-	<h1>Buenos días  <small>ESCOM</small></h1>
+	<div class="row headerIcons">
+		<div class="col-md-5">
+			<img alt="Brand" src="{{asset('/icons/escudoescom.ico')}}">
+			<img alt="Brand" src="{{asset('/icons/sepi.ico')}}">
+
+		</div>
+		<div class="col-md-3">
+			<p class="lead"><h1 style="color: darkgrey">SIGEP</h1></p>
+		</div>
+		<div class="col-md-3">
+			<img alt="Brand" src="{{asset('/icons/logoIPNGris.png')}}">
+		</div>
+	</div>
+
+
+
+
+
+
+
 </div>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
