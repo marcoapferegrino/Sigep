@@ -213,7 +213,13 @@ Route::group(/**
             'as' => 'inscritos.getInscritos',
             'uses' => 'AdminController@getInscritos'
         ]);
+
+        Route::get('/asignaturaGrupoPeriodo', [
+            'as' => 'asignaturaGrupoPeriodo.periodos',
+            'uses' => 'AdminController@asignaturaGrupoPeriodo'
+        ]);
     });
+
     Route::group(['middleware' => 'role:alumno'],function() {
         Route::get('logAlumno',"AlumnoController@index");
 
@@ -232,9 +238,6 @@ Route::group(/**
 
     Route::group(['middleware' => 'role:docente'],function() {
         Route::get('homeP',"ProfesorController@index");
-
-
-
 
         //Calificaciones
         Route::get('/calificaciones', [
@@ -274,6 +277,14 @@ Route::group(/**
             'as' => 'horario.horarioPDF',
             'uses' => 'ProfesorController@horarioPDF'
         ]);
+        Route::get('/asignaturaGrupoPeriodoDocente', [
+            'as' => 'asignaturaGrupoPeriodoDocente.periodos',
+            'uses' => 'ProfesorController@asignaturaGrupoPeriodoDocente'
+        ]);
+
+
+
+
     });
 
 });
