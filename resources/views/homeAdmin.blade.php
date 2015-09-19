@@ -5,9 +5,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div class="page-header">
-                    <h1>Bienvenido !! <small>Admin</small></h1>
-                </div>
+                @if(Auth::getRol()=='admin')
+                    <div class="page-header">
+                        <h1>Bienvenido !! <small>Admin</small></h1>
+                    </div>
+                @endif
                 <div class="panel panel-info">
 
                     <div class="panel-heading"><i class="fa fa-list-ol"></i> Listas</div>

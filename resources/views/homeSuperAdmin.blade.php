@@ -50,7 +50,6 @@
                                             <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditPeriodo{{$periodo->id}}">
                                                 <i class="fa fa-pencil-square-o"></i>
                                             </button>
-
                                             {!! Form::open(['route' => ['periodo.deletePeriodo',$periodo->id],'method' => 'DELETE']) !!}
                                             <button type="submit" onclick="return confirm('Seguro que quieres eliminar?')" class="btn btn-danger">
                                                 <i class="fa fa-trash-o"></i>
@@ -65,55 +64,6 @@
                         </div>
                     </div>
                 </div>
-                {{--<div class="col-xs-6 col-md-5">--}}
-                    {{--<div class="panel panel-primary">--}}
-                        {{--<div class="panel-heading">--}}
-                            {{--<h3 class="panel-title">Programas</h3>--}}
-                        {{--</div>--}}
-                        {{--<div class="panel-body">--}}
-                            {{--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalPrograma">--}}
-                                {{--Programa <i class="fa fa-plus fa-lg"></i>--}}
-                            {{--</button>--}}
-                            {{--<table class="table table-hover">--}}
-                                {{--<thead>--}}
-                                {{--<tr>--}}
-                                    {{--<th>#</th>--}}
-                                    {{--<th>Nombre</th>--}}
-                                    {{--<th>Escuela</th>--}}
-                                    {{--<th>#periodo</th>--}}
-                                    {{--<th>Operaciones</th>--}}
-
-                                {{--</tr>--}}
-                                {{--</thead>--}}
-                                {{--<tbody>--}}
-                                {{--@foreach($programas as $programa)--}}
-                                    {{--<tr>--}}
-                                        {{--<td>{{$programa->id}}</td>--}}
-                                        {{--<td>{{$programa->nombre}}</td>--}}
-                                        {{--<td>{{$programa->escuela}}</td>--}}
-                                        {{--<td>{{$programa->periodo_id}}</td>--}}
-                                        {{--<td>--}}
-
-                                            {{--<button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditPrograma{{$programa->id}}">--}}
-                                                {{--<i class="fa fa-pencil-square-o"></i>--}}
-                                            {{--</button>--}}
-
-                                            {{--{!! Form::open(['route' => ['periodo.deletePrograma',$programa->id],'method' => 'DELETE']) !!}--}}
-                                            {{--<button type="submit" onclick="return confirm('Al eliminar el programa el periodo también se eliminará. Seguro?')" class="btn btn-danger">--}}
-                                                {{--<i class="fa fa-trash-o"></i>--}}
-                                            {{--</button>--}}
-                                            {{--{!! Form::close() !!}--}}
-
-                                        {{--</td>--}}
-
-                                    {{--</tr>--}}
-                                    {{--@include('superAdmin.partials.editProgramaModal')--}}
-                                {{--@endforeach--}}
-                                {{--</tbody>--}}
-                            {{--</table>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
             </div>
 
 

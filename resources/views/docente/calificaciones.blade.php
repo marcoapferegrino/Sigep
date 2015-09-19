@@ -25,26 +25,6 @@
 
                     </div>
                     <div class="panel-body">
-                        {{--<div class="pull-left">--}}
-                            {{--@if(Request::url() == 'http://posgrado.service/calificaciones')--}}
-                                {{--<h2>Grupos actuales</h2>--}}
-                            {{--@endif--}}
-                                {{--@if(Request::url() == 'http://posgrado.service/historyGroups')--}}
-                                    {{--<h2>Grupos anteriores</h2>--}}
-                                {{--@endif--}}
-                        {{--</div>--}}
-                        {{--@if(Request::url() != 'http://posgrado.service/historyGroups')--}}
-
-                            {{--<div class="pull-right">--}}
-                                {{--{!! Form::open(['route' => ['alumnos.recordGroups'],'method' => 'post']) !!}--}}
-                                {{--<div class="col-md-12">--}}
-                                    {{--<button type="submit"  class="btn btn-info btn-block btn-lg" data-toggle="tooltip" data-placement="top" title="grupos anteriores">--}}
-                                        {{--Historial--}}
-                                    {{--</button>--}}
-                                {{--</div>--}}
-                                {{--{!! Form::close() !!}--}}
-                            {{--</div>--}}
-                        {{--@endif--}}
 
                             <div class="pull-right">
                                 @if(Auth::getRol() == "superAdmin" || Auth::getRol() == "admin")
@@ -52,6 +32,13 @@
                                 @elseif(Auth::getRol() == "docente")
                                     {!! Form::open(['route' => ['asignaturaGrupoPeriodoDocente.periodos'],'method' => 'get','class'=>'form-inline']) !!}
                                 @endif
+                                    <select class="form-control" id ="grupo" name="grupo" placeholder="Grupo">
+                                        <option  value="">Selecciona grupo</option>
+
+                                        @foreach($grupos as $grupo)
+                                            <option value="{{$grupo->id}}">{{$grupo->nombre}}</option>
+                                        @endforeach
+                                    </select>
                                 <select class="form-control" id ="periodo" name="periodo" placeholder="Periodo">
                                     <option  value="">Selecciona periodo</option>
 

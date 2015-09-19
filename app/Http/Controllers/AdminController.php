@@ -222,8 +222,8 @@ class AdminController extends Controller {
     public function addAlumno(AddAlumnoRequest $request)  //peticion post para addAlumno
     {
         //dd($request->all());
-        $password = bcrypt($request->password);
-        $alumno = Alumno::create($request->all());
+        $password   = bcrypt($request->password);
+        $alumno     = Alumno::create($request->all());
 
         $user = User::create($request->all());
 
@@ -238,39 +238,41 @@ class AdminController extends Controller {
     }
     public function getAlumnosCalificar()
     {
-        $periodos = Periodo::all('id','nombre');
-        $asignaturas = Asignatura::all('id','nombre');
+        $periodos       = Periodo::all('id','nombre');
+        $asignaturas    = Asignatura::all('id','nombre');
+        $grupos         = Grupo::all('id','nombre');
 
-        $gruposAsignaturas = User::getAsignaturasGrupos();
-        $alumnos = User::getAlumnosInscritos();
+        $gruposAsignaturas  = User::getAsignaturasGrupos();
+        $alumnos            = User::getAlumnosInscritos();
 
 //       dd($asignaturas->toArray(),$periodos->toArray());
 
-        return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','periodos','asignaturas'));
+        return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','periodos','asignaturas','grupos'));
     }
 
     public function asignaturaGrupoPeriodo(Request $request)
     {
-        $idPeriodo=$request->periodo;
-        $idAsignatura = $request->asignatura;
-        //dd($idAsignatura,$idPeriodo);
-        $periodos = Periodo::all('id','nombre');
-        $asignaturas = Asignatura::all('id','nombre');
+        $idPeriodo      = $request->periodo;
+        $idAsignatura   = $request->asignatura;
+        $idGrupo        = $request->grupo;
+//        dd($idAsignatura,$idPeriodo,$idGrupo);
+        $periodos       = Periodo::all('id','nombre');
+        $asignaturas    = Asignatura::all('id','nombre');
+        $grupos         = Grupo::all('id','nombre');
 
-
-        $gruposAsignaturas = User::getAsignaturasGruposbyPeriodo($idPeriodo,$idAsignatura);
-        $alumnos = User::getAlumnosInscritosbyPeriodo($idPeriodo,$idAsignatura);
+        $gruposAsignaturas  = User::getAsignaturasGruposbyPeriodo($idPeriodo,$idAsignatura,$idGrupo);
+        $alumnos            = User::getAlumnosInscritosbyPeriodo($idPeriodo,$idAsignatura,$idGrupo);
 
        //dd($gruposAsignaturas,$alumnos);
 
-        return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','periodos','asignaturas'));
+        return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','periodos','asignaturas','grupos'));
     }
 
     public function getInscritos()
     {
 
-        $gruposAsignaturas = User::getAsignaturasGruposSin();
-        $alumnos = User::getAlumnosInscritos();
+        $gruposAsignaturas  = User::getAsignaturasGruposSin();
+        $alumnos            = User::getAlumnosInscritos();
         return view('admin.listInscritos',compact('gruposAsignaturas','alumnos'));
     }
 
@@ -278,8 +280,8 @@ class AdminController extends Controller {
     public function calificar(Request $request)
     {
         $user = auth()->user();
-        $calificaciones = $request->calificaciones;
-        $inscripcionesId = $request->inscripcion_ids;
+        $calificaciones     = $request->calificaciones;
+        $inscripcionesId    = $request->inscripcion_ids;
 
 
         for($i=0 ; $i<count($calificaciones);$i++)
@@ -298,16 +300,11 @@ class AdminController extends Controller {
 
     public function getGrupos() // lista de grupos
     {
-
         $grupos = Grupo::all();
-
-
-
         $periodos = Periodo::all();
        // dd($periodos);
 
         return view('admin.gruposList',compact('grupos','periodos'));
-
     }
 
     public function deleteGrupo($id)
@@ -315,7 +312,6 @@ class AdminController extends Controller {
         $grupo = Grupo::findOrFail($id);
         $grupo->delete();
         return redirect()->action('AdminController@getGrupos');
-
     }
 
     public function updateGrupo(UpdateGrupoRequest $request)
@@ -324,10 +320,10 @@ class AdminController extends Controller {
         //dd($request->all());
         $grupo = Grupo::find($request->id);
 
-        $grupo->nombre= $request->nombre;
-        $grupo->salon= $request->salon;
-        $grupo->semestre= $request->semestre;
-        $grupo->periodo_id = $request->periodo_id;
+        $grupo->nombre      = $request->nombre;
+        $grupo->salon       = $request->salon;
+        $grupo->semestre    = $request->semestre;
+        $grupo->periodo_id  = $request->periodo_id;
 
 
         $grupo->save();

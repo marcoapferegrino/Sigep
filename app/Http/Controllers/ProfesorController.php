@@ -5,7 +5,7 @@
 use PosgradoService\Entities\Alumno;
 use PosgradoService\Entities\Asignatura;
 use PosgradoService\Entities\AsignaturaGrupo;
-use PosgradoService\Entities\Docente;
+use PosgradoService\Entities\Grupo;
 use PosgradoService\Entities\Inscripcion;
 use PosgradoService\Entities\Periodo;
 use PosgradoService\Entities\User;
@@ -36,48 +36,42 @@ class ProfesorController extends Controller {
 		return view('homeProfesor',compact('horarios','dias'));
 	}
 	public function showCalificaciones(){
+
 		$idDocente =auth()->user()->docente_id;
-  		$asignaturas = Asignatura::all('id','nombre');
-		$periodos = Periodo::all('id','nombre');
 
-		$gruposAsignaturas = User::getAsignaturasGruposDocenteActually($idDocente);
-		$alumnos = User::getAlumnosdeDocenteActually($idDocente);
+		$asignaturas 	= Asignatura::all('id','nombre');
+		$periodos 		= Periodo::all('id','nombre');
+		$grupos 		= Grupo::all('id','nombre');
 
-		//dd($alumnos,$gruposAsignaturas);
-		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','asignaturas','periodos'));
+		$gruposAsignaturas 	= User::getAsignaturasGruposDocenteActually($idDocente);
+		$alumnos 			= User::getAlumnosdeDocenteActually($idDocente);
+
+//		dd($alumnos,$gruposAsignaturas);
+		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','asignaturas','periodos','grupos'));
 	}
 	public function asignaturaGrupoPeriodoDocente(Request $request)
 	{
 		$idDocente =auth()->user()->docente_id;
-		$idAsignatura = $request->asignatura;
-		$idPeriodo = $request->periodo;
+		$idAsignatura 	= $request->asignatura;
+		$idPeriodo 		= $request->periodo;
+		$idGrupo 		= $request->grupo;
 
 		$asignaturas = Asignatura::all('id','nombre');
 		$periodos = Periodo::all('id','nombre');
+		$grupos = Grupo::all('id','nombre');
 
-		$gruposAsignaturas = User::getAsignaturasGruposDocentePeriodo($idDocente,$idAsignatura,$idPeriodo);
-		$alumnos = User::getAlumnosdeDocentePeriodo($idDocente,$idAsignatura,$idPeriodo);
+		$gruposAsignaturas 	= User::getAsignaturasGruposDocentePeriodo($idDocente,$idAsignatura,$idPeriodo,$idGrupo);
+		$alumnos 			= User::getAlumnosdeDocentePeriodo($idDocente,$idAsignatura,$idPeriodo,$idGrupo);
 
-		//dd($alumnos,$gruposAsignaturas);
-		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','asignaturas','periodos'));
+
+		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','asignaturas','periodos','grupos'));
 	}
-//	public function recordGroups(){
-//		$idDocente =auth()->user()->docente_id;
-//
-//		$gruposAsignaturas = User::getAsignaturasGruposDocenteRecord($idDocente);
-//		$alumnos = User::getAlumnosdeDocenteRecord($idDocente);
-//
-//
-//		//dd($alumnos,$gruposAsignaturas);
-//		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos'));
-//
-//	}
 
 	public function showAlumnos()
 	{
-		$idDocente =auth()->user()->docente_id;
-		$alumnos = User::getAlumnosdeDocentePagination($idDocente);
-		//dd($alumnos->toArray());
+		$idDocente 	= auth()->user()->docente_id;
+		$alumnos 	= User::getAlumnosdeDocentePagination($idDocente);
+
 		return view('docente.showAlumnos',compact('alumnos'));
 	}
 
@@ -88,8 +82,6 @@ class ProfesorController extends Controller {
 
 		return view('docente.showAlumnos',compact('alumnos'));
 	}
-
-
 
 	public function showExpediente($id)
 	{
@@ -126,11 +118,11 @@ class ProfesorController extends Controller {
 
 		$user = auth()->user();
 
-		$idDocente = $idDocente =auth()->user()->docente_id;
+		$idDocente 			= $idDocente =auth()->user()->docente_id;
 		//array de calificaciones e id de inscripciones, del mismo tamaño
-		$calificaciones = $request->calificaciones;
-		$inscripcionesId = $request->inscripcion_ids;
-		$inscripciones = Inscripcion::find($inscripcionesId);
+		$calificaciones 	= $request->calificaciones;
+		$inscripcionesId 	= $request->inscripcion_ids;
+		$inscripciones 		= Inscripcion::find($inscripcionesId);
 
 
 		//iteramos ambos arrays y vamos seteando las calificaciones a las inscripciones correspondientes
@@ -149,50 +141,50 @@ class ProfesorController extends Controller {
 
 	}
 
-	public function horarioPDF()
-	{
-		$user = auth()->user();
-		$horario = array();
-
-		$datos= User::getAsignaturasDeDocente($user->docente_id);
-
-		foreach($datos as $dato)
-		{
-			array_push($horario,User::getHorario($dato->grupo_id,$dato->asignatura_id));
-		}
-
-	/*
-		$pdf = \App::make('dompdf.wrapper');
-		$pdf->loadHTML(view('docente.partials.tablaHorario',compact('horario','datos')))->setOrientation('landscape');
-		return $pdf->stream();
-	*/
-
-		/*$pdf = \PDF::loadView('docente.partials.tablaHorario', compact('horario','datos'));
-		return $pdf->stream();
-		*/
-
-		/*$view =view('docente.partials.tablaHorario',compact('horario','datos'));
-
-
-		$pdf = \App::make('dompdf.wrapper');
-		$pdf->loadHTML($view);
-
-		return $pdf->stream();*/
-
-		$pdf = \PDF::loadView('docente/partials/horarioPDF',array('horario'=>$horario,'datos'=>$datos))->setOrientation('landscape')->setWarnings(false);
-		return $pdf->stream();
-
-	}
+//	public function horarioPDF()
+//	{
+//		$user = auth()->user();
+//		$horario = array();
+//
+//		$datos= User::getAsignaturasDeDocente($user->docente_id);
+//
+//		foreach($datos as $dato)
+//		{
+//			array_push($horario,User::getHorario($dato->grupo_id,$dato->asignatura_id));
+//		}
+//
+//		/*
+//            $pdf = \App::make('dompdf.wrapper');
+//            $pdf->loadHTML(view('docente.partials.tablaHorario',compact('horario','datos')))->setOrientation('landscape');
+//            return $pdf->stream();
+//        */
+//
+//		/*$pdf = \PDF::loadView('docente.partials.tablaHorario', compact('horario','datos'));
+//		return $pdf->stream();
+//		*/
+//
+//		/*$view =view('docente.partials.tablaHorario',compact('horario','datos'));
+//
+//
+//		$pdf = \App::make('dompdf.wrapper');
+//		$pdf->loadHTML($view);
+//
+//		return $pdf->stream();*/
+//
+//		$pdf = \PDF::loadView('docente/partials/horarioPDF',array('horario'=>$horario,'datos'=>$datos))->setOrientation('landscape')->setWarnings(false);
+//		return $pdf->stream();
+//
+//	}
 
 	public function closeActa(Request $request){
-		$user = auth()->user();
-		$idDocente =$user->docente_id;
-		$idGrupoAsignatura = $request->id;
-		$grupoAsignatura = AsignaturaGrupo::find($idGrupoAsignatura);
+		$user 				= auth()->user();
+		$idDocente 			=$user->docente_id;
+		$idGrupoAsignatura 	= $request->id;
+		$grupoAsignatura 	= AsignaturaGrupo::find($idGrupoAsignatura);
 
 
-        //validamos que el acta originalmente este en 1 para cerrar ,
-        // se valida que el acta que se cierra pertenezca al docente en sesión
+		//validamos que el acta originalmente este en 1 para cerrar ,
+		// se valida que el acta que se cierra pertenezca al docente en sesión
 		if (($grupoAsignatura->acta == 1 && $grupoAsignatura->docente_id==$idDocente) || $user->rol == "superAdmin") {
 			$grupoAsignatura->acta=0;
 			$grupoAsignatura->save();

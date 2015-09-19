@@ -58,14 +58,11 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         return $this->hasOne(Alumno::getClass());
     }
 
-
-
-
     /**
      * Regresa Horario de una materia en un grupo
      * @param $grupoId
      * @param $idAsignatura
-     * @return DiaHora dia ,DiaHora horaInicio, DiaHora horaFin
+     * @return DiaHora horaInicio, DiaHora horaFin
      */
     public static function getHorario()
     {
@@ -84,7 +81,7 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
 
         return $horario;
     }
-    private static function asignaturaGrupo()
+    public static function asignaturaGrupo()
     {
         $asignaturasGrupos = DB::table('asignatura_grupo')
             ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
@@ -94,7 +91,7 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
 
         return $asignaturasGrupos;
     }
-    private static function getAlumnosSentence()
+    public static function getAlumnosSentence()
     {
         $alumnos = DB::table('inscripciones')
             ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
@@ -140,42 +137,30 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         return $asignaturaGrupos;
     }
 
-    public static function getAsignaturasGruposDocentePeriodo($idDocente,$idAsignatura,$idPeriodo)
+    public static function getAsignaturasGruposDocentePeriodo($idDocente,$idAsignatura,$idPeriodo,$idGrupo)
     {
         $asignaturaGrupos = User::asignaturaGrupo();
         $asignaturaGrupos = $asignaturaGrupos->where('asignatura_grupo.docente_id',$idDocente);
 
-            if($idPeriodo != "")
-            {
-                $asignaturaGrupos = $asignaturaGrupos->where('periodos.id',$idPeriodo);
-            }
-            if($idAsignatura != "")
-            {
-                $asignaturaGrupos = $asignaturaGrupos->where('asignaturas.id',$idAsignatura);
-            }
-            $asignaturaGrupos = $asignaturaGrupos->get();
+        $asignaturaGrupos = User::scopePeriodo($asignaturaGrupos,$idPeriodo);
+        $asignaturaGrupos = User::scopeAsignatura($asignaturaGrupos,$idAsignatura);
+        $asignaturaGrupos = User::scopeGrupo($asignaturaGrupos,$idGrupo);
+        $asignaturaGrupos = $asignaturaGrupos->get();
 
         return $asignaturaGrupos;
     }
-    
 
-    
-    public static function getAlumnosdeDocentePeriodo($idDocente,$idAsignatura,$idPeriodo)
+    public static function getAlumnosdeDocentePeriodo($idDocente,$idAsignatura,$idPeriodo,$idGrupo)
     {
         $alumnos = User::getAlumnosSentence();
         $alumnos = $alumnos->select('grupos.id AS grupo_id','users.name','users.id as userId','asignaturas.id AS asignatura_id','users.apellidoP','users.apellidoM','users.email', 'inscripciones.calificacion','inscripciones.id AS inscripcion_id ','asignatura_grupo.id AS asignatura_grupo_id')
             ->where('asignatura_grupo.docente_id',$idDocente);
 
-            if($idPeriodo != "")
-            {
-                $alumnos = $alumnos->where('periodos.id',$idPeriodo);
-            }
-            if($idAsignatura != "")
-            {
-                $alumnos = $alumnos->where('asignaturas.id',$idAsignatura);
-            }
+        $alumnos = User::scopePeriodo($alumnos,$idPeriodo);
+        $alumnos = User::scopeAsignatura($alumnos,$idAsignatura);
+        $alumnos = User::scopeGrupo($alumnos,$idGrupo);
 
-            $alumnos=$alumnos->orderBy('grupo_id')->get();
+        $alumnos=$alumnos->orderBy('grupo_id')->get();
 
         return $alumnos;
     }
@@ -190,24 +175,31 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
 
         return $alumnos;
     }
-    public static function getAlumnosInscritosbyPeriodo($idPeriodo,$idAsignatura)
+    public static function getAlumnosInscritosbyPeriodo($idPeriodo,$idAsignatura,$idGrupo)
     {
         $alumnos = User::getAlumnosSentence();
         $alumnos = $alumnos->select('grupos.id AS grupo_id','alumnos.boleta','users.name','users.id as userId','asignaturas.id AS asignatura_id','users.apellidoP','users.apellidoM','users.email', 'inscripciones.calificacion','inscripciones.id AS inscripcion_id ','asignatura_grupo.id AS asignatura_grupo_id');
 
-        if($idPeriodo != "")
-        {
-            $alumnos = $alumnos->where('periodos.id',$idPeriodo);
-        }
-        if($idAsignatura != "")
-        {
-            $alumnos = $alumnos->where('asignaturas.id',$idAsignatura);
-        }
-        $alumnos=$alumnos->get();
+        $alumnos = User::scopePeriodo($alumnos,$idPeriodo);
+        $alumnos = User::scopeAsignatura($alumnos,$idAsignatura);
+        $alumnos = User::scopeGrupo($alumnos,$idGrupo);
+
+        $alumnos = $alumnos->get();
 
         return $alumnos;
     }
+    public static function getAsignaturasGruposbyPeriodo($idPeriodo,$idAsignatura,$idGrupo)
+    {
+        $asignaturaGrupos = User::asignaturaGrupo();
 
+        $asignaturaGrupos = User::scopePeriodo($asignaturaGrupos,$idPeriodo);
+        $asignaturaGrupos = User::scopeAsignatura($asignaturaGrupos,$idAsignatura);
+        $asignaturaGrupos = User::scopeGrupo($asignaturaGrupos,$idGrupo);
+
+        $asignaturaGrupos=$asignaturaGrupos->get();
+
+        return $asignaturaGrupos;
+    }
 
 
     public static function getAlumnosInscritos()
@@ -246,22 +238,7 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         $asignaturaGrupos = $asignaturaGrupos->get();
         return $asignaturaGrupos;
     }
-    public static function getAsignaturasGruposbyPeriodo($idPeriodo,$idAsignatura)
-    {
-        $asignaturaGrupos = User::asignaturaGrupo();
 
-        if($idPeriodo != "")
-        {
-            $asignaturasGrupos = $asignaturaGrupos->where('periodos.id',$idPeriodo);
-        }
-        if($idAsignatura != "")
-        {
-            $asignaturaGrupos = $asignaturaGrupos->where('asignaturas.id',$idAsignatura);
-        }
-        $asignaturaGrupos=$asignaturaGrupos->get();
-
-        return $asignaturaGrupos;
-    }
 
     public static function getAlumnosdeDocentePagination($docenteId)
     {
@@ -328,7 +305,7 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
             ->update(['calificacion' => $calificacion]);
     }
 
-
+    /*Scopes para funciones*/
     public function scopeName($query,$name)
     {
         if(trim($name)!="")
@@ -336,6 +313,31 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
             $query->where(DB::raw("CONCAT(name,' ',apellidoP,' ',apellidoM)"),"LIKE","%$name%");
         }
 
+    }
+
+    private static function scopeGrupo($query,$idGrupo)
+    {
+        if($idGrupo != "")
+        {
+            $query = $query->where('grupos.id',$idGrupo);
+        }
+        return $query;
+    }
+    private static function scopeAsignatura($query,$idAsignatura)
+    {
+        if($idAsignatura != "")
+        {
+            $query = $query->where('asignaturas.id',$idAsignatura);
+        }
+        return $query;
+    }
+    private static function scopePeriodo($query,$idPeriodo)
+    {
+        if($idPeriodo != "")
+        {
+            $query = $query->where('periodos.id',$idPeriodo);
+        }
+        return $query;
     }
     public function scopeRol($query, $rol)
     {
