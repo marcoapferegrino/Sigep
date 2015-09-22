@@ -52,7 +52,7 @@ class Handler extends ExceptionHandler {
 	{
 		$errorCode = $e->errorInfo[1];
 		if($errorCode == 1451){
-			Session::flash('error',"No puedes borrarlo. Está asociado a otras registros.");
+			Session::flash('error',"No puedes borrarlo. Está asociado a otros registros.");
 		}
 		else
 		{

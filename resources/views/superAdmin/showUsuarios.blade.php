@@ -13,8 +13,6 @@
                 <div class="panel panel-success">
                     <div class="panel-heading"><h4>Usuarios : {{$numUsers}}</h4></div>
                     <div class="text-center">
-                        {{--<a class="btn btn-info btn-lg" href="{{url('getAddAlumno')}}" role="button">Alumno <i class="fa fa-plus fa-lg"></i></a>--}}
-                        {{--<a class="btn btn-primary btn-lg" href="{{url('getAddDocente')}}" role="button">Docente<i class="fa fa-plus fa-lg"></i></a>--}}
 
                     </div>
 
@@ -47,7 +45,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php $index=1; ?>
                                         @foreach($usuarios as $usuario)
 
                                             <tr>

@@ -263,6 +263,10 @@ class AdminController extends Controller {
         $gruposAsignaturas  = User::getAsignaturasGruposbyPeriodo($idPeriodo,$idAsignatura,$idGrupo);
         $alumnos            = User::getAlumnosInscritosbyPeriodo($idPeriodo,$idAsignatura,$idGrupo);
 
+        if(count($gruposAsignaturas)==0 || count($alumnos)==0 )
+        {
+            Session::flash('error', 'No se encontraron resultados con esta búsqueda');
+        }
        //dd($gruposAsignaturas,$alumnos);
 
         return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','periodos','asignaturas','grupos'));

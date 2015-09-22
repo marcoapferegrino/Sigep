@@ -41,7 +41,7 @@ class SuperAdminController extends Controller {
 
 	public function showUsers()
 	{
-		$usuarios = User::paginate();
+		$usuarios = User::orderBy('name','ASC')->paginate();
 
 		$numUsers = count(User::all());
 
@@ -54,8 +54,13 @@ class SuperAdminController extends Controller {
 		$name = $request->get('name');
 		$rol = $request->get('rol');
 		$numUsers = count(User::all());
-		$usuarios = User::name($name)->rol($rol)->orderBy('id','DESC')->paginate();
+		$usuarios = User::name($name)->rol($rol)->orderBy('name','ASC')->paginate();
 
+		if(count($usuarios)==0)
+		{
+			Session::flash('error', 'No se encontraron resultados con esta búsqueda');
+
+		}
 		return view ('superAdmin.showUsuarios',compact('usuarios','numUsers'));
 	}
 
@@ -124,15 +129,7 @@ class SuperAdminController extends Controller {
 		Session::flash('message',$programa->nombre.' fue Actualizado :D');
 		return redirect()->action('SuperAdminController@index');
 	}
-//	public function deletePrograma($id)
-//	{
-//		$programa = Programa::findOrFail($id);
-//		$programa->delete();
-//
-//		Session::flash('message',$programa->nombre.' fue eliminado :D');
-//		return redirect()->action('SuperAdminController@index');
-//
-//	}
+
 
 	public function showAsignaturas()
 	{

@@ -10,7 +10,7 @@
             @if(Session::has('error'))
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Error :(  </strong> {{Session::get('error')}} <i class="fa fa-close fa-lg"></i>
+                    <strong>Alerta :(  </strong> {{Session::get('error')}} <i class="fa fa-close fa-lg"></i>
                 </div>
             @endif
 

@@ -248,10 +248,19 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         return $alumnos;
     }
 
-    public static function getAlumnosdeDocenteBusqueda($docenteId,$name="")
+    public static function getAlumnosdeDocenteBusqueda($docenteId,$name="",$idAsignatura,$idPeriodo,$idGrupo)
     {
+
+
             $alumnos = User::getAlumnosDocente();
-            $alumnos= $alumnos->where('inscripciones.docente_id','=',$docenteId)->where(DB::raw("CONCAT(name,' ',apellidoP,' ',apellidoM)"),"LIKE","%$name%")->paginate(10);
+            $alumnos= $alumnos->where('inscripciones.docente_id','=',$docenteId)->where(DB::raw("CONCAT(name,' ',apellidoP,' ',apellidoM)"),"LIKE","%$name%");
+
+            $alumnos = User::scopePeriodo($alumnos,$idPeriodo);
+            $alumnos = User::scopeAsignatura($alumnos,$idAsignatura);
+            $alumnos = User::scopeGrupo($alumnos,$idGrupo);
+
+            $alumnos= $alumnos->paginate(10);
+
             return $alumnos;
     }
 

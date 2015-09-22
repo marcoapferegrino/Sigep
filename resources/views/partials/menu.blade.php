@@ -9,6 +9,7 @@
                         <li class="getAddDocente"><a href="{{url('getAddDocente')}}"><i class="fa fa-user-secret"></i> Registrar docente </a></li>
                     </ul>
                 </li>
+
                 <li class="getAddSalon"><a href="{{url('getAddSalon')}}">Registro de grupos  <i class="fa fa-pencil fa-lg"></i></a></li>
                 <li class="getAddGrupo"><a href="{{url('getAddGrupo')}}">Registro de asignaturas a grupos <i class="fa fa-pencil fa-lg"></i></a></li>
                 <li class="getAddInscripcion"><a href="{{url('getAddInscripcion')}}">Inscripciones <i class="fa fa-pencil fa-lg"></i></a></li>
