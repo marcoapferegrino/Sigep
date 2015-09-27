@@ -77,7 +77,7 @@
 
 	@yield('content')
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-12 navbar-fixed-bottom">
 		<div class="panel-footer"> <div class="text-center" style="color: #6C193F;font-weight: bold;">Departamento de posgrado SIGEP ® 2015 </div> </div>
 	</div>
 </div>

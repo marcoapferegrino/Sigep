@@ -78,6 +78,35 @@ class Alumno extends Entity {
         return $boleta;
     }
 
+    public static function getKardex($id) // obtiene el historial
+    {
+        $kardex =DB::table('users')
+
+            ->join('alumnos','alumnos.id','=','users.alumno_id')
+            ->join('inscripciones','inscripciones.alumno_id','=','alumnos.id')
+            ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
+            ->select('alumnos.boleta','asignaturas.nombre as nombre','grupos.nombre as grupoNombre','inscripciones.calificacion','users.name as alumnoNombre','users.apellidoP','users.apellidoM','periodos.nombre as nombrePeriodo','periodos.finPeriodo','grupos.semestre')
+             ->where('inscripciones.alumno_id','=',$id)
+            ->orderBy('semestre')
+            ->get();
+
+        return $kardex;
+    }
+
+    public static function getAlumnosInscritosPorPeriodo($id) // obtiene el historial
+    {
+        $alumnos =User::getAlumnosSentence();
+        $alumnos = $alumnos
+            ->select('users.alumno_id as id','asignatura_grupo.id as asignatura_grupo_id','alumnos.boleta','asignaturas.nombre as nombre','grupos.nombre as grupoNombre','inscripciones.calificacion','inscripciones.id as inscripcion_id','users.name as name','users.apellidoP','users.apellidoM','periodos.nombre as nombrePeriodo','periodos.finPeriodo','grupos.semestre')
+            ->where('periodos.id','=',$id)
+            ->paginate(10);
+        //        dd($alumnos);
+        return $alumnos;
+    }
+
 
 
     public static function getHorarioDeAlumno()

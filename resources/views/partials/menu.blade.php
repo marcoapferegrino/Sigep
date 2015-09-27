@@ -9,9 +9,24 @@
                         <li class="getAddDocente"><a href="{{url('getAddDocente')}}"><i class="fa fa-user-secret"></i> Registrar docente </a></li>
                     </ul>
                 </li>
-                <li class="getAddSalon"><a href="{{url('getAddSalon')}}">Registro de grupos  <i class="fa fa-pencil fa-lg"></i></a></li>
-                <li class="getAddGrupo"><a href="{{url('getAddGrupo')}}">Registro de asignaturas a grupos <i class="fa fa-pencil fa-lg"></i></a></li>
+
+                <li class="dropdown" id="dropEstructAca">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estructura académica <i class="fa fa-list"></i> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="getAddSalon"><a href="{{url('getAddSalon')}}"> <i class="fa fa-pencil fa-users"></i> Grupos  </a></li>
+                        <li class="getAddGrupo"><a href="{{url('getAddGrupo')}}"><i class="fa fa-pencil fa-lg"></i>  Asignaturas a grupos </a></li>
+                    </ul>
+                </li>
+
                 <li class="getAddInscripcion"><a href="{{url('getAddInscripcion')}}">Inscripciones <i class="fa fa-pencil fa-lg"></i></a></li>
+                <li class="dropdown" id="dropInscrip">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listados <i class="fa fa-users fa-lg"></i><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="getInscritos"><a href="{{url('getInscritos')}}"><i class="fa fa-th-list"></i> Alumnos inscritos </a></li>
+                        <li class="getGrupos"><a href="{{url('getGrupos')}}"><i class="fa fa-th-list"></i> Lista de grupos</a></li>
+                    </ul>
+                </li>
+
 
 
             @elseif(Auth::getRol()=="superAdmin")
@@ -46,6 +61,8 @@
                         <li class="getGrupos"><a href="{{url('getGrupos')}}"> Lista de grupos</a></li>
                     </ul>
                 </li>
+
+
                 <li id="menuCalifAlumno"><a href="{{url('getAlumnosCalificar')}}">Calificar <i class="fa fa-pencil-square-o"></i></a></li>
             @elseif(Auth::getRol()=="alumno")
                 <li><a href="{{url('calificacionesAlumno')}}">Ver calificaciones  <i class="fa fa-file-text-o fa-lg"></i></a></li>

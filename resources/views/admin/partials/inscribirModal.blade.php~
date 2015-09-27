@@ -59,7 +59,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                {!! Form::submit('Inscribir ',array('class'=>'btn btn-success')) !!}
+                {!! Form::submit('Inscribir materia',array('class'=>'btn btn-success')) !!}
                 {!! Form::close() !!}
             </div>
         </div>

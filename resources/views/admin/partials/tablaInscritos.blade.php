@@ -1,7 +1,36 @@
 
 <div class="panel panel-info">
     <!-- Default panel contents -->
-    <div class="panel-heading">Alumnos inscritos</div>
+
+
+    <div class="panel-heading">Alumnos inscritos   <b class="pull-right">Período: <b style="color: #262626 ;font-size: 120%" >{{ $actual }}</b></b></div>
+
+    <div class="panel-body">
+
+    <div class="form-inline navbar-left pull-right">
+        {!! Form::open(['route' => 'inscritos.getInscritos','method' => 'POST','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
+        <div class="form-group">
+            Buscar en período:
+            <select class="form-control" name="periodo_id" id="periodo_id" required>
+                <option value="">- - - -</option>
+                @foreach($periodos as $periodo )
+                    <option value="{{$periodo['id']}}"> {{$periodo['nombre']}}  </option>
+                @endforeach
+
+            </select>
+        </div>
+
+
+        <button type="submit" class="btn btn-info"> <i class="fa fa-search"></i> </button>
+
+
+        <a class="btn btn-success " href="{{url('getInscritos')}}" role="button" ><i class="fa fa-refresh"></i></a>
+
+        {!! Form::close() !!}
+        <br> <br><br> <br>
+
+    </div>
+
 
     <!-- Table -->
     <table class="table table-hover">
@@ -33,17 +62,22 @@
                 <td>{{$grupoAsignatura->nombre}}</td>
                 <td>{{$grupoAsignatura->nombrePeriodo}}</td>
                 <td>{{$grupoAsignatura->salon}}</td>
-                @if($grupoAsignatura->calificacion='S/C')
-                    <td >{{$grupoAsignatura->calificacion}}</td>
-                @elseif($grupoAsignatura->calificacion<6)
+                @if($alumno->calificacion<6 && !($alumno->calificacion=='S/C') )
 
-                    <td style="background-color: #ce8483">{{$grupoAsignatura->calificacion}}</td>
-                @else
-                    <td style="background-color:#65C400">{{$grupoAsignatura->calificacion}}</td>
+                    <td style="background-color: #ce8483">{{$alumno->calificacion}}</td>
+              @elseif($alumno->calificacion>=6)
+                    <td style="background-color:#65C400">{{$alumno->calificacion}}</td>
+                @elseif($alumno->calificacion>='S/C')
 
+                    <td >{{$alumno->calificacion}}</td>
                 @endif
                 <td>
-
+                    {!! Form::open(['route' => ['alumno.deleteInscripcion',$alumno->inscripcion_id],'method' => 'DELETE']) !!}
+                    <button type="submit" onclick="return confirm('Seguro que quieres la materia?')" class="btn btn-danger">
+                        <i class="fa fa-trash-o"></i>
+                    </button>
+                    {!! Form::close() !!}
+                    <a href="{{route('admin.showKardex',$alumno->id)}}">Ver kardex</a>
                 </td>
             </tr>
         @endif
@@ -52,6 +86,7 @@
         @endforeach
         </tbody>
     </table>{!! $alumnos->render() !!}
+    </div>
 </div>
 
 
