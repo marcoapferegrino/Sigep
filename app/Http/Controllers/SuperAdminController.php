@@ -2,6 +2,7 @@
 
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
+use PosgradoService\Entities\Alumno;
 use PosgradoService\Entities\Asignatura;
 use PosgradoService\Entities\AsignaturaGrupo;
 use PosgradoService\Entities\Docente;
@@ -13,10 +14,11 @@ use PosgradoService\Exceptions\Handler;
 use PosgradoService\Http\Requests;
 use PosgradoService\Http\Requests\CreatePeriodoRequest;
 use PosgradoService\Http\Requests\CreateAsignaturaRequest;
-use PosgradoService\Http\Requests\CreateHorarioRequest;
 use PosgradoService\Http\Requests\UpdatePeriodoRequest;
 use PosgradoService\Http\Requests\UpdateProgramaRequest;
 use PosgradoService\Http\Requests\UpdateAsignaturaRequest;
+use PosgradoService\Http\Requests\UpdateDocenteRequest;
+use PosgradoService\Http\Requests\UpdateAlumnoRequest;
 
 
 
@@ -271,6 +273,7 @@ class SuperAdminController extends Controller {
 
 	}
 
+
 	public function showExpedienteDocente($id)
 	{
 		$user = User::find($id);
@@ -278,6 +281,89 @@ class SuperAdminController extends Controller {
 
 		return view('superAdmin.expedienteDocente',compact('user','docente'));
 
+	}
+	public function editDocente($id)
+	{
+		$user = User::find($id);
+		$docente = Docente::find($user->docente_id);
+
+//		dd($user->toArray(),$docente->toArray());
+		return view('superAdmin.editDocente',compact('user','docente'));
+
+	}
+	public function editAlumno($id)
+	{
+//		dd($id);
+
+		$user = User::find($id);
+		$alumno = Alumno::find($user->alumno_id);
+
+//		dd($user->toArray(),$alumno->toArray());
+		return view('superAdmin.editAlumno',compact('user','alumno'));
+	}
+
+	public function updateDocente(UpdateDocenteRequest $request)
+	{
+		$editerUser = auth()->user();
+		$user = User::find($request->idUser);
+		ucwords($request->name); //primera letra de nombresz en mayuscula
+
+		try{
+			User::find($request->idUser)->update($request->all());
+			Docente::find($user->docente_id)->update($request->all());
+			Docente::where('id',$user->docente_id)
+				->update([
+					'idUsuarioQueActualiza'=>$editerUser->id
+				]);
+			if($request->password!="")
+			{
+				$password = bcrypt($request->password);
+				User::where('id',$user->docente_id)
+					->update([
+						'password'=>$password
+					]);
+			}
+			Session::flash('message', $user->getNombreCompleto().'se actualizó exitosamente');
+		}
+		catch(QueryException $e)
+		{
+			Handler::checkQueryError($e);
+		}
+
+		return redirect('/editarDocente/'.$user->id);
+	}
+
+	public function updateAlumno(UpdateAlumnoRequest $request)
+	{
+		$editerUser = auth()->user();
+		$user = User::find($request->idUser);
+		ucwords($request->name); //primera letra de nombresz en mayuscula
+
+		try{
+			User::find($request->idUser)->update($request->all());
+			Alumno::find($user->alumno_id)->update($request->all());
+			Alumno::where('id',$user->alumno_id)
+				->update([
+					'idUsuarioQueActualiza'=>$editerUser->id
+				]);
+
+			if($request->password != "")
+			{
+				$password = bcrypt($request->password);
+				User::where('id',$user->alumno_id)
+					->update([
+						'password'=>$password
+					]);
+			}
+
+			Session::flash('message', $user->getNombreCompleto().'se actualizó exitosamente');
+		}
+		catch(QueryException $e)
+		{
+			Handler::checkQueryError($e);
+		}
+
+		return redirect('/editarAlumno/'.$user->id);
 	}
 
 	private function diasJson($dias)

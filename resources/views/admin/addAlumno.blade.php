@@ -1,7 +1,5 @@
 @extends('app')
 
-
-
 @section('content')
     <style>
         label{

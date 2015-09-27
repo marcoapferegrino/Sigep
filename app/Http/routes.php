@@ -38,9 +38,6 @@ Route::group(/**
             'uses' => 'SuperAdminController@findUsuario'
         ]);
 
-
-
-
         Route::post('/addPeriodo', [
             'as' => 'periodo.addPeriodo',
             'uses' => 'SuperAdminController@addPeriodo'
@@ -114,12 +111,25 @@ Route::group(/**
             'uses' => 'SuperAdminController@abrirActa'
         ]);
 
+        Route::get('/editarDocente/{id}', [
+            'as' => 'docentes.editarDocente',
+            'uses' => 'SuperAdminController@editDocente'
+        ]);
+        Route::post('/updateDocente', [
+            'as' => 'docentes.updateDocente',
+            'uses' => 'SuperAdminController@updateDocente'
+        ]);
+
+        Route::get('/editarAlumno/{id}', [
+            'as' => 'alumnos.editarAlumno',
+            'uses' => 'SuperAdminController@editAlumno'
+        ]);
+        Route::post('/updateAlumno', [
+            'as' => 'alumnos.updateAlumno',
+            'uses' => 'SuperAdminController@updateAlumno'
+        ]);
 
     });
-
-
-
-    //Seccion de administrador
 
     Route::group(['middleware' => 'role:admin'],function() {
         Route::get('logAdmin',"AdminController@index");
@@ -232,9 +242,6 @@ Route::group(/**
             'uses' => 'AlumnoController@getHorarioAlumno'
         ]);
     });
-
-
-
 
     Route::group(['middleware' => 'role:docente'],function() {
         Route::get('homeP',"ProfesorController@index");

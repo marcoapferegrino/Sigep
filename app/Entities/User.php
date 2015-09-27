@@ -13,20 +13,12 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
 
     use Authenticatable, CanResetPassword;
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
     protected $table = 'users';
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-
-
     //campos que acepta en Mass Assignment
     protected $fillable = ['name','apellidoP','apellidoM','fechanac','nacionalidad',
         'edoNacimiento','genero','rfc','curp','tipoIdOficial','noIdOficial','direccion',
@@ -48,7 +40,6 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         return $this->hasOne(Docente::getClass());
 
     }
-
     /**
      * Regresa el alumno asociado al usuario
      * @return Alumno

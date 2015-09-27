@@ -70,10 +70,10 @@
                                                 <td>
                                                     @if($usuario->rol == "alumno")
                                                         <a href="{{route('alumnos.showExpediente',$usuario->id)}}">Ver</a>
-                                                        <a href="{{route('alumnos.showExpediente',$usuario->id)}}">Editar Pendiente</a>
+                                                        <a href="{{route('alumnos.editarAlumno',$usuario->id)}}">Editar</a>
                                                     @elseif($usuario->rol == "docente")
                                                         <a href="{{route('docentes.showExpediente',$usuario->id)}}">Ver</a>
-                                                        <a href="{{route('alumnos.showExpediente',$usuario->id)}}">Editar Pendiente</a>
+                                                        <a href="{{route('docentes.editarDocente',$usuario->id)}}">Editar</a>
                                                     @else
                                                         Sin expediente
                                                     @endif

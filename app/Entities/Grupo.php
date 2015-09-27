@@ -11,7 +11,6 @@ class Grupo extends Entity {
     protected $table = 'grupos';
 
 
-
     /**
      * @return Periodo
      */
@@ -19,9 +18,6 @@ class Grupo extends Entity {
     {
         return $this->belongsTo(Periodo::getClass());
     }
-
-
-
 
     public static function gruposActuales()
     {
