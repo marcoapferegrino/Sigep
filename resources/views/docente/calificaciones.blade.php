@@ -39,19 +39,19 @@
                                             <option value="{{$grupo->id}}">{{$grupo->nombre}}</option>
                                         @endforeach
                                     </select>
-                                <select class="form-control" id ="periodo" name="periodo" placeholder="Periodo">
-                                    <option  value="">Selecciona periodo</option>
+                                    <select class="form-control" id ="periodo" name="periodo" placeholder="Periodo">
+                                        <option  value="">Selecciona periodo</option>
 
-                                    @foreach($periodos as $periodo)
-                                        <option value="{{$periodo->id}}">{{$periodo->nombre}}</option>
-                                    @endforeach
-                                </select>
-                                <select class="form-control" id ="asignatura" name="asignatura" placeholder ="Asignatura">
-                                    <option value="">Selecciona asignatura</option>
-                                    @foreach($asignaturas as $asignatura)
-                                        <option value="{{$asignatura->id}}">{{$asignatura->nombre}}</option>
-                                    @endforeach
-                                </select>
+                                        @foreach($periodos as $periodo)
+                                            <option value="{{$periodo->id}}">{{$periodo->nombre}}</option>
+                                        @endforeach
+                                    </select>
+                                    <select class="form-control" id ="asignatura" name="asignatura" placeholder ="Asignatura">
+                                        <option value="">Selecciona asignatura</option>
+                                        @foreach($asignaturas as $asignatura)
+                                            <option value="{{$asignatura->id}}">{{$asignatura->nombre}}</option>
+                                        @endforeach
+                                    </select>
 
                                 <button type="submit" class="btn btn-info">
                                     <i class="fa fa-filter"></i> Filtrar

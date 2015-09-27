@@ -17,8 +17,8 @@
                             <br>Boleta:{{$alumno->boleta}}
                         </small>
                         <br>
-                    </h1>
 
+                    </h1>
                 </div>
                 @if(Auth::getRol()=="superAdmin")
                      @include('docente.partials.datosGeneralesUsuario')

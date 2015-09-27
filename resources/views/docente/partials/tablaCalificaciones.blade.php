@@ -3,7 +3,7 @@
 
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    @if(!empty($gruposAsignaturas))
+
         @foreach($gruposAsignaturas as $grupoAsignatura)
             <div class="panel panel-info">
                 <div class="panel-heading" role="tab" id="heading{{$grupoAsignatura->id}}">
@@ -123,7 +123,6 @@
                 </div>
 
         @endforeach
-    @else
-        <div class="alert alert-danger" role="alert"> :( No hay resultados con esos valores.</div>
-    @endif
+
+
 </div>

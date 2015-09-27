@@ -62,7 +62,7 @@ class DocentesSeeder extends Seeder
                     'carreraDoctorado'   => $faker-> randomElement(['ISC','QUIMICA','MECANICA','PSICOLOGIA']),
                     'especialidadDoctorado'  => $faker-> randomElement(['BD','REDES','MATERIALES','CONDUCTIVISTA']),
                     'situacionEstudiosDoctorado'  => $faker->randomElement(['Terminada','Trunca','En progreso']),
-                    'anioiniciaestudiosDoctorado'  => $faker->randomElement(['Terminada','Trunca','En progreso']),
+                    'anioiniciaestudiosDoctorado'  => $faker->numberBetween(1970,2014),
                     'ultimoAnioEstudiosDoctorado'  =>  $faker->numberBetween(1970,2014),
                     'tesisDoctorado'  => $faker->numberBetween(1970,2014),
                     'examenDoctorado'  => $faker->date(),

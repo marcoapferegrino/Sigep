@@ -2,7 +2,7 @@
 $(document).ready(function(){
     //eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('j 0=$(k).l(\'r\');j q=$(k).l(\'p\');5(0==\'/a\'||0==\'/c\'||0==\'/b\'){$(\'#n\').1(\'2\');6(0){3\'/a\':$(\'.a\').1(\'2\');4;3\'/c\':$(\'.c\').1(\'2\');4;3\'/b\':$(\'.b\').1(\'2\');4}}7 5(0==\'/f\'||0==\'/g\'||0==\'/h\'){$(\'.m\').1(\'2\');6(0){3\'/f\':$(\'.f\').1(\'2\');4;3\'/g\':$(\'.g\').1(\'2\');4;3\'/h\':$(\'.h\').1(\'2\');4}}7 5(0==\'/i\'||0==\'/e\'){$(\'#o\').1(\'2\');6(0){3\'/i\':$(\'.i\').1(\'2\');4;3\'/e\':$(\'.e\').1(\'2\');4}}7 5(0==\'/8\'||0==\'/d\'||0==\'/9\'){$(\'#s\').1(\'2\');6(0){3\'/8\':$(\'.8\').1(\'2\');4;3\'/d\':$(\'.d\').1(\'2\');4;3\'/9\':$(\'.9\').1(\'2\');4}}7 5(0==\'/t\'){$(\'#u\').1(\'2\')}',31,31,'route|addClass|active|case|break|if|switch|else|getAddInscripcion|getGrupos|horarios|homeSA|asignaturas|getInscritos|getAddSalon|showUsuarios|getAddAlumno|getAddDocente|getAddGrupo|var|location|attr|dropUsuarios|dropCatalogos|dropEstructAca|href|url|pathname|dropInscrip|getAlumnosCalificar|menuCalifAlumno'.split('|'),0,{}))
     var route = $(location).attr('pathname');
-    var url = $(location).attr('href');
+
     if(route == '/horarios' || route == '/asignaturas' || route == '/homeSA')
     {
         $('#dropCatalogos').addClass('active');

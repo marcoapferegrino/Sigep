@@ -70,17 +70,36 @@ class ProfesorController extends Controller {
 	public function showAlumnos()
 	{
 		$idDocente 	= auth()->user()->docente_id;
+		$asignaturas = Asignatura::all('id','nombre');
+		$periodos = Periodo::all('id','nombre');
+		$grupos = Grupo::all('id','nombre');
+
 		$alumnos 	= User::getAlumnosdeDocentePagination($idDocente);
 
-		return view('docente.showAlumnos',compact('alumnos'));
+		return view('docente.showAlumnos',compact('alumnos','asignaturas','periodos','grupos'));
 	}
 
 	public function findAlumnos(Request $request)
 	{
 		$idDocente =auth()->user()->docente_id;
-		$alumnos = User::getAlumnosdeDocenteBusqueda($idDocente,$request->get('name'));
+		$asignaturas = Asignatura::all('id','nombre');
+		$periodos = Periodo::all('id','nombre');
+		$grupos = Grupo::all('id','nombre');
 
-		return view('docente.showAlumnos',compact('alumnos'));
+		$nombre  = $request->get('name');
+		$idGrupo = $request->get('grupo');
+		$idAsignatura = $request->get('asignatura');
+		$idPeriodo = $request->get('periodo');
+
+		$alumnos = User::getAlumnosdeDocenteBusqueda($idDocente,$nombre,$idAsignatura,$idPeriodo,$idGrupo);
+
+		if(count($alumnos)==0)
+		{
+			Session::flash('error', 'No se encontraron resultados con esta búsqueda');
+		}
+//		dd(count($alumnos));
+		return view('docente.showAlumnos',compact('alumnos','asignaturas','periodos','grupos'));
+
 	}
 
 	public function showExpediente($id)
