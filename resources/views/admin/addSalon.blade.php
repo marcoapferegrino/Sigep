@@ -8,7 +8,7 @@
             @include('partials.messages')
             <div class="col-md-12 ">
                 <div class="panel panel-success">
-                    <div class="panel-heading"> <h3 class="panel-title">Registro Salon</h3> </div>
+                    <div class="panel-heading"> <h3 class="panel-title">Registro Grupo</h3> </div>
 
                     <div class="panel-body">
 
@@ -36,7 +36,7 @@
                                 </div>
 
                                 <br><br>
-                                {!! Form::label('periodo', 'Periodo al que pertenece*') !!}
+                                {!! Form::label('periodo', 'Período al que pertenece*') !!}
                                 <select class="form-control" name="periodo_id" id="periodo_id" required>
                                     <option value="">- - - -</option>
                                     @foreach($periodos as $periodo)

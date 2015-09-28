@@ -3,47 +3,63 @@
 
 @section('content')
 <div class="panel-group"  >
+    @include('partials.messages')
 
-
-    <div class="col-lg-10" >
+    <div class="col-lg-8" style="margin-left: 20%;margin-right: auto" >
     <div class="panel panel-info">
 
-        <div class="panel-heading"> <h3 class="panel-title">Listado de grupos</h3> </div>
+        <div class="panel-heading"> <h3 class="panel-title">Listado de grupos  <b class="pull-right">Período: <b style="color: #262626 ;font-size: 120%" >{{ $actual }}</b></b> </h3> </div>
 
 
-                <table class="table table-hover">
+        {!! Form::open(['route' => 'periodos.filtroPeriodo','method' => 'GET','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
+        <div class="form-group">
+            Registrar en período:
+            <select class="form-control" name="periodo_id" id="periodo_id" required>
+                <option value="">- - - -</option>
+                @foreach($periodos as $periodo )
+                    <option value="{{$periodo->id}}"> {{$periodo->nombre}}  </option>
+                @endforeach
+
+            </select>
+         </div>
+
+        <button type="submit" class="btn btn-info"> <i class="fa fa-search"></i> </button>
+        <a class="btn btn-success " href="{{url('getGrupos')}}" role="button" ><i class="fa fa-refresh"></i></a>
+
+        {!! Form::close() !!}
+
+
+        <table class="table table-hover">
                     <thead>
                     <tr>
                         <th>Nombre</th>
                         <th>Salón</th>
                         <th>Semestre</th>
-                        <th>Periodo</th>
+                        <th>Período</th>
                         <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
                     <div class="panel panel-info">
                         @foreach($grupos as $grupo)
-                            <!--  <div class="panel-heading" role="tab" id="heading{#{$grupoAsignatura->id}}"> -->
-                            <!-- <div id="collapse{#{$grupoAsignatura->id}}" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading{#{$grupoAsignatura->id}}"> -->
-                            <tr>
-                                <th>{{$grupo["nombre"]}}</th>
-                                <th>{{$grupo["salon"]}}</th>
-                                <th>{{$grupo["semestre"]}}</th>
+                           <tr>
+                                <th>{{$grupo->nombre}}</th>
+                                <th>{{$grupo->salon}}</th>
+                                <th>{{$grupo->semestre}}</th>
                                 @foreach($periodos as $periodo )
-                                @if($grupo["periodo_id"] == $periodo["id"])
+                                @if($grupo->periodo_id == $periodo->id)
 
-                                 <th>{{$periodo["nombre"]}}</th>
+                                 <th>{{$periodo->nombre}}</th>
                                 @endif
                                 @endforeach
 
                                 <th>
-                                    <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditGrupo{{$grupo["id"]}}">
+                                    <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditGrupo{{$grupo->id}}">
                                         <i class="fa fa-pencil-square-o"></i>
                                     </button>
 
 
-                                    {!! Form::open(['route' => ['grupo.deleteGrupo',$grupo["id"]],'method' => 'DELETE']) !!}
+                                    {!! Form::open(['route' => ['grupo.deleteGrupo',$grupo->id],'method' => 'DELETE']) !!}
                                     <button type="submit" onclick="return confirm('Seguro que quieres eliminar el grupo?')" class="btn btn-danger">
                                         <i class="fa fa-trash-o"></i>
                                     </button>
@@ -58,14 +74,12 @@
                     </tbody>
                 </table>
 
-
-
-
     </div>
 
 
 
+    </div>
 </div>
-</div>
+
 
 @endsection

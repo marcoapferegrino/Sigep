@@ -85,31 +85,42 @@ class ProfesorController extends Controller {
 
 	public function showExpediente($id)
 	{
-		$user =auth()->user();
-		$idDocente =$user->docente_id;
-		$estado = false;
+        //dd((auth()->user()->alumno_id));
+        if((auth()->user()->alumno_id!=null)){
 
 
-		//Obtenemos alumnos del docente
-		$alumnos =  User::getAlumnosdeDocenteActually($idDocente);
+            $user =  User::find((auth()->user()->alumno_id));
 
-		//buscamos entre los alumnos del docente el ID del alumno solicitado
-		foreach ($alumnos as $alumno) {
-			if($alumno->userId == $id)
-			{
-				$estado = true;
-			}
+            $alumno = Alumno::find($user->alumno_id);
 
-		}
-		//si si esta lo buscamos en la BD
-		if($estado == true || $user->rol = 'superAdmin')
-		{
-			$user= User::find($id);
-			$alumno = Alumno::find($user->alumno_id);
-			//dd($user->toArray(),$alumno->toArray());
-			return view('docente.expediente',compact('user','alumno'));
-		}
-		else abort(404); //si no esta dentro de los alumnos del docente not found
+            return view('docente.expediente', compact('user', 'alumno'));
+
+
+
+        }else {
+            $user = auth()->user();
+            $idDocente = $user->docente_id;
+            $estado = false;
+
+
+            //Obtenemos alumnos del docente
+            $alumnos = User::getAlumnosdeDocenteActually($idDocente);
+
+            //buscamos entre los alumnos del docente el ID del alumno solicitado
+            foreach ($alumnos as $alumno) {
+                if ($alumno->userId == $id) {
+                    $estado = true;
+                }
+
+            }
+            //si si esta lo buscamos en la BD
+            if ($estado == true || $user->rol = 'superAdmin') {
+                $user = User::find($id);
+                $alumno = Alumno::find($user->alumno_id);
+                //dd($user->toArray(),$alumno->toArray());
+                return view('docente.expediente', compact('user', 'alumno'));
+            } else abort(404); //si no esta dentro de los alumnos del docente not found
+        }
 
 	}
 

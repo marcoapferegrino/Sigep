@@ -207,9 +207,37 @@ Route::group(/**
             'as' => 'grupo.deleteGrupo',
             'uses' => 'AdminController@deleteGrupo'
         ]);
+        Route::delete('/deleteInscripcion/{id}', [
+            'as' => 'alumno.deleteInscripcion',
+            'uses' => 'AdminController@deleteInscripcion'
+        ]);
+        Route::get('/kardex/{id}', [
+            'as' => 'admin.showKardex',
+            'uses' => 'AdminController@showKardex'
+        ]);
+
+        Route::get('/getAddGrupoPorPeriodo', [
+            'as' => 'periodos.filtroPeriodo',
+            'uses' => 'AdminController@filtroPeriodo'
+        ]);
+
+        Route::get('/getAddGrupoPorPeriodo', [
+            'as' => 'grupos.gruposFiltroPeriodo',
+            'uses' => 'AdminController@getGruposFiltro'
+        ]);
+
+        Route::get('/getInscritosFiltro', [
+            'as' => 'inscritos.inscritosFiltroPeriodo',
+            'uses' => 'AdminController@filtroInscritosPeriodo'
+        ]);
 
 
-        Route::get('/getInscritos', [
+        Route::get('/getInscritos', [    //checar filtro luis
+            'as' => 'inscritos.getInscritos',
+            'uses' => 'AdminController@getInscritos'
+        ]);
+
+        Route::post('/getInscritos', [
             'as' => 'inscritos.getInscritos',
             'uses' => 'AdminController@getInscritos'
         ]);
@@ -231,6 +259,13 @@ Route::group(/**
             'as' => 'alumno.getHorarioAlumno',
             'uses' => 'AlumnoController@getHorarioAlumno'
         ]);
+
+        Route::get('/kardex', [
+            'as' => 'alumno.showKardex',
+            'uses' => 'AlumnoController@showKardex'
+        ]);
+
+
     });
 
 

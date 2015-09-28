@@ -55,9 +55,9 @@
 				<a class="navbar-brand" href="{{url('/')}}">
 					@if (!Auth::guest())
 						@if(Auth::getRol()=="admin")
-							Admin
+							Administrador
 						@elseif(Auth::getRol()=="superAdmin")
-							Super Admin
+							Super Administrador
 						@elseif(Auth::getRol()=="alumno")
 							Alumno
 						@elseif(Auth::getRol()=="docente")
@@ -77,7 +77,7 @@
 
 	@yield('content')
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-12 ">
 		<div class="panel-footer"> <div class="text-center" style="color: #6C193F;font-weight: bold;">Departamento de posgrado SIGEP ® 2015 </div> </div>
 	</div>
 </div>

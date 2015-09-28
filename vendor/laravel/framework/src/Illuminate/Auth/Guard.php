@@ -117,6 +117,12 @@ class Guard implements GuardContract
         return $this->user->rol;
 
     }
+
+    public function getAlumnoId(){
+
+        return $this->user->alumno_id;
+
+    }
     /**
      * Determine if the current user is a guest.
      *

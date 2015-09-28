@@ -44,7 +44,7 @@
 
                                                 <td>
                                                     <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalInscribir{{$alumno->alumno_id}}">
-                                                        Inscribir asignaturas
+                                                        Inscribir materias
                                                     </button>
 
                                                 </td>

@@ -85,6 +85,20 @@ class AlumnoController extends Controller {
     {
         //
     }
+
+
+    public function showKardex()
+    {
+        //$id=10;
+        $id =auth()->user()->alumno_id;
+        $alumno= Alumno::getKardex($id);
+        $promedio=Alumno::getPromedio($alumno);
+        $maxi= $alumno[count($alumno)-1]->semestre;
+
+        return view('alumno.kardex',compact('promedio','alumno','maxi'));
+    }
+
+
     public function getCalificaciones()
     {
 

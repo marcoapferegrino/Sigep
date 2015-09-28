@@ -1,18 +1,42 @@
 
-
+<div class="col-md-11 ">
 <div class="panel-group"  >
 
 
 <div class="panel-heading" role="tab">
     <div class="panel panel-info">
 
-        <div class="panel-heading"> <h3 class="panel-title">Registro de grupo</h3> </div>
+        <div class="panel-heading"> <h3 class="panel-title">Registro a grupo</h3> </div>
 
+        <div class="form-inline navbar-left pull-right">
+            {!! Form::open(['route' => 'grupos.gruposFiltroPeriodo','method' => 'GET','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
+            <div class="form-group">
+                Registrar en período:
+                <select class="form-control" name="periodo_id" id="periodo_id" required>
+                    <option value="">- - - -</option>
+                    @foreach($periodos as $periodo )
+                        <option value="{{$periodo['id']}}"> {{$periodo['nombre']}}  </option>
+                    @endforeach
+
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-info"> <i class="fa fa-search"></i> </button>
+
+
+            <a class="btn btn-success " href="{{url('getAddGrupo')}}" role="button" ><i class="fa fa-refresh"></i></a>
+
+            {!! Form::close() !!}
+
+
+        </div>
 
         {!! Form::open(['route' => 'grupo.addGrupo','method' => 'POST','class'=>'form-inline']) !!}
 
-        <br>
+        <br><br><br><br>
         <div class="panel-body">
+
+
             <input type="hidden" name="acta" value="1">
             <div class="form-group">
 
@@ -33,7 +57,7 @@
                 <select class="form-control" name="grupo_id" id="grupo_id" required>
                     <option value="">- - - -</option>
                     @foreach($gruposAsignaturas as $grupoAsignatura )
-                        <option value="{{$grupoAsignatura['id']}}"> {{$grupoAsignatura['nombre']}}  </option>
+                        <option value="{{$grupoAsignatura->id}}"> {{$grupoAsignatura->nombre}}  </option>
                     @endforeach
 
                 </select>
@@ -133,4 +157,5 @@
 
 
 
+</div>
 </div>
