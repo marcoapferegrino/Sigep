@@ -10,6 +10,10 @@
                     </ul>
                 </li>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
                 <li class="dropdown" id="dropEstructAca">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estructura académica <i class="fa fa-list"></i> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -18,6 +22,13 @@
                     </ul>
                 </li>
 
+<<<<<<< HEAD
+=======
+=======
+                <li class="getAddSalon"><a href="{{url('getAddSalon')}}">Registro de grupos  <i class="fa fa-pencil fa-lg"></i></a></li>
+                <li class="getAddGrupo"><a href="{{url('getAddGrupo')}}">Registro de asignaturas a grupos <i class="fa fa-pencil fa-lg"></i></a></li>
+>>>>>>> c48d9a3945553a432b3f5b76e6e6e2e7dc15d67a
+>>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
                 <li class="getAddInscripcion"><a href="{{url('getAddInscripcion')}}">Inscripciones <i class="fa fa-pencil fa-lg"></i></a></li>
                 <li class="dropdown" id="dropInscrip">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listados <i class="fa fa-users fa-lg"></i><span class="caret"></span></a>

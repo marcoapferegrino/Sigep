@@ -13,20 +13,12 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
 
     use Authenticatable, CanResetPassword;
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
     protected $table = 'users';
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-
-
     //campos que acepta en Mass Assignment
     protected $fillable = ['name','apellidoP','apellidoM','fechanac','nacionalidad',
         'edoNacimiento','genero','rfc','curp','tipoIdOficial','noIdOficial','direccion',
@@ -48,7 +40,6 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         return $this->hasOne(Docente::getClass());
 
     }
-
     /**
      * Regresa el alumno asociado al usuario
      * @return Alumno
@@ -248,10 +239,19 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
         return $alumnos;
     }
 
-    public static function getAlumnosdeDocenteBusqueda($docenteId,$name="")
+    public static function getAlumnosdeDocenteBusqueda($docenteId,$name="",$idAsignatura,$idPeriodo,$idGrupo)
     {
+
+
             $alumnos = User::getAlumnosDocente();
-            $alumnos= $alumnos->where('inscripciones.docente_id','=',$docenteId)->where(DB::raw("CONCAT(name,' ',apellidoP,' ',apellidoM)"),"LIKE","%$name%")->paginate(10);
+            $alumnos= $alumnos->where('inscripciones.docente_id','=',$docenteId)->where(DB::raw("CONCAT(name,' ',apellidoP,' ',apellidoM)"),"LIKE","%$name%");
+
+            $alumnos = User::scopePeriodo($alumnos,$idPeriodo);
+            $alumnos = User::scopeAsignatura($alumnos,$idAsignatura);
+            $alumnos = User::scopeGrupo($alumnos,$idGrupo);
+
+            $alumnos= $alumnos->paginate(10);
+
             return $alumnos;
     }
 

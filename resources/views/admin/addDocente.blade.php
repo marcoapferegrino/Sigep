@@ -204,19 +204,19 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            {!! Form::label('viveCon', '¿Con quién vive?') !!}
-                                            {!! Form::select('viveCon', config('optionsViveCon.options'),null,['class'=>'form-control','id'=>'viveCon'])!!}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
+                                    {{--<div class="col-md-4">--}}
+                                        {{--<div class="form-group">--}}
+                                            {{--{!! Form::label('viveCon', '¿Con quién vive?') !!}--}}
+                                            {{--{!! Form::select('viveCon', config('optionsViveCon.options'),null,['class'=>'form-control','id'=>'viveCon'])!!}--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col-md-4">--}}
 
-                                        <div class="form-group">
-                                            {!! Form::label('dependEconomic', '¿De quién depende económicamente?') !!}
-                                            {!! Form::select('dependEconomic', config('optionsViveCon.options'),null,['class'=>'form-control','id'=>'dependEconomic'])!!}
-                                        </div>
-                                    </div>
+                                        {{--<div class="form-group">--}}
+                                            {{--{!! Form::label('dependEconomic', '¿De quién depende económicamente?') !!}--}}
+                                            {{--{!! Form::select('dependEconomic', config('optionsViveCon.options'),null,['class'=>'form-control','id'=>'dependEconomic'])!!}--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
                                     <div class="col-md-4">
 
                                     </div>

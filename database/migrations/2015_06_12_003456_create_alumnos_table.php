@@ -47,16 +47,16 @@ class CreateAlumnosTable extends Migration
 
 
             $table->string('ref1Nombre');
-            $table->string('ref1Afinidad');
+            $table->enum('ref1Afinidad',['S/E', 'hijo', 'padre','madre','tío(a)','sobrino(a)','primo(a)','amigo(a)','cuñado(a)','otro']);
             $table->string('ref1Domicilio');
             $table->string('ref1Telefono');
-            $table->string('ref1Tiempoconocerlo');
+            $table->enum('ref1Tiempoconocerlo',['S/E','1','3','5','10','15']);
 
             $table->string('ref2Nombre');
-            $table->string('ref2Afinidad');
+            $table->enum('ref2Afinidad',['S/E','hijo','padre','madre','tío(a)','sobrino(a)','primo(a)','amigo(a)','cuñado(a)','otro']);
             $table->string('ref2Domicilio');
             $table->string('ref2Telefono');
-            $table->string('ref2Tiempoconocerlo');
+            $table->enum('ref2Tiempoconocerlo',['S/E','1','3','5','10','15']);
 
 
             $table->string('idUsuarioQueActualiza'); //el usuario que hizo la ultima actualizacion

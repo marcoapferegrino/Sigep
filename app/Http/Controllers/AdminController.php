@@ -108,6 +108,8 @@ class AdminController extends Controller {
         $gruposAsignaturas = Grupo::all();
         $relaciones = AsignaturaGrupo::all();
         $periodos = Periodo::all();
+<<<<<<< HEAD
+=======
 
         $dias=array();
         $horarios = Horario::all();
@@ -133,6 +135,57 @@ class AdminController extends Controller {
 
 
 
+    public function filtroPeriodo(Request $request)   //formulario simple
+    {
+        $docentes = User::all()->where('rol','docente');
+
+        $id = $request->periodo_id;
+        //dd($id);
+
+        $materias = Asignatura::all();
+        $periodos = Periodo::all();
+        $gruposAsignaturas =array();
+
+        $interGrupos= Grupo::grupoPorPeriodo($id);
+
+        foreach($interGrupos as $inter)
+        {
+            array_push($gruposAsignaturas,$inter);
+        }
+
+       // $gruposAsignaturas =  Grupo::grupoPorPeriodo($id);
+
+        //dd($gruposAsignaturas);
+        $relaciones = AsignaturaGrupo::all();
+>>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
+
+        $dias=array();
+        $actual = Periodo::find($id)->nombre;
+
+        $horarios = Horario::all();
+
+        foreach($horarios as $horario)
+        {
+            array_push($dias,json_decode($horario->dias));
+        }
+        //dd($dias,$horarios);
+
+        $asignaturasGrupo = array();
+
+        $grupos = Grupo::gruposActuales();
+
+        //dd($grupos);
+        foreach($grupos as $grupo)
+        {
+            array_push($asignaturasGrupo,Grupo::grupoBien($grupo->grupoId));
+        }
+
+        return view('admin.addGrupo',compact('actual','periodos','grupos','asignaturasGrupo','gruposAsignaturas','materias','docentes','horarios','dias','relaciones'));
+    }
+
+
+
+<<<<<<< HEAD
     public function filtroPeriodo(Request $request)   //formulario simple
     {
         $docentes = User::all()->where('rol','docente');
@@ -182,6 +235,8 @@ class AdminController extends Controller {
 
 
 
+=======
+>>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
     public function getAddInscripcion()   //formulario simple
     {
         $var=0;
@@ -316,11 +371,16 @@ class AdminController extends Controller {
         $gruposAsignaturas  = User::getAsignaturasGruposbyPeriodo($idPeriodo,$idAsignatura,$idGrupo);
         $alumnos            = User::getAlumnosInscritosbyPeriodo($idPeriodo,$idAsignatura,$idGrupo);
 
+        if(count($gruposAsignaturas)==0 || count($alumnos)==0 )
+        {
+            Session::flash('error', 'No se encontraron resultados con esta búsqueda');
+        }
        //dd($gruposAsignaturas,$alumnos);
 
         return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','periodos','asignaturas','grupos'));
     }
 
+<<<<<<< HEAD
 /*
 
     public function getInscritos(Request $request)
@@ -341,12 +401,41 @@ class AdminController extends Controller {
         $alumnos = User::getAlumnosInscritos();
         $actual = 'Todos';
     }
+=======
+
+
+    public function getInscritos(Request $request)
+    {
+
+
+        $id                 = $request->periodo_id;
+        if($id!=null){
+        $gruposAsignaturas  = User::getAsignaturasGruposSin();
+        $alumnos            = Alumno::getAlumnosInscritosPorPeriodo($id);
+        $periodos           = Periodo::all();
+
+        $actual             = Periodo::find($request->periodo_id); // Periodo::find($id)->nombre;
+        $actual             = $actual['nombre'];
+        var_dump($alumnos);
+
+        return view('admin.listInscritos',compact('actual','periodos','gruposAsignaturas','alumnos'));
+        }
+        $gruposAsignaturas  = User::getAsignaturasGruposSin();
+        $alumnos            = User::getAlumnosInscritos();
+        $periodos           = Periodo::all();
+        $actual = 'Todos';
+>>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
         //dd($alumnos);
 
         return view('admin.listInscritos',compact('actual','periodos','gruposAsignaturas','alumnos'));
     }
+<<<<<<< HEAD
 */
 
+=======
+
+/*
+>>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
     public function getInscritos()
     {
 
@@ -354,12 +443,20 @@ class AdminController extends Controller {
         $alumnos            = User::getAlumnosInscritos();
         $periodos           = Periodo::all();
         $actual = 'Todos';
+<<<<<<< HEAD
         $actual_id = 'Todos';
         //dd($alumnos);
 
         return view('admin.listInscritos',compact('actual_id','actual','periodos','gruposAsignaturas','alumnos'));
     }
 
+=======
+        //dd($alumnos);
+
+        return view('admin.listInscritos',compact('actual','periodos','gruposAsignaturas','alumnos'));
+    }
+    */
+>>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
     public function filtroInscritosPeriodo(Request $request)
     {
 
@@ -369,10 +466,16 @@ class AdminController extends Controller {
         $periodos           = Periodo::all();
         $actual             = Periodo::find($request->periodo_id); // Periodo::find($id)->nombre;
         $actual             = $actual['nombre'];
+<<<<<<< HEAD
         $actual_id=$id;
         //var_dump($alumnos);
 
         return view('admin.listInscritos',compact('actual_id','actual','periodos','gruposAsignaturas','alumnos'));
+=======
+        var_dump($alumnos);
+
+        return view('admin.listInscritos',compact('actual','periodos','gruposAsignaturas','alumnos'));
+>>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
     }
 
     public function showKardex($id)
@@ -381,12 +484,19 @@ class AdminController extends Controller {
         $alumno= Alumno::getKardex($id);
         $maxi= $alumno[count($alumno)-1]->semestre;
 
+<<<<<<< HEAD
         $promedio=Alumno::getPromedio($alumno);
 
 
      //dd($alumno);
 
         return view('alumno.kardex',compact('promedio','alumno','maxi'));
+=======
+
+     //dd($alumno);
+
+        return view('admin.kardex',compact('alumno','maxi'));
+>>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
     }
 
 

@@ -38,9 +38,6 @@ Route::group(/**
             'uses' => 'SuperAdminController@findUsuario'
         ]);
 
-
-
-
         Route::post('/addPeriodo', [
             'as' => 'periodo.addPeriodo',
             'uses' => 'SuperAdminController@addPeriodo'
@@ -114,12 +111,25 @@ Route::group(/**
             'uses' => 'SuperAdminController@abrirActa'
         ]);
 
+        Route::get('/editarDocente/{id}', [
+            'as' => 'docentes.editarDocente',
+            'uses' => 'SuperAdminController@editDocente'
+        ]);
+        Route::post('/updateDocente', [
+            'as' => 'docentes.updateDocente',
+            'uses' => 'SuperAdminController@updateDocente'
+        ]);
+
+        Route::get('/editarAlumno/{id}', [
+            'as' => 'alumnos.editarAlumno',
+            'uses' => 'SuperAdminController@editAlumno'
+        ]);
+        Route::post('/updateAlumno', [
+            'as' => 'alumnos.updateAlumno',
+            'uses' => 'SuperAdminController@updateAlumno'
+        ]);
 
     });
-
-
-
-    //Seccion de administrador
 
     Route::group(['middleware' => 'role:admin'],function() {
         Route::get('logAdmin',"AdminController@index");
@@ -215,6 +225,7 @@ Route::group(/**
             'as' => 'admin.showKardex',
             'uses' => 'AdminController@showKardex'
         ]);
+<<<<<<< HEAD
 
         Route::get('/getAddGrupoPorPeriodo', [
             'as' => 'periodos.filtroPeriodo',
@@ -230,8 +241,28 @@ Route::group(/**
             'as' => 'inscritos.inscritosFiltroPeriodo',
             'uses' => 'AdminController@filtroInscritosPeriodo'
         ]);
+=======
+>>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
+
+        Route::get('/getAddGrupoPorPeriodo', [
+            'as' => 'periodos.filtroPeriodo',
+            'uses' => 'AdminController@filtroPeriodo'
+        ]);
+
+        Route::get('/getAddGrupoPorPeriodo', [
+            'as' => 'grupos.gruposFiltroPeriodo',
+            'uses' => 'AdminController@getGruposFiltro'
+        ]);
+
+<<<<<<< HEAD
+=======
+        Route::get('/getInscritosFiltro', [
+            'as' => 'inscritos.inscritosFiltroPeriodo',
+            'uses' => 'AdminController@filtroInscritosPeriodo'
+        ]);
 
 
+>>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
         Route::get('/getInscritos', [    //checar filtro luis
             'as' => 'inscritos.getInscritos',
             'uses' => 'AdminController@getInscritos'
@@ -267,9 +298,6 @@ Route::group(/**
 
 
     });
-
-
-
 
     Route::group(['middleware' => 'role:docente'],function() {
         Route::get('homeP',"ProfesorController@index");
