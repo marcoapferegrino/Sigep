@@ -43,7 +43,7 @@
 
                          @foreach($alumno as $t=>$materia)
                          @if(($i)==$materia->semestre)
-                             <tr">
+                             <tr>
 
                                             <th>  {{$materia->nombre}}  </th>
                                             <th>  {{$materia->nombrePeriodo}} </th>

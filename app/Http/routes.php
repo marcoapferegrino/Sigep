@@ -225,7 +225,7 @@ Route::group(/**
             'as' => 'admin.showKardex',
             'uses' => 'AdminController@showKardex'
         ]);
-<<<<<<< HEAD
+
 
         Route::get('/getAddGrupoPorPeriodo', [
             'as' => 'periodos.filtroPeriodo',
@@ -241,34 +241,8 @@ Route::group(/**
             'as' => 'inscritos.inscritosFiltroPeriodo',
             'uses' => 'AdminController@filtroInscritosPeriodo'
         ]);
-=======
->>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
 
-        Route::get('/getAddGrupoPorPeriodo', [
-            'as' => 'periodos.filtroPeriodo',
-            'uses' => 'AdminController@filtroPeriodo'
-        ]);
-
-        Route::get('/getAddGrupoPorPeriodo', [
-            'as' => 'grupos.gruposFiltroPeriodo',
-            'uses' => 'AdminController@getGruposFiltro'
-        ]);
-
-<<<<<<< HEAD
-=======
-        Route::get('/getInscritosFiltro', [
-            'as' => 'inscritos.inscritosFiltroPeriodo',
-            'uses' => 'AdminController@filtroInscritosPeriodo'
-        ]);
-
-
->>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
         Route::get('/getInscritos', [    //checar filtro luis
-            'as' => 'inscritos.getInscritos',
-            'uses' => 'AdminController@getInscritos'
-        ]);
-
-        Route::post('/getInscritos', [
             'as' => 'inscritos.getInscritos',
             'uses' => 'AdminController@getInscritos'
         ]);
