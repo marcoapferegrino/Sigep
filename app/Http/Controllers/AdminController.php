@@ -50,16 +50,40 @@ class AdminController extends Controller {
     {
 
         $password = bcrypt($request->password);        //obtencion de contraseña
+//        dd($request->all(),$password);
         $docente = Docente::create($request->all());   //instancia de modelo docente con los datos recibidos
         $user = User::create($request->all());         //instancia de modelo user con datos recibidos
-        User::where('id',$user->id)                    //asignacion de user -> docente
+
+        $state = User::where('id',$user->id)                    //asignacion de user -> docente
             ->update([
             'rol'=>'docente',
             'docente_id'=>$docente->id,
             'password'=>$password]);
+//        dd($state);
 
         Session::flash('message', $user->getNombreCompleto().' fue agregado exitosamente');
         return redirect()->action('AdminController@getAddDocente');
+
+    }
+
+    public function addAlumno(AddAlumnoRequest $request)  //peticion post para addAlumno
+    {
+        //dd($request->all());
+        $password   = bcrypt($request->password);
+        $alumno     = Alumno::create($request->all());
+
+        $user = User::create($request->all());
+
+        User::where('id',$user->id)
+            ->update([
+                'rol'=>'alumno',
+                'alumno_id'=>$alumno->id,
+                'password'=>$password]);
+
+        Session::flash('message', 'El alumno '.$user->getNombreCompleto().' fue agregado que empiece el juego !');
+
+        //dd($user->toArray(),$alumno->toArray());
+        return redirect()->action('AdminController@getAddAlumno');
 
     }
 
@@ -320,23 +344,6 @@ class AdminController extends Controller {
     }
 
 
-    public function addAlumno(AddAlumnoRequest $request)  //peticion post para addAlumno
-    {
-        //dd($request->all());
-        $password   = bcrypt($request->password);
-        $alumno     = Alumno::create($request->all());
-
-        $user = User::create($request->all());
-
-        User::where('id',$user->id)
-            ->update(['rol'=>'alumno','alumno_id'=>$alumno->id,'password'=>$password]);
-
-        Session::flash('message', 'El alumno '.$user->getNombreCompleto().' fue agregado que empiece el juego !');
-
-        //dd($user->toArray(),$alumno->toArray());
-        return redirect()->action('AdminController@getAddAlumno');
-
-    }
     public function getAlumnosCalificar()
     {
         $periodos       = Periodo::all('id','nombre');

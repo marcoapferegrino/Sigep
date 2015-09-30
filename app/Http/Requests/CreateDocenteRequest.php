@@ -8,7 +8,7 @@ use PosgradoService\Http\Requests\Request;
 class CreateDocenteRequest extends Request {
 
 
-    public  $password;
+
 
      /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,9 @@ class CreateDocenteRequest extends Request {
      *
      * @return array
      */
-    public function rules()
+    public function rules(\Illuminate\Http\Request $request)
     {
-
+//        dd($request->all());
         $fechaMinCumple = Carbon::now()->subYears(100);
         $fechaMaxCumple = Carbon::now()->subYears(18);
 
@@ -40,7 +40,7 @@ class CreateDocenteRequest extends Request {
             'apellidoP'                => 'required | ',
             'apellidoM'                => 'required | ',
             'fechanac'                 => 'required|date|after:'.$fechaMinCumple.'|before:'.$fechaMaxCumple,
-            'password'                 => 'required| ',
+            'password'                 => 'required',
             'nacionalidad'             => 'required | ',
             'edoNacimiento'            => 'required | ',
             'genero'                   => 'required | in:Hombre,Mujer',
