@@ -33,18 +33,18 @@ class ProgramaPeriodoSeeder extends Seeder {
 
         ]);
 
-        Programa::create([
-            'escuela' => 'Escuela superior de cómputo',
-            'nombre' => 'Programa piloto',
-            'periodo_id' => 1,
-
-        ]);
-        Programa::create([
-            'escuela' => 'Escuela superior de cómputo cuántico',
-            'nombre' => 'Programa piloto',
-            'periodo_id' => 2,
-
-        ]);
+//        Programa::create([
+//            'escuela' => 'Escuela superior de cómputo',
+//            'nombre' => 'Programa piloto',
+//            'periodo_id' => 1,
+//
+//        ]);
+//        Programa::create([
+//            'escuela' => 'Escuela superior de cómputo cuántico',
+//            'nombre' => 'Programa piloto',
+//            'periodo_id' => 2,
+//
+//        ]);
 
 
 

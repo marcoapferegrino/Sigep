@@ -43,7 +43,7 @@ class CreateDocenteRequest extends Request {
             'password'                 => 'required| ',
             'nacionalidad'             => 'required | ',
             'edoNacimiento'            => 'required | ',
-            'genero'                   => 'required | in:Hombre,Mujer ',
+            'genero'                   => 'required | in:Hombre,Mujer',
             'rfc'                      =>'required|unique:users,rfc',
             'curp'                     =>'required|unique:users,curp',
             'extensionIpn'             => '',

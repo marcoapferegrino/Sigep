@@ -35,10 +35,10 @@ class SuperAdminController extends Controller {
 	public function index()
 	{
 		$periodos = Periodo::all();
-		$programas = Programa::all();
 
 
-		return view('homeSuperAdmin',compact('periodos','programas'));
+
+		return view('homeSuperAdmin',compact('periodos'));
 	}
 
 	public function showUsers()

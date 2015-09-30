@@ -25,7 +25,11 @@ class AlumnosSeeder extends Seeder {
             $alumno = Alumno::create([
 
 
+<<<<<<< Updated upstream
                // 'status' => $faker->randomElement(['Activo','Egresado','De baja']),
+=======
+//                'status' => $faker->randomElement(['Activo','Egresado','De baja']),
+>>>>>>> Stashed changes
                 'boleta' => $faker->numberBetween(20100000,20160000),
 
                 'dependEconomic' => $faker->randomElement(['Papá','Mamá','Padres','No']),
