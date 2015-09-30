@@ -187,6 +187,10 @@ Route::group(/**
             'as' => 'grupo.updateGrupo',
             'uses' => 'AdminController@updateGrupo'
         ]);
+        Route::post('/updateAsignaturaGrupo', [
+            'as' => 'grupo.updateAsignaturaGrupo',
+            'uses' => 'AdminController@updateAsignaturaGrupo'
+        ]);
 
 
 
@@ -227,7 +231,7 @@ Route::group(/**
         ]);
 
 
-        Route::get('/getAddGrupoPorPeriodo', [
+        Route::get('/getAddGruposPorPeriodo', [
             'as' => 'periodos.filtroPeriodo',
             'uses' => 'AdminController@filtroPeriodo'
         ]);
@@ -235,6 +239,11 @@ Route::group(/**
         Route::get('/getAddGrupoPorPeriodo', [
             'as' => 'grupos.gruposFiltroPeriodo',
             'uses' => 'AdminController@getGruposFiltro'
+        ]);
+
+        Route::get('/getAddGruposByPeriodo', [
+            'as' => 'grupos.gruposByPeriodo',
+            'uses' => 'AdminController@getGruposByPeriodo'
         ]);
 
         Route::get('/getInscritosFiltro', [

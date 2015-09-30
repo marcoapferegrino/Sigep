@@ -107,12 +107,22 @@ class ProfesorController extends Controller {
         //dd((auth()->user()->alumno_id));
         if((auth()->user()->alumno_id!=null)){
 
+            $idAlumno= auth()->user()->alumno_id;
+            $user =  User::where('alumno_id',$idAlumno)
+                ->get();
+            if($user==null){
+                Session::flash('error', 'No existe alumno');
+                return view('homeAlumno');
+            }
+            else{
+           //dd($user[0]->alumno_id);
 
-            $user =  User::find((auth()->user()->alumno_id));
+            $alumno = Alumno::find($user[0]->alumno_id);
 
-            $alumno = Alumno::find($user->alumno_id);
+            //dd($user,$alumno);
 
             return view('docente.expediente', compact('user', 'alumno'));
+            }
 
 
 

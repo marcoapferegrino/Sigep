@@ -4,8 +4,9 @@
 
 
 @section('content')
-    <div class="col-md-11 ">
 
+    @include('partials.messages')
+    <div class="col-md-11 ">
     <div class="panel panel-primary"  >
         <div class="panel-heading">Tu horario</div>
 

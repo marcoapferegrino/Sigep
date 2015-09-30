@@ -3,21 +3,14 @@
     <!-- Default panel contents -->
 
 
-<<<<<<< HEAD
-    <div class="panel-heading">Alumnos inscritos <b class="pull-right">Período: <b style="color: #262626 ;font-size: 120%" >{{ $actual }}</b></b></div>
-=======
+
     <div class="panel-heading">Alumnos inscritos   <b class="pull-right">Período: <b style="color: #262626 ;font-size: 120%" >{{ $actual }}</b></b></div>
->>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
 
     <div class="panel-body">
 
     <div class="form-inline navbar-left pull-right">
-<<<<<<< HEAD
         {!! Form::open(['route' => 'inscritos.inscritosFiltroPeriodo','method' => 'get','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
-=======
-        {!! Form::open(['route' => 'inscritos.getInscritos','method' => 'POST','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
->>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
-        <div class="form-group">
+<div class="form-group">
             Buscar en período:
             <select class="form-control" name="periodo_id" id="periodo_id" required>
                 <option value="">- - - -</option>
@@ -72,7 +65,7 @@
                 <td>{{$grupoAsignatura->salon}}</td>
                 @if($alumno->calificacion<6 && !($alumno->calificacion=='S/C') )
 
-<<<<<<< HEAD
+
                     <td class="text-center" style="background-color: #ce8483">{{$alumno->calificacion}}</td>
               @elseif($alumno->calificacion>=6)
                     <td class="text-center "style="background-color:#A9F5A9">{{$alumno->calificacion}}</td>
@@ -83,18 +76,7 @@
                 <td>
                     {!! Form::open(['route' => ['alumno.deleteInscripcion',$alumno->inscripcion_id],'method' => 'DELETE']) !!}
                     <button type="submit" onclick="return confirm('¿Seguro que quieres desinscribir la asignatura?')" class="btn btn-danger">
-=======
-                    <td style="background-color: #ce8483">{{$alumno->calificacion}}</td>
-              @elseif($alumno->calificacion>=6)
-                    <td style="background-color:#65C400">{{$alumno->calificacion}}</td>
-                @elseif($alumno->calificacion>='S/C')
 
-                    <td >{{$alumno->calificacion}}</td>
-                @endif
-                <td>
-                    {!! Form::open(['route' => ['alumno.deleteInscripcion',$alumno->inscripcion_id],'method' => 'DELETE']) !!}
-                    <button type="submit" onclick="return confirm('Seguro que quieres la materia?')" class="btn btn-danger">
->>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
                         <i class="fa fa-trash-o"></i>
                     </button>
                     {!! Form::close() !!}
@@ -106,16 +88,12 @@
         @endforeach
         @endforeach
         </tbody>
-<<<<<<< HEAD
     </table>
 
 
        {!! $alumnos->appends(['periodo_id'=> Input::get('periodo_id')])->render() !!}
 
 
-=======
-    </table>{!! $alumnos->render() !!}
->>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
     </div>
 </div>
 

@@ -4,6 +4,8 @@ use PosgradoService\Http\Requests;
 
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Session;
+
 use PosgradoService\Entities\User;
 use PosgradoService\Entities\Alumno;
 use PosgradoService\Http\Controllers\Controller;
@@ -92,10 +94,19 @@ class AlumnoController extends Controller {
         //$id=10;
         $id =auth()->user()->alumno_id;
         $alumno= Alumno::getKardex($id);
+        if($alumno!=null){
         $promedio=Alumno::getPromedio($alumno);
         $maxi= $alumno[count($alumno)-1]->semestre;
 
         return view('alumno.kardex',compact('promedio','alumno','maxi'));
+        }
+        else{
+
+            Session::flash('error', 'No hay datos disponibles del kárdex');
+            return view('homeAlumno');
+            //dd("NO hay");
+        }
+
     }
 
 
@@ -104,6 +115,14 @@ class AlumnoController extends Controller {
 
 
         $gruposAsignaturas = Alumno::getCalificaciones();
+
+        if($gruposAsignaturas ==null){
+
+
+            Session::flash('error', 'No hay asignaturas disponibles ');
+            return view('alumno.calificacionesAlumno', compact('gruposAsignaturas') );
+
+        }
         return view('alumno.calificacionesAlumno', compact('gruposAsignaturas') );
 
 
@@ -122,6 +141,14 @@ class AlumnoController extends Controller {
             array_push($dias,json_decode($horario->dias));
         }
         //dd($dias,$horarios);
+
+        if($horarios==null){
+
+
+            Session::flash('error', 'No hay horario actual');
+
+            return view('alumno.alumnoHorario', compact('horarios','dias') );
+        }
 
         return view('alumno.alumnoHorario', compact('horarios','dias') );
 

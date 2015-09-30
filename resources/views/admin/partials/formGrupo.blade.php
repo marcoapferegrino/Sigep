@@ -6,10 +6,17 @@
 <div class="panel-heading" role="tab">
     <div class="panel panel-info">
 
-        <div class="panel-heading"> <h3 class="panel-title">Registro a grupo</h3> </div>
+        <div class="panel-heading"> <h3 class="panel-title">Registro a grupo
+
+
+                <b class="pull-right">Período: <b style="color: #101010;font-size: 120%" >{{ $actual }}</b></b>
+            </h3>
+
+
+        </div>
 
         <div class="form-inline navbar-left pull-right">
-            {!! Form::open(['route' => 'grupos.gruposFiltroPeriodo','method' => 'GET','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
+            {!! Form::open(['route' => 'periodos.filtroPeriodo','method' => 'GET','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
             <div class="form-group">
                 Registrar en período:
                 <select class="form-control" name="periodo_id" id="periodo_id" required>
@@ -95,6 +102,8 @@
 
     </div>
     <br><br> <br>
+
+    <h4> Grupos del período en curso</h4>
     @foreach($grupos as $grupo)
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
@@ -118,8 +127,9 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th>Materia</th>
-                                <th>Profesor</th>
+                                <th>Asignatura</th>
+                                <th>Docente</th>
+                                <th>Acciones</th>
 
                             </tr>
                             </thead>
@@ -133,7 +143,15 @@
                                         <tr>
                                              <td>{{$asignaturaG[$i]->asignaturaNombre}}</td>
                                             <td>{{$asignaturaG[$i]->apellidoP}} {{ $asignaturaG[$i]->apellidoM}}, {{$asignaturaG[$i]->docenteNombre}}</td>
+                                            <td>
+                                                <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalGrupo{{$asignaturaG[$i]->id}}">
+                                                   Modificar registro
+                                                </button>
+
+
+                                            </td>
                                         </tr>
+                                        @include('admin.partials.updateAsignaturaGrupo')
                                     @endif
                                     @endfor
 

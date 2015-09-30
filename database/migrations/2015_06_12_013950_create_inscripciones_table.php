@@ -20,16 +20,16 @@ class CreateInscripcionesTable extends Migration
             $table->foreign('alumno_id')->references('id')->on('alumnos');
 
             $table->integer('docente_id')->unsigned();
-            $table->foreign('docente_id')->references('docente_id')->on('asignatura_grupo');
+            $table->foreign('docente_id')->references('docente_id')->on('asignatura_grupo')->onUpdate('CASCADE')->onDelete('CASCADE');
 
             $table->integer('grupo_id')->unsigned();
-            $table->foreign('grupo_id')->references('grupo_id')->on('asignatura_grupo');
+            $table->foreign('grupo_id')->references('grupo_id')->on('asignatura_grupo')->onUpdate('CASCADE')->onDelete('CASCADE');
 
             $table->integer('asignatura_id')->unsigned();
-            $table->foreign('asignatura_id')->references('asignatura_id')->on('asignatura_grupo');
+            $table->foreign('asignatura_id')->references('asignatura_id')->on('asignatura_grupo')->onUpdate('CASCADE')->onDelete('CASCADE');
 
             $table->integer('asignatura_grupo_id')->unsigned();
-            $table->foreign('asignatura_grupo_id')->references('id')->on('asignatura_grupo');
+            $table->foreign('asignatura_grupo_id')->references('id')->on('asignatura_grupo')->onUpdate('CASCADE')->onDelete('CASCADE');
 
             $table->timestamps();
         });

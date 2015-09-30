@@ -11,7 +11,7 @@
         <div class="panel-heading"> <h3 class="panel-title">Listado de grupos  <b class="pull-right">Período: <b style="color: #262626 ;font-size: 120%" >{{ $actual }}</b></b> </h3> </div>
 
 
-        {!! Form::open(['route' => 'periodos.filtroPeriodo','method' => 'GET','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
+        {!! Form::open(['route' => 'grupos.gruposByPeriodo','method' => 'GET','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
         <div class="form-group">
             Registrar en período:
             <select class="form-control" name="periodo_id" id="periodo_id" required>

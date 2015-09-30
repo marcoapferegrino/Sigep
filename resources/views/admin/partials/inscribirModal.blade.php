@@ -6,11 +6,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
-<<<<<<< HEAD
+
                 <h4 class="modal-title" id="myModalLabel8">Inscribir asignaturas para: {{$alumno->name}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</h4>
-=======
-                <h4 class="modal-title" id="myModalLabel8">Inscribir asignaturas para: {{$alumno->name}}</h4>
->>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
+
             </div>
             <div class="modal-body">
 

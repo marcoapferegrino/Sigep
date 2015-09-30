@@ -4,16 +4,27 @@
     <div class="container">
         <div class="row">
 
-            @include('partials.messages')
+            
 
             <div class="col-md-12 ">
 
                 <div class="page-header">
                     <h1>
                         <i class="fa fa-user"></i>
+
+                        @if(Auth::getAlumnoId()==null)
                         Alumno: {{$user->getNombreCompleto()}}
+                            @else
+                            Alumno: {{$user[0]->getNombreCompleto()}}
+                        @endif
+
                         <small>
-                            <a href="mailto:{{$user->email}}">{{$user->email}} </a>
+                            @if(Auth::getAlumnoId()==null)
+                                <a href="mailto:{{$user->email}}">{{$user->email}} </a>
+                            @else
+                                <a href="mailto:{{$user[0]->email}}">{{$user[0]->email}} </a>
+                            @endif
+
                             <br>Boleta:{{$alumno->boleta}}
                         </small>
                         <br>
