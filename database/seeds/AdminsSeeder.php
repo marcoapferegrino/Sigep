@@ -74,63 +74,63 @@ class AdminsSeeder extends Seeder
             'password' => bcrypt('secret'),
         ]);
 
-        $docente =  User::create([
+//        $docente =  User::create([
+//
+//            'rol' => 'docente',
+//            'name' =>'PruebaDocente',
+//            'apellidoP' =>  'PaternoDocente',
+//            'apellidoM' => 'MaternoDocente',
+//            'fechanac' => $faker->date(),
+//            'nacionalidad'=> $faker->country,
+//            'edoNacimiento'=> $faker->state,
+//            'genero' => 'Hombre',
+//            'rfc'=> $faker->swiftBicNumber,
+//            'curp'=> $faker->swiftBicNumber,
+//            'tipoIdOficial'=>$faker->randomElement(['ife','licenciaManejo','pasaporte','cartilla']),
+//            'noIdOficial' => $faker->swiftBicNumber,
+//            'direccion' => $faker->streetAddress,
+//            'colonia'=> $faker->citySuffix,
+//            'ciudad' => $faker->city,
+//            'estado' => $faker->state,
+//            'cp' => $faker->postcode,
+//            'telefono' => $faker->phoneNumber,
+//            'telMovil' => $faker->phoneNumber,
+//            'edoCivil' => 'soltero',
+//            'alumno_id' => null,
+//            'docente_id' => null,
+//            'numHijos'=> 0,
+//            'email' => 'docente@gmail.com',
+//            'password' => bcrypt('secret'),
+//        ]);
 
-            'rol' => 'docente',
-            'name' =>'PruebaDocente',
-            'apellidoP' =>  'PaternoDocente',
-            'apellidoM' => 'MaternoDocente',
-            'fechanac' => $faker->date(),
-            'nacionalidad'=> $faker->country,
-            'edoNacimiento'=> $faker->state,
-            'genero' => 'Hombre',
-            'rfc'=> $faker->swiftBicNumber,
-            'curp'=> $faker->swiftBicNumber,
-            'tipoIdOficial'=>$faker->randomElement(['ife','licenciaManejo','pasaporte','cartilla']),
-            'noIdOficial' => $faker->swiftBicNumber,
-            'direccion' => $faker->streetAddress,
-            'colonia'=> $faker->citySuffix,
-            'ciudad' => $faker->city,
-            'estado' => $faker->state,
-            'cp' => $faker->postcode,
-            'telefono' => $faker->phoneNumber,
-            'telMovil' => $faker->phoneNumber,
-            'edoCivil' => 'soltero',
-            'alumno_id' => null,
-            'docente_id' => null,
-            'numHijos'=> 0,
-            'email' => 'docente@gmail.com',
-            'password' => bcrypt('secret'),
-        ]);
-
-        $alumno =  User::create([
-
-            'rol' => 'alumno',
-            'name' =>'PruebaAlumno',
-            'apellidoP' =>  'PaternoAlumno',
-            'apellidoM' => 'MaternoAlumno',
-            'fechanac' => $faker->date(),
-            'nacionalidad'=> $faker->country,
-            'edoNacimiento'=> $faker->state,
-            'genero' => 'Hombre',
-            'rfc'=> $faker->swiftBicNumber,
-            'curp'=> $faker->swiftBicNumber,
-            'tipoIdOficial'=>$faker->randomElement(['ife','licenciaManejo','pasaporte','cartilla']),
-            'noIdOficial' => $faker->swiftBicNumber,
-            'direccion' => $faker->streetAddress,
-            'colonia'=> $faker->citySuffix,
-            'ciudad' => $faker->city,
-            'estado' => $faker->state,
-            'cp' => $faker->postcode,
-            'telefono' => $faker->phoneNumber,
-            'telMovil' => $faker->phoneNumber,
-            'edoCivil' => 'soltero',
-            'alumno_id' => null,
-            'docente_id' => null,
-            'numHijos'=> 0,
-            'email' => 'alumno@gmail.com',
-            'password' => bcrypt('secret'),
-        ]);
+//        $alumno =  User::create([
+//
+//            'rol' => 'alumno',
+//            'name' =>'PruebaAlumno',
+//            'apellidoP' =>  'PaternoAlumno',
+//            'apellidoM' => 'MaternoAlumno',
+//            'fechanac' => $faker->date(),
+//            'nacionalidad'=> $faker->country,
+//            'edoNacimiento'=> $faker->state,
+//            'genero' => 'Hombre',
+//            'rfc'=> $faker->swiftBicNumber,
+//            'curp'=> $faker->swiftBicNumber,
+//            'tipoIdOficial'=>$faker->randomElement(['ife','licenciaManejo','pasaporte','cartilla']),
+//            'noIdOficial' => $faker->swiftBicNumber,
+//            'direccion' => $faker->streetAddress,
+//            'colonia'=> $faker->citySuffix,
+//            'ciudad' => $faker->city,
+//            'estado' => $faker->state,
+//            'cp' => $faker->postcode,
+//            'telefono' => $faker->phoneNumber,
+//            'telMovil' => $faker->phoneNumber,
+//            'edoCivil' => 'soltero',
+//            'alumno_id' => null,
+//            'docente_id' => null,
+//            'numHijos'=> 0,
+//            'email' => 'alumno@gmail.com',
+//            'password' => bcrypt('secret'),
+//        ]);
 
         $super->rol='superAdmin';
         $super->password=bcrypt('secret');
@@ -140,13 +140,13 @@ class AdminsSeeder extends Seeder
         $admin->password=bcrypt('secret');
         $admin->save();
 
-        $docente->rol='docente';
-        $docente->password=bcrypt('secret');
-        $docente->save();
-
-        $alumno->rol='alumno';
-        $alumno->password=bcrypt('secret');
-        $alumno->save();
+//        $docente->rol='docente';
+//        $docente->password=bcrypt('secret');
+//        $docente->save();
+//
+//        $alumno->rol='alumno';
+//        $alumno->password=bcrypt('secret');
+//        $alumno->save();
     }
 
 }

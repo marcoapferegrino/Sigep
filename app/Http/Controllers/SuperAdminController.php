@@ -115,22 +115,7 @@ class SuperAdminController extends Controller {
 		return redirect()->action('SuperAdminController@index');
 	}
 
-	public function updatePrograma(UpdateProgramaRequest $request)
-	{
 
-		//dd($request->all());
-		$programa = Programa::find($request->id);
-
-		$programa->nombre= $request->nombre;
-		$programa->escuela= $request->escuela;
-		$programa->periodo_id = $request->periodo_id;
-
-
-		$programa->save();
-
-		Session::flash('message',$programa->nombre.' fue Actualizado :D');
-		return redirect()->action('SuperAdminController@index');
-	}
 
 
 	public function showAsignaturas()
@@ -198,7 +183,7 @@ class SuperAdminController extends Controller {
 		$horarios = Horario::all();
 		if(count($horarios)==0)
 		{
-			Session::flash('error', 'No se encontraron resultados con esta búsqueda');
+			Session::flash('error', 'Actualmente no hay registros');
 		}
 		else
 		{
@@ -314,6 +299,7 @@ class SuperAdminController extends Controller {
 
 	public function updateDocente(UpdateDocenteRequest $request)
 	{
+//		dd($request->all());
 		$editerUser = auth()->user();
 		$user = User::find($request->idUser);
 		ucwords($request->name); //primera letra de nombresz en mayuscula
@@ -321,22 +307,26 @@ class SuperAdminController extends Controller {
 		try{
 			User::find($request->idUser)->update($request->all());
 			Docente::find($user->docente_id)->update($request->all());
+
+
 			Docente::where('id',$user->docente_id)
 				->update([
-					'idUsuarioQueActualiza'=>$editerUser->id
+					'idUsuarioActualiza'=>$editerUser->id,
 				]);
-			if($request->password!="")
+			if($request->get('password')!="")
 			{
 				$password = bcrypt($request->password);
-				User::where('id',$user->docente_id)
-					->update([
-						'password'=>$password
-					]);
+				$user = User::find($user->id);
+				$user->password = $password;
+				$user->save();
+
+//				dd($user->password,$password);
 			}
 			Session::flash('message', $user->getNombreCompleto().'se actualizó exitosamente');
 		}
 		catch(QueryException $e)
 		{
+
 			Handler::checkQueryError($e);
 		}
 
@@ -370,6 +360,7 @@ class SuperAdminController extends Controller {
 		}
 		catch(QueryException $e)
 		{
+
 			Handler::checkQueryError($e);
 		}
 
