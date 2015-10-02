@@ -315,7 +315,9 @@ class SuperAdminController extends Controller {
 				]);
 			if($request->get('password')!="")
 			{
-				$password = bcrypt($request->password);
+
+				$password = bcrypt($request->get('password'));
+//				dd('User Password: '.$user->password,'request: '.$request->get('password'),'nueva:'.$password);
 				$user = User::find($user->id);
 				$user->password = $password;
 				$user->save();
@@ -347,13 +349,16 @@ class SuperAdminController extends Controller {
 					'idUsuarioQueActualiza'=>$editerUser->id
 				]);
 
-			if($request->password != "")
+			if($request->get('password')!="")
 			{
-				$password = bcrypt($request->password);
-				User::where('id',$user->alumno_id)
-					->update([
-						'password'=>$password
-					]);
+
+				$password = bcrypt($request->get('password'));
+//				dd('User Password: '.$user->password,'request: '.$request->get('password'),'nueva:'.$password);
+				$user = User::find($user->id);
+				$user->password = $password;
+				$user->save();
+
+//				dd($user->password,$password);
 			}
 
 			Session::flash('message', $user->getNombreCompleto().'se actualizó exitosamente');
