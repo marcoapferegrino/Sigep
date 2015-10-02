@@ -36,7 +36,10 @@ class SuperAdminController extends Controller {
 	{
 		$periodos = Periodo::all();
 
-
+		if(count($periodos)==0)
+		{
+			Session::flash('error', 'Actualmente no hay registros');
+		}
 
 		return view('homeSuperAdmin',compact('periodos'));
 	}
@@ -46,6 +49,11 @@ class SuperAdminController extends Controller {
 		$usuarios = User::orderBy('name','ASC')->paginate();
 
 		$numUsers = count(User::all());
+
+		if($numUsers==0)
+		{
+			Session::flash('error', 'Actualmente no hay registros');
+		}
 
 		return view ('superAdmin.showUsuarios',compact('usuarios','numUsers'));
 	}
@@ -61,7 +69,6 @@ class SuperAdminController extends Controller {
 		if(count($usuarios)==0)
 		{
 			Session::flash('error', 'No se encontraron resultados con esta búsqueda');
-
 		}
 		return view ('superAdmin.showUsuarios',compact('usuarios','numUsers'));
 	}
@@ -73,14 +80,7 @@ class SuperAdminController extends Controller {
 		Session::flash('message', $periodo->nombre.' fue agregado :D');
 		return redirect()->action('SuperAdminController@index');
 	}
-//	public function addPrograma(CreateProgramaRequest $request)
-//	{
-//
-//		$programa = Programa::create($request->all());
-//		Session::flash('message', $programa->nombre.' fue agregado :D');
-//
-//		return redirect()->action('SuperAdminController@index');
-//	}
+
 	public function deletePeriodo($id)
 	{
 		$periodo = Periodo::findOrFail($id);
@@ -136,6 +136,10 @@ class SuperAdminController extends Controller {
 	public function showAsignaturas()
 	{
 		$asignaturas = Asignatura::all();
+		if(count($asignaturas)==0)
+		{
+			Session::flash('error', 'Actualmente no hay registros');
+		}
 		return view('superAdmin.asignaturas',compact('asignaturas'));
 	}
 
@@ -192,10 +196,16 @@ class SuperAdminController extends Controller {
 
 		$dias=array();
 		$horarios = Horario::all();
-
-		foreach($horarios as $horario)
+		if(count($horarios)==0)
 		{
-			array_push($dias,json_decode($horario->dias));
+			Session::flash('error', 'No se encontraron resultados con esta búsqueda');
+		}
+		else
+		{
+			foreach($horarios as $horario)
+			{
+				array_push($dias,json_decode($horario->dias));
+			}
 		}
 		//dd($dias,$horarios);
 

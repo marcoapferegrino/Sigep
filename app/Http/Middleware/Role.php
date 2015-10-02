@@ -7,7 +7,7 @@ class Role {
         'superAdmin'	=> 60,
         'admin' 		=> 50,
         'docente'		=> 40,
-        'alumno' 		=> 40
+        'alumno' 		=> 30
     ];
 	/**
 	 * Handle an incoming request.

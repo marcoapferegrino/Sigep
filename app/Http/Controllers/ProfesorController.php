@@ -27,11 +27,18 @@ class ProfesorController extends Controller {
 
 		$horarios=User::getHorario();
 
-		foreach($horarios as $horario)
+
+		if(count($horarios)==0)
 		{
-			array_push($dias,json_decode($horario->dias));
+			Session::flash('error', 'Aún no tenemos horario para este periodo');
 		}
-		//dd($dias,$horarios);
+		else{
+			foreach($horarios as $horario)
+			{
+				array_push($dias,json_decode($horario->dias));
+			}
+		}
+//		dd($dias,$horarios);
 
 		return view('homeProfesor',compact('horarios','dias'));
 	}
@@ -63,7 +70,10 @@ class ProfesorController extends Controller {
 		$gruposAsignaturas 	= User::getAsignaturasGruposDocentePeriodo($idDocente,$idAsignatura,$idPeriodo,$idGrupo);
 		$alumnos 			= User::getAlumnosdeDocentePeriodo($idDocente,$idAsignatura,$idPeriodo,$idGrupo);
 
-
+		if(count($gruposAsignaturas)==0||count($alumnos)==0)
+		{
+			Session::flash('error', 'No se encontraron resultados con esta búsqueda');
+		}
 		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','asignaturas','periodos','grupos'));
 	}
 
@@ -181,40 +191,6 @@ class ProfesorController extends Controller {
 
 	}
 
-//	public function horarioPDF()
-//	{
-//		$user = auth()->user();
-//		$horario = array();
-//
-//		$datos= User::getAsignaturasDeDocente($user->docente_id);
-//
-//		foreach($datos as $dato)
-//		{
-//			array_push($horario,User::getHorario($dato->grupo_id,$dato->asignatura_id));
-//		}
-//
-//		/*
-//            $pdf = \App::make('dompdf.wrapper');
-//            $pdf->loadHTML(view('docente.partials.tablaHorario',compact('horario','datos')))->setOrientation('landscape');
-//            return $pdf->stream();
-//        */
-//
-//		/*$pdf = \PDF::loadView('docente.partials.tablaHorario', compact('horario','datos'));
-//		return $pdf->stream();
-//		*/
-//
-//		/*$view =view('docente.partials.tablaHorario',compact('horario','datos'));
-//
-//
-//		$pdf = \App::make('dompdf.wrapper');
-//		$pdf->loadHTML($view);
-//
-//		return $pdf->stream();*/
-//
-//		$pdf = \PDF::loadView('docente/partials/horarioPDF',array('horario'=>$horario,'datos'=>$datos))->setOrientation('landscape')->setWarnings(false);
-//		return $pdf->stream();
-//
-//	}
 
 	public function closeActa(Request $request){
 		$user 				= auth()->user();

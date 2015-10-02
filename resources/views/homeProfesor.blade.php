@@ -7,7 +7,9 @@
 @section('content')
     <div class="container">
         <div class="row">
+            @include('partials.messages')
             <div class="col-md-12 ">
+
                 <div class="panel panel-info">
                     <div class="panel-heading">Horario</div>
 
