@@ -13,7 +13,7 @@
 
             <div class="col-md-12 ">
                 <div class="panel panel-success">
-                    <div class="panel-heading"> <h3 class="panel-title">Registro Docente</h3> </div>
+                    <div class="panel-heading"> <h3 class="panel-title">Edición Docente: {{$user->getNombreCompleto()}}</h3> </div>
                     <div class="panel-body">
                         {!! Form::open(['route' => 'docentes.updateDocente','method' => 'post']) !!}
                         <div class="panel panel-success">

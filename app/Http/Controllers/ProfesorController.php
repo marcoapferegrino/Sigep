@@ -212,7 +212,12 @@ class ProfesorController extends Controller {
 			Session::flash('error', 'Esta acta no te pertenece o ya se habia cerrado previamente');
 		}
 
-		return redirect()->action('AdminController@getAlumnosCalificar');
+		if($user->rol=='superAdmin'){
+			return redirect()->action('AdminController@getAlumnosCalificar');
+		}
+		elseif($user->rol=='docente'){
+			return redirect()->action('ProfesorController@showCalificaciones');
+		}
 
 	}
 
