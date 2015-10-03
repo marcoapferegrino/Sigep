@@ -97,6 +97,24 @@ class Alumno extends Entity {
         return $kardex;
     }
 
+    public static function getKardexPeriodo($id) // obtiene el historial por períodos
+    {
+        $kardex =DB::table('users')
+
+            ->join('alumnos','alumnos.id','=','users.alumno_id')
+            ->join('inscripciones','inscripciones.alumno_id','=','alumnos.id')
+            ->join('asignatura_grupo','asignatura_grupo.id','=','inscripciones.asignatura_grupo_id')
+            ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
+            ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
+            ->join('periodos','periodos.id','=','grupos.periodo_id')
+            ->select('alumnos.boleta','asignaturas.nombre as nombre','grupos.nombre as grupoNombre','inscripciones.calificacion','users.name as alumnoNombre','users.apellidoP','users.apellidoM','periodos.nombre as nombrePeriodo','periodos.finPeriodo','grupos.semestre')
+            ->where('inscripciones.alumno_id','=',$id)
+            ->orderBy('finPeriodo')
+            ->get();
+        //dd($kardex);
+        return $kardex;
+    }
+
     public static function getAlumnosInscritosPorPeriodo($id) // obtiene el historial
     {
         $alumnos =User::getAlumnosSentence();
@@ -149,12 +167,39 @@ class Alumno extends Entity {
 
        // $prom= ($aux / count($materias));
         if($numMaterias==0) return 'No disponible';
-        $prom= ($aux / $numMaterias);
+         $prom= round($aux / $numMaterias,2);
 
         return $prom;
 
     }
 
+    public static function getPromedioPeriodo($materias,$periodos)
+    {
+
+        $losPromedios=array();
+        foreach($periodos as $i=>$periodo){
+
+            $numMaterias =0;
+            $aux = 0.0;
+        foreach ($materias as $materia) {
+            if($periodos[$i]==$materia->nombrePeriodo){
+            $aux += $materia->calificacion;
+            if($materia->calificacion!='S/C' ){
+                $numMaterias ++;
+
+            }
+            }
+        }
+            if($numMaterias==0) {
+                return 'No disponible';
+            }
+            $promedio = round($aux / $numMaterias,2);
+            array_push($losPromedios,$promedio);
+        }
+
+        return $losPromedios;
+
+    }
 
 
 

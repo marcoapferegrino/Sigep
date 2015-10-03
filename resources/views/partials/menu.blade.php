@@ -87,7 +87,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     @if (Auth::getRol()=="alumno")
-                        <li><a href="{{route('alumnos.showExpediente',Auth::getAlumnoId())}}"><i class="fa fa-sign-out"></i> Datos alumno </a></li>
+                        <li><a href="{{route('alumno.showExpediente',Auth::getAlumnoId())}}"><i class="fa fa-sign-out"></i> Datos alumno </a></li>
                     @endif
                     <li><a href="/auth/logout"><i class="fa fa-sign-out"></i> Logout </a></li>
                 </ul>

@@ -95,10 +95,10 @@ class AlumnoController extends Controller {
         $id =auth()->user()->alumno_id;
         $alumno= Alumno::getKardex($id);
         if($alumno!=null){
-        $promedio=Alumno::getPromedio($alumno);
-        $maxi= $alumno[count($alumno)-1]->semestre;
+            $promedio=Alumno::getPromedio($alumno);
+            $maxi= $alumno[count($alumno)-1]->semestre;
 
-        return view('alumno.kardex',compact('promedio','alumno','maxi'));
+            return view('alumno.kardex',compact('promedio','alumno','maxi'));
         }
         else{
 
@@ -108,6 +108,48 @@ class AlumnoController extends Controller {
         }
 
     }
+
+
+
+    public function showKardexPeriodo()
+    {
+        //$id=10;
+        $id =auth()->user()->alumno_id;
+        $misPeriodos=array();
+
+        $alumno= Alumno::getKardexPeriodo($id);
+
+
+
+        if($alumno!=null){
+            $promedio=Alumno::getPromedio($alumno);
+            $maxi= $alumno[count($alumno)-1]->semestre;
+
+
+            array_push($misPeriodos,$alumno[0]->nombrePeriodo);
+
+            foreach($alumno as $k=>$materia)
+            {
+                if(($materia->nombrePeriodo)!=($misPeriodos[count($misPeriodos)-1])){
+                    array_push($misPeriodos,$materia->nombrePeriodo);
+                }
+            }
+            //ya tenemos todos los periodos sin repetir
+            $promediosPeriodos=Alumno::getPromedioPeriodo($alumno,$misPeriodos);
+            //calculamos promedio por periodo
+
+
+            return view('alumno.kardexPeriodo',compact('promediosPeriodos','promedio','alumno','maxi','misPeriodos'));
+        }
+        else{
+
+            Session::flash('error', 'No hay datos disponibles del kárdex');
+            return view('homeAlumno');
+        }
+
+    }
+
+
 
 
     public function getCalificaciones()
@@ -154,6 +196,57 @@ class AlumnoController extends Controller {
 
 
         //
+    }
+
+    public function showExpediente($id)
+    {
+        //dd((auth()->user()->alumno_id));
+        if((auth()->user()->alumno_id!=null)){
+
+            $idAlumno= auth()->user()->alumno_id;
+            $user =  User::where('alumno_id',$idAlumno)
+                ->get();
+            if($user==null){
+                Session::flash('error', 'No existe alumno');
+                return view('homeAlumno');
+            }
+            else{
+                //dd($user[0]->alumno_id);
+
+                $alumno = Alumno::find($user[0]->alumno_id);
+
+                //dd($user,$alumno);
+
+                return view('docente.expediente', compact('user', 'alumno'));
+            }
+
+
+
+        }else {
+            $user = auth()->user();
+            $idDocente = $user->docente_id;
+            $estado = false;
+
+
+            //Obtenemos alumnos del docente
+            $alumnos = User::getAlumnosdeDocenteActually($idDocente);
+
+            //buscamos entre los alumnos del docente el ID del alumno solicitado
+            foreach ($alumnos as $alumno) {
+                if ($alumno->userId == $id) {
+                    $estado = true;
+                }
+
+            }
+            //si si esta lo buscamos en la BD
+            if ($estado == true || $user->rol = 'superAdmin') {
+                $user = User::find($id);
+                $alumno = Alumno::find($user->alumno_id);
+                //dd($user->toArray(),$alumno->toArray());
+                return view('docente.expediente', compact('user', 'alumno'));
+            } else abort(404); //si no esta dentro de los alumnos del docente not found
+        }
+
     }
 
 
