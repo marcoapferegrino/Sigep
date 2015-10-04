@@ -53,7 +53,11 @@ class ProfesorController extends Controller {
 		$gruposAsignaturas 	= User::getAsignaturasGruposDocenteActually($idDocente);
 		$alumnos 			= User::getAlumnosdeDocenteActually($idDocente);
 
-//		dd($alumnos,$gruposAsignaturas);
+		if (count($gruposAsignaturas)==0 || count($alumnos)==0){
+			Session::flash('error', 'Actualmente no hay registros');
+		}
+
+//		dd($alumnos,$gruposAsignaturas);{}
 		return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','asignaturas','periodos','grupos'));
 	}
 	public function asignaturaGrupoPeriodoDocente(Request $request)
@@ -85,6 +89,9 @@ class ProfesorController extends Controller {
 		$grupos = Grupo::all('id','nombre');
 
 		$alumnos 	= User::getAlumnosdeDocentePagination($idDocente);
+		if (count($alumnos)==0) {
+			Session::flash('error', 'Actualmente no hay registros');
+		}
 
 		return view('docente.showAlumnos',compact('alumnos','asignaturas','periodos','grupos'));
 	}

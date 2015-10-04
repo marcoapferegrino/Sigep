@@ -2,6 +2,7 @@
 
 
 
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
 use PosgradoService\Entities\Alumno;
 use PosgradoService\Entities\Asignatura;
@@ -12,6 +13,7 @@ use PosgradoService\Entities\Horario;
 use PosgradoService\Entities\Inscripcion;
 use PosgradoService\Entities\Periodo;
 use PosgradoService\Entities\User;
+use PosgradoService\Exceptions\Handler;
 use PosgradoService\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use PosgradoService\Http\Requests\AddAlumnoRequest;
@@ -166,10 +168,10 @@ class AdminController extends Controller {
         }
 
 
-        if($relaciones==null) {
-            Session::flash('error', 'No hay asignaturas en este periodo');
-            return redirect()->action('AdminController@index');
-        }
+//        if($relaciones==null) {
+//            Session::flash('error', 'No hay asignaturas en este periodo');
+//            return redirect()->action('AdminController@index');
+//        }
 
         foreach($grupos as $grupo)
         {
