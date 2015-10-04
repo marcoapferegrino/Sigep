@@ -2,10 +2,9 @@
 
 use PosgradoService\Http\Requests;
 
-use Illuminate\Support\Facades\DB;
+
 
 use Illuminate\Support\Facades\Session;
-
 use PosgradoService\Entities\User;
 use PosgradoService\Entities\Alumno;
 use PosgradoService\Http\Controllers\Controller;
@@ -14,75 +13,75 @@ use Illuminate\Http\Request;
 
 class AlumnoController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		return view('homeAlumno');
-	}
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        return view('homeAlumno');
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        //
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        //
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        //
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
     public function destroy($id)
     {
         //
@@ -123,11 +122,7 @@ class AlumnoController extends Controller {
 
         if($alumno!=null){
             $promedio=Alumno::getPromedio($alumno);
-<<<<<<< HEAD
             //$maxi= $alumno[count($alumno)-1]->semestre;
-=======
-            $maxi= $alumno[count($alumno)-1]->semestre;
->>>>>>> 385577b4658d84ba9819b9171d12715e0ce11e3f
 
 
             array_push($misPeriodos,$alumno[0]->nombrePeriodo);
@@ -143,11 +138,7 @@ class AlumnoController extends Controller {
             //calculamos promedio por periodo
 
 
-<<<<<<< HEAD
             return view('alumno.kardexPeriodo',compact('promediosPeriodos','promedio','alumno','misPeriodos'));
-=======
-            return view('alumno.kardexPeriodo',compact('promediosPeriodos','promedio','alumno','maxi','misPeriodos'));
->>>>>>> 385577b4658d84ba9819b9171d12715e0ce11e3f
         }
         else{
 

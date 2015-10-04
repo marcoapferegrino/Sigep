@@ -89,7 +89,7 @@
                     @if (Auth::getRol()=="alumno")
                         <li><a href="{{route('alumno.showExpediente',Auth::getAlumnoId())}}"><i class="fa fa-sign-out"></i> Datos alumno </a></li>
                     @endif
-                    <li><a href="/auth/logout"><i class="fa fa-sign-out"></i> Logout </a></li>
+                        <li><a href="/auth/logout"><i class="fa fa-sign-out"></i> Logout </a></li>
                 </ul>
             </li>
         @endif

@@ -59,7 +59,7 @@ class Alumno extends Entity {
         return $this->hasMany(Inscripcion::getClass());
     }
 
-	
+
     public static function getCalificaciones() // obtiene las calificaciones
     {
         $hoy=Carbon::now()->toDateString();
@@ -90,7 +90,7 @@ class Alumno extends Entity {
             ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
             ->join('periodos','periodos.id','=','grupos.periodo_id')
             ->select('alumnos.boleta','asignaturas.nombre as nombre','grupos.nombre as grupoNombre','inscripciones.calificacion','users.name as alumnoNombre','users.apellidoP','users.apellidoM','periodos.nombre as nombrePeriodo','periodos.finPeriodo','grupos.semestre')
-             ->where('inscripciones.alumno_id','=',$id)
+            ->where('inscripciones.alumno_id','=',$id)
             ->orderBy('semestre')
             ->get();
 
@@ -143,7 +143,7 @@ class Alumno extends Entity {
             ->where('periodos.finPeriodo','>=',$hoy)
             ->where('inscripciones.alumno_id','=',auth()->user()->alumno_id)
             ->get();
-       // dd($horario);
+        // dd($horario);
 
         return $horario;
     }
@@ -158,16 +158,16 @@ class Alumno extends Entity {
 
         foreach ($materias as $materia) {
 
-        $aux += $materia->calificacion;
+            $aux += $materia->calificacion;
             if($materia->calificacion!='S/C'){
                 $numMaterias ++;
 
             }
         }
 
-       // $prom= ($aux / count($materias));
+        // $prom= ($aux / count($materias));
         if($numMaterias==0) return 'No disponible';
-         $prom= round($aux / $numMaterias,2);
+        $prom= round($aux / $numMaterias,2);
 
         return $prom;
 
@@ -181,28 +181,27 @@ class Alumno extends Entity {
 
             $numMaterias =0;
             $aux = 0.0;
-        foreach ($materias as $materia) {
-            if($periodos[$i]==$materia->nombrePeriodo){
-<<<<<<< HEAD
-                if($materia->calificacion=='S/C'||$materia->calificacion=='NP'){
+            foreach ($materias as $materia) {
+                if($periodos[$i]==$materia->nombrePeriodo){
+                    if($materia->calificacion=='S/C'||$materia->calificacion=='NP'){
 
-                    if($materia->calificacion=='NP'){
-                        $aux +=0;
-                        $numMaterias++;
+                        if($materia->calificacion=='NP'){
+                            $aux +=0;
+                            $numMaterias++;
 
-                    }
+                        }
 
 
-                }else{
-            $aux += $materia->calificacion;
-            if($materia->calificacion!='S/C' ){
-                $numMaterias++;
+                    }else{
+                        $aux += $materia->calificacion;
+                        if($materia->calificacion!='S/C' ){
+                            $numMaterias++;
+
+                        }
+
+                    }}
 
             }
-
-            }}
-
-        }
             if($numMaterias==0) {
                 array_push($losPromedios,'No disponible aún');
 
@@ -211,20 +210,6 @@ class Alumno extends Entity {
                 $promedio = round($aux / $numMaterias, 2);
                 array_push($losPromedios, $promedio);
             }
-=======
-            $aux += $materia->calificacion;
-            if($materia->calificacion!='S/C' ){
-                $numMaterias ++;
-
-            }
-            }
-        }
-            if($numMaterias==0) {
-                return 'No disponible';
-            }
-            $promedio = round($aux / $numMaterias,2);
-            array_push($losPromedios,$promedio);
->>>>>>> 385577b4658d84ba9819b9171d12715e0ce11e3f
         }
 
         return $losPromedios;

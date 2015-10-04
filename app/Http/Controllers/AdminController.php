@@ -1,7 +1,7 @@
 <?php namespace PosgradoService\Http\Controllers;
 
 
-use Illuminate\Support\Facades\Input;
+
 use Illuminate\Support\Facades\Session;
 use PosgradoService\Entities\Alumno;
 use PosgradoService\Entities\Asignatura;
@@ -14,7 +14,6 @@ use PosgradoService\Entities\Periodo;
 use PosgradoService\Entities\User;
 use PosgradoService\Http\Requests;
 use Illuminate\Support\Facades\DB;
-use PosgradoService\Http\Controllers\Controller;
 use PosgradoService\Http\Requests\AddAlumnoRequest;
 use PosgradoService\Http\Requests\AddAsignaturaGrupoRequest;
 use PosgradoService\Http\Requests\AddGrupoRequest;
@@ -44,7 +43,7 @@ class AdminController extends Controller {
         return view('admin.addDocente');
     }
 
-    
+
 
     public function addDocente(CreateDocenteRequest $request)
     {
@@ -55,7 +54,7 @@ class AdminController extends Controller {
         $user = User::create($request->all());         //instancia de modelo user con datos recibidos
 
         $state = User::where('id',$user->id)                    //asignacion de user -> docente
-            ->update([
+        ->update([
             'rol'=>'docente',
             'docente_id'=>$docente->id,
             'password'=>$password]);
@@ -112,7 +111,7 @@ class AdminController extends Controller {
 
         $asignaturaGrupo = AsignaturaGrupo::forceCreate(array('acta'=>$request->acta,'docente_id'=>$request->docente_id,'grupo_id'=>$request->grupo_id,'asignatura_id'=>$request->asignatura_id,'horaDias_id'=>$request->horaDias_id )   );
 
-       // $grupo = Grupo::create(array('nombre'=>$request->nombre,'salon'=>$request->salon, 'semestre'=>$request->semestre,'periodo_id'=>$request->periodo_id));
+        // $grupo = Grupo::create(array('nombre'=>$request->nombre,'salon'=>$request->salon, 'semestre'=>$request->semestre,'periodo_id'=>$request->periodo_id));
 
 
         Session::flash('message','Su registro fue agregado exitosamente');
@@ -147,30 +146,30 @@ class AdminController extends Controller {
         $grupos = Grupo::gruposActuales();
 
         if($grupos==null){
-                Session::flash('error', 'No hay grupos');
+            Session::flash('error', 'No hay grupos');
             return redirect()->action('AdminController@index');
 
         }
-         if($horarios->all()==null) {
-                Session::flash('error', 'No hay horarios');
-             return redirect()->action('AdminController@index');
-         }
-          if($materias->all()==null) {
-                 Session::flash('error', 'No hay asignaturas');
-              return redirect()->action('AdminController@index');
-          }
+        if($horarios->all()==null) {
+            Session::flash('error', 'No hay horarios');
+            return redirect()->action('AdminController@index');
+        }
+        if($materias->all()==null) {
+            Session::flash('error', 'No hay asignaturas');
+            return redirect()->action('AdminController@index');
+        }
 
 
-          if($periodos==null) {
-                 Session::flash('error', 'No hay periodos');
-              return redirect()->action('AdminController@index');
-          }
+        if($periodos==null) {
+            Session::flash('error', 'No hay periodos');
+            return redirect()->action('AdminController@index');
+        }
 
 
-          if($relaciones==null) {
-                 Session::flash('error', 'No hay asignaturas en este periodo');
-              return redirect()->action('AdminController@index');
-          }
+        if($relaciones==null) {
+            Session::flash('error', 'No hay asignaturas en este periodo');
+            return redirect()->action('AdminController@index');
+        }
 
         foreach($grupos as $grupo)
         {
@@ -279,37 +278,37 @@ class AdminController extends Controller {
         $nom=0;
         //foreach($materias as $materia)
         //{
-            for($i=0;$i<=count($materias)+8;$i++){
+        for($i=0;$i<=count($materias)+8;$i++){
 
-                if(array_key_exists('option'.$i,$materias)){
+            if(array_key_exists('option'.$i,$materias)){
 
-                    $id=$materias['option'.$i];
-                    $asignaturaG= AsignaturaGrupo::findOrFail($id);
+                $id=$materias['option'.$i];
+                $asignaturaG= AsignaturaGrupo::findOrFail($id);
 
 
-                    $materiaIns = Inscripcion::forceCreate(
-                        array('alumno_id'=>$idAlumno,
-                            'docente_id'=>$asignaturaG->docente_id,
-                            'asignatura_id'=>$asignaturaG->asignatura_id,
-                            'grupo_id'=>$asignaturaG->grupo_id,
-                            'asignatura_grupo_id'=>$asignaturaG->id) );
-                    $nom++;
-
-                }
-                else{
-                }
-               // dd($materias);
+                $materiaIns = Inscripcion::forceCreate(
+                    array('alumno_id'=>$idAlumno,
+                        'docente_id'=>$asignaturaG->docente_id,
+                        'asignatura_id'=>$asignaturaG->asignatura_id,
+                        'grupo_id'=>$asignaturaG->grupo_id,
+                        'asignatura_grupo_id'=>$asignaturaG->id) );
+                $nom++;
 
             }
+            else{
+            }
+            // dd($materias);
+
+        }
         if($nom!=0)
-        Session::flash('message', 'El alumno fue inscrito correctamente en '.$nom .' asignaturas!');
+            Session::flash('message', 'El alumno fue inscrito correctamente en '.$nom .' asignaturas!');
         else
-        Session::flash('error', 'No se inscribieron asigaturas');
+            Session::flash('error', 'No se inscribieron asigaturas');
         return redirect()->action('AdminController@getAddInscripcion');
     }
 
 
-        public function getTestC()   //formulario simple
+    public function getTestC()   //formulario simple
     {
         return view('testi');
     }
@@ -356,7 +355,7 @@ class AdminController extends Controller {
 
 
 
-        public function getInscritos(Request $request)
+    public function getInscritos(Request $request)
     {
 
 
@@ -414,11 +413,7 @@ class AdminController extends Controller {
 
         if($alumno!=null){
             $promedio=Alumno::getPromedio($alumno);
-<<<<<<< HEAD
             //$maxi= $alumno[count($alumno)-1]->semestre;
-=======
-            $maxi= $alumno[count($alumno)-1]->semestre;
->>>>>>> 385577b4658d84ba9819b9171d12715e0ce11e3f
             array_push($misPeriodos,$alumno[0]->nombrePeriodo);
 
             foreach($alumno as $k=>$materia)
@@ -430,22 +425,8 @@ class AdminController extends Controller {
             //ya tenemos todos los periodos sin repetir
             $promediosPeriodos=Alumno::getPromedioPeriodo($alumno,$misPeriodos);
             //calculamos promedio por periodo
-<<<<<<< HEAD
-=======
 
-
-            return view('alumno.kardexPeriodo',compact('promediosPeriodos','promedio','alumno','maxi','misPeriodos'));
-        }
-        else{
-
-            Session::flash('error', 'No hay datos disponibles del kárdex');
-            return view('homeAlumno');
-        }
-
-        //dd($alumno);
->>>>>>> 385577b4658d84ba9819b9171d12715e0ce11e3f
-
-               // dd($promediosPeriodos);
+            // dd($promediosPeriodos);
 
             return view('alumno.kardexPeriodo',compact('promediosPeriodos','promedio','alumno','misPeriodos'));
         }
@@ -494,7 +475,7 @@ class AdminController extends Controller {
             return redirect()->action('AdminController@index');
 
         }
-       // dd($periodos);
+        // dd($periodos);
 
         return view('admin.gruposList',compact('actual','grupos','periodos'));
     }
