@@ -414,7 +414,11 @@ class AdminController extends Controller {
 
         if($alumno!=null){
             $promedio=Alumno::getPromedio($alumno);
+<<<<<<< HEAD
             //$maxi= $alumno[count($alumno)-1]->semestre;
+=======
+            $maxi= $alumno[count($alumno)-1]->semestre;
+>>>>>>> 385577b4658d84ba9819b9171d12715e0ce11e3f
             array_push($misPeriodos,$alumno[0]->nombrePeriodo);
 
             foreach($alumno as $k=>$materia)
@@ -426,6 +430,20 @@ class AdminController extends Controller {
             //ya tenemos todos los periodos sin repetir
             $promediosPeriodos=Alumno::getPromedioPeriodo($alumno,$misPeriodos);
             //calculamos promedio por periodo
+<<<<<<< HEAD
+=======
+
+
+            return view('alumno.kardexPeriodo',compact('promediosPeriodos','promedio','alumno','maxi','misPeriodos'));
+        }
+        else{
+
+            Session::flash('error', 'No hay datos disponibles del kárdex');
+            return view('homeAlumno');
+        }
+
+        //dd($alumno);
+>>>>>>> 385577b4658d84ba9819b9171d12715e0ce11e3f
 
                // dd($promediosPeriodos);
 

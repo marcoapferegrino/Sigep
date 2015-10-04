@@ -183,6 +183,7 @@ class Alumno extends Entity {
             $aux = 0.0;
         foreach ($materias as $materia) {
             if($periodos[$i]==$materia->nombrePeriodo){
+<<<<<<< HEAD
                 if($materia->calificacion=='S/C'||$materia->calificacion=='NP'){
 
                     if($materia->calificacion=='NP'){
@@ -210,6 +211,20 @@ class Alumno extends Entity {
                 $promedio = round($aux / $numMaterias, 2);
                 array_push($losPromedios, $promedio);
             }
+=======
+            $aux += $materia->calificacion;
+            if($materia->calificacion!='S/C' ){
+                $numMaterias ++;
+
+            }
+            }
+        }
+            if($numMaterias==0) {
+                return 'No disponible';
+            }
+            $promedio = round($aux / $numMaterias,2);
+            array_push($losPromedios,$promedio);
+>>>>>>> 385577b4658d84ba9819b9171d12715e0ce11e3f
         }
 
         return $losPromedios;

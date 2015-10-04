@@ -26,11 +26,11 @@
 
                 <div class="form-group">
                     {!! Form::label('creditos', 'Créditos') !!}
-                    {!! Form::number('creditos',null, array('class' => 'form-control','id'=>'creditos','placeholder'=>'Créditos equivalentes'))!!}
+                    {!! Form::number('creditos',null, array('class' => 'form-control','id'=>'creditos','placeholder'=>'Créditos equivalentes','min'=>0))!!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('horas', 'Horas') !!}
-                    {!! Form::number('horas',null, array('class' => 'form-control','id'=>'horas','placeholder'=>'Horas de clase'))!!}
+                    {!! Form::number('horas',null, array('class' => 'form-control','id'=>'horas','placeholder'=>'Horas de clase','min'=>0))!!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('curso', 'Tipo de curso') !!}
@@ -44,7 +44,7 @@
 
                 <div class="form-group" id="tipoOption">
                      {!! Form::label('tipo', 'Tipo de Asignatura') !!}
-                    <select class="form-control" name="tipo" id="tipo" data-tipoData="{{$asignatura->id}}">
+                    <select class="form-control" name="tipo" id="tipo" data-tipoData="@if(isset($asignatura->id))@endif">
                         {{--<option value="">- - - -</option>--}}
                         <option value="obligatoria">Obligatoria</option>
                         <option value="seminario">Seminario</option>

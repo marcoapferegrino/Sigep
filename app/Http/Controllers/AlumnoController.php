@@ -123,7 +123,11 @@ class AlumnoController extends Controller {
 
         if($alumno!=null){
             $promedio=Alumno::getPromedio($alumno);
+<<<<<<< HEAD
             //$maxi= $alumno[count($alumno)-1]->semestre;
+=======
+            $maxi= $alumno[count($alumno)-1]->semestre;
+>>>>>>> 385577b4658d84ba9819b9171d12715e0ce11e3f
 
 
             array_push($misPeriodos,$alumno[0]->nombrePeriodo);
@@ -139,7 +143,11 @@ class AlumnoController extends Controller {
             //calculamos promedio por periodo
 
 
+<<<<<<< HEAD
             return view('alumno.kardexPeriodo',compact('promediosPeriodos','promedio','alumno','misPeriodos'));
+=======
+            return view('alumno.kardexPeriodo',compact('promediosPeriodos','promedio','alumno','maxi','misPeriodos'));
+>>>>>>> 385577b4658d84ba9819b9171d12715e0ce11e3f
         }
         else{
 
