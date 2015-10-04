@@ -276,7 +276,12 @@ Route::group(/**
 
         Route::get('/kardex', [
             'as' => 'alumno.showKardex',
-            'uses' => 'AlumnoController@showKardex'
+            'uses' => 'AlumnoController@showKardexPeriodo'
+        ]);
+
+        Route::get('/MiExpediente/{id}', [
+            'as' => 'alumno.showExpediente',
+            'uses' => 'AlumnoController@showExpediente'
         ]);
 
 

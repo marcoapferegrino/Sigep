@@ -1,12 +1,12 @@
 
-<div class="col-md-11 ">
+<div class="col-md-12 ">
 <div class="panel-group"  >
 
 
-<div class="panel-heading" role="tab">
+<div class="panel-heading "  role="tab">
     <div class="panel panel-info">
 
-        <div class="panel-heading"> <h3 class="panel-title">Registro a grupo
+        <div class="panel-heading "> <h3 class="panel-title">Registro a grupo
 
 
                 <b class="pull-right">Período: <b style="color: #101010;font-size: 120%" >{{ $actual }}</b></b>
@@ -15,7 +15,7 @@
 
         </div>
 
-        <div class="form-inline navbar-left pull-right">
+        <div class="form-inline pull-right">
             {!! Form::open(['route' => 'periodos.filtroPeriodo','method' => 'GET','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
             <div class="form-group">
                 Registrar en período:
@@ -41,12 +41,14 @@
         {!! Form::open(['route' => 'grupo.addGrupo','method' => 'POST','class'=>'form-inline']) !!}
 
         <br><br><br><br>
-        <div class="panel-body">
+
+        <div >
+        <div class="panel-body ">
 
 
             <input type="hidden" name="acta" value="1">
-            <div class="form-group">
-
+            <div class="form-group col-lg-12">
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;
                 {!! Form::label('asignatura', 'Asignatura*') !!}
 
 
@@ -57,7 +59,7 @@
                     @endforeach
 
                 </select>
-
+                &nbsp;&nbsp;&nbsp;
                 {!! Form::label('grupo', 'Grupo*') !!}
 
 
@@ -69,7 +71,7 @@
 
                 </select>
 
-
+                &nbsp;&nbsp;&nbsp;
                 {!! Form::label('docente', 'Docente*') !!}
                 <select class="form-control" name="docente_id" id="docente_id" required>
                     <option value="">- - - -</option>
@@ -80,8 +82,10 @@
 
                 </select>
                 <br><br>
+
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                 {!! Form::label('horario', 'Horario*') !!}
-                <select class="form-control" name="horaDias_id" id="horaDias_id" required>
+                <select class="form-control nav-pills" name="horaDias_id" id="horaDias_id" required>
                     <option value="">- - - -</option>
                     @foreach($horarios as $horario )
                         <option value="{{$horario['id']}}">  {{$horario['nombre']}} ||{{$horario['dias']}}  </option>
@@ -100,7 +104,7 @@
         </div>
 
 
-    </div>
+    </div>   </div>
     <br><br> <br>
 
     <h4> Grupos del período en curso</h4>

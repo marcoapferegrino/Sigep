@@ -146,6 +146,32 @@ class AdminController extends Controller {
 
         $grupos = Grupo::gruposActuales();
 
+        if($grupos==null){
+                Session::flash('error', 'No hay grupos');
+            return redirect()->action('AdminController@index');
+
+        }
+         if($horarios->all()==null) {
+                Session::flash('error', 'No hay horarios');
+             return redirect()->action('AdminController@index');
+         }
+          if($materias->all()==null) {
+                 Session::flash('error', 'No hay asignaturas');
+              return redirect()->action('AdminController@index');
+          }
+
+
+          if($periodos==null) {
+                 Session::flash('error', 'No hay periodos');
+              return redirect()->action('AdminController@index');
+          }
+
+
+          if($relaciones==null) {
+                 Session::flash('error', 'No hay asignaturas en este periodo');
+              return redirect()->action('AdminController@index');
+          }
+
         foreach($grupos as $grupo)
         {
             array_push($asignaturasGrupo,Grupo::grupoBien($grupo->grupoId));
@@ -155,55 +181,6 @@ class AdminController extends Controller {
     }
 
 
-/*
-    public function filtroPeriodo(Request $request)   //formulario simple
-    {
-        $docentes = User::all()->where('rol','docente');
-
-        $id = $request->periodo_id;
-        //dd($id);
-
-        $materias = Asignatura::all();
-        $periodos = Periodo::all();
-        $gruposAsignaturas =array();
-
-        $interGrupos= Grupo::grupoPorPeriodo($id);
-
-        foreach($interGrupos as $inter)
-        {
-            array_push($gruposAsignaturas,$inter);
-        }
-
-       // $gruposAsignaturas =  Grupo::grupoPorPeriodo($id);
-
-        //dd($gruposAsignaturas);
-        $relaciones = AsignaturaGrupo::all();
-
-        $dias=array();
-        $actual = Periodo::find($id)->nombre;
-
-        $horarios = Horario::all();
-
-        foreach($horarios as $horario)
-        {
-            array_push($dias,json_decode($horario->dias));
-        }
-        //dd($dias,$horarios);
-
-        $asignaturasGrupo = array();
-
-        $grupos = Grupo::gruposActuales();
-
-        //dd($grupos);
-        foreach($grupos as $grupo)
-        {
-            array_push($asignaturasGrupo,Grupo::grupoBien($grupo->grupoId));
-        }
-
-        return view('admin.addGrupo',compact('actual','periodos','grupos','asignaturasGrupo','gruposAsignaturas','materias','docentes','horarios','dias','relaciones'));
-    }
-
-*/
 
     public function filtroPeriodo(Request $request)   //formulario simple
     {
@@ -223,9 +200,6 @@ class AdminController extends Controller {
             array_push($gruposAsignaturas,$inter);
         }
 
-       // $gruposAsignaturas =  Grupo::grupoPorPeriodo($id);
-
-        //dd($gruposAsignaturas);
         $relaciones = AsignaturaGrupo::all();
 
         $dias=array();
@@ -301,9 +275,6 @@ class AdminController extends Controller {
 
         $materias =($request->all());
 
-        //$asignaturaG= AsignaturaGrupo::findOrFail(6);
-       // dd($asignaturaG);
-
         $idAlumno= $request->id;
         $nom=0;
         //foreach($materias as $materia)
@@ -352,6 +323,10 @@ class AdminController extends Controller {
 
         $gruposAsignaturas  = User::getAsignaturasGrupos();
         $alumnos            = User::getAlumnosInscritos();
+        if(count($gruposAsignaturas)==0 || count($alumnos)==0)
+        {
+            Session::flash('error', 'Actualmente no hay registros');
+        }
 
 //       dd($asignaturas->toArray(),$periodos->toArray());
 
@@ -378,35 +353,24 @@ class AdminController extends Controller {
 
         return view('docente.calificaciones', compact('gruposAsignaturas', 'alumnos', 'periodos', 'asignaturas', 'grupos'));
     }
-        /*
-    public function getInscritos(Request $request)
-    {
 
-
-        $id = $request->periodo_id;
-        if ($id != null) {
-            $gruposAsignaturas = User::getAsignaturasGruposSin();
-            $alumnos = Alumno::getAlumnosInscritosPorPeriodo($id);
-            $periodos = Periodo::all();
-
-            $actual = Periodo::find($request->periodo_id); // Periodo::find($id)->nombre;
-            $actual = $actual['nombre'];
-            //var_dump($alumnos);
-
-            return view('admin.listInscritos', compact('actual', 'periodos', 'gruposAsignaturas', 'alumnos'));
-        }
-    }
-        */
 
 
         public function getInscritos(Request $request)
     {
-        $ids = $request->pe_id;
+
 
         $id = $request->periodo_id;
         $periodos = Periodo::all();
         $gruposAsignaturas = User::getAsignaturasGruposSin();
-     //   var_dump($ids);
+
+        if($gruposAsignaturas==null) {
+            Session::flash('error', 'No hay inscritos');
+
+            return redirect()->action('AdminController@index');
+        }
+
+        //   var_dump($ids);
         if ($id != null) {
             $alumnos = Alumno::getAlumnosInscritosPorPeriodo($id);
             $actual = Periodo::find($request->periodo_id); // Periodo::find($id)->nombre;
@@ -423,63 +387,6 @@ class AdminController extends Controller {
         return view('admin.listInscritos',compact('actual','periodos','gruposAsignaturas','alumnos'));
 
     }
-
-/*
-
-    public function getInscritos(Request $request)
-    {
-        $ids = $request->pe_id;
-
-        $id = $request->periodo_id;
-        $periodos = Periodo::all();
-        $gruposAsignaturas = User::getAsignaturasGruposSin();
-            var_dump($ids);
-        if ($id != null) {
-            $alumnos = Alumno::getAlumnosInscritosPorPeriodo($id);
-            $actual = Periodo::find($request->periodo_id); // Periodo::find($id)->nombre;
-            $actual = $actual['nombre'];
-           // var_dump($alumnos);
-        } else {
-
-        $alumnos = User::getAlumnosInscritos();
-        $actual = 'Todos';
-    }
-=======
-
-
-
-        $gruposAsignaturas  = User::getAsignaturasGruposSin();
-        $alumnos            = User::getAlumnosInscritos();
-        $periodos           = Periodo::all();
-        $actual = 'Todos';
->>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
-<<<<<<< HEAD
-*/
-
-
-
-/*
->>>>>>> 21e4f74fb6f98228d566209145089f38f2556dad
-    public function getInscritos()
-    {
-
-        $gruposAsignaturas  = User::getAsignaturasGruposSin();
-        $alumnos            = User::getAlumnosInscritos();
-        $periodos           = Periodo::all();
-        $actual = 'Todos';
-<<<<<<< HEAD
-        $actual_id = 'Todos';
-        //dd($alumnos);
-
-        return view('admin.listInscritos',compact('actual_id','actual','periodos','gruposAsignaturas','alumnos'));
-    }
-
-=======
-        //dd($alumnos);
-
-        return view('admin.listInscritos',compact('actual','periodos','gruposAsignaturas','alumnos'));
-    }
-    */
     public function filtroInscritosPeriodo(Request $request)
     {
 
@@ -496,20 +403,44 @@ class AdminController extends Controller {
         return view('admin.listInscritos',compact('actual','periodos','gruposAsignaturas','alumnos'));
     }
 
+
+
     public function showKardex($id)
     {
-        //$id=10;
-        $alumno= Alumno::getKardex($id);
-        $maxi= $alumno[count($alumno)-1]->semestre;
 
-        $promedio=Alumno::getPromedio($alumno);
+        $misPeriodos=array();
+        $alumno= Alumno::getKardexPeriodo($id);
 
 
-     //dd($alumno);
+        if($alumno!=null){
+            $promedio=Alumno::getPromedio($alumno);
+            //$maxi= $alumno[count($alumno)-1]->semestre;
+            array_push($misPeriodos,$alumno[0]->nombrePeriodo);
 
-        return view('alumno.kardex',compact('promedio','alumno','maxi'));
+            foreach($alumno as $k=>$materia)
+            {
+                if(($materia->nombrePeriodo)!=($misPeriodos[count($misPeriodos)-1])){
+                    array_push($misPeriodos,$materia->nombrePeriodo);
+                }
+            }
+            //ya tenemos todos los periodos sin repetir
+            $promediosPeriodos=Alumno::getPromedioPeriodo($alumno,$misPeriodos);
+            //calculamos promedio por periodo
 
-     //dd($alumno);
+               // dd($promediosPeriodos);
+
+            return view('alumno.kardexPeriodo',compact('promediosPeriodos','promedio','alumno','misPeriodos'));
+        }
+        else{
+
+            Session::flash('error', 'No hay datos disponibles del kárdex');
+            return view('homeAlumno');
+        }
+
+        //dd($alumno);
+
+        return view('alumno.kardex',compact('promedio','alumno'));
+
 
     }
 
@@ -540,6 +471,11 @@ class AdminController extends Controller {
         $grupos = Grupo::all();
         $actual = 'Todos';
         $periodos = Periodo::all();
+        if($grupos->all()==null){
+            Session::flash('error', 'No hay grupos');
+            return redirect()->action('AdminController@index');
+
+        }
        // dd($periodos);
 
         return view('admin.gruposList',compact('actual','grupos','periodos'));
@@ -551,6 +487,11 @@ class AdminController extends Controller {
         $grupos = Grupo::grupoPorPeriodo($id);
         $periodos = Periodo::all(); //Periodo::all();
         $actual =Periodo::find($id)->nombre;
+        if($grupos==null){
+            Session::flash('error', 'No hay grupos');
+            return redirect()->action('AdminController@index');
+
+        }
 
         //dd($grupos,$actual,$periodos);
 
@@ -563,6 +504,11 @@ class AdminController extends Controller {
         $grupos = Grupo::grupoPorPeriodo($id);
         $periodos = Periodo::all(); //Periodo::all();
         $actual =Periodo::find($id)->nombre;
+        if($grupos==null){
+            Session::flash('error', 'No hay grupos');
+            return redirect()->action('AdminController@index');
+
+        }
 
         //dd($grupos,$actual,$periodos);
 
@@ -573,16 +519,39 @@ class AdminController extends Controller {
     public function deleteGrupo($id)
     {
         $grupo = Grupo::findOrFail($id);
-        $grupo->delete();
 
-        Session::flash('message', 'Se ha eliminado el grupo');
+
+        try
+        {
+
+            $grupo->delete();
+
+            Session::flash('message', 'Se ha eliminado el grupo');
+        }
+        catch(QueryException $e)
+        {
+            Handler::checkQueryError($e);
+
+        }
+
         return redirect()->action('AdminController@getGrupos');
     }
     public function deleteInscripcion($id)
     {
         $inscripcion= Inscripcion::findOrFail($id);
-        $inscripcion->delete();
-        Session::flash('message', 'Se ha eliminado la inscripcion');
+
+        try
+        {
+
+
+            $inscripcion->delete();
+            Session::flash('message', 'Se ha eliminado la inscripcion');
+        }
+        catch(QueryException $e)
+        {
+            Handler::checkQueryError($e);
+
+        }
 
         return redirect()->action('AdminController@getInscritos');
     }
@@ -609,19 +578,6 @@ class AdminController extends Controller {
     {
         ///////////////
 
-        //$inscrip = Inscripcion::all();
-       // $inscripciones = Inscripcion::where('asignatura_grupo_id',$request->asignatura_grupo_id)->get();
-
-       // $updates = DB:table('inscripciones')
-          //      ->(DB::raw('update inscripciones set docente_id='.''.$request->docente_id.''.'where asignatura_grupo_id='.$request->asignatura_grupo_id));
-
-        //$y=0;
-       // $inscrip = $inscrip ->where('asignatura_grupo_id',$request->asignatura_grupo_id);
-       // dd($inscrip, $request->asignatura_grupo_id, Inscripcion::all());
-
-        //dd($request->asignatura_grupo_id,$inscripciones);
-        //dd("UPDATE asignatura_grupo SET docente_id=".$request->docente_id.",asignatura_id=".$request->asignatura_id." WHERE asignatura_grupo_id=".$request->asignatura_grupo_id  );
-
         DB::statement("SET foreign_key_checks=0");
 
         DB::statement("UPDATE inscripciones SET docente_id=".$request->docente_id." WHERE asignatura_grupo_id=".$request->asignatura_grupo_id );
@@ -629,32 +585,7 @@ class AdminController extends Controller {
         DB::statement("UPDATE asignatura_grupo SET docente_id=".$request->docente_id.",asignatura_id=".$request->asignatura_id." WHERE id=".$request->asignatura_grupo_id );
 
         DB::statement("SET foreign_key_checks=1");
-        /* foreach ( $inscripciones  as $materia) {
-                 $materia->docente_id= $request->docente_id;
-                 $materia->save();
 
-             }
-
-
-         $grupo = AsignaturaGrupo::find($request->asignatura_grupo_id);
-        // dd($grupo);
-         $grupo->docente_id       = $request->docente_id;
-         //$grupo->grupo_id       = $request->grupo_id ;
-         $grupo->asignatura_id    = $request->asignatura_id;
-
-         // dd($grupo);
-         $grupo->save();
-
-         /*
-         foreach($inscrip as $materia)
-         {
-             if($materia->asignatura_grupo_id== $request->asignatura_grupo_id&& $materia->docente_id== $request->docente_id_old ){
-
-                 $y++;
-             }
-
-         }
-         */
 
 
 
