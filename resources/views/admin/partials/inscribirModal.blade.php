@@ -39,7 +39,7 @@
                                          <input type="checkbox" name="option{{$asignaturaG[$i]->id}}" value="{{$asignaturaG[$i]->id}}">
 
                                          {{$asignaturaG[$i]->asignaturaNombre}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                          Profesor: {{$asignaturaG[$i]->apellidoP}} {{ $asignaturaG[$i]->apellidoM}}, {{$asignaturaG[$i]->docenteNombre}}
 <br>                                    </div>
                                      @endif

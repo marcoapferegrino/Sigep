@@ -10,7 +10,7 @@
 
     <div class="form-inline navbar-left pull-right">
         {!! Form::open(['route' => 'inscritos.inscritosFiltroPeriodo','method' => 'get','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
-<div class="form-group">
+    <div class="form-group">
             Buscar en período:
             <select class="form-control" name="periodo_id" id="periodo_id" required>
                 <option value="">- - - -</option>
@@ -75,7 +75,7 @@
                 @endif
                 <td>
                     {!! Form::open(['route' => ['alumno.deleteInscripcion',$alumno->inscripcion_id],'method' => 'DELETE']) !!}
-                    <button type="submit" onclick="return confirm('¿Seguro que quieres desinscribir la asignatura?')" class="btn btn-danger">
+                    <button type="submit" onclick="return confirm('¿Seguro que quieres desinscribir la asignatura? Esta acción borrará la calificación ')" class="btn btn-danger">
 
                         <i class="fa fa-trash-o"></i>
                     </button>

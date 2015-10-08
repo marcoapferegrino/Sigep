@@ -17,6 +17,9 @@
                     <div class="panel-body">
 
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <h4 class="text-danger text-center" > Recuerda verificar en que período estas registrando  <i class="fa fa-exclamation-triangle"></i>
+                            </h4>
+
                             @include('admin.partials.formGrupo')
                         </div>
                     </div>

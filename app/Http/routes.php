@@ -221,6 +221,11 @@ Route::group(/**
             'as' => 'grupo.deleteGrupo',
             'uses' => 'AdminController@deleteGrupo'
         ]);
+
+        Route::delete('/deleteAsignaturaGrupo/{id}', [
+            'as' => 'grupo.deleteAsignaturaGrupo',
+            'uses' => 'AdminController@deleteAsignaturaGrupo'
+        ]);
         Route::delete('/deleteInscripcion/{id}', [
             'as' => 'alumno.deleteInscripcion',
             'uses' => 'AdminController@deleteInscripcion'

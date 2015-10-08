@@ -472,6 +472,7 @@ class AdminController extends Controller {
         $grupos = Grupo::all();
         $actual = 'Todos';
         $periodos = Periodo::all();
+        $inscritos = Inscripcion::all();
         if($grupos->all()==null){
             Session::flash('error', 'No hay grupos');
             return redirect()->action('AdminController@index');
@@ -479,7 +480,7 @@ class AdminController extends Controller {
         }
         // dd($periodos);
 
-        return view('admin.gruposList',compact('actual','grupos','periodos'));
+        return view('admin.gruposList',compact('inscritos','actual','grupos','periodos'));
     }
 
     public function getGruposFiltro(Request $request) // lista de grupos
@@ -487,6 +488,7 @@ class AdminController extends Controller {
         $id=$request->periodo_id;
         $grupos = Grupo::grupoPorPeriodo($id);
         $periodos = Periodo::all(); //Periodo::all();
+        $inscritos = Inscripcion::all();
         $actual =Periodo::find($id)->nombre;
         if($grupos==null){
             Session::flash('error', 'No hay grupos');
@@ -497,12 +499,14 @@ class AdminController extends Controller {
         //dd($grupos,$actual,$periodos);
 
 
-        return view('admin.gruposList',compact('actual','grupos','periodos'));
+        return view('admin.gruposList',compact('inscritos','actual','grupos','periodos'));
     }
     public function getGruposByPeriodo(Request $request) // lista de grupos
     {
         $id=$request->periodo_id;
         $grupos = Grupo::grupoPorPeriodo($id);
+
+        $inscritos = Inscripcion::all();
         $periodos = Periodo::all(); //Periodo::all();
         $actual =Periodo::find($id)->nombre;
         if($grupos==null){
@@ -514,7 +518,7 @@ class AdminController extends Controller {
         //dd($grupos,$actual,$periodos);
 
 
-        return view('admin.gruposList',compact('actual','grupos','periodos'));
+        return view('admin.gruposList',compact('inscritos','actual','grupos','periodos'));
     }
 
     public function deleteGrupo($id)
@@ -524,9 +528,7 @@ class AdminController extends Controller {
 
         try
         {
-
             $grupo->delete();
-
             Session::flash('message', 'Se ha eliminado el grupo');
         }
         catch(QueryException $e)
@@ -536,6 +538,35 @@ class AdminController extends Controller {
         }
 
         return redirect()->action('AdminController@getGrupos');
+    }
+
+
+    public function deleteAsignaturaGrupo($id)
+    {
+        $asignaturaGrupo = AsignaturaGrupo::findOrFail($id);
+
+        $inscripcionDummy= Inscripcion::all()->where('asignatura_grupo_id',$asignaturaGrupo->id);
+       // dd($inscripcionDummy->all());
+        if($inscripcionDummy->all()!=null){
+
+            Session::flash('error',"No puedes borrarlo. Está asociado a otros registros. Desinscriba todos los alumnos antes de hacer esta acción");
+            return redirect()->action('AdminController@getAddGrupo');
+
+        }else{
+
+        try
+        {
+            $asignaturaGrupo->delete();
+            Session::flash('message', 'Se ha eliminado el registro');
+        }
+        catch(QueryException $e)
+        {
+            Handler::checkQueryError($e);
+
+        }
+
+        return redirect()->action('AdminController@getAddGrupo');
+        }
     }
     public function deleteInscripcion($id)
     {
@@ -567,6 +598,7 @@ class AdminController extends Controller {
         $grupo->salon       = $request->salon;
         $grupo->semestre    = $request->semestre;
         $grupo->periodo_id  = $request->periodo_id;
+
 
 
         $grupo->save();

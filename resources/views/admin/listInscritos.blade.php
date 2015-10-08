@@ -11,6 +11,7 @@
 
             <div class="col-md-12 ">
 
+
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                     @include('admin.partials.tablaInscritos')
                 </div>

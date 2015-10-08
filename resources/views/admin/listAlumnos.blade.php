@@ -10,6 +10,9 @@
             @include('partials.messages')
 
             <div class="col-md-12 ">
+                <h4 class="text-danger text-center" > Sólo se pueden inscribir materias en el período en curso <i class="fa fa-exclamation-triangle"></i>
+                </h4>
+
                 <div class="panel panel-primary">
                     <div class="panel-heading">Alumnos</div>
 

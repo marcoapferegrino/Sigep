@@ -169,7 +169,7 @@ class Alumno extends Entity {
         if($numMaterias==0) return 'No disponible';
         $prom= round($aux / $numMaterias,2);
 
-        return $prom;
+        return number_format($prom, 2, '.', '')  ;
 
     }
 
@@ -208,7 +208,8 @@ class Alumno extends Entity {
             }else {
 
                 $promedio = round($aux / $numMaterias, 2);
-                array_push($losPromedios, $promedio);
+
+                array_push($losPromedios, number_format($promedio, 2, '.', '')  );
             }
         }
 

@@ -152,6 +152,12 @@
                                                    Modificar registro
                                                 </button>
 
+                                                {!! Form::open(['route' => ['grupo.deleteAsignaturaGrupo',$asignaturaG[$i]->id],'method' => 'DELETE']) !!}
+                                                <button type="submit" onclick="return confirm('Seguro que quieres eliminar el registro?')" class="btn btn-danger">
+                                                    <i class="fa fa-trash-o"> Eliminar</i>
+                                                </button>
+                                                {!! Form::close() !!}
+
 
                                             </td>
                                         </tr>

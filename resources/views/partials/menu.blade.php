@@ -13,7 +13,7 @@
                 <li class="dropdown" id="dropEstructAca">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estructura académica <i class="fa fa-list"></i> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="getAddSalon"><a href="{{url('getAddSalon')}}"> <i class="fa fa-pencil fa-users"></i> Grupos  </a></li>
+                        <li class="getAddSalon"><a href="{{url('getAddSalon')}}"> <i class="fa fa-pencil fa-users"></i>  Nuevo grupo  </a></li>
                         <li class="getAddGrupo"><a href="{{url('getAddGrupo')}}"><i class="fa fa-pencil fa-lg"></i>  Asignaturas a grupos </a></li>
                     </ul>
                 </li>
@@ -50,7 +50,7 @@
                 <li class="dropdown" id="dropEstructAca">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estructura académica <i class="fa fa-list"></i> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="getAddSalon"><a href="{{url('getAddSalon')}}"> <i class="fa fa-pencil fa-users"></i> Grupos  </a></li>
+                        <li class="getAddSalon"><a href="{{url('getAddSalon')}}"> <i class="fa fa-pencil fa-users"></i> Nuevo grupo  </a></li>
                         <li class="getAddGrupo"><a href="{{url('getAddGrupo')}}"><i class="fa fa-pencil fa-lg"></i>  Asignaturas a grupos </a></li>
                     </ul>
                 </li>

@@ -9,11 +9,12 @@
     <div class="panel panel-info">
 
         <div class="panel-heading"> <h3 class="panel-title">Listado de grupos  <b class="pull-right">Período: <b style="color: #262626 ;font-size: 120%" >{{ $actual }}</b></b> </h3> </div>
-
+        <div class="panel-body">
 
         {!! Form::open(['route' => 'grupos.gruposByPeriodo','method' => 'GET','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
+
         <div class="form-group">
-            Registrar en período:
+            Ver grupos en período:
             <select class="form-control" name="periodo_id" id="periodo_id" required>
                 <option value="">- - - -</option>
                 @foreach($periodos as $periodo )
@@ -53,6 +54,9 @@
                                 @endif
                                 @endforeach
 
+
+
+
                                 <th>
                                     <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditGrupo{{$grupo->id}}">
                                         <i class="fa fa-pencil-square-o"></i>
@@ -78,7 +82,7 @@
 
 
 
-    </div>
+    </div></div>
 </div>
 
 
