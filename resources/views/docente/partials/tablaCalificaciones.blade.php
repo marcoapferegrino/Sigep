@@ -49,9 +49,9 @@
 
                                     @if($alumno->calificacion == 'S/C')
                                         <?php $classCalificacion = 'default'?>
-                                    @elseif($alumno->calificacion>5)
+                                    @elseif($alumno->calificacion>7)
                                         <?php $classCalificacion = 'success'?>
-                                    @elseif($alumno->calificacion<6)
+                                    @elseif($alumno->calificacion<=7)
                                         <?php $classCalificacion = 'danger'?>
                                     @else
                                         <?php $classCalificacion = 'default'?>
