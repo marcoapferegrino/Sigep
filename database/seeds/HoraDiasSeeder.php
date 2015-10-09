@@ -5,6 +5,11 @@ use \PosgradoService\Entities\Horario;
 use \PosgradoService\Entities\AsignaturaGrupo;
 use \PosgradoService\Entities\Grupo;
 use \PosgradoService\Entities\Inscripcion;
+use \PosgradoService\Entities\Asignatura;
+use \PosgradoService\Entities\Docente;
+use \PosgradoService\Entities\Alumno;
+use Faker\Factory as Faker;
+use Faker\Provider;
 
 class HoraDiasSeeder extends Seeder
 {
@@ -15,7 +20,7 @@ class HoraDiasSeeder extends Seeder
      */
     public function run()
     {
-
+        $faker = Faker::create();
         $horarios = array(
             '{"dias":{"Lunes":"08:30 - 10:00","Martes": " - ","Miercoles":"08:30 - 10:00" ,"Jueves": "08:30 - 10:00","Viernes": " - "}}',
             '{"dias":{"Lunes":" - ","Martes":"10:30 - 12:00" ,"Miercoles":"10:30 - 12:00" ,"Jueves": " - ","Viernes":"10:30 - 12:00" }}',
@@ -31,144 +36,67 @@ class HoraDiasSeeder extends Seeder
 
         $grupos = Grupo::all();
 
-        Horario::create([
-            'dias'=>$horarios[0],
-            'horario'=>'',
-            'nombre'=>$nombres[0],
+        foreach ($nombres as $nombre) {
+            Horario::create([
+                'dias'=>$faker->randomElement($horarios),
+                'horario'=>'',
+                'nombre'=>$nombre,
 
-        ]);
-        Horario::create([
-            'dias'=>$horarios[1],
-            'horario'=>'',
-            'nombre'=>$nombres[1],
+            ]);
+        }
+        $asignaturas = Asignatura::all();
+        $docentes = Docente::all();
 
-        ]);
+        $horaDias = Horario::all();
 
-        Horario::create([
-            'dias'=>$horarios[2],
-            'horario'=>'',
-            'nombre'=>$nombres[2],
+        foreach ($docentes as $docente) {
 
-        ]);
-        Horario::create([
-            'dias'=>$horarios[3],
-            'horario'=>'',
-            'nombre'=>$nombres[3],
-
-        ]);
-
-
+        $numGrupos = count($grupos);
+        $numAsignaturas = count($asignaturas);
+        $numHora = count($horaDias);
 
             AsignaturaGrupo::create([
-                'acta'=> 1,
-                'docente_id'=> 1,
-                'grupo_id'=>$grupos[1]->id,
-                'asignatura_id'=>1,
-                'horaDias_id'=>1
+                'acta' => 1,
+                'docente_id' => $docente->id,
+                'grupo_id' => $faker->numberBetween(1,$numGrupos),
+                'asignatura_id' => $faker->numberBetween(1,$numAsignaturas),
+                'horaDias_id' =>$faker->numberBetween(1,$numHora)
             ]);
-
-
-
-            /*---------------------------------------------*/
             AsignaturaGrupo::create([
-                'acta'=> 1,
-                'docente_id'=> 1,
-                'grupo_id'=>$grupos[2]->id,
-                'asignatura_id'=>1,
-                'horaDias_id'=>2
+                'acta' => 1,
+                'docente_id' => $docente->id,
+                'grupo_id' => $faker->numberBetween(1,$numGrupos),
+                'asignatura_id' => $faker->numberBetween(1,$numAsignaturas),
+                'horaDias_id' =>$faker->numberBetween(1,$numHora)
             ]);
-
-
-
-            /*---------------------------------------------*/
-           AsignaturaGrupo::create([
-                'acta'=> 1,
-                'docente_id'=> 2,
-                'grupo_id'=>$grupos[1]->id,
-                'asignatura_id'=>2,
-                'horaDias_id'=>2
+            AsignaturaGrupo::create([
+                'acta' => 1,
+                'docente_id' => $docente->id,
+                'grupo_id' => $faker->numberBetween(1,$numGrupos),
+                'asignatura_id' => $faker->numberBetween(1,$numAsignaturas),
+                'horaDias_id' =>$faker->numberBetween(1,$numHora)
             ]);
+        }
 
+        $alumnos = Alumno::all();
+        $asignaturaGrupo = AsignaturaGrupo::all();
 
+        foreach ($asignaturaGrupo as $asigGrup) {
+            $numAlumnos =  $faker->numberBetween(1,count($alumnos));
 
-
-            /*---------------------------------------------*/
-             AsignaturaGrupo::create([
-                'acta'=> 1,
-                'docente_id'=> 2,
-                'grupo_id'=>$grupos[2]->id,
-                'asignatura_id'=>2,
-                'horaDias_id'=>3
-            ]);
-
-
-
-
-             /*---------------------------------------------*/
-             AsignaturaGrupo::create([
-                'acta'=> 1,
-                'docente_id'=> 1,
-                'grupo_id'=>$grupos[3]->id,
-                'asignatura_id'=>3,
-                'horaDias_id'=>3
-            ]);
-
-
-            for($i=1;$i<=5;$i++)
-            {
+            for ($i=0;$i<8;$i++) {
                 Inscripcion::create([
-
-                    'asignatura_grupo_id'=> 1,
-                    'alumno_id' => $i,
-                    'docente_id'=> 1,
-                    'grupo_id'=>2,
-                    'asignatura_id'=>1,
+                    'asignatura_grupo_id'=>$asigGrup->id ,
+                    'alumno_id' => $faker->numberBetween(1,$numAlumnos),
+                    'docente_id'=> $asigGrup->docente_id,
+                    'grupo_id' => $asigGrup->grupo_id,
+                    'asignatura_id' => $asigGrup->asignatura_id
                 ]);
-                Inscripcion::create([
-
-                    'asignatura_grupo_id'=> 2,
-                    'alumno_id' => $i+5,
-                    'docente_id'=> 1,
-                    'grupo_id'=>3,
-                    'asignatura_id'=>1,
-                ]);
-                Inscripcion::create([
-
-                    'asignatura_grupo_id'=> 5,
-                    'alumno_id' => $i+5,
-                    'docente_id'=> 1,
-                    'grupo_id'=>4,
-                    'asignatura_id'=>3,
-                ]);
-
-                Inscripcion::create([
-
-                    'asignatura_grupo_id'=> 3,
-                    'alumno_id' => $i,
-                    'docente_id'=> 2,
-                    'grupo_id'=>2,
-                    'asignatura_id'=>2,
-                ]);
-
-                Inscripcion::create([
-
-                    'asignatura_grupo_id'=> 4,
-                    'alumno_id' => $i+5,
-                    'docente_id'=> 2,
-                    'grupo_id'=>3,
-                    'asignatura_id'=>2,
-                ]);
-
-
             }
 
 
 
-
-
+            }
         }
-
-
-
 
 }

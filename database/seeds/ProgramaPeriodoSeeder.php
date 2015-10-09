@@ -17,34 +17,21 @@ class ProgramaPeriodoSeeder extends Seeder {
     {
 
         Periodo::create([
-            'nombre' => 'Verano',
+            'nombre' => 'Invierno',
             'inicioPeriodo' => Carbon::now(),
-            'finPeriodo' => Carbon::now(),
+            'finPeriodo' => Carbon::create(2016,11,10,null,null,null,null),
             'inicioCalificaciones' => Carbon::now(),
-            'finCalificaciones' => Carbon::now(),
+            'finCalificaciones' => Carbon::create(2016,11,10,null,null,null,null),
 
         ]);
         Periodo::create([
-            'nombre' => 'Invierno',
-            'inicioPeriodo' => Carbon::now(),
-            'finPeriodo' => Carbon::now(),
+            'nombre' => 'Verano',
+            'inicioPeriodo' => Carbon::create(2014,11,10,null,null,null,null),
+            'finPeriodo' => Carbon::create(2015,05,10,null,null,null,null),
             'inicioCalificaciones' => Carbon::now(),
-            'finCalificaciones' => Carbon::now(),
+            'finCalificaciones' => Carbon::create(2015,05,10,null,null,null,null),
 
         ]);
-
-//        Programa::create([
-//            'escuela' => 'Escuela superior de cómputo',
-//            'nombre' => 'Programa piloto',
-//            'periodo_id' => 1,
-//
-//        ]);
-//        Programa::create([
-//            'escuela' => 'Escuela superior de cómputo cuántico',
-//            'nombre' => 'Programa piloto',
-//            'periodo_id' => 2,
-//
-//        ]);
 
 
 

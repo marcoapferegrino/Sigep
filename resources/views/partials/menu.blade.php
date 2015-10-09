@@ -45,6 +45,7 @@
                         <li class="showUsuarios"><a href="{{url('showUsuarios')}}"><i class="fa fa-search"></i> Lista usuarios </a></li>
                         <li class="getAddAlumno"><a href="{{url('getAddAlumno')}}"><i class="fa fa-user"></i> Registrar alumno </a></li>
                         <li class="getAddDocente"><a href="{{url('getAddDocente')}}"><i class="fa fa-user-secret"></i> Registrar docente </a></li>
+                        <li class="getAddAdmin"><a href="{{url('getAddAdmin')}}"><i class="fa fa-linux"></i> Registrar administrador </a></li>
                     </ul>
                 </li>
                 <li class="dropdown" id="dropEstructAca">

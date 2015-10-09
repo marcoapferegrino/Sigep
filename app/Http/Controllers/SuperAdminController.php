@@ -15,10 +15,12 @@ use PosgradoService\Http\Requests;
 use PosgradoService\Http\Requests\CreatePeriodoRequest;
 use PosgradoService\Http\Requests\CreateAsignaturaRequest;
 use PosgradoService\Http\Requests\UpdatePeriodoRequest;
-use PosgradoService\Http\Requests\UpdateProgramaRequest;
+use PosgradoService\Http\Requests\AddAdminRequest;
 use PosgradoService\Http\Requests\UpdateAsignaturaRequest;
 use PosgradoService\Http\Requests\UpdateDocenteRequest;
 use PosgradoService\Http\Requests\UpdateAlumnoRequest;
+use PosgradoService\Http\Requests\UpdateAdminRequest;
+
 
 
 
@@ -44,6 +46,66 @@ class SuperAdminController extends Controller {
 		return view('homeSuperAdmin',compact('periodos'));
 	}
 
+	public function getAddAdmin()
+	{
+		return view('superAdmin.getAddAdmin');
+	}
+	public function addAdmin(AddAdminRequest $request)
+	{
+		$password = bcrypt($request->password);        //obtencion de contraseña
+//        dd($request->all());
+		$user = User::create($request->all());         //instancia de modelo user con datos recibidos
+
+		$state = User::where('id',$user->id)                    //asignacion de user -> docente
+		->update([
+			'rol'=>'admin',
+			'password'=>$password]);
+
+
+		Session::flash('message', $user->getNombreCompleto().' fue agregado exitosamente');
+		return redirect()->action('AdminController@getAddDocente');
+	}
+	public function getUpdateAdmin($id)
+	{
+		$admin = User::find($id);
+
+		return view('superAdmin.getUpdateAdmin',compact('admin'));
+
+	}
+
+	public function updateAdmin(UpdateAdminRequest $request)
+	{
+
+
+		$user = User::find($request->idUser);
+//		dd($user);
+		ucwords($request->name); //primera letra de nombresz en mayuscula
+
+		try{
+			User::find($request->idUser)->update($request->all());
+
+
+			if($request->get('password')!="")
+			{
+
+				$password = bcrypt($request->get('password'));
+//				dd('User Password: '.$user->password,'request: '.$request->get('password'),'nueva:'.$password);
+				$user = User::find($user->id);
+				$user->password = $password;
+				$user->save();
+
+//				dd($user->password,$password);
+			}
+			Session::flash('message', $user->getNombreCompleto().'se actualizó exitosamente');
+		}
+		catch(QueryException $e)
+		{
+
+			Handler::checkQueryError($e);
+		}
+
+		return redirect('/getUpdateAdmin/'.$user->id);
+	}
 	public function showUsers()
 	{
 		$usuarios = User::orderBy('name','ASC')->paginate();

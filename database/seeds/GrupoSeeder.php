@@ -7,19 +7,23 @@
  */
 
 use PosgradoService\Entities\Grupo;
+use Faker\Factory as Faker;
+use Faker\Provider;
 
 class GrupoSeeder extends \Illuminate\Database\Seeder {
 
 
     public function run(){
-
+        $faker = Faker::create();
         $grupos = array(
             '1cv1',
             '1cv2',
             '1cv3',
+            '1cv4',
             '2cv1',
             '2cv2',
-            '2cv3'
+            '2cv3',
+            '2cv4',
         );
 
         for($i=0 ; $i < count($grupos); $i++)
@@ -27,8 +31,8 @@ class GrupoSeeder extends \Illuminate\Database\Seeder {
             Grupo::create([
                 'nombre' => $grupos[$i],
                 'salon' => $grupos[$i],
-                'semestre' => 1,
-                'periodo_id' => 1
+                'semestre' => $faker->randomElement([1,2]),
+                'periodo_id' => $faker->randomElement([1,2])
             ]);
         }
 

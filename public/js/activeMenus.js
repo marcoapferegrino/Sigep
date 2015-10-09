@@ -33,6 +33,9 @@ $(document).ready(function(){
             case '/getAddDocente':
                 $('.getAddDocente').addClass('active');
                 break;
+            case '/getAddAdmin':
+                $('.getAddAdmin').addClass('active');
+                break;
         }
 
     }

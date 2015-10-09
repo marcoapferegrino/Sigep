@@ -4,6 +4,8 @@ namespace PosgradoService\Entities;
 
 class Horario extends Entity
 {
+
+    protected $fillable = ['dias','horario','nombre'];
     protected $table ='horaDias';
 
 

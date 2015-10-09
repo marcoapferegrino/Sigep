@@ -18,13 +18,15 @@ class AsignaturaSeeder extends \Illuminate\Database\Seeder {
     {
         $faker = Faker::create();
         $asignaturas = array(
-            'Arquitectura de moviles',
-            'Métodos matématicos',
-            'Moviles tecnologías',
+            'Arquitectura de móviles',
+            'Métodos matématicos para el análisis de sistemas y señales',
+            'Móviles tecnologías',
             'Seminario I',
             'Seminario II',
-            'Redes moviles ',
             'Seminario III',
+            'Seminario IV',
+            'Optativa I',
+            'Optativa II'
 
         );
 
@@ -33,13 +35,11 @@ class AsignaturaSeeder extends \Illuminate\Database\Seeder {
             Asignatura::create([
                 'nombre' => $asignaturas[$i],
                 'claveAsignatura'=>'clv'.$i,
-                'creditos' => $i*10,
-                'horas' => $i*2,
+                'creditos' => $i*3,
+                'horas' => 4,
                 'curso'=> $faker->randomElement(['Teórico','Práctico','T/P']),
                 'tipo' => $faker->randomElement(['obligatoria','seminario','optativa','movilidad']),
                 'fechaVigencia'=>\Carbon\Carbon::now(),
-
-
         ]);
         }
 

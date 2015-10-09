@@ -41,16 +41,45 @@ class AdminsSeeder extends Seeder
             'docente_id' => null,
 
             'numHijos'=> 0,
-            'email' => 'admin@gmail.com',
+            'email' => 'adminOneSecret@gmail.com',
+            'password' => bcrypt('secret'),
+        ]);
+        $admin2=User::create([
+
+            'rol' => 'admin',
+            'name' =>'Administrador',
+            'apellidoP' =>  'PaternoAdmin',
+            'apellidoM' => 'MaternoAdmin',
+            'fechanac' => $faker->date(),
+            'nacionalidad'=> $faker->country,
+            'edoNacimiento'=> $faker->state,
+            'genero' => 'Hombre',
+            'rfc'=> $faker->swiftBicNumber,
+            'curp'=> $faker->swiftBicNumber,
+            'tipoIdOficial'=>$faker->randomElement(['ife','licenciaManejo','pasaporte','cartilla']),
+            'noIdOficial' => $faker->swiftBicNumber,
+            'direccion' => $faker->streetAddress,
+            'colonia'=> $faker->citySuffix,
+            'ciudad' => $faker->city,
+            'estado' => $faker->state,
+            'cp' => $faker->postcode,
+            'telefono' => $faker->phoneNumber,
+            'telMovil' => $faker->phoneNumber,
+            'edoCivil' => 'soltero',
+            'alumno_id' => null,
+            'docente_id' => null,
+
+            'numHijos'=> 0,
+            'email' => 'admintwoSecret@gmail.com',
             'password' => bcrypt('secret'),
         ]);
 
        $super =  User::create([
 
             'rol' => 'superAdmin',
-            'name' =>'PruebaSuperAdmin',
-            'apellidoP' =>  'PaternoSuper',
-            'apellidoM' => 'MaternoSuper',
+            'name' =>'Edgardo Adrian',
+            'apellidoP' =>  'Franco',
+            'apellidoM' => 'Martínez',
             'fechanac' => $faker->date(),
             'nacionalidad'=> $faker->country,
             'edoNacimiento'=> $faker->state,
@@ -133,12 +162,16 @@ class AdminsSeeder extends Seeder
 //        ]);
 
         $super->rol='superAdmin';
-        $super->password=bcrypt('secret');
+        $super->password=bcrypt('posgradoSA$234');
         $super->save();
 
         $admin->rol='admin';
-        $admin->password=bcrypt('secret');
+        $admin->password=bcrypt('posgradoDR$489');
         $admin->save();
+
+        $admin2->rol='admin';
+        $admin2->password=bcrypt('posgradoTH$987');
+        $admin2->save();
 
 //        $docente->rol='docente';
 //        $docente->password=bcrypt('secret');

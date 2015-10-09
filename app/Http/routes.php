@@ -129,6 +129,25 @@ Route::group(/**
             'uses' => 'SuperAdminController@updateAlumno'
         ]);
 
+        Route::get('/getAddAdmin', [
+            'as' => 'alumnos.getAddAdmin',
+            'uses' => 'SuperAdminController@getAddAdmin'
+        ]);
+        Route::post('/addAdmin', [
+            'as' => 'admin.addAdmin',
+            'uses' => 'SuperAdminController@addAdmin'
+        ]);
+
+        Route::get('/getUpdateAdmin/{id}', [
+            'as' => 'admin.getUpdateAdmin',
+            'uses' => 'SuperAdminController@getUpdateAdmin'
+        ]);
+        Route::post('/updateAdmin', [
+            'as' => 'admin.updateAdmin',
+            'uses' => 'SuperAdminController@updateAdmin'
+        ]);
+
+
     });
 
     Route::group(['middleware' => 'role:admin'],function() {

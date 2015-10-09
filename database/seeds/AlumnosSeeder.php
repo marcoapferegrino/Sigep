@@ -20,7 +20,7 @@ class AlumnosSeeder extends Seeder {
     {
         $faker = Faker::create();
 
-        for($i = 1; $i <= 70; $i++)
+        for($i = 1; $i <= 50; $i++)
         {
             $alumno = Alumno::create([
 

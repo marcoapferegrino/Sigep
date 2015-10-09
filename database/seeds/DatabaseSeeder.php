@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'asignaturas',
             'periodos',
             'checadas',
-//            'programas',
+            'inscripciones',
             'horaDias',
             'tutores',
             'asignatura_grupo'

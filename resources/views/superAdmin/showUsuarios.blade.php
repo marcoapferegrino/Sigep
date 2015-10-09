@@ -74,6 +74,9 @@
                                                     @elseif($usuario->rol == "docente")
                                                         <a href="{{route('docentes.showExpediente',$usuario->id)}}">Ver</a>
                                                         <a href="{{route('docentes.editarDocente',$usuario->id)}}">Editar</a>
+                                                    @elseif($usuario->rol == "admin")
+                                                        <a href="{{route('docentes.showExpediente',$usuario->id)}}">Ver</a>
+                                                        <a href="{{route('admin.getUpdateAdmin',$usuario->id)}}">Editar</a>
                                                     @else
                                                         Sin expediente
                                                     @endif
