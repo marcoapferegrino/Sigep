@@ -9,8 +9,8 @@
 
 
 	<link href="/css/app.css" rel="stylesheet">
+	<link href="/css/font-aweasome/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 	<style>
 		label{
@@ -83,7 +83,7 @@
 </div>
 
 	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="/js/jquery-2.1.4.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="/js/activeMenus.js"></script>
 	@yield('scripts')
