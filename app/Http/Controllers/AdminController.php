@@ -324,9 +324,14 @@ class AdminController extends Controller {
 
         $gruposAsignaturas  = User::getAsignaturasGrupos();
         $alumnos            = User::getAlumnosInscritos();
-        if(count($gruposAsignaturas)==0 || count($alumnos)==0)
+
+//        dd($gruposAsignaturas,$alumnos);
+        if(count($gruposAsignaturas)==0)
         {
-            Session::flash('error', 'Actualmente no hay registros');
+            Session::flash('error', 'Actualmente no hay Grupos');
+        }
+        if (count($alumnos)==0) {
+            Session::flash('error', 'Actualmente no hay Alumnos');
         }
 
 //       dd($asignaturas->toArray(),$periodos->toArray());
