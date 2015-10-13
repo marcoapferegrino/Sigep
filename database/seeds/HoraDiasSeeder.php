@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use \PosgradoService\Entities\Horario;
-use \PosgradoService\Entities\AsignaturaGrupo;
-use \PosgradoService\Entities\Grupo;
-use \PosgradoService\Entities\Inscripcion;
-use \PosgradoService\Entities\Asignatura;
-use \PosgradoService\Entities\Docente;
-use \PosgradoService\Entities\Alumno;
+use \Sigep\Entities\Horario;
+use \Sigep\Entities\AsignaturaGrupo;
+use \Sigep\Entities\Grupo;
+use \Sigep\Entities\Inscripcion;
+use \Sigep\Entities\Asignatura;
+use \Sigep\Entities\Docente;
+use \Sigep\Entities\Alumno;
 use Faker\Factory as Faker;
 use Faker\Provider;
 
@@ -84,9 +84,10 @@ class HoraDiasSeeder extends Seeder
         foreach ($asignaturaGrupo as $asigGrup) {
             $numAlumnos =  $faker->numberBetween(1,count($alumnos));
 
-            for ($i=0;$i<8;$i++) {
+            for ($i=0;$i<2;$i++) {
                 Inscripcion::create([
                     'asignatura_grupo_id'=>$asigGrup->id ,
+                    'calificacion' => $faker->numberBetween(6,10),
                     'alumno_id' => $faker->numberBetween(1,$numAlumnos),
                     'docente_id'=> $asigGrup->docente_id,
                     'grupo_id' => $asigGrup->grupo_id,

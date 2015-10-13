@@ -1,6 +1,6 @@
-<?php namespace PosgradoService\Http\Controllers\Auth;
+<?php namespace Sigep\Http\Controllers\Auth;
 
-use PosgradoService\Http\Controllers\Controller;
+use Sigep\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\ResetsPasswords;

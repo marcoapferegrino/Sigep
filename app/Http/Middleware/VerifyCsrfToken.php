@@ -1,4 +1,4 @@
-<?php namespace PosgradoService\Http\Middleware;
+<?php namespace Sigep\Http\Middleware;
 
 use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;

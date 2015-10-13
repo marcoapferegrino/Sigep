@@ -1,7 +1,7 @@
-<?php namespace PosgradoService\Http\Requests;
+<?php namespace Sigep\Http\Requests;
 
 
-use PosgradoService\Http\Requests\Request;
+use Sigep\Http\Requests\Request;
 
 class CreateProgramaRequest extends Request {
 

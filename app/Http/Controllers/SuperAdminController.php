@@ -1,25 +1,26 @@
-<?php namespace PosgradoService\Http\Controllers;
+<?php namespace Sigep\Http\Controllers;
 
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
-use PosgradoService\Entities\Alumno;
-use PosgradoService\Entities\Asignatura;
-use PosgradoService\Entities\AsignaturaGrupo;
-use PosgradoService\Entities\Docente;
-use PosgradoService\Entities\Horario;
-use PosgradoService\Entities\Periodo;
-use PosgradoService\Entities\Programa;
-use PosgradoService\Entities\User;
-use PosgradoService\Exceptions\Handler;
-use PosgradoService\Http\Requests;
-use PosgradoService\Http\Requests\CreatePeriodoRequest;
-use PosgradoService\Http\Requests\CreateAsignaturaRequest;
-use PosgradoService\Http\Requests\UpdatePeriodoRequest;
-use PosgradoService\Http\Requests\AddAdminRequest;
-use PosgradoService\Http\Requests\UpdateAsignaturaRequest;
-use PosgradoService\Http\Requests\UpdateDocenteRequest;
-use PosgradoService\Http\Requests\UpdateAlumnoRequest;
-use PosgradoService\Http\Requests\UpdateAdminRequest;
+use Sigep\Entities\Alumno;
+use Sigep\Entities\Asignatura;
+use Sigep\Entities\AsignaturaGrupo;
+use Sigep\Entities\Docente;
+use Sigep\Entities\Grupo;
+use Sigep\Entities\Horario;
+use Sigep\Entities\Periodo;
+use Sigep\Entities\Programa;
+use Sigep\Entities\User;
+use Sigep\Exceptions\Handler;
+use Sigep\Http\Requests;
+use Sigep\Http\Requests\CreatePeriodoRequest;
+use Sigep\Http\Requests\CreateAsignaturaRequest;
+use Sigep\Http\Requests\UpdatePeriodoRequest;
+use Sigep\Http\Requests\AddAdminRequest;
+use Sigep\Http\Requests\UpdateAsignaturaRequest;
+use Sigep\Http\Requests\UpdateDocenteRequest;
+use Sigep\Http\Requests\UpdateAlumnoRequest;
+use Sigep\Http\Requests\UpdateAdminRequest;
 
 
 
@@ -439,6 +440,89 @@ class SuperAdminController extends Controller {
 		//dd($dias['lunesI']);
 		$json = '{"dias":{"Lunes":"'.$dias["lunesI"].' - '.$dias["lunesF"].'","Martes": "'.$dias["martesI"].' - '.$dias["martesF"].'","Miercoles":"'.$dias["miercolesI"].' - '.$dias["miercolesF"].'","Jueves": "'.$dias["juevesI"].' - '.$dias["juevesF"].'","Viernes": "'.$dias["viernesI"].' - '.$dias["viernesF"].'"}}';
 		return $json;
+	}
+
+	public function getGraficas()
+	{
+
+//		$idPeriodo = $request->get('periodo');
+//
+		$periodos       = Periodo::all('id','nombre');
+		$asignaturas    = Asignatura::all('id','nombre');
+//
+//
+//		$periodo = Periodo::find(1);
+//		$idPeriodo = $periodo->id;
+//
+//		$alumnos 			= Periodo::getAlumnosPorPeriodo($idPeriodo,"");
+//		$totAlumnos 		= count($alumnos);
+//		$alumnosReprobados 	= Periodo::getAlumnosReprobadosPorPeriodo($idPeriodo,"");
+//		$alumnosAprobados 	= $totAlumnos-$alumnosReprobados;
+//
+////		dd("Alumnos periodo=".count($alumnos),"Aprobados".$alumnosAprobados,"Reprobados".$alumnosReprobados);
+//
+//		$porcientoAprobados = ($alumnosAprobados/$totAlumnos)*100;
+//		$porcientoReprobados = ($alumnosReprobados/$totAlumnos)*100;
+//
+////		dd($porcientoAprobados,$porcientoReprobados);
+//
+////		$datos='[{name:"aprobados",y:$porcientoAprobados},{name:"reprobados",y:$porcientoReprobados}]';
+//
+//		$datos=array(array('name'=>$alumnosAprobados.' alumnos aprobados','y'=>$porcientoAprobados),array('name'=>$alumnosReprobados.' alumnos reprobados','y'=>$porcientoReprobados));
+//		$datos = json_encode($datos);
+//		$title = "Alumnos reprobados en el Periodo:".$periodo->nombre.".A la fecha actual.";
+		return view('superAdmin.graficas',compact('periodos','asignaturas'));
+	}
+
+	public function getCustomGrafica(Request $request)
+	{
+		$periodos       = Periodo::all('id','nombre');
+		$asignaturas    = Asignatura::all('id','nombre');
+
+		$title ="Alumnos aprobados/reprobados";
+		$idPeriodo 		= $request->get('periodo');
+		$idAsignatura 	= $request->get('asignatura');
+
+		if ($idPeriodo==""&&$idAsignatura=="") {
+
+			Session::flash('error','No ingresaste un parametro.');
+			return redirect()->action('SuperAdminController@getGraficas');
+		}
+
+		$periodo = Periodo::find($idPeriodo);
+		$asignatura = Asignatura::find($idAsignatura);
+
+
+		$alumnos 			= Periodo::getAlumnosPorPeriodo($idPeriodo,$idAsignatura);
+		$totAlumnos 		= count($alumnos);
+		$alumnosReprobados 	= Periodo::getAlumnosReprobadosPorPeriodo($idPeriodo,$idAsignatura);
+		$alumnosAprobados 	= $totAlumnos-$alumnosReprobados;
+
+//		dd("Alumnos periodo=".count($alumnos),"Aprobados".$alumnosAprobados,"Reprobados".$alumnosReprobados);
+
+		$porcientoAprobados = ($alumnosAprobados/$totAlumnos)*100;
+		$porcientoReprobados = ($alumnosReprobados/$totAlumnos)*100;
+
+//		dd($porcientoAprobados,$porcientoReprobados);
+
+//		$datos='[{name:"aprobados",y:$porcientoAprobados},{name:"reprobados",y:$porcientoReprobados}]';
+
+		$datos=array(array('name'=>$alumnosAprobados.' alumnos aprobados','y'=>$porcientoAprobados),array('name'=>$alumnosReprobados.' alumnos reprobados','y'=>$porcientoReprobados));
+		$datos = json_encode($datos);
+
+		if($idPeriodo!="")
+		{
+			$title .= " en Periodo:".$periodo->nombre;
+		}
+		if($idAsignatura!="")
+		{
+			$title .= " en Asignatura:".$asignatura->nombre;
+		}
+
+		$title .= " a la fecha actual.";
+
+
+		return view('superAdmin.graficas',compact('periodos','asignaturas','datos','title'));
 	}
 
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace PosgradoService\Http\Requests;
+namespace Sigep\Http\Requests;
 
 use Carbon\Carbon;
-use PosgradoService\Entities\User;
-use PosgradoService\Http\Requests\Request;
+use Sigep\Entities\User;
+use Sigep\Http\Requests\Request;
 
 class UpdateDocenteRequest extends Request {
 

@@ -112,17 +112,6 @@ class Guard implements GuardContract
         return ! is_null($this->user());
     }
 
-    public function getRol(){
-
-        return $this->user->rol;
-
-    }
-
-    public function getAlumnoId(){
-
-        return $this->user->alumno_id;
-
-    }
     /**
      * Determine if the current user is a guest.
      *
@@ -239,6 +228,12 @@ class Guard implements GuardContract
         if ($this->validRecaller($recaller = $this->getRecaller())) {
             return head(explode('|', $recaller));
         }
+    }
+    public function getRol(){
+        return $this->user->rol;
+    }
+    public function getAlumnoId(){
+        return $this->user->alumno_id;
     }
 
     /**

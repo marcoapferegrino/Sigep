@@ -1,4 +1,4 @@
-<?php namespace PosgradoService\Console\Commands;
+<?php namespace Sigep\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

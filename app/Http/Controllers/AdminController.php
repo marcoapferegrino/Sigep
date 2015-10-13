@@ -1,27 +1,27 @@
-<?php namespace PosgradoService\Http\Controllers;
+<?php namespace Sigep\Http\Controllers;
 
 
 
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
-use PosgradoService\Entities\Alumno;
-use PosgradoService\Entities\Asignatura;
-use PosgradoService\Entities\AsignaturaGrupo;
-use PosgradoService\Entities\Docente;
-use PosgradoService\Entities\Grupo;
-use PosgradoService\Entities\Horario;
-use PosgradoService\Entities\Inscripcion;
-use PosgradoService\Entities\Periodo;
-use PosgradoService\Entities\User;
-use PosgradoService\Exceptions\Handler;
-use PosgradoService\Http\Requests;
+use Sigep\Entities\Alumno;
+use Sigep\Entities\Asignatura;
+use Sigep\Entities\AsignaturaGrupo;
+use Sigep\Entities\Docente;
+use Sigep\Entities\Grupo;
+use Sigep\Entities\Horario;
+use Sigep\Entities\Inscripcion;
+use Sigep\Entities\Periodo;
+use Sigep\Entities\User;
+use Sigep\Exceptions\Handler;
+use Sigep\Http\Requests;
 use Illuminate\Support\Facades\DB;
-use PosgradoService\Http\Requests\AddAlumnoRequest;
-use PosgradoService\Http\Requests\AddAsignaturaGrupoRequest;
-use PosgradoService\Http\Requests\AddGrupoRequest;
-use PosgradoService\Http\Requests\CreateDocenteRequest;
-use PosgradoService\Http\Requests\UpdateGrupoRequest;
-use PosgradoService\Http\Requests\UpdateAsignaturaGrupoRequest;
+use Sigep\Http\Requests\AddAlumnoRequest;
+use Sigep\Http\Requests\AddAsignaturaGrupoRequest;
+use Sigep\Http\Requests\AddGrupoRequest;
+use Sigep\Http\Requests\CreateDocenteRequest;
+use Sigep\Http\Requests\UpdateGrupoRequest;
+use Sigep\Http\Requests\UpdateAsignaturaGrupoRequest;
 use Illuminate\Http\Request;
 
 
@@ -324,9 +324,14 @@ class AdminController extends Controller {
 
         $gruposAsignaturas  = User::getAsignaturasGrupos();
         $alumnos            = User::getAlumnosInscritos();
-        if(count($gruposAsignaturas)==0 || count($alumnos)==0)
+
+//        dd($gruposAsignaturas,$alumnos);
+        if(count($gruposAsignaturas)==0)
         {
-            Session::flash('error', 'Actualmente no hay registros');
+            Session::flash('error', 'Actualmente no hay Grupos');
+        }
+        if (count($alumnos)==0) {
+            Session::flash('error', 'Actualmente no hay Alumnos');
         }
 
 //       dd($asignaturas->toArray(),$periodos->toArray());

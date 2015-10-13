@@ -7,7 +7,7 @@
  */
 use Faker\Factory as Faker;
 use Faker\Provider;
-use \PosgradoService\Entities\User;
+use \Sigep\Entities\User;
 use Illuminate\Database\Seeder;
 
 class AdminsSeeder extends Seeder
@@ -158,7 +158,7 @@ class AdminsSeeder extends Seeder
 //            'docente_id' => null,
 //            'numHijos'=> 0,
 //            'email' => 'alumno@gmail.com',
-//            'password' => bcrypt('secret'),
+//            'password' => bcrypt('shepecret'),
 //        ]);
 
         $super->rol='superAdmin';

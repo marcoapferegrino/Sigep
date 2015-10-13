@@ -1,4 +1,4 @@
-<?php namespace PosgradoService\Http\Requests;
+<?php namespace Sigep\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

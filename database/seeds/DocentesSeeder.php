@@ -12,8 +12,8 @@
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Faker\Provider;
-use \PosgradoService\Entities\Docente;
-use \PosgradoService\Entities\User;
+use \Sigep\Entities\Docente;
+use \Sigep\Entities\User;
 
 class DocentesSeeder extends Seeder
 {

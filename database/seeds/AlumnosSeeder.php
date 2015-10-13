@@ -12,8 +12,8 @@
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Faker\Provider;
-use \PosgradoService\Entities\User;
-use \PosgradoService\Entities\Alumno;
+use \Sigep\Entities\User;
+use \Sigep\Entities\Alumno;
 
 class AlumnosSeeder extends Seeder {
     public function run()

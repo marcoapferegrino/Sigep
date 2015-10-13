@@ -140,11 +140,11 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
-		'PosgradoService\Providers\AppServiceProvider',
-		'PosgradoService\Providers\BusServiceProvider',
-		'PosgradoService\Providers\ConfigServiceProvider',
-		'PosgradoService\Providers\EventServiceProvider',
-		'PosgradoService\Providers\RouteServiceProvider',
+		'Sigep\Providers\AppServiceProvider',
+		'Sigep\Providers\BusServiceProvider',
+		'Sigep\Providers\ConfigServiceProvider',
+		'Sigep\Providers\EventServiceProvider',
+		'Sigep\Providers\RouteServiceProvider',
 
 	],
 

@@ -8,9 +8,9 @@
 
 use Faker\Factory as Faker;
 use Faker\Provider;
-use \PosgradoService\Entities\Docente;
-use \PosgradoService\Entities\Alumno;
-use \PosgradoService\Entities\User;
+use \Sigep\Entities\Docente;
+use \Sigep\Entities\Alumno;
+use \Sigep\Entities\User;
 
 class UserTableSeeder extends \Illuminate\Database\Seeder{
 

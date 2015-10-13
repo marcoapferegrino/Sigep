@@ -1,6 +1,6 @@
-<?php namespace PosgradoService\Services;
+<?php namespace Sigep\Services;
 
-use PosgradoService\Entities\User;
+use Sigep\Entities\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 

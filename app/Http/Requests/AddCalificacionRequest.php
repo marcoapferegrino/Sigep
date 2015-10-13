@@ -1,8 +1,8 @@
 <?php
 
-namespace PosgradoService\Http\Requests;
+namespace Sigep\Http\Requests;
 
-use PosgradoService\Http\Requests\Request;
+use Sigep\Http\Requests\Request;
 
 class AddCalificacionRequest extends Request
 {

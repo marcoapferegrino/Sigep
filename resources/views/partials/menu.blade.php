@@ -66,6 +66,8 @@
 
 
                 <li id="menuCalifAlumno"><a href="{{url('getAlumnosCalificar')}}">Calificar <i class="fa fa-pencil-square-o"></i></a></li>
+                <li id="menuGraficar"><a href="{{url('getGraficas')}}">Estádisticas <i class="fa fa-bar-chart"></i></a></li>
+
             @elseif(Auth::getRol()=="alumno")
                 <li><a href="{{url('calificacionesAlumno')}}">Ver calificaciones  <i class="fa fa-file-text-o fa-lg"></i></a></li>
                 <li><a href="{{url('getHorarioAlumno')}}">Horario <i class="fa fa-calendar fa-lg"></i></a></li>

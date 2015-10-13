@@ -1,6 +1,6 @@
 <?php
 
-namespace PosgradoService\Entities;
+namespace Sigep\Entities;
 
 class Horario extends Entity
 {
