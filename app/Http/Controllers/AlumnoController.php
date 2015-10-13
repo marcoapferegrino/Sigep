@@ -135,10 +135,18 @@ class AlumnoController extends Controller {
             }
             //ya tenemos todos los periodos sin repetir
             $promediosPeriodos=Alumno::getPromedioPeriodo($alumno,$misPeriodos);
+
+            $creditos= Alumno::getCreditos($alumno,$misPeriodos);
+            $totalCreditos=0.0;
+            foreach($creditos as $credito){
+
+                $totalCreditos+=$credito;
+
+            }
             //calculamos promedio por periodo
 
 
-            return view('alumno.kardexPeriodo',compact('promediosPeriodos','promedio','alumno','misPeriodos'));
+            return view('alumno.kardexPeriodo',compact('totalCreditos','creditos','promediosPeriodos','promedio','alumno','misPeriodos'));
         }
         else{
 

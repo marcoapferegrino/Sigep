@@ -58,6 +58,39 @@ class Grupo extends Entity {
         return $asignaturasGrupo;
     }
 
+    public static function getAlumnos()
+    {
+        $arrayCount = array('count'=> 0,'group'=>0);
+        $container=array();
+       // dd($arrayCount);
+        $grupos = Grupo::all();
+        $inscrip = Inscripcion::all();
+            /*
+        $numAlumnos = $grupos = DB::table('grupos')
+            ->join('asignatura_grupo', 'asignatura_grupo.grupo_id','=','grupos.id' )
+            ->join('inscripciones','inscripciones.grupo_id','=','asignatura_grupo.grupo_id')
+            ->select('asignatura_grupo.id as asignId','asignatura_grupo.grupo_id','inscripciones.id as inscripId','inscripciones.alumno_id')
+            ->get();
+        //dd($numAlumnos); */
+        foreach($grupos as $k=>$grupo){
+            $aux=0;
+            foreach($inscrip as $data){
+            if($data->grupo_id==$grupo->id){
+                $aux++;
+
+
+            }
+            }
+
+            $arrayCount = array('count'=> $aux,'group'=>$grupo->id);
+            array_push($container,$arrayCount);
+
+        }
+
+
+        return $container;
+    }
+
 
 
 }

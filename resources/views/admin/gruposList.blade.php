@@ -14,7 +14,7 @@
         {!! Form::open(['route' => 'grupos.gruposByPeriodo','method' => 'GET','class'=>'form-inline navbar-form navbar-left pull-right','role'=>'search']) !!}
 
         <div class="form-group">
-            Ver grupos en período:
+            Ver grupos de período:
             <select class="form-control" name="periodo_id" id="periodo_id" required>
                 <option value="">- - - -</option>
                 @foreach($periodos as $periodo )
@@ -30,12 +30,13 @@
         {!! Form::close() !!}
 
 
-        <table class="table table-hover">
+        <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>Nombre</th>
                         <th>Salón</th>
                         <th>Semestre</th>
+                        <th>Inscritos</th>
                         <th>Período</th>
                         <th>Acciones</th>
                     </tr>
@@ -47,16 +48,26 @@
                                 <th>{{$grupo->nombre}}</th>
                                 <th>{{$grupo->salon}}</th>
                                 <th>{{$grupo->semestre}}</th>
+
+                               <th>
+                                   @foreach($numAlumnos as $k=>$alumnos)
+
+                                       @if($alumnos['group']==$grupo->id)
+
+                                           {{$alumnos['count']}}
+
+                                           @endif
+
+                                       @endforeach
+
+
+                               </th>
                                 @foreach($periodos as $periodo )
                                 @if($grupo->periodo_id == $periodo->id)
 
                                  <th>{{$periodo->nombre}}</th>
                                 @endif
                                 @endforeach
-
-
-
-
                                 <th>
                                     <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalEditGrupo{{$grupo->id}}">
                                         <i class="fa fa-pencil-square-o"></i>

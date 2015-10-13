@@ -14,9 +14,14 @@
                         Alumno: {{$alumno[0]->alumnoNombre  }} {{$alumno[0]->apellidoP  }} {{$alumno[0]->apellidoM  }}
                         <small>
                             <br>Boleta:{{$alumno[0]->boleta}}
+
+                        </small> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <small>
+                            Créditos totales:{{$totalCreditos}}
+
                         </small>
                         <small class="pull-right">
-                            <b style="font-size: 140%"> Promedio general: {{$promedio}}  </b>
+                            <b style="font-size: 140%"> Promedio general: {{$promedio}}   </b>
                         </small>
 
                         <br>
@@ -26,8 +31,9 @@
 
                 @foreach($misPeriodos as $k=> $periodo)
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h2 class="panel-title text-primary "> <b>Período: {{$periodo}} </b>  <b class="pull-right">Promedio: {{$promediosPeriodos[$k]}} </b></h2>
+                        <div class="panel-heading ">
+                            <h3 class="panel-title text-primary  "> <b class="col-lg-8">Período: {{$periodo}} </b>
+                                <b style="color: #ebcccc">Créditos obtenidos: {{$creditos[$k]}} </b> <b class="pull-right">Promedio: {{$promediosPeriodos[$k]}} </b></h3>
                         </div>
                         <div class="panel-body">
                             <table class="table table-striped">
@@ -38,6 +44,7 @@
                                     <th>Grupo</th>
                                     <th>Fecha</th>
                                     <th>Calificación</th>
+                                    <th>Créditos de asignatura</th>
 
                                 </tr>
                                 </thead>
@@ -51,7 +58,7 @@
                                             <th>  {{$materia->grupoNombre}} </th>
                                             <th>  {{$materia->finPeriodo}} </th>
                                             <th>  {{$materia->calificacion}} </th>
-
+                                            <th>  {{$materia->creditos}} </th>
                                         </tr>
 
                                     @endif

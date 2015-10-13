@@ -14,6 +14,8 @@ class CreateAlumnosTable extends Migration
     {
         Schema::create('alumnos', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->enum('status',['activo','baja definitiva','baja temporal','dictamen'.'egresado']);
             $table->string('boleta');
             $table->string('dependEconomic');//de quien depende economicmente
             $table->string('viveCon'); //con quien vive

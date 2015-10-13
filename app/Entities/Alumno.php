@@ -107,11 +107,38 @@ class Alumno extends Entity {
             ->join('asignaturas','asignaturas.id','=','asignatura_grupo.asignatura_id')
             ->join('grupos','grupos.id','=','asignatura_grupo.grupo_id')
             ->join('periodos','periodos.id','=','grupos.periodo_id')
-            ->select('alumnos.boleta','asignaturas.nombre as nombre','grupos.nombre as grupoNombre','inscripciones.calificacion','users.name as alumnoNombre','users.apellidoP','users.apellidoM','periodos.nombre as nombrePeriodo','periodos.finPeriodo','grupos.semestre')
+            ->select('alumnos.boleta','asignaturas.creditos','asignaturas.nombre as nombre','grupos.nombre as grupoNombre','inscripciones.calificacion','users.name as alumnoNombre','users.apellidoP','users.apellidoM','periodos.nombre as nombrePeriodo','periodos.finPeriodo','grupos.semestre')
             ->where('inscripciones.alumno_id','=',$id)
             ->orderBy('finPeriodo')
             ->get();
         //dd($kardex);
+        return $kardex;
+    }
+
+
+    public static function getCreditos($boleta, $periodos) // obtiene el historial por períodos
+    {
+        $kardex = array ();
+      //  dd($boleta);
+        foreach($periodos as $i=>$periodo){
+            $aux = 0.0;
+            foreach ($boleta as $materia     ) {
+                if($materia->nombrePeriodo == $periodo){
+                if($materia->calificacion>7 && $materia->calificacion<=10 ){
+
+                        $aux+= $materia->creditos;
+
+                }
+                }
+
+
+            }
+            array_push($kardex, $aux );
+
+
+        }
+        //dd($kardex);
+
         return $kardex;
     }
 

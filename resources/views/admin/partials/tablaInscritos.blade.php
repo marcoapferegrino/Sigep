@@ -63,11 +63,11 @@
                 <td>{{$grupoAsignatura->nombre}}</td>
                 <td>{{$grupoAsignatura->nombrePeriodo}}</td>
                 <td>{{$grupoAsignatura->salon}}</td>
-                @if($alumno->calificacion<6 && !($alumno->calificacion=='S/C') )
+                @if($alumno->calificacion<8 && ($alumno->calificacion!='S/C') )
 
 
                     <td class="text-center" style="background-color: #ce8483">{{$alumno->calificacion}}</td>
-              @elseif($alumno->calificacion>=6)
+              @elseif($alumno->calificacion>=8)
                     <td class="text-center "style="background-color:#A9F5A9">{{$alumno->calificacion}}</td>
                 @elseif($alumno->calificacion>='S/C')
 

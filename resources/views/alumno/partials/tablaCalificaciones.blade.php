@@ -25,10 +25,10 @@
                                     <th>{{$grupoAsignatura->grupoNombre}}</th>
 
 
-                                    @if($grupoAsignatura->calificacion<6)
+                                    @if($grupoAsignatura->calificacion<8)
 
                                     <th style="background-color: #ce8483">{{$grupoAsignatura->calificacion}}</th>
-                                    @elseif($grupoAsignatura->calificacion>=6)
+                                    @elseif($grupoAsignatura->calificacion>=8)
                                     <th style="background-color:#65C400">{{$grupoAsignatura->calificacion}}</th>
                                     @else
                                     <th >{{$grupoAsignatura->calificacion}}</th>

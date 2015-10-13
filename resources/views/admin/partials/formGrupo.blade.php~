@@ -96,7 +96,7 @@
 
                 <br>
 
-                <div class="form-group navbar-default nav-justified " >
+                <div class="form-group navbar-default nav-justified col-lg-5  " >
                     {!! Form::submit('Registrar',array('class'=>'btn btn-success btn-block')) !!}
                     {!! Form::close() !!}
                 </div>

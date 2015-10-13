@@ -428,9 +428,15 @@ class AdminController extends Controller {
             $promediosPeriodos=Alumno::getPromedioPeriodo($alumno,$misPeriodos);
             //calculamos promedio por periodo
 
-            // dd($promediosPeriodos);
+            $creditos= Alumno::getCreditos($alumno,$misPeriodos);
+            $totalCreditos=0.0;
+            foreach($creditos as $credito){
 
-            return view('alumno.kardexPeriodo',compact('promediosPeriodos','promedio','alumno','misPeriodos'));
+                $totalCreditos+=$credito;
+
+            }
+
+            return view('alumno.kardexPeriodo',compact('totalCreditos','creditos','promediosPeriodos','promedio','alumno','misPeriodos'));
         }
         else{
 
@@ -473,14 +479,20 @@ class AdminController extends Controller {
         $actual = 'Todos';
         $periodos = Periodo::all();
         $inscritos = Inscripcion::all();
+        $numAlumnos=Grupo::getAlumnos();
+
+
+
         if($grupos->all()==null){
             Session::flash('error', 'No hay grupos');
             return redirect()->action('AdminController@index');
 
         }
+
+
         // dd($periodos);
 
-        return view('admin.gruposList',compact('inscritos','actual','grupos','periodos'));
+        return view('admin.gruposList',compact('numAlumnos','inscritos','actual','grupos','periodos'));
     }
 
     public function getGruposFiltro(Request $request) // lista de grupos
@@ -489,6 +501,9 @@ class AdminController extends Controller {
         $grupos = Grupo::grupoPorPeriodo($id);
         $periodos = Periodo::all(); //Periodo::all();
         $inscritos = Inscripcion::all();
+
+        $numAlumnos=Grupo::getAlumnos();
+
         $actual =Periodo::find($id)->nombre;
         if($grupos==null){
             Session::flash('error', 'No hay grupos');
@@ -499,12 +514,13 @@ class AdminController extends Controller {
         //dd($grupos,$actual,$periodos);
 
 
-        return view('admin.gruposList',compact('inscritos','actual','grupos','periodos'));
+        return view('admin.gruposList',compact('numAlumnos','inscritos','actual','grupos','periodos'));
     }
     public function getGruposByPeriodo(Request $request) // lista de grupos
     {
         $id=$request->periodo_id;
         $grupos = Grupo::grupoPorPeriodo($id);
+        $numAlumnos=Grupo::getAlumnos();
 
         $inscritos = Inscripcion::all();
         $periodos = Periodo::all(); //Periodo::all();
@@ -518,7 +534,7 @@ class AdminController extends Controller {
         //dd($grupos,$actual,$periodos);
 
 
-        return view('admin.gruposList',compact('inscritos','actual','grupos','periodos'));
+        return view('admin.gruposList',compact('numAlumnos','inscritos','actual','grupos','periodos'));
     }
 
     public function deleteGrupo($id)
