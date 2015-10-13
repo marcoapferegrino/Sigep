@@ -1,4 +1,4 @@
-<?php namespace PosgradoService\Events;
+<?php namespace Sigep\Events;
 
 abstract class Event {
 

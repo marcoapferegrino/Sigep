@@ -8,8 +8,8 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use PosgradoService\Entities\Periodo;
-use PosgradoService\Entities\Programa;
+use Sigep\Entities\Periodo;
+use Sigep\Entities\Programa;
 
 class ProgramaPeriodoSeeder extends Seeder {
 

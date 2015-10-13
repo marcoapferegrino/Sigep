@@ -1,18 +1,18 @@
-<?php namespace PosgradoService\Http\Controllers;
+<?php namespace Sigep\Http\Controllers;
 
 
 
-use PosgradoService\Entities\Alumno;
-use PosgradoService\Entities\Asignatura;
-use PosgradoService\Entities\AsignaturaGrupo;
-use PosgradoService\Entities\Grupo;
-use PosgradoService\Entities\Inscripcion;
-use PosgradoService\Entities\Periodo;
-use PosgradoService\Entities\User;
-use PosgradoService\Http\Requests;
+use Sigep\Entities\Alumno;
+use Sigep\Entities\Asignatura;
+use Sigep\Entities\AsignaturaGrupo;
+use Sigep\Entities\Grupo;
+use Sigep\Entities\Inscripcion;
+use Sigep\Entities\Periodo;
+use Sigep\Entities\User;
+use Sigep\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use PosgradoService\Http\Requests\AddCalificacionRequest;
+use Sigep\Http\Requests\AddCalificacionRequest;
 
 class ProfesorController extends Controller {
 

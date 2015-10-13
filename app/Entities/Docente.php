@@ -1,4 +1,4 @@
-<?php namespace PosgradoService\Entities;
+<?php namespace Sigep\Entities;
 
 use Illuminate\Support\Facades\DB;
 

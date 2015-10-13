@@ -6,7 +6,7 @@
  * Time: 17:54
  */
 
-use PosgradoService\Entities\Grupo;
+use Sigep\Entities\Grupo;
 use Faker\Factory as Faker;
 use Faker\Provider;
 

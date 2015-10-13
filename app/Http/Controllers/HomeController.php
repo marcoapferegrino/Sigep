@@ -1,4 +1,4 @@
-<?php namespace PosgradoService\Http\Controllers;
+<?php namespace Sigep\Http\Controllers;
 
 class HomeController extends Controller {
 

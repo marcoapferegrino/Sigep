@@ -1,4 +1,4 @@
-<?php namespace PosgradoService\Http;
+<?php namespace Sigep\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -18,7 +18,7 @@ class Kernel extends HttpKernel {
 		'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
-		'PosgradoService\Http\Middleware\VerifyCsrfToken',
+		'Sigep\Http\Middleware\VerifyCsrfToken',
 	];
 
 	/**
@@ -27,10 +27,10 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		'auth' => 'PosgradoService\Http\Middleware\Authenticate',
+		'auth' => 'Sigep\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-		'guest' => 'PosgradoService\Http\Middleware\RedirectIfAuthenticated',
-		'role' => 'PosgradoService\Http\Middleware\Role'
+		'guest' => 'Sigep\Http\Middleware\RedirectIfAuthenticated',
+		'role' => 'Sigep\Http\Middleware\Role'
 
 	];
 

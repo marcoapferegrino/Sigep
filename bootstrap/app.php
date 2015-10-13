@@ -28,17 +28,17 @@ $app = new Illuminate\Foundation\Application(
 
 $app->singleton(
 	'Illuminate\Contracts\Http\Kernel',
-	'PosgradoService\Http\Kernel'
+	'Sigep\Http\Kernel'
 );
 
 $app->singleton(
 	'Illuminate\Contracts\Console\Kernel',
-	'PosgradoService\Console\Kernel'
+	'Sigep\Console\Kernel'
 );
 
 $app->singleton(
 	'Illuminate\Contracts\Debug\ExceptionHandler',
-	'PosgradoService\Exceptions\Handler'
+	'Sigep\Exceptions\Handler'
 );
 
 /*

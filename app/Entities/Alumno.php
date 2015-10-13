@@ -1,7 +1,7 @@
-<?php namespace PosgradoService\Entities;
+<?php namespace Sigep\Entities;
 
 
-use PosgradoService\Entities\Entity;
+use Sigep\Entities\Entity;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 

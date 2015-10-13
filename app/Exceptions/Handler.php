@@ -1,4 +1,4 @@
-<?php namespace PosgradoService\Exceptions;
+<?php namespace Sigep\Exceptions;
 
 use Exception;
 use Illuminate\Database\QueryException;
@@ -59,5 +59,4 @@ class Handler extends ExceptionHandler {
 			Session::flash('error',"Paso algo extraño lo sentimos");
 		}
 	}
-
 }

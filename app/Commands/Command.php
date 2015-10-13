@@ -1,4 +1,4 @@
-<?php namespace PosgradoService\Commands;
+<?php namespace Sigep\Commands;
 
 abstract class Command {
 

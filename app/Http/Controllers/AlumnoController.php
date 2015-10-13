@@ -1,13 +1,13 @@
-<?php namespace PosgradoService\Http\Controllers;
+<?php namespace Sigep\Http\Controllers;
 
-use PosgradoService\Http\Requests;
+use Sigep\Http\Requests;
 
 
 
 use Illuminate\Support\Facades\Session;
-use PosgradoService\Entities\User;
-use PosgradoService\Entities\Alumno;
-use PosgradoService\Http\Controllers\Controller;
+use Sigep\Entities\User;
+use Sigep\Entities\Alumno;
+use Sigep\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 

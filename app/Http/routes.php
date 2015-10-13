@@ -160,6 +160,14 @@ Route::group(/**
             'uses' => 'AdminController@findAlumnos'
         ]);
 
+        Route::get('/getGraficas', [
+            'as' => 'graficas.graficas',
+            'uses' => 'SuperAdminController@getGraficas'
+        ]);
+        Route::get('/getCustomGrafica', [
+            'as' => 'graficas.getCustomGrafica',
+            'uses' => 'SuperAdminController@getCustomGrafica'
+        ]);
 
         Route::get('/getAddDocente', [ //form
             'as' => 'docente.getAddDocente',

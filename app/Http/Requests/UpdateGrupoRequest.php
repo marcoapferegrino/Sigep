@@ -1,9 +1,9 @@
 <?php
 
-namespace PosgradoService\Http\Requests;
+namespace Sigep\Http\Requests;
 
 use Carbon\Carbon;
-use PosgradoService\Http\Requests\Request;
+use Sigep\Http\Requests\Request;
 
 class UpdateGrupoRequest extends Request
 {

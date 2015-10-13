@@ -17,7 +17,7 @@
       <sourceFolder url="file://$MODULE_DIR$/vendor/symfony/http-kernel" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/symfony/translation" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/symfony/http-foundation" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/vendor/symfony/security-core" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../posgradoService/vendor/symfony/security-core" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/symfony/var-dumper" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/symfony/process" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/symfony/debug" isTestSource="false" />

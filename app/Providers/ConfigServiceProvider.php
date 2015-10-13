@@ -1,4 +1,4 @@
-<?php namespace PosgradoService\Providers;
+<?php namespace Sigep\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

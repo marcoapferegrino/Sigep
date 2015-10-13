@@ -6,7 +6,7 @@
  * Time: 16:13
  */
 
-namespace PosgradoService\Entities;
+namespace Sigep\Entities;
 
 
 use Illuminate\Database\Eloquent\Model;

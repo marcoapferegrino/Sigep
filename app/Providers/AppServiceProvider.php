@@ -1,4 +1,4 @@
-<?php namespace PosgradoService\Providers;
+<?php namespace Sigep\Providers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -52,7 +52,7 @@ class AppServiceProvider extends ServiceProvider {
 	{
 		$this->app->bind(
 			'Illuminate\Contracts\Auth\Registrar',
-			'PosgradoService\Services\Registrar'
+			'Sigep\Services\Registrar'
 		);
 	}
 

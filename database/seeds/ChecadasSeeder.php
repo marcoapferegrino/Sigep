@@ -11,7 +11,7 @@
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Faker\Provider;
-use PosgradoService\Entities\Checadas;
+use \Sigep\Entities\Checadas;
 
 class ChecadasSeeder extends \Illuminate\Database\Seeder {
 

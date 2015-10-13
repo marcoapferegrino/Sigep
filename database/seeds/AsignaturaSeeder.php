@@ -7,7 +7,7 @@
  */
 
 
-use \PosgradoService\Entities\Asignatura;
+use \Sigep\Entities\Asignatura;
 use Faker\Factory as Faker;
 use Faker\Provider;
 
