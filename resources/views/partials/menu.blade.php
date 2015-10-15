@@ -2,9 +2,11 @@
     <ul class="nav navbar-nav">
         @if (!Auth::guest())
             @if(Auth::getRol()=="admin")
+
                 <li class="dropdown dropUsuarios">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registrar <i class="fa fa-user"></i> <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <i class="fa fa-users fa-lg"></i><span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <li class="showUsuarios"><a href="{{url('showUsuarios')}}"><i class="fa fa-search"></i> Lista usuarios </a></li>
                         <li class="getAddAlumno"><a href="{{url('getAddAlumno')}}"><i class="fa fa-user"></i> Registrar alumno </a></li>
                         <li class="getAddDocente"><a href="{{url('getAddDocente')}}"><i class="fa fa-user-secret"></i> Registrar docente </a></li>
                     </ul>

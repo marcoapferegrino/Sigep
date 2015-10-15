@@ -34,13 +34,22 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             {!! Form::label('password', 'Contraseña*') !!}
-                                            {!! Form::text('password',null, array('class' => 'form-control','id'=>'password','placeholder'=>'Pon una contraseña'))!!}
+                                            {!! Form::password('password', array('class' => 'form-control','id'=>'password','placeholder'=>'Pon una contraseña'))!!}
                                             <div class="alert alert-warning" role="alert"><strong>Si no editas la constraseña se mantendrá la actual.</strong></div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-4">
-                                        <button class="btn btn-primary" id="buttonCurp" type="button">Ayuda generar contraseña <i class="fa fa-cogs"></i></button>
+                                        <div class="form-group" id="formGroup">
+                                            {!! Form::label('passwordConfirm', 'Verifica Contraseña*',array('id'=>'labelPasswordConfirm')) !!}
+                                            {!! Form::password('passwordConfirm', array('class' => 'form-control','id'=>'passwordConfirm','placeholder'=>'De nuevo tu contraseña'))!!}
+                                        </div>
                                     </div>
+
+
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary" id="buttonCurp" type="button">Ayuda generar contraseña <i class="fa fa-cogs"></i></button>
                                 </div>
                             </div>
                         </div>

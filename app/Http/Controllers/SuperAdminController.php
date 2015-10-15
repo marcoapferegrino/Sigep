@@ -2,14 +2,11 @@
 
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
-use Sigep\Entities\Alumno;
 use Sigep\Entities\Asignatura;
 use Sigep\Entities\AsignaturaGrupo;
 use Sigep\Entities\Docente;
-use Sigep\Entities\Grupo;
 use Sigep\Entities\Horario;
 use Sigep\Entities\Periodo;
-use Sigep\Entities\Programa;
 use Sigep\Entities\User;
 use Sigep\Exceptions\Handler;
 use Sigep\Http\Requests;
@@ -18,9 +15,7 @@ use Sigep\Http\Requests\CreateAsignaturaRequest;
 use Sigep\Http\Requests\UpdatePeriodoRequest;
 use Sigep\Http\Requests\AddAdminRequest;
 use Sigep\Http\Requests\UpdateAsignaturaRequest;
-use Sigep\Http\Requests\UpdateDocenteRequest;
-use Sigep\Http\Requests\UpdateAlumnoRequest;
-use Sigep\Http\Requests\UpdateAdminRequest;
+
 
 
 
@@ -66,75 +61,8 @@ class SuperAdminController extends Controller {
 		Session::flash('message', $user->getNombreCompleto().' fue agregado exitosamente');
 		return redirect()->action('AdminController@getAddDocente');
 	}
-	public function getUpdateAdmin($id)
-	{
-		$admin = User::find($id);
-
-		return view('superAdmin.getUpdateAdmin',compact('admin'));
-
-	}
-
-	public function updateAdmin(UpdateAdminRequest $request)
-	{
 
 
-		$user = User::find($request->idUser);
-//		dd($user);
-		ucwords($request->name); //primera letra de nombresz en mayuscula
-
-		try{
-			User::find($request->idUser)->update($request->all());
-
-
-			if($request->get('password')!="")
-			{
-
-				$password = bcrypt($request->get('password'));
-//				dd('User Password: '.$user->password,'request: '.$request->get('password'),'nueva:'.$password);
-				$user = User::find($user->id);
-				$user->password = $password;
-				$user->save();
-
-//				dd($user->password,$password);
-			}
-			Session::flash('message', $user->getNombreCompleto().'se actualizó exitosamente');
-		}
-		catch(QueryException $e)
-		{
-
-			Handler::checkQueryError($e);
-		}
-
-		return redirect('/getUpdateAdmin/'.$user->id);
-	}
-	public function showUsers()
-	{
-		$usuarios = User::orderBy('name','ASC')->paginate();
-
-		$numUsers = count(User::all());
-
-		if($numUsers==0)
-		{
-			Session::flash('error', 'Actualmente no hay registros');
-		}
-
-		return view ('superAdmin.showUsuarios',compact('usuarios','numUsers'));
-	}
-	public function findUsuario(Request $request)
-	{
-		//dd($request->all());
-
-		$name = $request->get('name');
-		$rol = $request->get('rol');
-		$numUsers = count(User::all());
-		$usuarios = User::name($name)->rol($rol)->orderBy('name','ASC')->paginate();
-
-		if(count($usuarios)==0)
-		{
-			Session::flash('error', 'No se encontraron resultados con esta búsqueda');
-		}
-		return view ('superAdmin.showUsuarios',compact('usuarios','numUsers'));
-	}
 
 	public function addPeriodo(CreatePeriodoRequest $request)
 	{
@@ -340,100 +268,7 @@ class SuperAdminController extends Controller {
 		return view('superAdmin.expedienteDocente',compact('user','docente'));
 
 	}
-	public function editDocente($id)
-	{
-		$user = User::find($id);
-		$docente = Docente::find($user->docente_id);
 
-//		dd($user->toArray(),$docente->toArray());
-		return view('superAdmin.editDocente',compact('user','docente'));
-
-	}
-	public function editAlumno($id)
-	{
-//		dd($id);
-
-		$user = User::find($id);
-		$alumno = Alumno::find($user->alumno_id);
-
-//		dd($user->toArray(),$alumno->toArray());
-		return view('superAdmin.editAlumno',compact('user','alumno'));
-	}
-
-	public function updateDocente(UpdateDocenteRequest $request)
-	{
-//		dd($request->all());
-		$editerUser = auth()->user();
-		$user = User::find($request->idUser);
-		ucwords($request->name); //primera letra de nombresz en mayuscula
-
-		try{
-			User::find($request->idUser)->update($request->all());
-			Docente::find($user->docente_id)->update($request->all());
-
-
-			Docente::where('id',$user->docente_id)
-				->update([
-					'idUsuarioActualiza'=>$editerUser->id,
-				]);
-			if($request->get('password')!="")
-			{
-
-				$password = bcrypt($request->get('password'));
-//				dd('User Password: '.$user->password,'request: '.$request->get('password'),'nueva:'.$password);
-				$user = User::find($user->id);
-				$user->password = $password;
-				$user->save();
-
-//				dd($user->password,$password);
-			}
-			Session::flash('message', $user->getNombreCompleto().'se actualizó exitosamente');
-		}
-		catch(QueryException $e)
-		{
-
-			Handler::checkQueryError($e);
-		}
-
-		return redirect('/editarDocente/'.$user->id);
-	}
-
-	public function updateAlumno(UpdateAlumnoRequest $request)
-	{
-		$editerUser = auth()->user();
-		$user = User::find($request->idUser);
-		ucwords($request->name); //primera letra de nombresz en mayuscula
-
-		try{
-			User::find($request->idUser)->update($request->all());
-			Alumno::find($user->alumno_id)->update($request->all());
-			Alumno::where('id',$user->alumno_id)
-				->update([
-					'idUsuarioQueActualiza'=>$editerUser->id
-				]);
-
-			if($request->get('password')!="")
-			{
-
-				$password = bcrypt($request->get('password'));
-//				dd('User Password: '.$user->password,'request: '.$request->get('password'),'nueva:'.$password);
-				$user = User::find($user->id);
-				$user->password = $password;
-				$user->save();
-
-//				dd($user->password,$password);
-			}
-
-			Session::flash('message', $user->getNombreCompleto().'se actualizó exitosamente');
-		}
-		catch(QueryException $e)
-		{
-
-			Handler::checkQueryError($e);
-		}
-
-		return redirect('/editarAlumno/'.$user->id);
-	}
 
 	private function diasJson($dias)
 	{

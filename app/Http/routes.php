@@ -29,15 +29,6 @@ Route::group(/**
         //agregar periodo y programa
 
 
-        Route::get('/showUsuarios', [
-            'as' => 'usuarios.showUsers',
-            'uses' => 'SuperAdminController@showUsers'
-        ]);
-        Route::get('/findUsuario', [
-            'as' => 'usuarios.findUsuario',
-            'uses' => 'SuperAdminController@findUsuario'
-        ]);
-
         Route::post('/addPeriodo', [
             'as' => 'periodo.addPeriodo',
             'uses' => 'SuperAdminController@addPeriodo'
@@ -111,23 +102,6 @@ Route::group(/**
             'uses' => 'SuperAdminController@abrirActa'
         ]);
 
-        Route::get('/editarDocente/{id}', [
-            'as' => 'docentes.editarDocente',
-            'uses' => 'SuperAdminController@editDocente'
-        ]);
-        Route::post('/updateDocente', [
-            'as' => 'docentes.updateDocente',
-            'uses' => 'SuperAdminController@updateDocente'
-        ]);
-
-        Route::get('/editarAlumno/{id}', [
-            'as' => 'alumnos.editarAlumno',
-            'uses' => 'SuperAdminController@editAlumno'
-        ]);
-        Route::post('/updateAlumno', [
-            'as' => 'alumnos.updateAlumno',
-            'uses' => 'SuperAdminController@updateAlumno'
-        ]);
 
         Route::get('/getAddAdmin', [
             'as' => 'alumnos.getAddAdmin',
@@ -138,14 +112,7 @@ Route::group(/**
             'uses' => 'SuperAdminController@addAdmin'
         ]);
 
-        Route::get('/getUpdateAdmin/{id}', [
-            'as' => 'admin.getUpdateAdmin',
-            'uses' => 'SuperAdminController@getUpdateAdmin'
-        ]);
-        Route::post('/updateAdmin', [
-            'as' => 'admin.updateAdmin',
-            'uses' => 'SuperAdminController@updateAdmin'
-        ]);
+
 
 
     });
@@ -154,6 +121,15 @@ Route::group(/**
         Route::get('logAdmin',"AdminController@index");
 
         Route::get('testC',"AdminController@getTestC");
+
+        Route::get('/showUsuarios', [
+            'as' => 'usuarios.showUsers',
+            'uses' => 'AdminController@showUsers'
+        ]);
+        Route::get('/findUsuario', [
+            'as' => 'usuarios.findUsuario',
+            'uses' => 'AdminController@findUsuario'
+        ]);
 
         Route::get('/alumnosBoletaEncontrados', [
             'as' => 'alumnos.boletaFindAlumnos',
@@ -291,6 +267,33 @@ Route::group(/**
         Route::get('/asignaturaGrupoPeriodo', [
             'as' => 'asignaturaGrupoPeriodo.periodos',
             'uses' => 'AdminController@asignaturaGrupoPeriodo'
+        ]);
+
+        Route::get('/editarDocente/{id}', [
+            'as' => 'docentes.editarDocente',
+            'uses' => 'AdminController@editDocente'
+        ]);
+        Route::post('/updateDocente', [
+            'as' => 'docentes.updateDocente',
+            'uses' => 'AdminController@updateDocente'
+        ]);
+
+        Route::get('/editarAlumno/{id}', [
+            'as' => 'alumnos.editarAlumno',
+            'uses' => 'AdminController@editAlumno'
+        ]);
+        Route::post('/updateAlumno', [
+            'as' => 'alumnos.updateAlumno',
+            'uses' => 'AdminController@updateAlumno'
+        ]);
+
+        Route::get('/getUpdateAdmin/{id}', [
+            'as' => 'admin.getUpdateAdmin',
+            'uses' => 'AdminController@getUpdateAdmin'
+        ]);
+        Route::post('/updateAdmin', [
+            'as' => 'admin.updateAdmin',
+            'uses' => 'AdminController@updateAdmin'
         ]);
     });
 

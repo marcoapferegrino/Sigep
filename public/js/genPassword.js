@@ -38,13 +38,29 @@ $(document).ready(function(){
             }
         }
         var aux =apellidoP1l+vocalApellidoP+apellidoM1l+nombre1l+fechaNac+genero;
-        console.log('func:'+aux);
         return aux ;
     }
 
+    $('#passwordConfirm').keyup(function(){
+        var password = $('#password').val();
+        var passwordConfirm = $(this).val();
+        var label =  $('#labelPasswordConfirm').text();
 
+        console.log(password+"----"+passwordConfirm+"-----"+label);
+        if(password === passwordConfirm)
+        {
+            $('#formGroup').removeClass('has-error').addClass('has-success');
+            $('#labelPasswordConfirm').text('Verifica Contraseña*       Válido');
+        }
+        else
+        {
+            $('#formGroup').addClass('has-error');
+            $('#labelPasswordConfirm').text('Verifica Contraseña*    No coincide');
+        }
+    });
 
-    $('#buttonCurp').click(function(){
+    $('#buttonCurp').click(function(e){
+        e.preventDefault();
         var tok = "";
         var rfc = "";
 
@@ -54,7 +70,8 @@ $(document).ready(function(){
 
         var aux = getRFCandCURP();
         rfc += aux+tok;
-        $('#password').val(rfc);
+        $('#password').attr('type', 'text').val(rfc);
+
 
     });
     $('#helpCurp').click(function(){
