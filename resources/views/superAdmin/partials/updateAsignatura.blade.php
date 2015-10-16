@@ -40,6 +40,7 @@
                         <option value="Teórico">Teórico</option>
                         <option value="Práctico">Práctico</option>
                         <option value="T/P">T/P</option>
+                        <option value="Seminario">Seminario</option>
                     </select>
                 </div>
 

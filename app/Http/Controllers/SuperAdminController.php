@@ -51,10 +51,11 @@ class SuperAdminController extends Controller {
 		$password = bcrypt($request->password);        //obtencion de contraseña
 //        dd($request->all());
 		$user = User::create($request->all());         //instancia de modelo user con datos recibidos
+		$rol = $request->rol;
 
 		$state = User::where('id',$user->id)                    //asignacion de user -> docente
 		->update([
-			'rol'=>'admin',
+			'rol'=>$rol,
 			'password'=>$password]);
 
 

@@ -27,7 +27,7 @@ class CreateAsignaturaRequest extends Request
             'nombre'            => 'required | unique:asignaturas,nombre',
             'creditos'          => 'required | integer',
             'claveAsignatura'   =>'required  | unique:asignaturas,claveAsignatura',
-            'curso'             => 'required | in:Teórico,Práctico,T/P',
+            'curso'             => 'required | in:Teórico,Práctico,T/P,Seminario',
             'horas'             => 'required | integer',
             'tipo'              => 'required | in:obligatoria,seminario,optativa,movilidad',
             'fechaVigencia'     => 'required | date',

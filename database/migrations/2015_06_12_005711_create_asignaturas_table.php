@@ -18,7 +18,7 @@ class CreateAsignaturasTable extends Migration
             $table->string('claveAsignatura');
             $table->double('creditos')->default(0);
             $table->double('horas'); //suma de teoricas y practicas
-            $table->enum('curso',['Teórico','Práctico','T/P']);
+            $table->enum('curso',['Teórico','Práctico','T/P','Seminario']);
             $table->enum('tipo', ['obligatoria','seminario','optativa','movilidad']);
             $table->string('escuelaMovilidad');
             $table->date('fechaVigencia');

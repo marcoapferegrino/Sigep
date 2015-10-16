@@ -800,10 +800,15 @@ class AdminController extends Controller {
 //				dd('User Password: '.$user->password,'request: '.$request->get('password'),'nueva:'.$password);
                 $user = User::find($user->id);
                 $user->password = $password;
-                $user->save();
+
 
 //				dd($user->password,$password);
             }
+            if($request->rol != $user->rol)
+            {
+                $user->rol=$request->rol;
+            }
+            $user->save();
             Session::flash('message', $user->getNombreCompleto().'se actualizó exitosamente');
         }
         catch(QueryException $e)

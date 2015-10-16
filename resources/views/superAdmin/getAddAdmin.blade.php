@@ -32,6 +32,18 @@
                                             {!! Form::text('password',null, array('class' => 'form-control','id'=>'password','placeholder'=>'Pon una contraseña','required'))!!}
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                {!! Form::label('rol', 'Rol Usuario*') !!}
+                                                <select class="form-control" name="rol" id="rol" required>
+                                                    <option value="">- - - -</option>
+                                                    <option value="admin">Admin</option>
+                                                    <option value="superAdmin">SuperAdmin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-4">
                                         <button class="btn btn-primary" id="buttonCurp" type="button">Ayuda generar contraseña <i class="fa fa-cogs"></i></button>
                                     </div>
