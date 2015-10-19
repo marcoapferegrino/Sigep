@@ -44,6 +44,7 @@
                                             {!! Form::text('boleta',$alumno->boleta, array('class' => 'form-control','id'=>'boleta','placeholder'=>'Número boleta','required'))!!}
                                         </div>
                                     </div>
+                                    <span class="label label-info hidden" id="passInfo">Info</span>
                                     <div class="row">
                                         <div class="col-md-4 col-md-offset-4">
                                             <div class="form-group" id="formGroup">
@@ -492,7 +493,7 @@
                                 </div>
                             </div>
                         </div>
-                        {!! Form::submit('Guardar',array('class'=>'btn btn-success btn-lg btn-block')) !!}
+                        {!! Form::submit('Guardar',array('class'=>'btn btn-success btn-lg btn-block','id'=>'guardar')) !!}
                         {!! Form::close() !!}
                     </div>
                 </div>

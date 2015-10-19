@@ -43,6 +43,7 @@
                                         </div>
 
                                     </div>
+                                    <span class="label label-info hidden" id="passInfo">Info</span>
                                     <div class="row">
                                         <div class="col-md-4 col-md-offset-4">
                                             <div class="form-group has-error" id="formGroup">
@@ -52,6 +53,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-4">
                                         <button class="btn btn-primary" id="buttonCurp" type="button">Ayuda generar contraseña <i class="fa fa-cogs"></i></button>
                                     </div>
@@ -490,7 +492,7 @@
                                     </div>
                                 </div>
                             </div>
-                            {!! Form::submit('Guardar',array('class'=>'btn btn-success btn-lg btn-block')) !!}
+                            {!! Form::submit('Guardar',array('class'=>'btn btn-success btn-lg btn-block','id'=>'guardar')) !!}
                             {!! Form::close() !!}
                     </div>
                 </div>

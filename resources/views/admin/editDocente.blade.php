@@ -51,6 +51,7 @@
                                 <div class="col-md-4">
                                     <button class="btn btn-primary" id="buttonCurp" type="button">Ayuda generar contraseña <i class="fa fa-cogs"></i></button>
                                 </div>
+                                <span class="label label-info hidden" id="passInfo">Info</span>
                             </div>
                         </div>
 
@@ -578,7 +579,7 @@
                                 </div>
                             </div>
                         </div>
-                        {!! Form::submit('Guardar',array('class'=>'btn btn-success btn-lg btn-block')) !!}
+                        {!! Form::submit('Guardar',array('class'=>'btn btn-success btn-lg btn-block','id'=>'guardar')) !!}
                         {!! Form::close() !!}
                     </div>
                 </div>

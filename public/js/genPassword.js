@@ -41,9 +41,10 @@ $(document).ready(function(){
         return aux ;
     }
 
-    $('#passwordConfirm').keyup(function(){
+    function checkPasswords()
+    {
         var password = $('#password').val();
-        var passwordConfirm = $(this).val();
+        var passwordConfirm = $('#passwordConfirm').val();
         var label =  $('#labelPasswordConfirm').text();
 
         console.log(password+"----"+passwordConfirm+"-----"+label);
@@ -51,12 +52,23 @@ $(document).ready(function(){
         {
             $('#formGroup').removeClass('has-error').addClass('has-success');
             $('#labelPasswordConfirm').text('Verifica Contraseña*       Válido');
+            $('#guardar').removeClass('hidden');
         }
         else
         {
             $('#formGroup').addClass('has-error');
             $('#labelPasswordConfirm').text('Verifica Contraseña*    No coincide');
+            $('#guardar').addClass('hidden');
         }
+    }
+    $('#passwordConfirm').keyup(function()
+    {
+        checkPasswords();
+    });
+
+    $('#password').keyup(function()
+    {
+        checkPasswords();
     });
 
     $('#buttonCurp').click(function(e){
@@ -70,8 +82,9 @@ $(document).ready(function(){
 
         var aux = getRFCandCURP();
         rfc += aux+tok;
-        $('#password').attr('type', 'text').val(rfc);
-
+        $('#password').val(rfc);
+        $('#passInfo').removeClass('hidden').text(rfc);
+        checkPasswords();
 
     });
     $('#helpCurp').click(function(){
