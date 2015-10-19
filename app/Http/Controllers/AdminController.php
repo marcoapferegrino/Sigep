@@ -327,7 +327,7 @@ class AdminController extends Controller {
         $grupos         = Grupo::all('id','nombre');
 
         $gruposAsignaturas  = User::getAsignaturasGrupos();
-        $alumnos            = User::getAlumnosInscritos();
+        $alumnos            = User::getAlumnosInscritos()->get();
 
 //        dd($gruposAsignaturas,$alumnos);
         if(count($gruposAsignaturas)==0)
@@ -341,6 +341,37 @@ class AdminController extends Controller {
 //       dd($asignaturas->toArray(),$periodos->toArray());
 
         return view('docente.calificaciones',compact('gruposAsignaturas','alumnos','periodos','asignaturas','grupos'));
+    }
+    public function getInscritos(Request $request)
+    {
+        $id = $request->periodo_id;
+
+        //dd($id);
+        $periodos = Periodo::all();
+        $gruposAsignaturas = User::getAsignaturasGruposSin();
+
+        if($gruposAsignaturas==null) {
+            Session::flash('error', 'No hay inscritos');
+
+            return redirect()->action('AdminController@index');
+        }
+
+        //   var_dump($ids);
+        if ($id != null) {
+            $alumnos = Alumno::getAlumnosInscritosPorPeriodo($id);
+            $actual = Periodo::find($request->periodo_id); // Periodo::find($id)->nombre;
+            $actual = $actual['nombre'];
+            // var_dump($alumnos);
+        } else {
+
+            $gruposAsignaturas  = User::getAsignaturasGruposSin();
+            $alumnos            = User::getAlumnosInscritos()->paginate(10);
+            $periodos           = Periodo::all();
+            $actual = 'Todos';
+        }
+
+        return view('admin.listInscritos',compact('actual','periodos','gruposAsignaturas','alumnos'));
+
     }
 
     public function asignaturaGrupoPeriodo(Request $request)
@@ -366,37 +397,7 @@ class AdminController extends Controller {
 
 
 
-    public function getInscritos(Request $request)
-    {
-         $id = $request->periodo_id;
 
-        //dd($id);
-        $periodos = Periodo::all();
-        $gruposAsignaturas = User::getAsignaturasGruposSin();
-
-        if($gruposAsignaturas==null) {
-            Session::flash('error', 'No hay inscritos');
-
-            return redirect()->action('AdminController@index');
-        }
-
-        //   var_dump($ids);
-        if ($id != null) {
-            $alumnos = Alumno::getAlumnosInscritosPorPeriodo($id);
-            $actual = Periodo::find($request->periodo_id); // Periodo::find($id)->nombre;
-            $actual = $actual['nombre'];
-            // var_dump($alumnos);
-        } else {
-
-            $gruposAsignaturas  = User::getAsignaturasGruposSin();
-            $alumnos            = User::getAlumnosInscritos();
-            $periodos           = Periodo::all();
-            $actual = 'Todos';
-        }
-
-        return view('admin.listInscritos',compact('actual','periodos','gruposAsignaturas','alumnos'));
-
-    }
     public function filtroInscritosPeriodo(Request $request)
     {
 
