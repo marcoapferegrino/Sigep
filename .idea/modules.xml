@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Sigep.iml" filepath="$PROJECT_DIR$/.idea/Sigep.iml" />
       <module fileurl="file://$USER_HOME$/Code/Sigep/.idea/posgradoService.iml" filepath="$USER_HOME$/Code/Sigep/.idea/posgradoService.iml" />
     </modules>
   </component>

@@ -2,8 +2,6 @@
 <div class="panel panel-info">
     <!-- Default panel contents -->
 
-
-
     <div class="panel-heading">Alumnos inscritos   <b class="pull-right">Período: <b style="color: #262626 ;font-size: 120%" >{{ $actual }}</b></b></div>
 
     <div class="panel-body">
@@ -80,7 +78,7 @@
                         <i class="fa fa-trash-o"></i>
                     </button>
                     {!! Form::close() !!}
-                    <a href="{{route('admin.showKardex',$alumno->id)}}">Ver kardex</a>
+                  <a href="{{route('admin.showKardex',$alumno->id)}}">    <button >Ver kardex </button></a>
                 </td>
             </tr>
         @endif
@@ -90,8 +88,8 @@
         </tbody>
     </table>
 
+       {!! $alumnos->appends(['periodo_id'=>Input::get('periodo_id')])->render() !!}
 
-       {!! $alumnos->appends(['periodo_id'=> Input::get('periodo_id')])->render() !!}
 
 
     </div>

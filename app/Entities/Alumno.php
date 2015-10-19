@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Alumno extends Entity {
 
     protected $table = 'alumnos';
-    protected $fillable = [  'status','dependEconomic','viveCon','gradoDeEstudios','situacionEstudios' ,'boleta','carrera',
+    protected $fillable = ['status','dependEconomic','viveCon','gradoDeEstudios','situacionEstudios' ,'boleta','carrera',
         'califEstudios','localidadEstudios','aniosEstudios' ,'escuela' ,'especialidadCarrera',
         'observacionEstudios','empresaUltimoEmpleo' ,'puestoCategUltimoEmpleo','jefeInmediatoUltimoEmpleo','telefonoUltimoEmpleo',
         'fechaIngresoUltimoEmpleo','fechaTerminoUltimoEmpleo','actividadesUltimoEmpleo'  ,'motivosSeparacionUltimoEmpleo',
@@ -230,7 +230,7 @@ class Alumno extends Entity {
 
             }
             if($numMaterias==0) {
-                array_push($losPromedios,'No disponible aún');
+                array_push($losPromedios,'No disponible');
 
             }else {
 

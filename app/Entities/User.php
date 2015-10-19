@@ -197,7 +197,7 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
     {
         $alumnos = User::getAlumnosSentence();
         $alumnos = $alumnos->select('grupos.id AS grupo_id','alumnos.boleta','users.name','users.alumno_id as id','users.id as userId','asignaturas.id AS asignatura_id','users.apellidoP','users.apellidoM','users.email', 'inscripciones.calificacion','inscripciones.id AS inscripcion_id ','asignatura_grupo.id AS asignatura_grupo_id')
-                           ->get();
+            ->paginate(10);//->get();  //cambiar 
 
         //dd($alumnos);
         return $alumnos;

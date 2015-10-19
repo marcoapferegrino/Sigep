@@ -4,6 +4,7 @@
 
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
+use PhpSpec\Exception\Exception;
 use Sigep\Entities\Alumno;
 use Sigep\Entities\Asignatura;
 use Sigep\Entities\AsignaturaGrupo;
@@ -367,9 +368,9 @@ class AdminController extends Controller {
 
     public function getInscritos(Request $request)
     {
+         $id = $request->periodo_id;
 
-
-        $id = $request->periodo_id;
+        //dd($id);
         $periodos = Periodo::all();
         $gruposAsignaturas = User::getAsignaturasGruposSin();
 
@@ -405,8 +406,7 @@ class AdminController extends Controller {
         $periodos           = Periodo::all();
         $actual             = Periodo::find($request->periodo_id); // Periodo::find($id)->nombre;
         $actual             = $actual['nombre'];
-        $actual_id=$id;
-        //var_dump($alumnos);
+
 
 
         return view('admin.listInscritos',compact('actual','periodos','gruposAsignaturas','alumnos'));
